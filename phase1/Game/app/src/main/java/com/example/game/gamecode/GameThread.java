@@ -8,7 +8,7 @@ import android.view.SurfaceHolder;
 /*
 Handles the update events for all games.
  */
-public abstract class GameThread extends Thread {
+public class GameThread extends Thread {
     private SurfaceHolder surfaceHolder;    // Container containing the Canvas
     private Canvas canvas;            // Canvas
     private GameView game;
@@ -28,11 +28,6 @@ public abstract class GameThread extends Thread {
                 synchronized (surfaceHolder) {
                     this.game.update();
                     this.game.draw(canvas);
-                    canvas.drawColor(Color.YELLOW);
-                    Paint paint = new Paint();
-                    paint.setStyle(Paint.Style.FILL);
-                    paint.setColor(Color.BLACK);
-                    canvas.drawCircle(canvas.getWidth() / 2, canvas.getHeight() / 2, canvas.getWidth() / 2, paint);
                 }
             } catch(Exception e) {
                 e.printStackTrace();
