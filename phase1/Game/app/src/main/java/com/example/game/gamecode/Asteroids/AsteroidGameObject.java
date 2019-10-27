@@ -5,14 +5,23 @@ import com.example.game.gamecode.GameObject;
 abstract class AsteroidGameObject extends GameObject {
   /** time interval to approximate movement*/
   final static double dt = 1/60;
-  /** velocity in the x and y direction of the AsteroidGameObject */
-  double vX, vY;
   /** position of AsteroidGameObject */
   double x, y;
-  /** angle AsteroidGameObject is pointing with respect to horizontal */
+  /** velocity in the x and y direction of the AsteroidGameObject */
+  double vX, vY;
+  /** angle AsteroidGameObject is pointing with respect to horizontal normalized to be between 0 inclusive and 2 pi exclusive */
   double angle;
   /** hitbox of AsteroidGameObject assuming perfect ball */
   double collisionRadius;
+
+  public AsteroidGameObject(double x, double y, double vX, double vY, double angle, double collisionRadius) {
+      this.x = x;
+      this.y = y;
+      this.vX = vX;
+      this.vY = vY;
+      this.angle = angle;
+      this.collisionRadius = collisionRadius;
+  }
 
   /**
    * Returns true iff this object and other object are within collision distance of each other.
