@@ -15,7 +15,7 @@ abstract class SnakeComponent extends SnakeObject {
     SnakeComponent next;
 
     /**
-     * Constructs a new snake object.
+     * Constructs a new snake component.
      *
      * @param x          the initial x coordinate of this snake object
      * @param y          the initial y coordinate of this snake object
