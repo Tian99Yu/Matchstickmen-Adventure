@@ -41,6 +41,6 @@ abstract class SnakeObject {
    * @param canvas the graphics context in which to draw this item.
    */
   void draw(Canvas canvas) {
-    canvas.drawRect(x, y, x + this.size, y - this.size, paint);
+    canvas.drawRect(x * size, y * size, (x+1) * this.size, (y-1) * this.size, paint);
   }
 }
