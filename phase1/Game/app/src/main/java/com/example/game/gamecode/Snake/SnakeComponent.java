@@ -3,7 +3,7 @@ package com.example.game.gamecode.Snake;
 /**
  * A generic part of the snake character.
  */
-abstract class SnakeComponent extends SnakeObject {
+class SnakeComponent extends SnakeObject {
     /**
      * The direction that this component is traveling.
      */
