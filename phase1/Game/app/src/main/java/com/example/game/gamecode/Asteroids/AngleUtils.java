@@ -16,8 +16,8 @@ class AngleUtils {
   /**
    * Returns the signed difference between two angles between - pi and pi.
    *
-   * @param firstAngle
-   * @param secondAngle
+   * @param firstAngle first angle to consider
+   * @param secondAngle second angle to consider
    * @return the difference between two angles with the magnitude representing the smallest angle
    *     between the two angles
    */

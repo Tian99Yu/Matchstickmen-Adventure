@@ -32,6 +32,28 @@ public class AsteroidGameManager extends GameBackend {
             10,
             WeaponFactory.getWeapon(WeaponType.DEFAULT_CANNON));
     gameObjects.add(player);
+    int asteroidStartCount = (int) (Math.random() * 3) + 4;
+    for (int i = 0; i < asteroidStartCount; i++) {
+      Asteroid newAsteroid;
+      double newX, newY;
+      do {
+        newX = Math.random() * screenWidth;
+        newY = Math.random() * screenHeight;
+      } while ((newX - screenWidth / 2) * (newX - screenWidth / 2)
+              + (newY - screenHeight / 2) * (newY - screenHeight / 2)
+          <= 300 * 300); // while spawning coordinates are too close to ship
+      newAsteroid =
+          new Asteroid(
+              newX,
+              newY,
+              Math.random() * 3 + 1,
+              Math.random() * 3 + 1,
+              Math.random() * 2 * Math.PI,
+              Math.random() * 90 + 10,
+              1,
+              3);
+      gameObjects.add(newAsteroid);
+    }
   }
 
   @Override
