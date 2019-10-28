@@ -2,13 +2,13 @@ package com.example.game.gamecode.Asteroids;
 
 import android.graphics.Canvas;
 
-public class Projectile extends AsteroidGameObject {
+class Projectile extends AsteroidGameObject {
   /** Remaining time until Projectile gets despawned */
-  int range;
-  /** Damage that can be inflicted by this  projectile. */
-  int damage;
+  private int range;
+  /** Damage that can be inflicted by this projectile. */
+  private int damage;
 
-  public Projectile(
+  Projectile(
       double x,
       double y,
       double vX,
@@ -28,7 +28,17 @@ public class Projectile extends AsteroidGameObject {
     updatePosition();
   }
 
-  public int getDamage() {
+  @Override
+  boolean isDestroyed() {
+    return range <= 0;
+  }
+
+  /** Destroys this projectile. */
+  void destroy() {
+    range = 0;
+  }
+
+  int getDamage() {
     return damage;
   }
 
