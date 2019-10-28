@@ -115,17 +115,17 @@ public class SnakeBackend extends GameBackend {
             1));
     snakeObj.add(new SnakeHead((int) gridWidth / 2, (int) gridHeight / 2, ':', 1));
 
-    /** snakeObj.add(
+    snakeObj.add(
         new SnakeComponent(
             (int) gridWidth / 2 + 1,
             (int) gridHeight / 2,
             '*',
-            1)); // 这就很尴尬了，之后snakecomponent应该不会是abstract吧
+            1));
     snakeObj.add(
         new SnakeComponent(
             (int) gridWidth / 2 + 2,
             (int) gridHeight / 2,
             '*',
-            1)); // 这就很尴尬了，之后snakecomponent应该不会是abstract吧 */
+            1));
   }
 }
