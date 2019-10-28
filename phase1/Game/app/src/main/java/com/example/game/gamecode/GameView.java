@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 
 public abstract class GameView extends SurfaceView implements SurfaceHolder.Callback {
     protected GameThread thread;
-    protected GameBackend game;
+    public GameBackend game;
 
     public GameView(Context context) {
         super(context);

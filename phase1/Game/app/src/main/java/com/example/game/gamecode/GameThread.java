@@ -15,7 +15,7 @@ public class GameThread extends Thread {
     private boolean isRunning;
     protected int updateInterval;
 
-    protected GameThread(SurfaceHolder surfaceHolder, GameView game) {
+    public GameThread(SurfaceHolder surfaceHolder, GameView game) {
         this.surfaceHolder = surfaceHolder;
         this.game = game;
     }
