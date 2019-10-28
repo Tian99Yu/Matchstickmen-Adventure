@@ -4,7 +4,7 @@ import com.example.game.gamecode.GameObject;
 
 abstract class AsteroidGameObject extends GameObject {
   /** time interval to approximate movement */
-  static final double dt = 1 / 60;
+  static final double dt = 1.0 / 60.0;
   /** position of AsteroidGameObject */
   double x, y;
   /** velocity in the x and y direction of the AsteroidGameObject */
