@@ -5,18 +5,23 @@ import android.content.res.Resources;
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GameObject;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class AsteroidGameManager extends GameBackend {
   /** Screen width. */
   private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
   /** Screen height. */
   private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+  /** number of pixels objects can be outside of screen. */
+  private static final int outOfScreenOffset = 5;
   /** number of lives player has left. */
   private int lives = 3;
   /** The player's ship. */
   private Ship player;
 
   public AsteroidGameManager() {
-    WeaponFactory weaponFactory = new WeaponFactory();
     player =
         new Ship(
             screenWidth / 2,
@@ -25,16 +30,77 @@ public class AsteroidGameManager extends GameBackend {
             0,
             Math.PI / 2,
             10,
-            weaponFactory.getWeapon(WeaponType.DEFAULT_CANNON));
+            WeaponFactory.getWeapon(WeaponType.DEFAULT_CANNON));
     gameObjects.add(player);
   }
 
   @Override
   public void update() {
+    moveAsteroidGameObjects();
+    handleObjectsOutOfScreen();
+    handleCollisions();
+    handleDestruction();
+    attemptFire();
+  }
+
+  private void moveAsteroidGameObjects() {
     for (GameObject asteroidGameObject : gameObjects) {
       ((AsteroidGameObject) asteroidGameObject).move();
     }
-    // TODO implement game mechanics
+  }
+
+  private void handleObjectsOutOfScreen() {
+    for (GameObject asteroidGameObject : gameObjects) {
+      if (((AsteroidGameObject) asteroidGameObject).x < -outOfScreenOffset) {
+        ((AsteroidGameObject) asteroidGameObject).x = screenWidth + outOfScreenOffset;
+      } else if (((AsteroidGameObject) asteroidGameObject).x > screenWidth + outOfScreenOffset) {
+        ((AsteroidGameObject) asteroidGameObject).x = -outOfScreenOffset;
+      }
+      if (((AsteroidGameObject) asteroidGameObject).y < -outOfScreenOffset) {
+        ((AsteroidGameObject) asteroidGameObject).y = screenHeight + outOfScreenOffset;
+      } else if (((AsteroidGameObject) asteroidGameObject).y > screenHeight + outOfScreenOffset) {
+        ((AsteroidGameObject) asteroidGameObject).y = -outOfScreenOffset;
+      }
+    }
+  }
+
+  private void handleCollisions() {
+    // collision handling
+    for (int i = 0; i < gameObjects.size(); i++) {
+      AsteroidGameObject first = (AsteroidGameObject) gameObjects.get(i);
+      for (int j = i + 1; j < gameObjects.size(); j++) {
+        AsteroidGameObject second = (AsteroidGameObject) gameObjects.get(j);
+        if (first.isColliding(second)) {
+          CollisionHandler.handle(first, second);
+        }
+      }
+    }
+  }
+
+  private void handleDestruction() {
+    List<AsteroidGameObject> newObjects = new ArrayList<>();
+    // destruction handling
+    Iterator iter = gameObjects.iterator();
+    while (iter.hasNext()) {
+      AsteroidGameObject asteroidGameObject = (AsteroidGameObject) iter.next();
+      if (asteroidGameObject.isDestroyed()) {
+        if (asteroidGameObject instanceof Ship) {
+          // player died
+          lives--;
+          ((Ship) asteroidGameObject).reset();
+        } else if (asteroidGameObject instanceof Projectile) {
+          iter.remove();
+        } else if (asteroidGameObject instanceof Asteroid) {
+          newObjects.addAll(((Asteroid) asteroidGameObject).split(1));
+          iter.remove();
+        }
+      }
+    }
+    gameObjects.addAll(newObjects);
+  }
+
+  private void attemptFire() {
+    gameObjects.addAll(player.attemptFireMainArmament());
   }
 
   /** Sets the target direction based on user input. */
