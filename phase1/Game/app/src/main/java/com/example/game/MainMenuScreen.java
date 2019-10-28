@@ -1,14 +1,14 @@
 package com.example.game;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.game.game1.SnakeActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.game.gamecode.GameView;
+import com.example.game.gamecode.Snake.SnakeActivity;
 
 public class MainMenuScreen extends AppCompatActivity {
 
@@ -23,7 +23,7 @@ public class MainMenuScreen extends AppCompatActivity {
 
         launchGame1.setOnClickListener(new GameView.OnClickListener() {
             public void onClick(View view) {
-                Intent mainIntent = new Intent(MainMenuScreen.this, com.example.game.game1.SnakeActivity.class);
+                Intent mainIntent = new Intent(MainMenuScreen.this, SnakeActivity.class);
                 MainMenuScreen.this.startActivity(mainIntent);
             }
         });
