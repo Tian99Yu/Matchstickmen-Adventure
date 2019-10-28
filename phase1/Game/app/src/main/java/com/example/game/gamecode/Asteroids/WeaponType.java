@@ -1,5 +1,5 @@
 package com.example.game.gamecode.Asteroids;
 
-public enum WeaponType {
+enum WeaponType {
   DEFAULT_CANNON
 }

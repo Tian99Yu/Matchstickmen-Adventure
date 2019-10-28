@@ -3,23 +3,23 @@ package com.example.game.gamecode.Asteroids;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutoCannon implements WeaponSystem {
+class AutoCannon extends WeaponSystem {
   /** Speed projectiles fired by this weapon travels. */
-  double muzzleVelocity;
+  private double muzzleVelocity;
   /** Spread of projectiles fired by this weapon. */
-  double spread;
+  private double spread;
   /** Cooldown time before weapon can be fired again. */
-  int cooldown;
+  private int cooldown;
   /** Stage of cooldown, weapon can fire again once 0. */
-  int cooldownState;
+  private int cooldownState;
   /** Size of projectiles fired by this weapon. */
-  double projectileSize;
+  private double projectileSize;
   /** Range of projectiles fired. */
-  int range;
+  private int range;
   /** Damage each projectile fired by this weapon inflicts. */
-  int damage;
+  private int damage;
 
-  public AutoCannon(
+  AutoCannon(
       double muzzleVelocity,
       double spread,
       int cooldown,
@@ -35,8 +35,9 @@ public class AutoCannon implements WeaponSystem {
     this.damage = damage;
   }
 
-  public List<Projectile> attemptFire(double x, double y, double shipAngle, boolean weaponActive) {
-    ArrayList<Projectile> newProjectiles = new ArrayList<>();
+  @Override
+  List<Projectile> attemptFire(double x, double y, double shipAngle, boolean weaponActive) {
+    List<Projectile> newProjectiles = new ArrayList<>();
     if (cooldownState == 0 && weaponActive) {
       double angle = shipAngle + Math.random() * spread - spread / 2;
       newProjectiles.add(
@@ -49,6 +50,7 @@ public class AutoCannon implements WeaponSystem {
               projectileSize,
               range,
               damage));
+      cooldownState = cooldown;
     } else if (cooldownState > 0) {
       cooldownState--;
     }
