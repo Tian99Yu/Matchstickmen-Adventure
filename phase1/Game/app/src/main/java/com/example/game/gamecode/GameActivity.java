@@ -14,14 +14,9 @@ public abstract class GameActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+    }
 
-        // Calls subclass setView() method in order to create the appropriate View for each game
-        gameView = this.setView();
-
-        FrameLayout frameLayout = findViewById(R.id.frameLayout);
-        frameLayout.addView(gameView);
-
+    protected void addRunningButton() {
         final ImageButton toggleRunningButton = findViewById(R.id.toggleRunningButton);
         toggleRunningButton.setOnClickListener(new GameView.OnClickListener() {
             public void onClick(View view) {

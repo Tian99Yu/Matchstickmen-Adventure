@@ -22,31 +22,31 @@ public class SnakeActivity extends GameActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.snake_layout);
-
-        LeftButton = findViewById(R.id.LeftButton);
-        RightButton = findViewById(R.id.RightButton);
-
-
-        View.OnClickListener LeftListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                snakehead.turn(TurnDirection.LEFT);
-            }
-        };
-
-        LeftButton.setOnClickListener(LeftListener);
-
-
-        View.OnClickListener RightListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                snakehead.turn(TurnDirection.RIGHT);
-            }
-        };
-
-        RightButton.setOnClickListener(RightListener);
+//        setContentView(R.layout.snake_layout);
+//
+//        LeftButton = findViewById(R.id.LeftButton);
+//        RightButton = findViewById(R.id.RightButton);
+//
+//
+//        View.OnClickListener LeftListener = new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                snakehead.turn(TurnDirection.LEFT);
+//            }
+//        };
+//
+//        LeftButton.setOnClickListener(LeftListener);
+//
+//
+//        View.OnClickListener RightListener = new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                snakehead.turn(TurnDirection.RIGHT);
+//            }
+//        };
+//
+//        RightButton.setOnClickListener(RightListener);
     }
 
 

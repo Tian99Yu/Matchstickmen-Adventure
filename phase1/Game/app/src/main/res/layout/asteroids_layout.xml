@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/activity_game" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:layout_gravity="bottom">
+
+        <ImageButton
+            android:id="@+id/thrusterButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="true"
+            android:minWidth="64dp"
+            android:minHeight="64dp"
+            app:srcCompat="@android:color/holo_red_light" />
+
+        <FrameLayout
+            android:layout_width="128dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right">
+
+            <ImageButton
+                android:id="@+id/fireButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                app:srcCompat="@android:drawable/radiobutton_off_background" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="64dp"
+                android:minWidth="64dp"
+                android:layout_gravity="end"
+                app:srcCompat="@android:drawable/radiobutton_off_background" />
+        </FrameLayout>
+    </FrameLayout>
+</FrameLayout>

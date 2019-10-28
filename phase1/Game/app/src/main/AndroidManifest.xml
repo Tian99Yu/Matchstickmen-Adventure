@@ -27,8 +27,8 @@
             android:theme="@style/FullscreenTheme"/>
 
         <activity
-            android:name=".game1.SnakeActivity"
-            android:label="SnakeActivity"
+            android:name=".gamecode.Asteroids.AsteroidsActivity"
+            android:label="AsteroidsActivity"
             android:theme="@style/FullscreenTheme"/>
     </application>
 
