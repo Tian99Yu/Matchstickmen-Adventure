@@ -41,16 +41,16 @@ class SnakeComponent extends SnakeObject {
         // Move this snake component.
         switch (direction){
             case UP:
-                y += size;
+                y += 1;
                 break;
             case DOWN:
-                y -= size;
+                y -= 1;
                 break;
             case LEFT:
-                x -= size;
+                x -= 1;
                 break;
             case RIGHT:
-                x += size;
+                x += 1;
                 break;
         }
         // Move the next snake component
