@@ -3,6 +3,7 @@ package com.example.game.gamecode.MatchstickMen;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,7 +23,9 @@ public class MatchstickMenActivity extends GameActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.matchstickmen_layout);
-
+        gameView = this.setView();
+        FrameLayout frameLayout = findViewById(R.id.canvas_matches);
+        frameLayout.addView(gameView);
         //处理显示count和加count
         btn_add = findViewById(R.id.btn_add);
         btn_restart = findViewById(R.id.btn_restart);
@@ -73,6 +76,6 @@ public class MatchstickMenActivity extends GameActivity {
     }
     @Override
     protected GameView setView() {
-        return null;
+        return new MatchstickMenView(this);
     }
 }
