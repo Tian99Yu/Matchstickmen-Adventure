@@ -19,6 +19,7 @@ public class SnakeView extends GameView {
     // the hight and width of the snakeObj
     public static float objWidth;
     public static float objHight;
+    public SnakeBackend backend;
 
     public SnakeThread thread;
     public SnakeBackend game;
@@ -30,6 +31,8 @@ public class SnakeView extends GameView {
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         this.thread.setRunning(true);
         this.thread.start();
+        backend = new SnakeBackend(screenHeight, screenWidth);
+        backend.createObjects();
     }
 
     @Override
