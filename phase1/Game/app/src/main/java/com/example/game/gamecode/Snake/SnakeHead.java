@@ -40,6 +40,14 @@ public class SnakeHead extends SnakeComponent {
     }
   }
 
+  boolean atPosition(int x, int y){
+    return (this.x == x && this.y == y);
+  }
+
+  void setDead(boolean dead){
+    this.isDead = dead;
+  }
+
   @Override
   public void move() {
     super.move();
