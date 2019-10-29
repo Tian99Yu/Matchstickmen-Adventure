@@ -88,46 +88,46 @@ public class SnakeBackend extends GameBackend {
 
   void createObjects() {
     for (int x = 0; x < gridWidth; x++) {
-      gameObjects.add(new Wall(x, 0, '-', 1));
-      gameObjects.add(new Wall(x, gridHeight, '-', 1));
+      gameObjects.add(new Wall(x, 0, "-", 1));
+      gameObjects.add(new Wall(x, gridHeight, "-", 1));
     }
     for (int y = 0; y < gridWidth; y++) {
-      gameObjects.add(new Wall(0, y, '|', 1));
-      gameObjects.add(new Wall(gridWidth, y, '|', 1));
+      gameObjects.add(new Wall(0, y, "|", 1));
+      gameObjects.add(new Wall(gridWidth, y, "|", 1));
     }
     gameObjects.add(
         new Apple(
             (int) (Math.random() * (gridWidth - 3)),
             (int) (Math.random() * (gridHeight - 3)),
-            '@',
+            "@",
             1));
     gameObjects.add(
         new Apple(
             (int) (Math.random() * (gridWidth - 3)),
             (int) (Math.random() * (gridHeight - 3)),
-            '@',
+            "@",
             1));
     gameObjects.add(
         new Apple(
             (int) (Math.random() * (gridWidth - 3)),
             (int) (Math.random() * (gridHeight - 3)),
-            '@',
+            "@",
             1));
 
-    snakeHead = new SnakeHead((int) gridWidth / 2, (int) gridHeight / 2, ':', 1);
+    snakeHead = new SnakeHead((int) gridWidth / 2, (int) gridHeight / 2, ":", 1);
     gameObjects.add(snakeHead);
 
     gameObjects.add(
         new SnakeComponent(
             (int) gridWidth / 2 + 1,
             (int) gridHeight / 2,
-            '*',
+            "*",
             1));
     gameObjects.add(
         new SnakeComponent(
             (int) gridWidth / 2 + 2,
             (int) gridHeight / 2,
-            '*',
+            "*",
             1));
   }
 }

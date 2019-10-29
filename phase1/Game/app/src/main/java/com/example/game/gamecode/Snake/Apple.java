@@ -13,7 +13,7 @@ public class Apple extends SnakeObject {
    * @param appearance the appearance of this snake object
    * @param size the side length of this snake object
    */
-  Apple(int x, int y, int appearance, int size) {
+  Apple(int x, int y, String appearance, int size) {
     super(x, y, appearance, size);
     this.isEaten = false;
   }

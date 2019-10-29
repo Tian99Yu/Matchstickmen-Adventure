@@ -14,7 +14,7 @@ public class SnakeHead extends SnakeComponent {
    * @param appearance the appearance of this snake object
    * @param size the side length of this snake object
    */
-  SnakeHead(int x, int y, int appearance, int size) {
+  SnakeHead(int x, int y, String appearance, int size) {
     super(x, y, appearance, size);
   }
 

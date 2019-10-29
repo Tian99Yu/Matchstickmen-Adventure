@@ -17,7 +17,7 @@ abstract class SnakeObject extends GameObject {
   private String appearance;
 
   /** The size of this snake object */
-  private int size;
+  int size;
 
   /** The color of this snake object */
   private Paint paint = new Paint();

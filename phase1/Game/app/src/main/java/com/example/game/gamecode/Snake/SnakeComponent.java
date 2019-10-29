@@ -12,7 +12,7 @@ class SnakeComponent extends SnakeObject {
     /**
      * The snake component that is following this snake component, null if this is the last component.
      */
-    SnakeComponent next;
+    private SnakeComponent next;
 
     /**
      * Constructs a new snake component.
@@ -22,7 +22,7 @@ class SnakeComponent extends SnakeObject {
      * @param appearance the appearance of this snake object
      * @param size       the side length of this snake object
      */
-    SnakeComponent(int x, int y, int appearance, int size) {
+    SnakeComponent(int x, int y, String appearance, int size) {
         super(x, y, appearance, size);
     }
 
