@@ -106,6 +106,6 @@ public class JoystickView extends View {
     }
 
     public double getAngle() {
-        return angle;
+        return 2 * Math.PI - angle;
     }
 }

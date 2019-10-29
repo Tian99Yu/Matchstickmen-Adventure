@@ -2,6 +2,7 @@ package com.example.game.gamecode.Asteroids;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 
@@ -9,13 +10,13 @@ import com.example.game.gamecode.GameObject;
 
 abstract class AsteroidGameObject extends GameObject {
   /** time interval to approximate movement */
-  static final double dt = 1.0 / 60.0;
+  static final double dt = 1.0;
   /** position of AsteroidGameObject */
   double x, y;
   /** velocity in the x and y direction of the AsteroidGameObject */
   double vX, vY;
   /**
-   * angle AsteroidGameObject is pointing with respect to horizontal normalized to be between 0
+   * angle AsteroidGameObject is pointing with respect to horizontal with 0 being east rotating clockwise restricted to be between 0
    * inclusive and 2 pi exclusive
    */
   double angle;
@@ -40,8 +41,8 @@ abstract class AsteroidGameObject extends GameObject {
    */
   boolean isColliding(AsteroidGameObject other) {
     if (other != null) {
-      double dx = (x - other.x) * (x - other.x);
-      double dy = (y - other.y) * (y - other.y);
+      double dx = (x - other.x);
+      double dy = (y - other.y);
       double r = collisionRadius + other.collisionRadius;
       return dx * dx + dy * dy <= r * r;
     }
@@ -68,23 +69,18 @@ abstract class AsteroidGameObject extends GameObject {
    *
    * @param canvas the canvas to draw on
    * @param bitmap the bitmap to draw
-   * @param paint the paint color and style
-   * @param x the x coordinate to center the drawing at
-   * @param y the y coordinate to center the drawing at
-   * @param angle the angle to rotate by
-   * @param size the size to scale by
    */
-  static void drawRotatedBitmap(
-      Canvas canvas, Bitmap bitmap, Paint paint, double x, double y, double angle, double size) {
+  void drawRotatedBitmap(
+      Canvas canvas, Bitmap bitmap) {
     Matrix matrix = new Matrix();
-    matrix.setRotate((float) Math.toDegrees(angle), bitmap.getWidth() / 2, bitmap.getHeight() / 2);
-    matrix.setScale(
-        2 * (float) size / (float) bitmap.getWidth(),
-        2 * (float) size / (float) bitmap.getWidth(),
+    matrix.preRotate((float) Math.toDegrees(angle), bitmap.getWidth() / 2, bitmap.getHeight() / 2);
+    matrix.postScale(
+        2 * (float) collisionRadius / (float) bitmap.getWidth(),
+        2 * (float) collisionRadius / (float) bitmap.getWidth(),
         bitmap.getWidth() / 2,
         bitmap.getHeight() / 2);
     matrix.postTranslate(
         (float) (x - bitmap.getWidth() / 2.0), (float) (y - bitmap.getHeight() / 2.0));
-    canvas.drawBitmap(bitmap, matrix, paint);
+    canvas.drawBitmap(bitmap, matrix, null);
   }
 }

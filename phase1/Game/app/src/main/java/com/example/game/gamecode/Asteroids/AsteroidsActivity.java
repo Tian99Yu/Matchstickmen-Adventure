@@ -1,6 +1,9 @@
 package com.example.game.gamecode.Asteroids;
 
 import android.annotation.SuppressLint;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +22,12 @@ public class AsteroidsActivity extends GameActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.asteroids_layout);
+
+        Asteroid.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.asteroid);
+
+        Ship.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.ship);
+
+        Projectile.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.laser);
 
         gameView = this.setView();
 

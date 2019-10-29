@@ -1,12 +1,18 @@
 package com.example.game.gamecode.Asteroids;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 
 class Projectile extends AsteroidGameObject {
   /** Remaining time until Projectile gets despawned */
   private int range;
   /** Damage that can be inflicted by this projectile. */
   private int damage;
+  /** appearance */
+  static Bitmap appearance;
+  /** color of asteroid game object */
+  static Paint paint;
 
   Projectile(
       double x,
@@ -43,5 +49,7 @@ class Projectile extends AsteroidGameObject {
   }
 
   @Override
-  public void draw(Canvas canvas) {}
+  public void draw(Canvas canvas) {
+    drawRotatedBitmap(canvas, appearance);
+  }
 }

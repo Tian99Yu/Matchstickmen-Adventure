@@ -22,6 +22,27 @@ class AngleUtils {
    *     between the two angles
    */
   static double signedAngularDifference(double firstAngle, double secondAngle) {
-    return (firstAngle - secondAngle + Math.PI) % (2 * Math.PI) - Math.PI;
+    double clockwiseDifference = clockwiseAngularDiffrence(firstAngle, secondAngle);
+    double counterclockwiseDifference = clockwiseAngularDiffrence(secondAngle, firstAngle);
+    if (clockwiseDifference < counterclockwiseDifference) {
+      return clockwiseDifference;
+    } else {
+      return -counterclockwiseDifference;
+    }
+  }
+
+  /**
+   * Returns the angle between the firstAngle and secondAngle in the clockwise direction from the secondAngle.
+   *
+   * @param firstAngle first angle to consider
+   * @param secondAngle second angle to consider
+   * @return the clockwise angular difference from the secondAngle to firstAngle
+   */
+  static double clockwiseAngularDiffrence(double firstAngle, double secondAngle) {
+    double clockwiseDifference = firstAngle - secondAngle;
+    if (clockwiseDifference < 0) {
+      clockwiseDifference += 2 * Math.PI;
+    }
+    return clockwiseDifference;
   }
 }

@@ -1,6 +1,7 @@
 package com.example.game.gamecode.Asteroids;
 
 import android.content.res.Resources;
+import android.util.Log;
 
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GameObject;
@@ -28,11 +29,11 @@ public class AsteroidGameManager extends GameBackend {
             screenHeight / 2,
             0,
             0,
-            Math.PI / 2,
-            10,
+            3 * Math.PI / 2,
+            30,
             WeaponFactory.getWeapon(WeaponType.DEFAULT_CANNON));
     gameObjects.add(player);
-    int asteroidStartCount = (int) (Math.random() * 3) + 4;
+    int asteroidStartCount = (int) (Math.random() * 3) + 5;
     for (int i = 0; i < asteroidStartCount; i++) {
       Asteroid newAsteroid;
       double newX, newY;
@@ -49,9 +50,9 @@ public class AsteroidGameManager extends GameBackend {
               Math.random() * 3 + 1,
               Math.random() * 3 + 1,
               Math.random() * 2 * Math.PI,
-              Math.random() * 90 + 10,
+              Math.random() * 100 + 50,
               1,
-              3);
+              2);
       gameObjects.add(newAsteroid);
     }
   }

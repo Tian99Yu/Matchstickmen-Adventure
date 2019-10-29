@@ -1,6 +1,8 @@
 package com.example.game.gamecode.Asteroids;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,10 @@ class Asteroid extends AsteroidGameObject {
   private int hp;
   /** The level of the asteroid, higher means larger. Asteroids of level 0 will not divide. */
   private int level;
+  /** appearance */
+  static Bitmap appearance;
+  /** color of asteroid game object */
+  static Paint paint;
 
   Asteroid(
       double x,
@@ -34,16 +40,19 @@ class Asteroid extends AsteroidGameObject {
   List<Asteroid> split(int newHp) {
     List<Asteroid> smallerAsteroids = new ArrayList<>();
     if (isDestroyed() && level > 0) {
-      smallerAsteroids.add(
-          new Asteroid(
-              x + (int) ((int) (Math.random() * collisionRadius) - collisionRadius / 2),
-              y + (int) ((int) (Math.random() * collisionRadius) - collisionRadius / 2),
-              vX + 2 * Math.random() - 1,
-              vY + 2 * Math.random() - 1,
-              Math.random() * 2 * Math.PI,
-              collisionRadius / 3,
-              newHp,
-              level - 1));
+      int count = (int)(Math.random() * 2) + 2;
+      for (int i = 0; i < 3; i++) {
+        smallerAsteroids.add(
+            new Asteroid(
+                x + (int) ((int) (Math.random() * collisionRadius) - collisionRadius / 2),
+                y + (int) ((int) (Math.random() * collisionRadius) - collisionRadius / 2),
+                vX + 2 * Math.random() - 1,
+                vY + 2 * Math.random() - 1,
+                Math.random() * 2 * Math.PI,
+                collisionRadius * 0.6,
+                newHp,
+                level - 1));
+      }
     }
     return smallerAsteroids;
   }
@@ -54,5 +63,7 @@ class Asteroid extends AsteroidGameObject {
   }
 
   @Override
-  public void draw(Canvas canvas) {}
+  public void draw(Canvas canvas) {
+    drawRotatedBitmap(canvas, appearance);
+  }
 }

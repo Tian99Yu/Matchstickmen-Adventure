@@ -1,6 +1,10 @@
 package com.example.game.gamecode.Asteroids;
 
+import android.graphics.Bitmap;
+
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.util.Log;
 
 import java.util.List;
 
@@ -23,6 +27,10 @@ class Ship extends AsteroidGameObject {
   private double startX, startY, startAngle;
   /** Whether or not this ship is destroyed. */
   private boolean destroyed;
+  /** appearance */
+  static Bitmap appearance;
+  /** color of asteroid game object */
+  static Paint paint;
 
   Ship(
       double x,
@@ -51,6 +59,7 @@ class Ship extends AsteroidGameObject {
                 angle
                     + Math.copySign(
                         TURN_RATE, AngleUtils.signedAngularDifference(targetDirection, angle)));
+        Log.i("da", String.valueOf(targetDirection)+ ',' + String.valueOf(angle)+ ',' + String.valueOf(AngleUtils.signedAngularDifference(targetDirection, angle)));
       }
     }
     if (thrusterActive) {
@@ -107,5 +116,7 @@ class Ship extends AsteroidGameObject {
   }
 
   @Override
-  public void draw(Canvas canvas) {}
+  public void draw(Canvas canvas) {
+    drawRotatedBitmap(canvas, appearance);
+  }
 }
