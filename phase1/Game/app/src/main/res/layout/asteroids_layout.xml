@@ -1,45 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include layout="@layout/activity_game" />
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Controls"
         android:layout_width="match_parent"
         android:layout_height="96dp"
         android:layout_gravity="bottom">
 
-        <ImageButton
-            android:id="@+id/thrusterButton"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:duplicateParentState="true"
-            android:minWidth="64dp"
-            android:minHeight="64dp"
-            app:srcCompat="@android:color/holo_red_light" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
 
         <FrameLayout
-            android:layout_width="128dp"
+            android:id="@+id/thruster"
+            android:layout_width="96dp"
+
             android:layout_height="match_parent"
-            android:layout_gravity="right">
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageButton
+                android:id="@+id/thrusterButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                app:srcCompat="@android:drawable/ic_notification_overlay" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fire"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="@+id/vertical_guideline"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
                 android:id="@+id/fireButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                app:srcCompat="@android:drawable/radiobutton_off_background" />
-
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="64dp"
-                android:minWidth="64dp"
-                android:layout_gravity="end"
-                app:srcCompat="@android:drawable/radiobutton_off_background" />
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                app:layout_constraintDimensionRatio="1:1"
+                android:scaleType="fitCenter"
+                app:srcCompat="@android:drawable/ic_notification_overlay" />
         </FrameLayout>
-    </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/joystick"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent">
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

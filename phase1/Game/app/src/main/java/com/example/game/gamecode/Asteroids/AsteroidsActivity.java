@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import com.example.game.R;
+import com.example.game.gamecode.CustomControls.JoystickView;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 
@@ -28,6 +29,9 @@ public class AsteroidsActivity extends GameActivity {
 
         ImageButton fireButton = findViewById(R.id.fireButton);
         ImageButton thrusterButton = findViewById(R.id.thrusterButton);
+        final JoystickView joystick = new JoystickView(this);
+
+        ((FrameLayout) findViewById(R.id.joystick)).addView(joystick);
 
         fireButton.setOnTouchListener(new GameView.OnTouchListener() {
             @Override
@@ -54,6 +58,15 @@ public class AsteroidsActivity extends GameActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        joystick.setOnTouchListener(new GameView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                joystick.onTouchEvent(event);
+                ((AsteroidGameManager) gameView.game).setTargetDirection(joystick.getAngle());
+                return true;
             }
         });
     }
