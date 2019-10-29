@@ -35,6 +35,10 @@
             android:name=".gamecode.Snake.SnakeActivity"
             android:label="SnakeActivity"
             android:theme="@style/FullscreenTheme"/>
+
+        <activity android:name=".gamecode.MatchstickMen.MatchstickMenActivity"
+            android:label="MatchstickMen"
+            android:theme="@style/FullscreenTheme"/>
     </application>
 
 </manifest>
