@@ -12,12 +12,8 @@ import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 
 public class SnakeActivity extends GameActivity {
-
-
     Button LeftButton;
     Button RightButton;
-    SnakeHead snakehead;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,43 +21,38 @@ public class SnakeActivity extends GameActivity {
 
         setContentView(R.layout.snake_layout);
 
-
         LeftButton = findViewById(R.id.LeftButton);
         RightButton = findViewById(R.id.RightButton);
 
-
-        //add the gameview as a second layout:
+        // add the gameview as a second layout:
         gameView = this.setView();
-        FrameLayout frameLayout =  findViewById(
-                R.id.snake_game
+        FrameLayout frameLayout =  findViewById(R.id.frameLayout);
+        frameLayout.addView(gameView);
 
-        );
-        frameLayout.addView(
-                gameView
-        );
+        super.addRunningButton();
 
-        View.OnClickListener LeftListener = new View.OnClickListener() {
+        View.OnClickListener leftListener = new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                snakehead.turn(TurnDirection.LEFT);
+            public void onClick(View view) {
+                ((SnakeBackend) gameView.game).turnSnake(TurnDirection.LEFT);
             }
         };
 
-        LeftButton.setOnClickListener(LeftListener);
+        LeftButton.setOnClickListener(leftListener);
 
 
-        View.OnClickListener RightListener = new View.OnClickListener() {
+        View.OnClickListener rightListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                snakehead.turn(TurnDirection.RIGHT);
+                ((SnakeBackend) gameView.game).turnSnake(TurnDirection.RIGHT);
             }
         };
 
-        RightButton.setOnClickListener(RightListener);
+        RightButton.setOnClickListener(rightListener);
     }
 
     protected GameView setView() {
-        return null;
+        return new SnakeView(this);
     }
 
 }

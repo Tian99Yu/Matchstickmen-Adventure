@@ -3,8 +3,10 @@ package com.example.game.gamecode.Snake;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import com.example.game.gamecode.GameObject;
+
 /** A generic object in Snake */
-abstract class SnakeObject {
+abstract class SnakeObject extends GameObject {
   /** The x-coordinate of this snake object */
   public int x;
 
@@ -40,7 +42,7 @@ abstract class SnakeObject {
    *
    * @param canvas the graphics context in which to draw this item.
    */
-  void draw(Canvas canvas) {
+  public void draw(Canvas canvas) {
     canvas.drawRect(x * size, y * size, (x+1) * this.size, (y-1) * this.size, paint);
   }
 }
