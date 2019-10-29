@@ -7,7 +7,7 @@ class SnakeComponent extends SnakeObject {
     /**
      * The direction that this component is traveling.
      */
-    Direction direction;
+    Direction direction = Direction.UP;
 
     /**
      * The snake component that is following this snake component, null if this is the last component.
@@ -57,6 +57,24 @@ class SnakeComponent extends SnakeObject {
         if (this.next != null) {
             this.next.move();
             this.next.direction = this.direction;
+        }
+    }
+
+    public void addComponent(){
+        SnakeComponent snakeComponent;
+        switch (direction){
+            case UP:
+                snakeComponent = new SnakeComponent(x, y-1, "@", 1);
+                break;
+            case DOWN:
+                snakeComponent = new SnakeComponent(x, y+1, "@", 1);
+                break;
+            case LEFT:
+                snakeComponent = new SnakeComponent(x+1, y, "@", 1);
+                break;
+            case RIGHT:
+                snakeComponent = new SnakeComponent(x-1, y, "@", 1);
+                break;
         }
     }
 }

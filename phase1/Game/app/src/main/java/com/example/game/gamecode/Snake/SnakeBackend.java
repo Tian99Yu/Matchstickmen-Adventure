@@ -20,6 +20,9 @@ public class SnakeBackend extends GameBackend {
   /** Game duration (in seconds). */
   int time;
 
+  /** The size of each component */
+  int size;
+
   /** The width of Snake. */
   private int gridWidth;
 
@@ -55,6 +58,7 @@ public class SnakeBackend extends GameBackend {
     gridWidth = w;
     gameObjects = new ArrayList<>();
     lost = false;
+    this.size = (int) Math.floor(w / 128);
   }
 
   void draw(Canvas canvas) {
@@ -101,34 +105,34 @@ public class SnakeBackend extends GameBackend {
   }
 
   void createObjects() {
-    for (int x = 0; x < gridWidth; x++) {
-      gameObjects.add(new Wall(x, 0, "-", 1));
-      gameObjects.add(new Wall(x, gridHeight, "-", 1));
+    for (int x = 0; x < gridWidth; x+=size) {
+      gameObjects.add(new Wall(x, size/2, "-", size));
+      gameObjects.add(new Wall(x, gridHeight, "-", size));
     }
-    for (int y = 0; y < gridWidth; y++) {
-      gameObjects.add(new Wall(0, y, "|", 1));
-      gameObjects.add(new Wall(gridWidth, y, "|", 1));
+    for (int y = 0; y < gridWidth; y+=size) {
+      gameObjects.add(new Wall(size/2, y, "|", size));
+      gameObjects.add(new Wall(gridWidth, y, "|", size));
     }
     gameObjects.add(
         new Apple(
             (int) (Math.random() * (gridWidth - 3)),
             (int) (Math.random() * (gridHeight - 3)),
             "@",
-            1));
+            size));
     gameObjects.add(
         new Apple(
             (int) (Math.random() * (gridWidth - 3)),
             (int) (Math.random() * (gridHeight - 3)),
             "@",
-            1));
+            size));
     gameObjects.add(
         new Apple(
             (int) (Math.random() * (gridWidth - 3)),
             (int) (Math.random() * (gridHeight - 3)),
             "@",
-            1));
+            size));
 
-    snakeHead = new SnakeHead((int) gridWidth / 2, (int) gridHeight / 2, ":", 1);
+    snakeHead = new SnakeHead((int) gridWidth / 2, (int) gridHeight / 2, ":", size);
     gameObjects.add(snakeHead);
 
     gameObjects.add(
@@ -136,12 +140,12 @@ public class SnakeBackend extends GameBackend {
             (int) gridWidth / 2 + 1,
             (int) gridHeight / 2,
             "*",
-            1));
+            size));
     gameObjects.add(
         new SnakeComponent(
             (int) gridWidth / 2 + 2,
             (int) gridHeight / 2,
             "*",
-            1));
+            size));
   }
 }

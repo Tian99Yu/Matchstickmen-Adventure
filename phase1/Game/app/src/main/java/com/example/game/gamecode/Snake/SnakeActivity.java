@@ -26,7 +26,7 @@ public class SnakeActivity extends GameActivity {
 
         // add the gameview as a second layout:
         gameView = this.setView();
-        FrameLayout frameLayout =  findViewById(R.id.frameLayout);
+        FrameLayout frameLayout =  findViewById(R.id.snakeLayout);
         frameLayout.addView(gameView);
 
         super.addRunningButton();
