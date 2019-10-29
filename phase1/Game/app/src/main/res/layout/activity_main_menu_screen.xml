@@ -14,13 +14,13 @@
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.45" />
 
     <Button
         android:id="@+id/storymode"
         android:layout_width="245dp"
         android:layout_height="67dp"
-        android:background="@android:drawable/screen_background_light_transparent"
+        android:background="@drawable/bigbutton"
         android:text="@string/story_mode_button"
         app:layout_constraintBottom_toTopOf="@+id/game1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
         android:layout_width="158dp"
         android:layout_height="52dp"
         android:text="@string/game_1_button"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:background="@drawable/subbutton"
         app:layout_constraintBottom_toTopOf="@+id/game2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +43,7 @@
         android:layout_width="158dp"
         android:layout_height="52dp"
         android:text="@string/game_2_button"
+        android:background="@drawable/subbutton"
         app:layout_constraintBottom_toTopOf="@+id/game3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +53,8 @@
         android:id="@+id/game3"
         android:layout_width="158dp"
         android:layout_height="52dp"
-        android:text="Button"
+        android:text="@string/game_3_button"
+        android:background="@drawable/subbutton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
