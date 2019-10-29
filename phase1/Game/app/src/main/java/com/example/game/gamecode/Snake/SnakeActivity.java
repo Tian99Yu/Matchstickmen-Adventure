@@ -3,6 +3,7 @@ package com.example.game.gamecode.Snake;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,14 +25,24 @@ public class SnakeActivity extends GameActivity {
 
         setContentView(R.layout.snake_layout);
 
+
         LeftButton = findViewById(R.id.LeftButton);
         RightButton = findViewById(R.id.RightButton);
 
 
+        //add the gameview as a second layout:
+        gameView = this.setView();
+        FrameLayout frameLayout =  findViewById(
+                R.id.snake_game
+
+        );
+        frameLayout.addView(
+                gameView
+        );
+
         View.OnClickListener LeftListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 snakehead.turn(TurnDirection.LEFT);
             }
         };
@@ -48,7 +59,6 @@ public class SnakeActivity extends GameActivity {
 
         RightButton.setOnClickListener(RightListener);
     }
-
 
     protected GameView setView() {
         return null;

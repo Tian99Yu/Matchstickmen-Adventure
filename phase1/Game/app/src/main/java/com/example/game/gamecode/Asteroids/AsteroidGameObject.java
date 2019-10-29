@@ -1,10 +1,15 @@
 package com.example.game.gamecode.Asteroids;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+
 import com.example.game.gamecode.GameObject;
 
 abstract class AsteroidGameObject extends GameObject {
   /** time interval to approximate movement */
-  static final double dt = 1 / 60;
+  static final double dt = 1.0 / 60.0;
   /** position of AsteroidGameObject */
   double x, y;
   /** velocity in the x and y direction of the AsteroidGameObject */
@@ -56,4 +61,30 @@ abstract class AsteroidGameObject extends GameObject {
 
   /** Returns true iff this object is destroyed */
   abstract boolean isDestroyed();
+
+  /**
+   * Draws the bitmap onto canvas centered at x, y rotated by angle and scaled to have a radius of
+   * size
+   *
+   * @param canvas the canvas to draw on
+   * @param bitmap the bitmap to draw
+   * @param paint the paint color and style
+   * @param x the x coordinate to center the drawing at
+   * @param y the y coordinate to center the drawing at
+   * @param angle the angle to rotate by
+   * @param size the size to scale by
+   */
+  static void drawRotatedBitmap(
+      Canvas canvas, Bitmap bitmap, Paint paint, double x, double y, double angle, double size) {
+    Matrix matrix = new Matrix();
+    matrix.setRotate((float) Math.toDegrees(angle), bitmap.getWidth() / 2, bitmap.getHeight() / 2);
+    matrix.setScale(
+        2 * (float) size / (float) bitmap.getWidth(),
+        2 * (float) size / (float) bitmap.getWidth(),
+        bitmap.getWidth() / 2,
+        bitmap.getHeight() / 2);
+    matrix.postTranslate(
+        (float) (x - bitmap.getWidth() / 2.0), (float) (y - bitmap.getHeight() / 2.0));
+    canvas.drawBitmap(bitmap, matrix, paint);
+  }
 }
