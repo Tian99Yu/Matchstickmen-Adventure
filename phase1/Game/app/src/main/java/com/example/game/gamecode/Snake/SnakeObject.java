@@ -14,13 +14,13 @@ abstract class SnakeObject extends GameObject {
   public int y;
 
   /** The appearance of this snake object */
-  public Object appearance; // The implementation of appearance is not decided yet.
+  private String appearance;
 
   /** The size of this snake object */
-  public int size;
+  int size;
 
   /** The color of this snake object */
-  public Paint paint = new Paint();
+  private Paint paint = new Paint();
 
   /**
    * Constructs a new snake object.
@@ -30,11 +30,12 @@ abstract class SnakeObject extends GameObject {
    * @param appearance the appearance of this snake object
    * @param size the side length of this snake object
    */
-  SnakeObject(int x, int y, int appearance, int size) {
+  SnakeObject(int x, int y, String appearance, int size) {
     this.x = x;
     this.y = y;
     this.appearance = appearance;
     this.size = size;
+    this.paint.setTextSize(size);
   }
 
   /**
@@ -43,6 +44,6 @@ abstract class SnakeObject extends GameObject {
    * @param canvas the graphics context in which to draw this item.
    */
   public void draw(Canvas canvas) {
-    canvas.drawRect(x * size, y * size, (x+1) * this.size, (y-1) * this.size, paint);
+    canvas.drawText(appearance,x * size, y * size, paint);
   }
 }

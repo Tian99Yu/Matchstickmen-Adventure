@@ -10,7 +10,7 @@ public class Wall extends SnakeObject {
    * @param appearance the appearance of this snake object
    * @param size the side length of this snake object
    */
-  Wall(int x, int y, int appearance, int size) {
+  Wall(int x, int y, String appearance, int size) {
     super(x, y, appearance, size);
   }
 }
