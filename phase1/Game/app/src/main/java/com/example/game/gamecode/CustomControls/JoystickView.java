@@ -90,6 +90,9 @@ public class JoystickView extends View {
             float touchX = event.getX();
             float touchY = event.getY();
             angle = (float) Math.atan2(-(touchY - viewCenterY), touchX - viewCenterX);
+            if (angle < 0) {
+                angle = 2 * Math.PI + angle;
+            }
             handleCenterX = touchX;
             handleCenterY = touchY;
             invalidate();
