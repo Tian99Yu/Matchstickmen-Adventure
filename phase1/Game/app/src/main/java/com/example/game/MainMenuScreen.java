@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game.gamecode.Asteroids.AsteroidsActivity;
 import com.example.game.gamecode.GameView;
+import com.example.game.gamecode.MatchstickMen.MatchstickMenActivity;
 import com.example.game.gamecode.Snake.SnakeActivity;
 
 public class MainMenuScreen extends AppCompatActivity {
@@ -32,6 +33,13 @@ public class MainMenuScreen extends AppCompatActivity {
         launchGame2.setOnClickListener(new GameView.OnClickListener() {
             public void onClick(View view) {
                 Intent mainIntent = new Intent(MainMenuScreen.this, AsteroidsActivity.class);
+                MainMenuScreen.this.startActivity(mainIntent);
+            }
+        });
+
+        launchGame3.setOnClickListener(new GameView.OnClickListener(){
+            public void onClick(View view){
+                Intent mainIntent = new Intent(MainMenuScreen.this, MatchstickMenActivity.class);
                 MainMenuScreen.this.startActivity(mainIntent);
             }
         });
