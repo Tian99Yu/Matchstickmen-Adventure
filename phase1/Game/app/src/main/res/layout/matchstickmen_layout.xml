@@ -70,100 +70,6 @@
         app:layout_constraintLeft_toRightOf="@id/progressBar"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/imageView12"
-        app:layout_constraintTop_toBottomOf="@id/progressBar"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintVertical_chainStyle="packed"/>
-
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/imageView11"
-        app:layout_constraintRight_toLeftOf="@id/imageView13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progressBar" />
-
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/imageView12"
-        app:layout_constraintTop_toBottomOf="@id/progressBar" />
-
-    <ImageView
-        android:id="@+id/imageView21"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginRight="44dp"
-        app:layout_constraintRight_toLeftOf="@id/imageView22"
-        app:layout_constraintTop_toBottomOf="@id/imageView11" />
-
-    <ImageView
-        android:id="@+id/imageView22"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintLeft_toRightOf="@id/imageView21"
-        app:layout_constraintRight_toLeftOf="@id/imageView23"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView12" />
-
-    <ImageView
-        android:id="@+id/imageView23"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/imageView22"
-        app:layout_constraintTop_toBottomOf="@id/imageView13"
-        app:layout_constraintBottom_toTopOf="@id/imageView33"
-        />
-
-    <ImageView
-        android:id="@+id/imageView31"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginRight="44dp"
-        app:layout_constraintRight_toLeftOf="@id/imageView32"
-        app:layout_constraintTop_toBottomOf="@id/imageView21" />
-
-    <ImageView
-        android:id="@+id/imageView32"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintLeft_toRightOf="@id/imageView31"
-        app:layout_constraintRight_toLeftOf="@id/imageView33"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView22" />
-
-    <ImageView
-        android:id="@+id/imageView33"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/imageView32"
-        app:layout_constraintTop_toBottomOf="@id/imageView23" />
 
     <Button
         android:id="@+id/btn_restart"
@@ -191,12 +97,12 @@
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="89dp"
         android:text="Minus"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_done"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_add"
-        app:layout_constraintVertical_bias="0.685" />
+        app:layout_constraintStart_toEndOf="@+id/btn_add" />
 
     <Button
         android:id="@+id/btn_done"
