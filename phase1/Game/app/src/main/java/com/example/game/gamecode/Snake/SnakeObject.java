@@ -1,6 +1,7 @@
 package com.example.game.gamecode.Snake;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.example.game.gamecode.GameObject;
@@ -13,9 +14,6 @@ abstract class SnakeObject extends GameObject {
   /** The y-coordinate of this snake object */
   public int y;
 
-  /** The appearance of this snake object */
-  private String appearance;
-
   /** The size of this snake object */
   int size;
 
@@ -27,15 +25,14 @@ abstract class SnakeObject extends GameObject {
    *
    * @param x the initial x coordinate of this snake object
    * @param y the initial y coordinate of this snake object
-   * @param appearance the appearance of this snake object
    * @param size the side length of this snake object
    */
-  SnakeObject(int x, int y, String appearance, int size) {
+  SnakeObject(int x, int y, int size) {
     this.x = x;
     this.y = y;
-    this.appearance = appearance;
     this.size = size;
     this.paint.setTextSize(size);
+    this.paint.setColor(Color.WHITE);
   }
 
   /**
@@ -44,6 +41,6 @@ abstract class SnakeObject extends GameObject {
    * @param canvas the graphics context in which to draw this item.
    */
   public void draw(Canvas canvas) {
-    canvas.drawText(appearance,x * size, y * size, paint);
+    canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1) * size, paint);
   }
 }

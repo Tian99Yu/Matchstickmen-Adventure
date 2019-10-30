@@ -6,13 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
+    <FrameLayout
         android:id="@+id/snakeLayout"
-        layout="@layout/activity_game"
+        android:layout_width="960px"
+        android:layout_height="1650px"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="96dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gameControls"

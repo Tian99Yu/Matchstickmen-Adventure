@@ -6,13 +6,14 @@ import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GameObject;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class SnakeBackend extends GameBackend {
   private SnakeHead snakeHead;
   private boolean lost;
 
   /** The number of apples eaten. */
-  int apples;
+  private int apples;
 
   /** The distance that the snake traveled (in grids). */
   int distance;
@@ -21,7 +22,7 @@ public class SnakeBackend extends GameBackend {
   int time;
 
   /** The size of each component */
-  int size;
+  private int size;
 
   /** The width of Snake. */
   private int gridWidth;
@@ -33,15 +34,15 @@ public class SnakeBackend extends GameBackend {
     return gameObjects;
   }
 
-  public void addSnakeObj(SnakeObject g) {
+  private void addSnakeObj(SnakeObject g) {
     this.gameObjects.add(g);
   }
 
-  public boolean isLost() {
+  boolean isLost() {
     return lost;
   }
 
-  public void setLost(boolean lost) {
+  private void setLost(boolean lost) {
     this.lost = lost;
   }
 
@@ -54,33 +55,19 @@ public class SnakeBackend extends GameBackend {
   }
 
   SnakeBackend(int h, int w) {
-    gridHeight = h;
-    gridWidth = w;
     gameObjects = new ArrayList<>();
     lost = false;
-    this.size = (int) Math.floor(w / 128);
+    this.size = (int) Double.min(h / 64, w / 64);
+    gridHeight = h / size;
+    gridWidth = w / size;
+    System.out.println(size);
+    System.out.println(gridHeight);
   }
 
   void draw(Canvas canvas) {
     for (int a = 0; a < gameObjects.size(); a++) {
       if (gameObjects.get(a) != null) {
         gameObjects.get(a).draw(canvas);
-      }
-
-      for (GameObject gameObject: gameObjects){
-        if (gameObject instanceof Apple){
-          Apple apple = (Apple) gameObject;
-          if (snakeHead.atPosition(apple.x, apple.y)) {
-            eatApple(apple);
-            // code for increase length of snake
-          }
-        } else if (gameObject instanceof Wall || gameObject instanceof SnakeComponent) {
-          SnakeObject snakeObject = (SnakeObject) gameObject;
-          if (snakeHead.atPosition(snakeObject.x, snakeObject.y)) {
-            snakeHead.setDead(true);
-            setLost(true);
-          }
-        }
       }
     }
   }
@@ -89,14 +76,39 @@ public class SnakeBackend extends GameBackend {
   public void update() {
     snakeHead.move();
 
+    for (GameObject gameObject : gameObjects) {
+      if (gameObject instanceof Apple) {
+        Apple apple = (Apple) gameObject;
+        if (snakeHead.atPosition(apple.x, apple.y)) {
+          eatApple(apple);
+          // code for increase length of snake
+        }
+      } else if (gameObject instanceof Wall || gameObject instanceof SnakeComponent) {
+        SnakeObject snakeObject = (SnakeObject) gameObject;
+        if (snakeHead.atPosition(snakeObject.x, snakeObject.y) && snakeHead != snakeObject) {
+          snakeHead.setDead(true);
+          setLost(true);
+        }
+      }
+    }
+    int length = gameObjects.size();
+    for (int i = 0; i < length; i++) {
+      if (gameObjects.get(i) instanceof Apple) {
+        if (((Apple) gameObjects.get(i)).isEaten()) {
+          gameObjects.remove(gameObjects.get(i));
+          i--;
+          length--;
+        }
+      }
+    }
   }
 
-  public void turnSnake(TurnDirection turnDirection) {
+  void turnSnake(TurnDirection turnDirection) {
     snakeHead.turn(turnDirection);
   }
 
-  public void eatApple(Apple apple) {
-    deleteItem(apple);
+  private void eatApple(Apple apple) {
+    apple.setIsEaten(true);
     this.apples += 1;
   }
 
@@ -104,48 +116,33 @@ public class SnakeBackend extends GameBackend {
     gameObjects.remove(g);
   }
 
-  void createObjects() {
-    for (int x = 0; x < gridWidth; x+=size) {
-      gameObjects.add(new Wall(x, size/2, "-", size));
-      gameObjects.add(new Wall(x, gridHeight, "-", size));
-    }
-    for (int y = 0; y < gridWidth; y+=size) {
-      gameObjects.add(new Wall(size/2, y, "|", size));
-      gameObjects.add(new Wall(gridWidth, y, "|", size));
-    }
-    gameObjects.add(
-        new Apple(
-            (int) (Math.random() * (gridWidth - 3)),
-            (int) (Math.random() * (gridHeight - 3)),
-            "@",
-            size));
-    gameObjects.add(
-        new Apple(
-            (int) (Math.random() * (gridWidth - 3)),
-            (int) (Math.random() * (gridHeight - 3)),
-            "@",
-            size));
-    gameObjects.add(
-        new Apple(
-            (int) (Math.random() * (gridWidth - 3)),
-            (int) (Math.random() * (gridHeight - 3)),
-            "@",
-            size));
+  private void addSnakeComponent() {
+    SnakeComponent component = snakeHead.addComponent();
+    addSnakeObj(component);
+  }
 
-    snakeHead = new SnakeHead((int) gridWidth / 2, (int) gridHeight / 2, ":", size);
+  void createObjects() {
+    Random random = new Random();
+
+    for (int x = 0; x < gridWidth; x++) {
+      gameObjects.add(new Wall(x, 0, size));
+      gameObjects.add(new Wall(x, gridHeight - 1, size));
+    }
+    for (int y = 0; y < gridHeight; y++) {
+      gameObjects.add(new Wall(0, y, size));
+      gameObjects.add(new Wall(gridWidth - 1, y, size));
+    }
+    gameObjects.add(
+        new Apple(random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size));
+    gameObjects.add(
+        new Apple(random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size));
+    gameObjects.add(
+        new Apple(random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size));
+
+    snakeHead = new SnakeHead(gridWidth / 2, gridHeight / 2, size);
     gameObjects.add(snakeHead);
 
-    gameObjects.add(
-        new SnakeComponent(
-            (int) gridWidth / 2 + 1,
-            (int) gridHeight / 2,
-            "*",
-            size));
-    gameObjects.add(
-        new SnakeComponent(
-            (int) gridWidth / 2 + 2,
-            (int) gridHeight / 2,
-            "*",
-            size));
+    addSnakeComponent();
+    addSnakeComponent();
   }
 }

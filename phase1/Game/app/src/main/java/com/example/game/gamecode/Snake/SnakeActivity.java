@@ -1,6 +1,7 @@
 package com.example.game.gamecode.Snake;
 
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -29,7 +30,7 @@ public class SnakeActivity extends GameActivity {
         FrameLayout frameLayout =  findViewById(R.id.snakeLayout);
         frameLayout.addView(gameView);
 
-        super.addRunningButton();
+        //super.addRunningButton();
 
         View.OnClickListener leftListener = new View.OnClickListener() {
             @Override
@@ -54,5 +55,4 @@ public class SnakeActivity extends GameActivity {
     protected GameView setView() {
         return new SnakeView(this);
     }
-
 }
