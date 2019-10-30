@@ -10,7 +10,7 @@ import com.example.game.gamecode.GameObject;
 
 abstract class AsteroidGameObject extends GameObject {
   /** time interval to approximate movement */
-  static final double dt = 1.0;
+  static final double dt = 0.6;
   /** position of AsteroidGameObject */
   double x, y;
   /** velocity in the x and y direction of the AsteroidGameObject */
@@ -62,6 +62,12 @@ abstract class AsteroidGameObject extends GameObject {
 
   /** Returns true iff this object is destroyed */
   abstract boolean isDestroyed();
+
+  /** Resolves collision with other
+   *
+   * @param other object being collided with.
+   */
+  abstract void resolveCollision(AsteroidGameObject other);
 
   /**
    * Draws the bitmap onto canvas centered at x, y rotated by angle and scaled to have a radius of

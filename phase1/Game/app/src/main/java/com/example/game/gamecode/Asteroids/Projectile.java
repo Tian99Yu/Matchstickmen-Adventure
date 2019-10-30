@@ -39,13 +39,15 @@ class Projectile extends AsteroidGameObject {
     return range <= 0;
   }
 
-  /** Destroys this projectile. */
-  void destroy() {
-    range = 0;
-  }
-
   int getDamage() {
     return damage;
+  }
+
+  @Override
+  void resolveCollision(AsteroidGameObject other) {
+      if (other instanceof Asteroid) {
+        range = 0;
+      }
   }
 
   @Override

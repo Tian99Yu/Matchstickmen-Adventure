@@ -27,6 +27,11 @@ class Ship extends AsteroidGameObject {
   private double startX, startY, startAngle;
   /** Whether or not this ship is destroyed. */
   private boolean destroyed;
+  /** Spawn protection available. */
+  private static final int spawnProtectionTime = 150;
+  /** Spawn protection left. */
+  private int spawnProtectionLeft = spawnProtectionTime;
+
   /** appearance */
   static Bitmap appearance;
   /** color of asteroid game object */
@@ -72,16 +77,15 @@ class Ship extends AsteroidGameObject {
         vY = newVY;
       }
     }
+    if (spawnProtectionLeft > 0) {
+      spawnProtectionLeft--;
+    }
     updatePosition();
   }
 
   @Override
   boolean isDestroyed() {
     return destroyed;
-  }
-
-  void setDestroyed() {
-    this.destroyed = true;
   }
 
   /**
@@ -113,6 +117,14 @@ class Ship extends AsteroidGameObject {
     vY = 0;
     angle = startAngle;
     destroyed = false;
+    spawnProtectionLeft = spawnProtectionTime;
+  }
+
+  @Override
+  void resolveCollision(AsteroidGameObject other) {
+    if (spawnProtectionLeft == 0 && other instanceof Asteroid) {
+      destroyed = true;
+    }
   }
 
   @Override

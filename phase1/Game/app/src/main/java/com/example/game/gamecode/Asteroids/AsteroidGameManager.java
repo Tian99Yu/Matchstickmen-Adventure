@@ -94,7 +94,8 @@ public class AsteroidGameManager extends GameBackend {
       for (int j = i + 1; j < gameObjects.size(); j++) {
         AsteroidGameObject second = (AsteroidGameObject) gameObjects.get(j);
         if (first.isColliding(second)) {
-          CollisionHandler.handle(first, second);
+          first.resolveCollision(second);
+          second.resolveCollision(first);
         }
       }
     }
