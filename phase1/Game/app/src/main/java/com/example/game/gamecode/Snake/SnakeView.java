@@ -19,6 +19,7 @@ public class SnakeView extends GameView {
   public SnakeView(Context context) {
     super(context);
     thread = new GameThread(getHolder(), this);
+    thread.setUpdateInterval(100);
 
     // int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels - 104;
     // int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels - 16;
