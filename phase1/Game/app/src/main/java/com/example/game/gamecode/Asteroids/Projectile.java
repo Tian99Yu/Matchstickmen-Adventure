@@ -2,7 +2,6 @@ package com.example.game.gamecode.Asteroids;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 
 class Projectile extends AsteroidGameObject {
   /** Remaining time until Projectile gets despawned */
@@ -11,8 +10,6 @@ class Projectile extends AsteroidGameObject {
   private int damage;
   /** appearance */
   static Bitmap appearance;
-  /** color of asteroid game object */
-  static Paint paint;
 
   Projectile(
       double x,

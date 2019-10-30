@@ -3,18 +3,16 @@ package com.example.game.gamecode.Asteroids;
 import android.graphics.Bitmap;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.util.Log;
 
 import java.util.List;
 
 class Ship extends AsteroidGameObject {
   /** Fixed amount of acceleration ship has when thruster is on. */
-  private static final double THRUST = 1;
+  private static final double THRUST = 200;
   /** Fixed rate ship can turn. */
-  private static final double TURN_RATE = 0.1;
+  private static final double TURN_RATE = 8;
   /** Maximum velocity ship can travel. */
-  private static final double maxVelocity = 10;
+  private static final double maxVelocity = 800;
   /** Whether or not the thruster is on. */
   private boolean thrusterActive = false;
   /** Whether or not the main weapon is firing. */
@@ -22,7 +20,7 @@ class Ship extends AsteroidGameObject {
   /** The weapon this ship is using. */
   private WeaponSystem mainArmament;
   /** Angle player wants ship to face. */
-  private double targetDirection;
+  private double targetAngle;
   /** Starting position and angle of ship. */
   private double startX, startY, startAngle;
   /** Whether or not this ship is destroyed. */
@@ -34,8 +32,6 @@ class Ship extends AsteroidGameObject {
 
   /** appearance */
   static Bitmap appearance;
-  /** color of asteroid game object */
-  static Paint paint;
 
   Ship(
       double x,
@@ -50,21 +46,20 @@ class Ship extends AsteroidGameObject {
     startX = x;
     startY = y;
     startAngle = angle;
-    this.targetDirection = angle;
+    this.targetAngle = angle;
   }
 
   @Override
   void move() {
-    if (angle != targetDirection) {
-      if (Math.abs(AngleUtils.signedAngularDifference(targetDirection, angle)) < TURN_RATE) {
-        angle = targetDirection;
+    if (angle != targetAngle) {
+      if (Math.abs(AngleUtils.signedAngularDifference(targetAngle, angle)) < TURN_RATE*dt) {
+        angle = targetAngle;
       } else {
         angle =
             AngleUtils.normalize(
                 angle
                     + Math.copySign(
-                        TURN_RATE, AngleUtils.signedAngularDifference(targetDirection, angle)));
-        Log.i("da", String.valueOf(targetDirection)+ ',' + String.valueOf(angle)+ ',' + String.valueOf(AngleUtils.signedAngularDifference(targetDirection, angle)));
+                        TURN_RATE*dt, AngleUtils.signedAngularDifference(targetAngle, angle)));
       }
     }
     if (thrusterActive) {
@@ -94,7 +89,7 @@ class Ship extends AsteroidGameObject {
    * @return the projectiles that just got fired.
    */
   List<Projectile> attemptFireMainArmament() {
-    return mainArmament.attemptFire(x, y, angle, mainArmamentActive);
+    return mainArmament.attemptFire(x, y, vX, vY, angle, mainArmamentActive);
   }
 
   void setThrusterActive(boolean thrusterActive) {
@@ -105,8 +100,8 @@ class Ship extends AsteroidGameObject {
     this.mainArmamentActive = mainArmamentActive;
   }
 
-  void setTargetDirection(double targetDirection) {
-    this.targetDirection = targetDirection;
+  void setTargetAngle(double targetAngle) {
+    this.targetAngle = targetAngle;
   }
 
   /** Returns ship to starting location */
@@ -116,6 +111,7 @@ class Ship extends AsteroidGameObject {
     vX = 0;
     vY = 0;
     angle = startAngle;
+    targetAngle = startAngle;
     destroyed = false;
     spawnProtectionLeft = spawnProtectionTime;
   }
