@@ -1,7 +1,6 @@
 package com.example.game.gamecode.Asteroids;
 
 import android.content.res.Resources;
-import android.util.Log;
 
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GameObject;
@@ -47,8 +46,8 @@ public class AsteroidGameManager extends GameBackend {
           new Asteroid(
               newX,
               newY,
-              Math.random() * 3 + 1,
-              Math.random() * 3 + 1,
+              Math.random() * 100 + 50,
+              Math.random() * 100 + 50,
               Math.random() * 2 * Math.PI,
               Math.random() * 100 + 50,
               1,
@@ -129,7 +128,7 @@ public class AsteroidGameManager extends GameBackend {
 
   /** Sets the target direction based on user input. */
   public void setTargetDirection(double targetDirection) {
-    player.setTargetDirection(targetDirection);
+    player.setTargetAngle(targetDirection);
   }
 
   /** Sets the thruster state based on user input. */

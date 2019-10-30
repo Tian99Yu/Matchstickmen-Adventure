@@ -2,8 +2,6 @@ package com.example.game.gamecode.Asteroids;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +12,6 @@ class Asteroid extends AsteroidGameObject {
   private int level;
   /** appearance */
   static Bitmap appearance;
-  /** color of asteroid game object */
-  static Paint paint;
 
   Asteroid(
       double x,
@@ -46,8 +42,8 @@ class Asteroid extends AsteroidGameObject {
             new Asteroid(
                 x + (int) ((int) (Math.random() * collisionRadius) - collisionRadius / 2),
                 y + (int) ((int) (Math.random() * collisionRadius) - collisionRadius / 2),
-                1.1 * vX + 2 * Math.random() - 1,
-                1.1 * vY + 2 * Math.random() - 1,
+                1.1 * vX + 200 * Math.random() - 100,
+                1.1 * vY + 200 * Math.random() - 100,
                 Math.random() * 2 * Math.PI,
                 collisionRadius * 0.6,
                 newHp,

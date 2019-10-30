@@ -10,14 +10,14 @@ import com.example.game.gamecode.GameObject;
 
 abstract class AsteroidGameObject extends GameObject {
   /** time interval to approximate movement */
-  static final double dt = 0.6;
+  static final double dt = 1.0 / 60.0;
   /** position of AsteroidGameObject */
   double x, y;
   /** velocity in the x and y direction of the AsteroidGameObject */
   double vX, vY;
   /**
-   * angle AsteroidGameObject is pointing with respect to horizontal with 0 being east rotating clockwise restricted to be between 0
-   * inclusive and 2 pi exclusive
+   * angle AsteroidGameObject is pointing with respect to horizontal with 0 being east rotating
+   * clockwise restricted to be between 0 inclusive and 2 pi exclusive
    */
   double angle;
   /** hitbox of AsteroidGameObject assuming perfect ball */
@@ -63,7 +63,8 @@ abstract class AsteroidGameObject extends GameObject {
   /** Returns true iff this object is destroyed */
   abstract boolean isDestroyed();
 
-  /** Resolves collision with other
+  /**
+   * Resolves collision with other
    *
    * @param other object being collided with.
    */
@@ -76,8 +77,7 @@ abstract class AsteroidGameObject extends GameObject {
    * @param canvas the canvas to draw on
    * @param bitmap the bitmap to draw
    */
-  void drawRotatedBitmap(
-      Canvas canvas, Bitmap bitmap) {
+  void drawRotatedBitmap(Canvas canvas, Bitmap bitmap) {
     Matrix matrix = new Matrix();
     matrix.preRotate((float) Math.toDegrees(angle), bitmap.getWidth() / 2, bitmap.getHeight() / 2);
     matrix.postScale(

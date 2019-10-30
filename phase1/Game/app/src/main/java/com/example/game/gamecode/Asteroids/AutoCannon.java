@@ -36,7 +36,9 @@ class AutoCannon extends WeaponSystem {
   }
 
   @Override
-  List<Projectile> attemptFire(double x, double y, double shipAngle, boolean weaponActive) {
+  List<Projectile> attemptFire(
+      double x, double y, double vX, double vY, double shipAngle, boolean weaponActive) {
+    double weaponVelocity = Math.sqrt(vX * vX + vY * vY);
     List<Projectile> newProjectiles = new ArrayList<>();
     if (cooldownState == 0 && weaponActive) {
       double angle = shipAngle + Math.random() * spread - spread / 2;
@@ -44,8 +46,8 @@ class AutoCannon extends WeaponSystem {
           new Projectile(
               x,
               y,
-              muzzleVelocity * Math.cos(angle),
-              muzzleVelocity * Math.sin(angle),
+              (muzzleVelocity + weaponVelocity) * Math.cos(angle),
+              (muzzleVelocity + weaponVelocity) * Math.sin(angle),
               angle,
               projectileSize,
               range,
