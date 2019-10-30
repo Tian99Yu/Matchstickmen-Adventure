@@ -18,8 +18,17 @@ public class MatchstickMenActivity extends GameActivity {
   private ProgressBar pgbar;
   private TextView timeleft, count;
   private Button btn_add, btn_minus, btn_done, btn_restart;
+  private int num = 0;
 
-  // private ImageView;
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    // private ImageView;
 
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -39,24 +48,24 @@ public class MatchstickMenActivity extends GameActivity {
 
     btn_add.setOnClickListener(
         new View.OnClickListener() {
-          int i = 0;
+          int i = getNum();
 
           @Override
           public void onClick(View view) {
-            i++;
-            count.setText(Integer.toString(i));
+            setNum(getNum() + 1);
+            count.setText(Integer.toString(getNum()));
             ((MatchstickMenBackend) gameView.game).addCount();
           }
         });
 
     btn_minus.setOnClickListener(
         new View.OnClickListener() {
-          int i = 0;
+          int i = getNum();
 
           @Override
           public void onClick(View view) {
-            i--;
-            count.setText(Integer.toString(i));
+            setNum(getNum()-1);
+            count.setText(Integer.toString(getNum()));
             ((MatchstickMenBackend) gameView.game).minusCount();
           }
         });
