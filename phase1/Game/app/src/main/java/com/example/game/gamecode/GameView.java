@@ -52,6 +52,10 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
         }
     }
 
+    public void toggleRunning() {
+        thread.setRunning(!thread.isRunning());
+    }
+
     public void toggleRunning(ImageButton toggleRunningButton) {
         toggleRunningButton.setBackgroundResource(thread.isRunning() ?
                 android.R.drawable.ic_media_play : android.R.drawable.ic_media_pause);

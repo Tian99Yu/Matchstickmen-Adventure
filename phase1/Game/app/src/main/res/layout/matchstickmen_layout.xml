@@ -7,7 +7,6 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/include"
         layout="@layout/canvas_matches"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -34,7 +33,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_minus"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
         app:layout_constraintVertical_bias="0.989" />
 
     <ProgressBar
@@ -198,7 +196,6 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_add"
-        app:layout_constraintTop_toBottomOf="@+id/count"
         app:layout_constraintVertical_bias="0.685" />
 
     <Button
@@ -211,6 +208,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/count" />
+ />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

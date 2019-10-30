@@ -35,7 +35,7 @@ public class MatchstickMenActivity extends GameActivity {
     btn_restart = findViewById(R.id.btn_restart);
 
     count = findViewById(R.id.text_count);
-    count.setText(0);
+    count.setText(Integer.toString(0));
 
     btn_add.setOnClickListener(
         new View.OnClickListener() {
@@ -44,7 +44,7 @@ public class MatchstickMenActivity extends GameActivity {
           @Override
           public void onClick(View view) {
             i++;
-            count.setText(i);
+            count.setText(Integer.toString(i));
             ((MatchstickMenBackend) gameView.game).addCount();
           }
         });
@@ -56,7 +56,7 @@ public class MatchstickMenActivity extends GameActivity {
           @Override
           public void onClick(View view) {
             i--;
-            count.setText(i);
+            count.setText(Integer.toString(i));
             ((MatchstickMenBackend) gameView.game).minusCount();
           }
         });
@@ -78,8 +78,9 @@ public class MatchstickMenActivity extends GameActivity {
         new View.OnClickListener() {
           @Override
           public void onClick(View view) {
-            Intent intent = new Intent(MatchstickMenActivity.this, MatchstickMenActivity.class);
-            startActivity(intent);
+              gameView.toggleRunning();
+              Intent intent = new Intent(MatchstickMenActivity.this, MatchstickMenActivity.class);
+              startActivity(intent);
           }
         });
 
@@ -97,7 +98,7 @@ public class MatchstickMenActivity extends GameActivity {
           public void onTick(long l) {
             i++;
             pgbar.setProgress((int) i * 10);
-            timeleft.setText(l / 1000 + "secs");
+            timeleft.setText(Float.toString(l / 1000) + "secs");
           }
 
           @Override
