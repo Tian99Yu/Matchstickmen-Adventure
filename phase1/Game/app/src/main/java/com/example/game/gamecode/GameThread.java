@@ -20,6 +20,13 @@ public class GameThread extends Thread {
         this.game = game;
     }
 
+    public void setUpdateInterval(int updateInterval) {
+        this.updateInterval = updateInterval;
+    }
+
+    public int getUpdateInterval(){
+        return this.updateInterval;
+    }
     public void run() {
         while (isRunning) {
             canvas = null;
