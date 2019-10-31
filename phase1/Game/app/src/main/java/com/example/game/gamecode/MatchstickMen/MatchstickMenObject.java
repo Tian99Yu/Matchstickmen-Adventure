@@ -20,17 +20,22 @@ public class MatchstickMenObject extends GameObject {
 
     private MatchstickMenBackend backend;
 
+    private int color;
+    private String character;
+
     /**
      * Constructs a new MatchstickMen object.
      *
      * @param x the initial x coordinate of this MatchstickMen object
      * @param y the initial y coordinate of this MatchstickMen object
      */
-    MatchstickMenObject(int x, int y, MatchstickMenBackend backend) {
+    MatchstickMenObject(int x, int y, MatchstickMenBackend backend, int color, String character) {
         this.x = x;
         this.y = y;
-        this.paint.setColor(Color.WHITE);
         this.backend = backend;
+        this.color = color;
+        this.character = character;
+        this.paint.setColor(color);
     }
 
 
@@ -44,7 +49,11 @@ public class MatchstickMenObject extends GameObject {
         while (i < range) {
             int x = random.nextInt(canvas.getWidth()-100 + 1) + 50;
             int y = random.nextInt(canvas.getHeight()-100 + 1) + 50;
-            canvas.drawCircle(x, y, 50, paint);
+            if (character.equals("rect")){
+            canvas.drawRect(x, y,x-100, y-100, paint);}
+            else if(character.equals("circle")){
+                canvas.drawCircle(x,y,50, paint);
+            }
             int increment = random.nextInt(range);
             i += increment;
             sum++;
