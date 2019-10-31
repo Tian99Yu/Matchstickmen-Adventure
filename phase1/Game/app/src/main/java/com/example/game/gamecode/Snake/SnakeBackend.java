@@ -141,6 +141,7 @@ public class SnakeBackend extends GameBackend {
   private void eatApple(Apple apple) {
     apple.setIsEaten(true);
     this.apples += 1;
+    addSnakeComponent();
   }
 
   private void deleteItem(GameObject g) {
