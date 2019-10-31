@@ -81,8 +81,12 @@ public class MatchstickMenActivity extends GameActivity {
                 count.setTextSize(30);
                 count.setText("Correct!!! :)");
             }
+
+
               String time_remaining = timeleft.getText().toString();
               ((MatchstickMenBackend) gameView.game).setTimeUsed(time_remaining);
+
+
 
           }
         });

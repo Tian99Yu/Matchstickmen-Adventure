@@ -134,6 +134,9 @@ public class MatchstickMenBackend extends GameBackend {
   public void minusCount() {
     this.count -= 1;
   }
+  public void setAnswer(int answer){
+    this.answer = answer;
+  }
 
   public int getAnswer() {
     return answer;
@@ -186,6 +189,6 @@ public class MatchstickMenBackend extends GameBackend {
 
 
   void createObjects() {
-  gameObjects.add(new MatchstickMenObject(1,1));
+  gameObjects.add(new MatchstickMenObject(1,1, this));
   }
 }

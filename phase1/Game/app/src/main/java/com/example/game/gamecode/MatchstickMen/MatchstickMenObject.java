@@ -18,22 +18,27 @@ public class MatchstickMenObject extends GameObject {
     /** The color of this snake object */
     private Paint paint = new Paint();
 
+    private MatchstickMenBackend backend;
+
     /**
      * Constructs a new MatchstickMen object.
      *
      * @param x the initial x coordinate of this MatchstickMen object
      * @param y the initial y coordinate of this MatchstickMen object
      */
-    MatchstickMenObject(int x, int y) {
+    MatchstickMenObject(int x, int y, MatchstickMenBackend backend) {
         this.x = x;
         this.y = y;
         this.paint.setColor(Color.WHITE);
+        this.backend = backend;
     }
 
 
     public void draw(Canvas canvas) {
         Random random = new Random();
+
         int range = random.nextInt(canvas.getHeight() * canvas.getWidth());
+        this.backend.setAnswer(range);
         int i = 0;
         while (i < range) {
             int x = random.nextInt(canvas.getWidth());
