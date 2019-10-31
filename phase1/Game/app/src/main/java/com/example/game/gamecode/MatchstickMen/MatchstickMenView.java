@@ -13,4 +13,11 @@ public class MatchstickMenView extends GameView {
         ((MatchstickMenBackend) game).createObjects();
         thread.setUpdateInterval(10000000);
     }
+    @Override
+    public void update() {
+        super.update();
+        if (((MatchstickMenBackend) game).isOver()) {
+            thread.setRunning(false);
+        }
+    }
 }

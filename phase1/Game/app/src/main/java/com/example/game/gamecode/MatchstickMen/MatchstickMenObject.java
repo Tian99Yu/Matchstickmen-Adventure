@@ -38,15 +38,18 @@ public class MatchstickMenObject extends GameObject {
         Random random = new Random();
 
         int range = random.nextInt(canvas.getHeight() * canvas.getWidth());
-        this.backend.setAnswer(range);
+
         int i = 0;
+        int sum = 0;
         while (i < range) {
-            int x = random.nextInt(canvas.getWidth());
-            int y = random.nextInt(canvas.getHeight());
-            canvas.drawCircle(x, y, 100, paint);
+            int x = random.nextInt(canvas.getWidth()-100 + 1) + 50;
+            int y = random.nextInt(canvas.getHeight()-100 + 1) + 50;
+            canvas.drawCircle(x, y, 50, paint);
             int increment = random.nextInt(range);
             i += increment;
+            sum++;
         }
+        this.backend.setAnswer(sum);
     }
 
 

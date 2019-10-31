@@ -93,7 +93,6 @@
 
 package com.example.game.gamecode.MatchstickMen;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
@@ -117,11 +116,14 @@ public class MatchstickMenBackend extends GameBackend {
   /** The time the user used, in secs. (3rd statistic) */
   int timeUsed;
 
-  /** Width of the canvas used to display the matchstick men. */
-  private int canvas_w;
+//  /** Width of the canvas used to display the matchstick men. */
+//  private int canvas_w;
+//
+//  /** Height of the canvas used to display the matchstick men. */
+//  private int canvas_h;
 
-  /** Height of the canvas used to display the matchstick men. */
-  private int canvas_h;
+  /** A flag showing if the game is over. */
+  private boolean over;
 
   public int getCount() {
     return count;
@@ -142,8 +144,16 @@ public class MatchstickMenBackend extends GameBackend {
     return answer;
   }
 
+  boolean isOver(){
+    return over;
+  }
+
+  void setOver(boolean over) {
+    this.over = over;
+  }
+
   public void setTimeUsed(String timeUsed) {
-    this.timeUsed = 10 - Integer.valueOf(timeUsed);
+    this.timeUsed = 10 - Integer.parseInt(timeUsed);
   }
 
   public ArrayList<GameObject> getGameObjects() {
@@ -157,9 +167,10 @@ public class MatchstickMenBackend extends GameBackend {
   Random random = new Random();
   private Paint paint = new Paint(Color.WHITE);
 
-  //////////////
+
   public MatchstickMenBackend() {
     this.answer = 0;
+    this.over = false;
     gameObjects = new ArrayList<>();
   }
 
@@ -185,7 +196,9 @@ public class MatchstickMenBackend extends GameBackend {
   }
 
   @Override
-  public void update() {}
+  public void update() {
+    setOver(true);
+  }
 
 
   void createObjects() {

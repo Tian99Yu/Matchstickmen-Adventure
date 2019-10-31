@@ -72,22 +72,23 @@ public class MatchstickMenActivity extends GameActivity {
 
     btn_done.setOnClickListener(
         new View.OnClickListener() {
-          String result = count.getText().toString();
 
           @Override
           public void onClick(View view) {
-            if (((MatchstickMenBackend) gameView.game).compare(result)) {
+              String result = count.getText().toString();
+              if (((MatchstickMenBackend) gameView.game).compare(result)) {
               ((MatchstickMenBackend) gameView.game).score += 1;
                 count.setTextSize(30);
                 count.setText("Correct!!! :)");
             }
-
-
-              String time_remaining = timeleft.getText().toString();
+            else{
+                count.setTextSize(30);
+                count.setText("Wrong -_-");
+            }
+              String text = timeleft.getText().toString();
+            String time_remaining = text.substring(0, text.indexOf('.'));
               ((MatchstickMenBackend) gameView.game).setTimeUsed(time_remaining);
-
-
-
+              gameView.game.update();
           }
         });
 
@@ -99,6 +100,7 @@ public class MatchstickMenActivity extends GameActivity {
               gameView.toggleRunning();
               Intent intent = new Intent(MatchstickMenActivity.this, MatchstickMenActivity.class);
               startActivity(intent);
+
           }
         });
 
@@ -124,6 +126,7 @@ public class MatchstickMenActivity extends GameActivity {
             timeleft.setText("Time's up!");
             i++;
             pgbar.setProgress(100);
+
           }
         }.start();
   }
