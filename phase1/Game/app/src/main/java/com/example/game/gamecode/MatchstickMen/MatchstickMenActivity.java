@@ -64,6 +64,36 @@ public class MatchstickMenActivity extends GameActivity {
     FrameLayout frameLayout = findViewById(R.id.canvas_matches);
     frameLayout.addView(gameView);
 
+      // Process the count down display on progressbar and timeleft.
+      pgbar = findViewById(R.id.progressBar);
+      timeleft = findViewById(R.id.text_timeleft);
+
+      pgbar.setProgress(0);
+
+
+      // Count down and display the time left in the textbar on the upper right corner
+      int totalTime = getTotalTime();
+
+      final CountDownTimer timer =
+              new CountDownTimer(totalTime*1000, 1000) {
+                  int i = 0;
+
+                  @Override
+                  public void onTick(long l) {
+                      i++;
+                      pgbar.setProgress((int) i * 10);
+                      timeleft.setText(Float.toString(l / 1000) + "secs");
+                  }
+
+                  @Override
+                  public void onFinish() {
+                      timeleft.setText("Time's up!");
+                      i++;
+                      pgbar.setProgress(100);
+
+                  }
+              }.start();
+
     // Display and control count.
     btn_add = findViewById(R.id.btn_add);
     btn_minus = findViewById(R.id.btn_minus);
@@ -107,6 +137,7 @@ public class MatchstickMenActivity extends GameActivity {
               ((MatchstickMenBackend) gameView.gameBackend).score += 1;
                 count.setTextSize(30);
                 count.setText("Correct!!! :)");
+                timer.cancel();
             }
             else{
                 count.setTextSize(30);
@@ -130,36 +161,6 @@ public class MatchstickMenActivity extends GameActivity {
 
           }
         });
-
-    // Process the count down display on progressbar and timeleft.
-    pgbar = findViewById(R.id.progressBar);
-    timeleft = findViewById(R.id.text_timeleft);
-
-    pgbar.setProgress(0);
-
-
-    // Count down and display the time left in the textbar on the upper right corner
-    int totalTime = getTotalTime();
-
-    CountDownTimer timer =
-        new CountDownTimer(totalTime*1000, 1000) {
-          int i = 0;
-
-          @Override
-          public void onTick(long l) {
-            i++;
-            pgbar.setProgress((int) i * 10);
-            timeleft.setText(Float.toString(l / 1000) + "secs");
-          }
-
-          @Override
-          public void onFinish() {
-            timeleft.setText("Time's up!");
-            i++;
-            pgbar.setProgress(100);
-
-          }
-        }.start();
   }
 
   @Override

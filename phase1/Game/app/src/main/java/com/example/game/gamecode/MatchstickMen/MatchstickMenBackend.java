@@ -93,14 +93,10 @@
 
 package com.example.game.gamecode.MatchstickMen;
 
-import android.graphics.Color;
-import android.graphics.Paint;
-
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GameObject;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class MatchstickMenBackend extends GameBackend {
 
@@ -225,5 +221,10 @@ public class MatchstickMenBackend extends GameBackend {
   @Override
   public boolean isGameOver() {
     return over;
+  }
+
+  @Override
+  public int getCurrentScore() {
+    return 0;
   }
 }

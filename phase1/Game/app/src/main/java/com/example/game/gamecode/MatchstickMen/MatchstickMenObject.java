@@ -1,7 +1,6 @@
 package com.example.game.gamecode.MatchstickMen;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.example.game.gamecode.GameObject;
@@ -47,11 +46,13 @@ public class MatchstickMenObject extends GameObject {
         int i = 0;
         int sum = 0;
         while (i < range) {
-            int x = random.nextInt(canvas.getWidth()-100 + 1) + 50;
-            int y = random.nextInt(canvas.getHeight()-100 + 1) + 50;
             if (character.equals("rect")){
+                int x = random.nextInt(canvas.getWidth()-100);
+                int y = random.nextInt(canvas.getHeight()-100);
             canvas.drawRect(x, y,x-100, y-100, paint);}
             else if(character.equals("circle")){
+                int x = random.nextInt(canvas.getWidth()-100 + 1) + 50;
+                int y = random.nextInt(canvas.getHeight()-100 + 1) + 50;
                 canvas.drawCircle(x,y,50, paint);
             }
             int increment = random.nextInt(range);
