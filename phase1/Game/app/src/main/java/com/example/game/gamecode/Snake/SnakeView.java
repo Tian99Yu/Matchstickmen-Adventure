@@ -3,6 +3,7 @@ package com.example.game.gamecode.Snake;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.ImageButton;
@@ -29,6 +30,7 @@ public class SnakeView extends GameView {
     game = new SnakeBackend(screenHeight, screenWidth);
 
     ((SnakeBackend) game).createObjects();
+    setCanvasColor(Color.WHITE);
   }
 
   @Override
@@ -37,5 +39,9 @@ public class SnakeView extends GameView {
     if (((SnakeBackend) game).isLost()) {
       thread.setRunning(false);
     }
+  }
+
+  public void setCanvasColor(int color){
+    ((SnakeBackend) game).setCanvasColor(color);
   }
 }

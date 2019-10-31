@@ -8,7 +8,7 @@ public abstract class GameBackend {
     protected ArrayList<GameObject> gameObjects = new ArrayList<>();
     public abstract void update();
 
-    void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         for (GameObject object : gameObjects) {
             object.draw(canvas);
         }

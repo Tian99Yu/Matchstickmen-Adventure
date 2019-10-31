@@ -2,7 +2,9 @@ package com.example.game.gamecode.Snake;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 
+import com.example.game.R;
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GameObject;
 
@@ -33,6 +35,9 @@ public class SnakeBackend extends GameBackend {
 
   /** The shape of its snake objects. */
   private SnakeShape shape = SnakeShape.CIRCLE;
+
+  /** The color of the background */
+  private int canvasColor = Color.BLACK;
 
   public ArrayList<GameObject> getGameObjects() {
     return gameObjects;
@@ -75,7 +80,9 @@ public class SnakeBackend extends GameBackend {
     this.shape = shape;
   }
 
-  void draw(Canvas canvas) {
+  @Override
+  public void draw(Canvas canvas) {
+    drawBackground(canvas);
     for (int a = 0; a < gameObjects.size(); a++) {
       if (gameObjects.get(a) != null) {
         gameObjects.get(a).draw(canvas);
@@ -204,5 +211,17 @@ public class SnakeBackend extends GameBackend {
       for (GameObject gameObject: gameObjects) {
           ((SnakeObject) gameObject).setShape(shape);
       }
+  }
+
+  public void drawBackground(Canvas canvas){
+    Paint paint = new Paint();
+    paint.setColor(canvasColor);
+    paint.setStyle(Paint.Style.FILL);
+    canvas.drawPaint(paint);
+    //canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), paint);
+  }
+
+  public void setCanvasColor(int color) {
+    canvasColor = color;
   }
 }
