@@ -206,4 +206,9 @@ public class SnakeBackend extends GameBackend {
   public boolean isGameOver() {
     return lost;
   }
+
+  @Override
+  public int getCurrentScore() {
+    return 0;
+  }
 }

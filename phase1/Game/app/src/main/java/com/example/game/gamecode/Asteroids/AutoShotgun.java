@@ -3,16 +3,19 @@ package com.example.game.gamecode.Asteroids;
 import java.util.ArrayList;
 import java.util.List;
 
-class AutoCannon extends WeaponSystem {
+public class AutoShotgun extends WeaponSystem {
+  int numProjectiles;
 
-  AutoCannon(
+  public AutoShotgun(
       double muzzleVelocity,
       double spread,
       int cooldown,
       double projectileSize,
       int range,
-      int damage) {
+      int damage,
+      int numProjectiles) {
     super(muzzleVelocity, spread, cooldown, projectileSize, range, damage);
+    this.numProjectiles = numProjectiles;
   }
 
   @Override
@@ -21,17 +24,19 @@ class AutoCannon extends WeaponSystem {
     double weaponVelocity = Math.sqrt(vX * vX + vY * vY);
     List<Projectile> newProjectiles = new ArrayList<>();
     if (cooldownState == 0 && weaponActive) {
-      double angle = shipAngle + Math.random() * spread - spread / 2;
-      newProjectiles.add(
-          new Projectile(
-              x,
-              y,
-              (muzzleVelocity + weaponVelocity) * Math.cos(angle),
-              (muzzleVelocity + weaponVelocity) * Math.sin(angle),
-              angle,
-              projectileSize,
-              range,
-              damage));
+      for (int i = 0; i < numProjectiles; i++) {
+        double angle = shipAngle + Math.random() * spread - spread / 2;
+        newProjectiles.add(
+            new Projectile(
+                x,
+                y,
+                (muzzleVelocity + weaponVelocity) * Math.cos(angle),
+                (muzzleVelocity + weaponVelocity) * Math.sin(angle),
+                angle,
+                projectileSize,
+                range,
+                damage));
+      }
       cooldownState = cooldown;
     } else if (cooldownState > 0) {
       cooldownState--;
