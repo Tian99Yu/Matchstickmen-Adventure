@@ -4,20 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 class AutoCannon extends WeaponSystem {
-  /** Speed projectiles fired by this weapon travels. */
-  private double muzzleVelocity;
-  /** Spread of projectiles fired by this weapon. */
-  private double spread;
-  /** Cooldown time before weapon can be fired again. */
-  private int cooldown;
-  /** Stage of cooldown, weapon can fire again once 0. */
-  private int cooldownState;
-  /** Size of projectiles fired by this weapon. */
-  private double projectileSize;
-  /** Range of projectiles fired. */
-  private int range;
-  /** Damage each projectile fired by this weapon inflicts. */
-  private int damage;
 
   AutoCannon(
       double muzzleVelocity,
@@ -26,13 +12,7 @@ class AutoCannon extends WeaponSystem {
       double projectileSize,
       int range,
       int damage) {
-    this.muzzleVelocity = muzzleVelocity;
-    this.spread = spread;
-    this.cooldown = cooldown;
-    this.cooldownState = 0;
-    this.projectileSize = projectileSize;
-    this.range = range;
-    this.damage = damage;
+    super(muzzleVelocity, spread, cooldown, projectileSize, range, damage);
   }
 
   @Override

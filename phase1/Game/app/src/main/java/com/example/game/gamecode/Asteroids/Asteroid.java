@@ -27,11 +27,6 @@ class Asteroid extends AsteroidGameObject {
     this.level = level;
   }
 
-  /** Reduces hp by damage amount. */
-  void hit(int damage) {
-    hp -= damage;
-  }
-
   /** Returns smaller asteroids upon destruction. */
   List<Asteroid> split(int newHp) {
     List<Asteroid> smallerAsteroids = new ArrayList<>();
@@ -51,6 +46,15 @@ class Asteroid extends AsteroidGameObject {
       }
     }
     return smallerAsteroids;
+  }
+
+  /**
+   * Returns the number of points the player gains for destroying this asteroid.
+   *
+   * @return the value of this asteroid.
+   */
+  public int getValue() {
+    return level * ((int)(Math.random() * 90) + 10);
   }
 
   @Override
@@ -74,7 +78,7 @@ class Asteroid extends AsteroidGameObject {
       x += 0.5 * dx / Math.abs(dx);
       y += 0.5 * dy / Math.abs(dy);
     } else if (other instanceof Projectile) {
-      hit(((Projectile) other).getDamage());
+      hp -= ((Projectile) other).getDamage();
     }
   }
 

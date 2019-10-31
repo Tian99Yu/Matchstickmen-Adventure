@@ -226,4 +226,9 @@ public class MatchstickMenBackend extends GameBackend {
   public boolean isGameOver() {
     return over;
   }
+
+  @Override
+  public int getCurrentScore() {
+    return 0;
+  }
 }
