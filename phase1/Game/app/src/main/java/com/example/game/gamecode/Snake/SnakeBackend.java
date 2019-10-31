@@ -73,30 +73,30 @@ public class SnakeBackend extends GameBackend {
     }
   }
 
-  public void updateHeadColor(int color){
-    this.snakeHead.updateColor(color);
+  public void setHeadColor(int color){
+    this.snakeHead.setColor(color);
   }
 
-  public void updateAppleColor(int color){
+  public void setAppleColor(int color){
     for (GameObject gameObject: gameObjects){
       if (gameObject instanceof Apple){
-        ((Apple) gameObject).updateColor(color);
+        ((Apple) gameObject).setColor(color);
       }
     }
   }
 
-  public void updateWallColor(int color){
+  public void setWallColor(int color){
     for (GameObject gameObject: gameObjects){
       if (gameObject instanceof Wall){
-        ((Wall) gameObject).updateColor(color);
+        ((Wall) gameObject).setColor(color);
       }
     }
   }
 
-  public void updateBodyColor(int color){
+  public void setBodyColor(int color){
     for (GameObject gameObject: gameObjects){
       if (gameObject instanceof SnakeComponent && !(gameObject instanceof SnakeHead)){
-        ((SnakeComponent) gameObject).updateColor(color);
+        ((SnakeComponent) gameObject).setColor(color);
       }
     }
   }
@@ -104,13 +104,14 @@ public class SnakeBackend extends GameBackend {
   @Override
   public void update() {
     snakeHead.move();
+    boolean eatApple = false;
 
     for (GameObject gameObject : gameObjects) {
       if (gameObject instanceof Apple) {
         Apple apple = (Apple) gameObject;
         if (snakeHead.atPosition(apple.x, apple.y)) {
           eatApple(apple);
-          // code for increase length of snake
+          eatApple = true;
         }
       } else if (gameObject instanceof Wall || gameObject instanceof SnakeComponent) {
         SnakeObject snakeObject = (SnakeObject) gameObject;
@@ -120,6 +121,7 @@ public class SnakeBackend extends GameBackend {
         }
       }
     }
+
     int length = gameObjects.size();
     for (int i = 0; i < length; i++) {
       if (gameObjects.get(i) instanceof Apple) {
@@ -129,6 +131,10 @@ public class SnakeBackend extends GameBackend {
           length--;
         }
       }
+    }
+
+    if (eatApple) {
+      addSnakeComponent();
     }
 
     distance++;
@@ -141,7 +147,6 @@ public class SnakeBackend extends GameBackend {
   private void eatApple(Apple apple) {
     apple.setIsEaten(true);
     this.apples += 1;
-    addSnakeComponent();
   }
 
   private void deleteItem(GameObject g) {
@@ -179,9 +184,9 @@ public class SnakeBackend extends GameBackend {
     addSnakeComponent();
     addSnakeComponent();
 
-    updateAppleColor(Color.RED);
-    updateBodyColor(Color.GREEN);
-    updateHeadColor(Color.YELLOW);
-    updateWallColor(Color.YELLOW);
+    setAppleColor(Color.RED);
+    setBodyColor(Color.GREEN);
+    setHeadColor(Color.YELLOW);
+    setWallColor(Color.YELLOW);
   }
 }

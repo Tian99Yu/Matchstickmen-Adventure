@@ -71,24 +71,25 @@ class SnakeComponent extends SnakeObject {
   SnakeComponent addComponent() {
     SnakeComponent snakeComponent = this;
     while (snakeComponent.next != null) {
-      snakeComponent = this.next;
+      snakeComponent = snakeComponent.next;
     }
     SnakeComponent added = null;
-    switch (direction) {
+    switch (snakeComponent.direction) {
       case UP:
-        added = new SnakeComponent(x, y + 1, this.size);
+        added = new SnakeComponent(snakeComponent.x, snakeComponent.y + 1, this.size);
         break;
       case DOWN:
-        added = new SnakeComponent(x, y - 1, this.size);
+        added = new SnakeComponent(snakeComponent.x, snakeComponent.y - 1, this.size);
         break;
       case LEFT:
-        added = new SnakeComponent(x + 1, y, this.size);
+        added = new SnakeComponent(snakeComponent.x + 1, snakeComponent.y, this.size);
         break;
       case RIGHT:
-        added = new SnakeComponent(x - 1, y, this.size);
+        added = new SnakeComponent(snakeComponent.x - 1, snakeComponent.y, this.size);
         break;
     }
     snakeComponent.next = added;
+    added.setColor(snakeComponent.getColor());
     return added;
   }
 }
