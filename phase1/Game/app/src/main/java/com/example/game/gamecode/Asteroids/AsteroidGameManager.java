@@ -140,4 +140,11 @@ public class AsteroidGameManager extends GameBackend {
   public void setFireActive(boolean active) {
     player.setMainArmamentActive(active);
   }
+
+
+  @Override
+  public boolean isGameOver() {
+    return lives <= 0;
+  }
+
 }

@@ -1,10 +1,10 @@
-//package com.example.game.gamecode.MatchstickMen;
+//package com.example.gameBackend.gamecode.MatchstickMen;
 //
 //import android.graphics.Canvas;
 //import android.graphics.Paint;
 //
-//import com.example.game.gamecode.GameBackend;
-//import com.example.game.gamecode.GameObject;
+//import com.example.gameBackend.gamecode.GameBackend;
+//import com.example.gameBackend.gamecode.GameObject;
 //
 //import java.util.ArrayList;
 //import java.util.Random;
@@ -124,7 +124,7 @@ public class MatchstickMenBackend extends GameBackend {
 //  /** Height of the canvas used to display the matchstick men. */
 //  private int canvas_h;
 
-  /** A flag showing if the game is over. */
+  /** A flag showing if the gameBackend is over. */
   private boolean over;
 
   public int getCount() {
@@ -146,10 +146,6 @@ public class MatchstickMenBackend extends GameBackend {
     return answer;
   }
 
-  boolean isOver(){
-    return over;
-  }
-
   void setOver(boolean over) {
     this.over = over;
   }
@@ -165,7 +161,6 @@ public class MatchstickMenBackend extends GameBackend {
   private void addSnakeObj(MatchstickMenObject m) {
     this.gameObjects.add(m);
   }
-
 
 
 
@@ -224,5 +219,11 @@ public class MatchstickMenBackend extends GameBackend {
       default:
         totalTime = 10;
     }
+  }
+
+
+  @Override
+  public boolean isGameOver() {
+    return over;
   }
 }

@@ -4,18 +4,18 @@ import com.example.game.Games;
 
 import java.io.IOException;
 
-public class LeaderboardPresenter {
+class LeaderboardPresenter {
     private LeaderboardActivity leaderboardActivity;
     private LeaderboardManager leaderboardManager;
 
-    public LeaderboardPresenter(LeaderboardActivity leaderboardActivity, LeaderboardManager leaderboardManager) {
+    LeaderboardPresenter(LeaderboardActivity leaderboardActivity, LeaderboardManager leaderboardManager) {
         this.leaderboardActivity = leaderboardActivity;
         this.leaderboardManager = leaderboardManager;
         leaderboardActivity.setGames(leaderboardManager.getGames());
 
     }
 
-    public void showScores() {
+    void showScores() {
         try {
             leaderboardActivity.showScores(leaderboardActivity.getCurrentGame().toString());
         } catch (IOException e) {
@@ -23,7 +23,13 @@ public class LeaderboardPresenter {
         }
     }
 
-    public String[] getScoreData(Games game) throws IOException {
-        return leaderboardManager.getGameStatistics(game);
+    String[] getScoreData(Games game) {
+        String[] ret = {};
+        try {
+            ret = leaderboardManager.getGameStatistics(game);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ret;
     }
 }

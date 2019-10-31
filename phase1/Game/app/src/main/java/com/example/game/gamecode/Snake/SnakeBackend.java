@@ -42,10 +42,6 @@ public class SnakeBackend extends GameBackend {
     this.gameObjects.add(g);
   }
 
-  boolean isLost() {
-    return lost;
-  }
-
   private void setLost(boolean lost) {
     this.lost = lost;
   }
@@ -204,5 +200,10 @@ public class SnakeBackend extends GameBackend {
       for (GameObject gameObject: gameObjects) {
           ((SnakeObject) gameObject).setShape(shape);
       }
+  }
+
+  @Override
+  public boolean isGameOver() {
+    return lost;
   }
 }

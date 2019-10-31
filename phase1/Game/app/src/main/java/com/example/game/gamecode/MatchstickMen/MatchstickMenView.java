@@ -16,7 +16,7 @@ public class MatchstickMenView extends GameView {
     public MatchstickMenView(Context context, MatchstickMenActivity matchstickMenActivity) {
         super(context);
         thread = new GameThread(getHolder(), this);
-        game = new MatchstickMenBackend(); //change it after you know the size of the canvas
+        gameBackend = new MatchstickMenBackend(); //change it after you know the size of the canvas
 
 
         this.matchstickMenActivity = matchstickMenActivity;
@@ -37,8 +37,8 @@ public class MatchstickMenView extends GameView {
                     setUpInterval = 10000000;
         }
         thread.setUpdateInterval(setUpInterval);
-        ((MatchstickMenBackend)this.game).inject(color, level, character);
-        ((MatchstickMenBackend) game).createObjects();
+        ((MatchstickMenBackend)this.gameBackend).inject(color, level, character);
+        ((MatchstickMenBackend) gameBackend).createObjects();
 
 
 
@@ -46,8 +46,5 @@ public class MatchstickMenView extends GameView {
     @Override
     public void update() {
         super.update();
-        if (((MatchstickMenBackend) game).isOver()) {
-            thread.setRunning(false);
-        }
     }
 }
