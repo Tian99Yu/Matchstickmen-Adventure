@@ -6,6 +6,8 @@ import android.graphics.Paint;
 
 import com.example.game.gamecode.GameObject;
 
+import java.util.Random;
+
 public class MatchstickMenObject extends GameObject {
     /** The x-coordinate of this snake object */
     public int x;
@@ -28,8 +30,19 @@ public class MatchstickMenObject extends GameObject {
         this.paint.setColor(Color.WHITE);
     }
 
-    @Override
-    public void draw(Canvas canvas) {
 
+    public void draw(Canvas canvas) {
+        Random random = new Random();
+        int range = random.nextInt(canvas.getHeight() * canvas.getWidth());
+        int i = 0;
+        while (i < range) {
+            int x = random.nextInt(canvas.getWidth());
+            int y = random.nextInt(canvas.getHeight());
+            canvas.drawCircle(x, y, 100, paint);
+            int increment = random.nextInt(range);
+            i += increment;
+        }
     }
+
+
 }

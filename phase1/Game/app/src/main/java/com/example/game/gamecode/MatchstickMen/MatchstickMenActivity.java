@@ -78,7 +78,12 @@ public class MatchstickMenActivity extends GameActivity {
           public void onClick(View view) {
             if (((MatchstickMenBackend) gameView.game).compare(result)) {
               ((MatchstickMenBackend) gameView.game).score += 1;
+                count.setTextSize(30);
+                count.setText("Correct!!! :)");
             }
+              String time_remaining = timeleft.getText().toString();
+              ((MatchstickMenBackend) gameView.game).setTimeUsed(time_remaining);
+
           }
         });
 

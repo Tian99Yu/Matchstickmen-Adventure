@@ -9,6 +9,8 @@ public class MatchstickMenView extends GameView {
     public MatchstickMenView(Context context) {
         super(context);
         thread = new GameThread(getHolder(), this);
-        game = new MatchstickMenBackend(250, 250); //change it after you know the size of the canvas
+        game = new MatchstickMenBackend(); //change it after you know the size of the canvas
+        ((MatchstickMenBackend) game).createObjects();
+        thread.setUpdateInterval(10000000);
     }
 }
