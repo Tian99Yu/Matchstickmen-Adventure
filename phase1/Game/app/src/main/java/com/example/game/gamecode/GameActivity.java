@@ -1,12 +1,13 @@
 package com.example.game.gamecode;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.game.MainMenuScreen;
 import com.example.game.R;
 
 public abstract class GameActivity extends AppCompatActivity {
@@ -16,8 +17,6 @@ public abstract class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    // TODO: Look into overriding methods to fix start/stop/pause/resume behaviour
-
     protected void addRunningButton() {
         final ImageButton toggleRunningButton = findViewById(R.id.toggleRunningButton);
         toggleRunningButton.setOnClickListener(new GameView.OnClickListener() {
@@ -26,6 +25,19 @@ public abstract class GameActivity extends AppCompatActivity {
             }
         });
         toggleRunningButton.bringToFront();
+    }
+
+    // TODO: Allow for quit-resume functionality.
+    //  When switching to the previous intent, store whatever is in this intent and store it in
+    //  cache.
+    //  Additionally, look into app-switcher events so that the game does not break and restart
+    //  when opening the app-switcher menu and returning to the app.
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(GameActivity.this, MainMenuScreen.class);
+        gameView.toggleRunning();
+        startActivity(intent);
     }
 
     protected abstract GameView setView();
