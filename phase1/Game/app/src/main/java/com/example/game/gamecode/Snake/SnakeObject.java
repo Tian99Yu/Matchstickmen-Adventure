@@ -43,4 +43,8 @@ abstract class SnakeObject extends GameObject {
   public void draw(Canvas canvas) {
     canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1) * size, paint);
   }
+
+  public void updateColor(int color){
+    this.paint.setColor(color);
+  }
 }

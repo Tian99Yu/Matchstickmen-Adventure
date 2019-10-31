@@ -1,6 +1,7 @@
 package com.example.game.gamecode.Snake;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GameObject;
@@ -16,10 +17,10 @@ public class SnakeBackend extends GameBackend {
   private int apples;
 
   /** The distance that the snake traveled (in grids). */
-  int distance;
+  private int distance;
 
-  /** Game duration (in seconds). */
-  int time;
+  /** The length of the snake. */
+  private int snakeLength = 1;
 
   /** The size of each component */
   private int size;
@@ -72,6 +73,34 @@ public class SnakeBackend extends GameBackend {
     }
   }
 
+  public void updateHeadColor(int color){
+    this.snakeHead.updateColor(color);
+  }
+
+  public void updateAppleColor(int color){
+    for (GameObject gameObject: gameObjects){
+      if (gameObject instanceof Apple){
+        ((Apple) gameObject).updateColor(color);
+      }
+    }
+  }
+
+  public void updateWallColor(int color){
+    for (GameObject gameObject: gameObjects){
+      if (gameObject instanceof Wall){
+        ((Wall) gameObject).updateColor(color);
+      }
+    }
+  }
+
+  public void updateBodyColor(int color){
+    for (GameObject gameObject: gameObjects){
+      if (gameObject instanceof SnakeComponent && !(gameObject instanceof SnakeHead)){
+        ((SnakeComponent) gameObject).updateColor(color);
+      }
+    }
+  }
+
   @Override
   public void update() {
     snakeHead.move();
@@ -95,12 +124,14 @@ public class SnakeBackend extends GameBackend {
     for (int i = 0; i < length; i++) {
       if (gameObjects.get(i) instanceof Apple) {
         if (((Apple) gameObjects.get(i)).isEaten()) {
-          gameObjects.remove(gameObjects.get(i));
+          deleteItem(gameObjects.get(i));
           i--;
           length--;
         }
       }
     }
+
+    distance++;
   }
 
   void turnSnake(TurnDirection turnDirection) {
@@ -112,13 +143,14 @@ public class SnakeBackend extends GameBackend {
     this.apples += 1;
   }
 
-  public void deleteItem(SnakeObject g) {
+  private void deleteItem(GameObject g) {
     gameObjects.remove(g);
   }
 
   private void addSnakeComponent() {
     SnakeComponent component = snakeHead.addComponent();
     addSnakeObj(component);
+    snakeLength++;
   }
 
   void createObjects() {
@@ -142,7 +174,13 @@ public class SnakeBackend extends GameBackend {
     snakeHead = new SnakeHead(gridWidth / 2, gridHeight / 2, size);
     gameObjects.add(snakeHead);
 
+
     addSnakeComponent();
     addSnakeComponent();
+
+    updateAppleColor(Color.RED);
+    updateBodyColor(Color.GREEN);
+    updateHeadColor(Color.YELLOW);
+    updateWallColor(Color.YELLOW);
   }
 }
