@@ -8,18 +8,19 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class LeaderboardManager {
     private File saveDirectory;
-    private ArrayList<String> games = new ArrayList<>();
+    private List<String> games = new ArrayList<>();
     private HashMap<Games, String> gameFilename = new HashMap<>();
 
-    public LeaderboardManager(File saveDirectory) {
+    LeaderboardManager(File saveDirectory) {
         this.saveDirectory = saveDirectory;
 
         for (Games game : Games.values()) {
@@ -47,14 +48,14 @@ public class LeaderboardManager {
         bw.close();
     }
 
-    public String[] getGames() {
+    String[] getGames() {
         return games.toArray(new String[0]);
     }
 
-    public String[] getGameStatistics(Games game) throws IOException {
+    String[] getGameStatistics(Games game) throws IOException {
         File gameFile = getGameFile(game);
         BufferedReader br = new BufferedReader(new FileReader(gameFile.getAbsolutePath()));
-        ArrayList<String> data = new ArrayList<>();
+        List<String> data = new ArrayList<>();
 
         String currLine = br.readLine();
         while (currLine != null) {
@@ -71,7 +72,7 @@ public class LeaderboardManager {
     public String[] getGameStatistics(Games game, String statistic) throws IOException {
         File gameFile = getGameFile(game);
         BufferedReader br = new BufferedReader(new FileReader(gameFile.getAbsolutePath()));
-        ArrayList<String> data = new ArrayList<>();
+        List<String> data = new ArrayList<>();
 
         String currLine = br.readLine();
         while (currLine != null) {
@@ -106,46 +107,49 @@ public class LeaderboardManager {
     /**
      * Reads in data for each gameBackend and each statistic and purges all but the top ten statistic data.
      * Writes the updated data back to the file.
-     *
-     * @throws IOException handled as it is guaranteed that the files exist
      */
-    private void retainTopTen() throws IOException {
+    private void retainTopTen() {
         for (Games game : Games.values()) {
             File gameFile = getGameFile(game);
-            HashMap<String, ArrayList<String>> gameStats = new HashMap<>();
+            HashMap<String, List<String>> gameStats = new HashMap<>();
 
-            BufferedReader br = new BufferedReader(new FileReader(gameFile.getAbsolutePath()));
-            String currLine = br.readLine();
-            while (currLine != null) {
-                String[] splitLine = currLine.split(" ");
-                if (!gameStats.containsKey(splitLine[0])) {
-                    ArrayList<String> temp = new ArrayList<>();
-                    temp.add(currLine);
-                    gameStats.put(splitLine[0], temp);
-                } else {
-                    gameStats.get(splitLine[0]).add(currLine);
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(gameFile.getAbsolutePath()));
+                String currLine = br.readLine();
+                while (currLine != null) {
+                    String[] splitLine = currLine.split(" ");
+                    if (!gameStats.containsKey(splitLine[0])) {
+                        List<String> temp = new ArrayList<>();
+                        temp.add(currLine);
+                        gameStats.put(splitLine[0], temp);
+                    } else {
+                        Objects.requireNonNull(gameStats.get(splitLine[0])).add(currLine);
+                    }
+                    currLine = br.readLine();
                 }
-                currLine = br.readLine();
-            }
-            br.close();
+                br.close();
 
-            for (String statistic : gameStats.keySet()) {
-                ArrayList<String> statisticData = gameStats.get(statistic);
-                Collections.sort(statisticData, scoreSorter);
-                ArrayList<String> temp = new ArrayList(statisticData.subList(0,
-                        Math.min(statisticData.size(), 10)));
-                gameStats.put(statistic, temp);
-            }
-
-            BufferedWriter bw = new BufferedWriter(
-                    new FileWriter(gameFile.getAbsolutePath(), false));
-            for (String statistic : gameStats.keySet()) {
-                for (String data : gameStats.get(statistic)) {
-                    bw.write(data);
-                    bw.newLine();
+                for (String statistic : gameStats.keySet()) {
+                    List<String> statisticData = gameStats.get(statistic);
+                    if (statisticData != null) {
+                        Collections.sort(statisticData, scoreSorter);
+                        gameStats.put(statistic, statisticData.subList(0,
+                                Math.min(statisticData.size(), 10)));
+                    }
                 }
+
+                BufferedWriter bw = new BufferedWriter(
+                        new FileWriter(gameFile.getAbsolutePath(), false));
+                for (String statistic : gameStats.keySet()) {
+                    for (String data : Objects.requireNonNull(gameStats.get(statistic))) {
+                        bw.write(data);
+                        bw.newLine();
+                    }
+                }
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            bw.close();
         }
     }
 

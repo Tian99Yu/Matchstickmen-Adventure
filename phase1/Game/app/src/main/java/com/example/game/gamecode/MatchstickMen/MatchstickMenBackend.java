@@ -106,6 +106,8 @@ public class MatchstickMenBackend extends GameBackend {
 
   /** Actual number of matchstick men generated. */
   private int answer;
+  private int color, level, totalTime;
+  private String character;
 
   /** Count from user. (1st statistic) */
   private int count;
@@ -149,7 +151,7 @@ public class MatchstickMenBackend extends GameBackend {
   }
 
   public void setTimeUsed(String timeUsed) {
-    this.timeUsed = 10 - Integer.parseInt(timeUsed);
+    this.timeUsed = totalTime - Integer.parseInt(timeUsed);
   }
 
   public ArrayList<GameObject> getGameObjects() {
@@ -160,8 +162,8 @@ public class MatchstickMenBackend extends GameBackend {
     this.gameObjects.add(m);
   }
 
-  Random random = new Random();
-  private Paint paint = new Paint(Color.WHITE);
+
+
 
   public MatchstickMenBackend() {
     this.answer = 0;
@@ -197,7 +199,26 @@ public class MatchstickMenBackend extends GameBackend {
 
 
   void createObjects() {
-  gameObjects.add(new MatchstickMenObject(1,1, this));
+  gameObjects.add(new MatchstickMenObject(1,1, this, color, character));
+  }
+
+  public void inject(int color, int level, String character){
+    this.color = color;
+    this.level = level;
+    this.character = character;
+    switch (level){
+      case 0:
+        totalTime = 10;
+        break;
+      case 1:
+        totalTime = 7;
+        break;
+      case 2:
+        totalTime = 5;
+        break;
+      default:
+        totalTime = 10;
+    }
   }
 
 
