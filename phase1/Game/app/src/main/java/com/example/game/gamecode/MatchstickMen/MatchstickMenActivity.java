@@ -1,6 +1,7 @@
 package com.example.game.gamecode.MatchstickMen;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -15,7 +16,32 @@ import com.example.game.gamecode.GameView;
 
 public class MatchstickMenActivity extends GameActivity {
 
-  private ProgressBar pgbar;
+
+    private int level = 0;
+    private int color = Color.WHITE;
+    private String character = "circle";
+
+
+
+    public void customization(int level, int color, String character){
+        this.level = level;
+        this.color = color;
+        this.character = character;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public String getCharacter() {
+        return character;
+    }
+
+    private ProgressBar pgbar;
   private TextView timeleft, count;
   private Button btn_add, btn_minus, btn_done, btn_restart;
   private int num = 0;
@@ -31,6 +57,7 @@ public class MatchstickMenActivity extends GameActivity {
     // private ImageView;
 
   protected void onCreate(Bundle savedInstanceState) {
+        customization(2,Color.YELLOW, "rect");
     super.onCreate(savedInstanceState);
     setContentView(R.layout.matchstickmen_layout);
     gameView = this.setView();
@@ -109,9 +136,13 @@ public class MatchstickMenActivity extends GameActivity {
     timeleft = findViewById(R.id.text_timeleft);
 
     pgbar.setProgress(0);
+
+
     // Count down and display the time left in the textbar on the upper right corner
+    int totalTime = getTotalTime();
+
     CountDownTimer timer =
-        new CountDownTimer(10000, 1000) {
+        new CountDownTimer(totalTime*1000, 1000) {
           int i = 0;
 
           @Override
@@ -133,6 +164,25 @@ public class MatchstickMenActivity extends GameActivity {
 
   @Override
   protected GameView setView() {
-    return new MatchstickMenView(this);
+    return new MatchstickMenView(this, this);
   }
+
+    public int getTotalTime () {
+        int totalTime;
+        switch (level){
+
+            case 0:
+                totalTime = 10;
+                break;
+            case 1:
+                totalTime = 7;
+                break;
+            case 2:
+                totalTime = 5;
+                break;
+            default:
+                totalTime = 10;
+        };
+        return totalTime;
+    }
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/color"
+        android:title="color">
+        <menu>
+            <item
+                android:id="@+id/red"
+                android:title="red" />
+            <item
+                android:id="@+id/black"
+                android:title="black" />
+            <item
+                android:id="@+id/yellow"
+                android:title="yellow" />
+        </menu>
+    </item>
+    <item android:title="character" >
+        <menu >
+            <item
+                android:id="@+id/box"
+                android:title="box" />
+            <item
+                android:id="@+id/triangle"
+                android:title="triangle" />
+        </menu>
+    </item>
+    <item android:title="level" >
+        <menu >
+            <item
+                android:id="@+id/easy"
+                android:title="easy" />
+            <item
+                android:id="@+id/medium"
+                android:title="medium" />
+            <item
+                android:id="@+id/hard"
+                android:title="hard" />
+        </menu>
+    </item>
+</menu>
