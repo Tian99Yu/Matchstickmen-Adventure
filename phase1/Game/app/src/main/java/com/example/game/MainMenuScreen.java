@@ -13,6 +13,7 @@ import com.example.game.gamecode.GameView;
 import com.example.game.gamecode.MatchstickMen.MatchstickMenActivity;
 import com.example.game.gamecode.Snake.SnakeActivity;
 import com.example.game.leaderboardcode.LeaderboardActivity;
+import com.example.game.R;
 
 public class MainMenuScreen extends AppCompatActivity {
 

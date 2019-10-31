@@ -30,7 +30,7 @@ public abstract class GameActivity extends AppCompatActivity {
     // TODO: Allow for quit-resume functionality.
     //  When switching to the previous intent, store whatever is in this intent and store it in
     //  cache.
-    //  Additionally, look into app-switcher events so that the game does not break and restart
+    //  Additionally, look into app-switcher events so that the gameBackend does not break and restart
     //  when opening the app-switcher menu and returning to the app.
 
     @Override

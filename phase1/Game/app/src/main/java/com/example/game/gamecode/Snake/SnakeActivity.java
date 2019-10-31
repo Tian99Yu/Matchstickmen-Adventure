@@ -1,12 +1,9 @@
 package com.example.game.gamecode.Snake;
 
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game.R;
 import com.example.game.gamecode.GameActivity;
@@ -35,7 +32,7 @@ public class SnakeActivity extends GameActivity {
         View.OnClickListener leftListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((SnakeBackend) gameView.game).turnSnake(TurnDirection.LEFT);
+                ((SnakeBackend) gameView.gameBackend).turnSnake(TurnDirection.LEFT);
             }
         };
 
@@ -45,7 +42,7 @@ public class SnakeActivity extends GameActivity {
         View.OnClickListener rightListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((SnakeBackend) gameView.game).turnSnake(TurnDirection.RIGHT);
+                ((SnakeBackend) gameView.gameBackend).turnSnake(TurnDirection.RIGHT);
             }
         };
 

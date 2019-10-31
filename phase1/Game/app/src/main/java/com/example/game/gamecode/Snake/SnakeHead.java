@@ -3,7 +3,7 @@ package com.example.game.gamecode.Snake;
 import java.util.ArrayList;
 
 public class SnakeHead extends SnakeComponent {
-  /** whether this snake is alive/ whether the game is still running */
+  /** whether this snake is alive/ whether the gameBackend is still running */
   private boolean isDead = false;
 
   /**

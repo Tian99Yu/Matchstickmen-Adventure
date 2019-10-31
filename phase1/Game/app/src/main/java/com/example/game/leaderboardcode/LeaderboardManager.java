@@ -104,7 +104,7 @@ public class LeaderboardManager {
     }
 
     /**
-     * Reads in data for each game and each statistic and purges all but the top ten statistic data.
+     * Reads in data for each gameBackend and each statistic and purges all but the top ten statistic data.
      * Writes the updated data back to the file.
      *
      * @throws IOException handled as it is guaranteed that the files exist
