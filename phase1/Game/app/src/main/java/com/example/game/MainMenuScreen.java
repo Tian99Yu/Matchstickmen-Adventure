@@ -13,13 +13,11 @@ import com.example.game.gamecode.GameView;
 import com.example.game.gamecode.MatchstickMen.MatchstickMenActivity;
 import com.example.game.gamecode.Snake.SnakeActivity;
 import com.example.game.leaderboardcode.LeaderboardActivity;
-import com.example.game.leaderboardcode.LeaderboardManager;
 
 public class MainMenuScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LeaderboardManager lm = new LeaderboardManager(this.getDataDir());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu_screen);
 

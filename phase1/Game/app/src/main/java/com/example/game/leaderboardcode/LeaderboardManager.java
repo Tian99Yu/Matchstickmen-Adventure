@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -35,17 +36,19 @@ public class LeaderboardManager {
                 }
             }
         }
-        System.out.println(saveDirectory.toString());
     }
 
     public void saveData(Games game, String username, String statistic, String value) throws IOException {
         File gameFile = getGameFile(game);
-        BufferedWriter bw = new BufferedWriter(new FileWriter(gameFile.getAbsolutePath()));
-        bw.write(username + statistic + value);
+        String[] data = {username, statistic, value};
+        BufferedWriter bw = new BufferedWriter(new FileWriter(gameFile.getAbsolutePath(), true));
+        bw.write(String.join(" ", data));
+        bw.newLine();
+        bw.close();
     }
 
     public String[] getGames() {
-        return (String[]) games.toArray();
+        return games.toArray(new String[0]);
     }
 
     public String[] getGameStatistics(Games game) throws IOException {
@@ -62,7 +65,7 @@ public class LeaderboardManager {
         }
 
         Collections.sort(data, scoreSorter);
-        return (String[]) data.toArray();
+        return data.toArray(new String[0]);
     }
 
     public String[] getGameStatistics(Games game, String statistic) throws IOException {
@@ -84,7 +87,7 @@ public class LeaderboardManager {
     }
 
     private String getGameName(Games game) {
-        return game.toString().toLowerCase();
+        return game.toString();
     }
 
     private File getGameFile(Games game) {
@@ -100,6 +103,12 @@ public class LeaderboardManager {
         return temp.exists();
     }
 
+    /**
+     * Reads in data for each game and each statistic and purges all but the top ten statistic data.
+     * Writes the updated data back to the file.
+     *
+     * @throws IOException handled as it is guaranteed that the files exist
+     */
     private void retainTopTen() throws IOException {
         for (Games game : Games.values()) {
             File gameFile = getGameFile(game);
@@ -111,10 +120,10 @@ public class LeaderboardManager {
                 String[] splitLine = currLine.split(" ");
                 if (!gameStats.containsKey(splitLine[0])) {
                     ArrayList<String> temp = new ArrayList<>();
-                    temp.add(splitLine[1] + " " + splitLine[2]);
+                    temp.add(currLine);
                     gameStats.put(splitLine[0], temp);
                 } else {
-                    gameStats.get(splitLine[0]).add(splitLine[0] + splitLine[2]);
+                    gameStats.get(splitLine[0]).add(currLine);
                 }
                 currLine = br.readLine();
             }
@@ -123,8 +132,9 @@ public class LeaderboardManager {
             for (String statistic : gameStats.keySet()) {
                 ArrayList<String> statisticData = gameStats.get(statistic);
                 Collections.sort(statisticData, scoreSorter);
-                gameStats.put(statistic, (ArrayList<String>) statisticData.subList(0,
+                ArrayList<String> temp = new ArrayList(statisticData.subList(0,
                         Math.min(statisticData.size(), 10)));
+                gameStats.put(statistic, temp);
             }
 
             BufferedWriter bw = new BufferedWriter(
@@ -132,6 +142,7 @@ public class LeaderboardManager {
             for (String statistic : gameStats.keySet()) {
                 for (String data : gameStats.get(statistic)) {
                     bw.write(data);
+                    bw.newLine();
                 }
             }
             bw.close();

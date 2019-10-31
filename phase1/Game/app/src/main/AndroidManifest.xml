@@ -13,10 +13,10 @@
             android:name=".MainMenuScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_main_menu_screen"
-            android:theme="@style/FullscreenTheme">
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -24,25 +24,30 @@
         <activity
             android:name=".gamecode.GameActivity"
             android:label="GameActivity"
-            android:theme="@style/FullscreenTheme"/>
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".gamecode.Asteroids.AsteroidsActivity"
             android:label="AsteroidsActivity"
-            android:theme="@style/FullscreenTheme"/>
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".gamecode.Snake.SnakeActivity"
             android:label="SnakeActivity"
-            android:theme="@style/FullscreenTheme"/>
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="portrait" />
 
         <activity android:name=".gamecode.MatchstickMen.MatchstickMenActivity"
             android:label="MatchstickMen"
-            android:theme="@style/FullscreenTheme"/>
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="portrait" />
 
         <activity android:name=".leaderboardcode.LeaderboardActivity"
             android:label="LeaderboardActivity"
-            android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
+            android:theme="@style/LeaderboardTheme"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

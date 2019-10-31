@@ -5,7 +5,19 @@
     android:id="@+id/leaderboardLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AD5C5C5C">
+    android:background="#FFFFFF">
+
+    <ImageButton
+        android:id="@+id/closeLeaderboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:background="#41FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -16,17 +28,19 @@
 
     <TextView
         android:id="@+id/textView2"
-        style="@android:style/Widget.DeviceDefault.TextView"
+        style="@android:style/Widget.Material.Light.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/leaderboard_title"
+        android:textColor="#000000"
         android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TableLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/leaderboardScoreLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="16dp"
@@ -36,20 +50,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <Spinner
+            android:id="@+id/gameList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <TableLayout
+            android:id="@+id/scoreTable"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gameList" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
