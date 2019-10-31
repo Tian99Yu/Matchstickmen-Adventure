@@ -24,7 +24,9 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
 
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-
+        if (!thread.isRunning()) {
+            thread.setRunning(true);
+        }
     }
 
     @Override

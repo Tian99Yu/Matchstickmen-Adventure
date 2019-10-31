@@ -9,4 +9,5 @@
     <string name="game_screen">Game Screen</string>
     <string name="toggle_running_button">Toggle Running Button</string>
     <string name="add">Add</string>
+    <string name="leaderboard_title">Leaderboards</string>
 </resources>

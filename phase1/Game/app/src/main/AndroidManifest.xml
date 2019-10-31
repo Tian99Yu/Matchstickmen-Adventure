@@ -39,6 +39,10 @@
         <activity android:name=".gamecode.MatchstickMen.MatchstickMenActivity"
             android:label="MatchstickMen"
             android:theme="@style/FullscreenTheme"/>
+
+        <activity android:name=".leaderboardcode.LeaderboardActivity"
+            android:label="LeaderboardActivity"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
     </application>
 
 </manifest>

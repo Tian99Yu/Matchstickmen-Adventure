@@ -16,6 +16,8 @@ public abstract class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
+    // TODO: Look into overriding methods to fix start/stop/pause/resume behaviour
+
     protected void addRunningButton() {
         final ImageButton toggleRunningButton = findViewById(R.id.toggleRunningButton);
         toggleRunningButton.setOnClickListener(new GameView.OnClickListener() {
