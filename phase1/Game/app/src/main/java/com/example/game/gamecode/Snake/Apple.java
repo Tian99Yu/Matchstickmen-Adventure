@@ -8,12 +8,13 @@ class Apple extends SnakeObject {
   /**
    * Constructs a new apple.
    *
-   * @param x the initial x coordinate of this snake object
-   * @param y the initial y coordinate of this snake object
-   * @param size the side length of this snake object
+   * @param x the initial x coordinate of this apple
+   * @param y the initial y coordinate of this apple
+   * @param size the side length of this apple
+   * @param shape the shape of this apple
    */
-  Apple(int x, int y, int size) {
-    super(x, y, size);
+  Apple(int x, int y, int size, SnakeShape shape) {
+    super(x, y, size, shape);
     this.isEaten = false;
   }
 

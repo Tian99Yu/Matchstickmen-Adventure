@@ -5,11 +5,12 @@ class Wall extends SnakeObject {
   /**
    * Constructs a new wall.
    *
-   * @param x the initial x coordinate of this snake object
-   * @param y the initial y coordinate of this snake object
-   * @param size the side length of this snake object
+   * @param x the initial x coordinate of this wall
+   * @param y the initial y coordinate of this wall
+   * @param size the side length of this wall
+   * @param shape the shape of this wall
    */
-  Wall(int x, int y, int size) {
-    super(x, y, size);
+  Wall(int x, int y, int size, SnakeShape shape) {
+    super(x, y, size, shape);
   }
 }

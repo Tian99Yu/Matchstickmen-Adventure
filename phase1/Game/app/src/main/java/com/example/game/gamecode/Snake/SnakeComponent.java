@@ -13,12 +13,13 @@ class SnakeComponent extends SnakeObject {
   /**
    * Constructs a new snake component.
    *
-   * @param x the initial x coordinate of this snake object
-   * @param y the initial y coordinate of this snake object
-   * @param size the side length of this snake object
+   * @param x the initial x coordinate of this snake component
+   * @param y the initial y coordinate of this snake component
+   * @param size the side length of this snake component
+   * @param shape the shape of this snake component
    */
-  SnakeComponent(int x, int y, int size) {
-    super(x, y, size);
+  SnakeComponent(int x, int y, int size, SnakeShape shape) {
+    super(x, y, size, shape);
   }
 
   /**
@@ -76,16 +77,16 @@ class SnakeComponent extends SnakeObject {
     SnakeComponent added = null;
     switch (snakeComponent.direction) {
       case UP:
-        added = new SnakeComponent(snakeComponent.x, snakeComponent.y + 1, this.size);
+        added = new SnakeComponent(snakeComponent.x, snakeComponent.y + 1, this.size, getShape());
         break;
       case DOWN:
-        added = new SnakeComponent(snakeComponent.x, snakeComponent.y - 1, this.size);
+        added = new SnakeComponent(snakeComponent.x, snakeComponent.y - 1, this.size, getShape());
         break;
       case LEFT:
-        added = new SnakeComponent(snakeComponent.x + 1, snakeComponent.y, this.size);
+        added = new SnakeComponent(snakeComponent.x + 1, snakeComponent.y, this.size, getShape());
         break;
       case RIGHT:
-        added = new SnakeComponent(snakeComponent.x - 1, snakeComponent.y, this.size);
+        added = new SnakeComponent(snakeComponent.x - 1, snakeComponent.y, this.size, getShape());
         break;
     }
     snakeComponent.next = added;

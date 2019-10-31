@@ -20,6 +20,9 @@ abstract class SnakeObject extends GameObject {
   /** The color of this snake object */
   private Paint paint = new Paint();
 
+  /** The shape of this snake object */
+  private SnakeShape shape;
+
   /**
    * Constructs a new snake object.
    *
@@ -27,12 +30,13 @@ abstract class SnakeObject extends GameObject {
    * @param y the initial y coordinate of this snake object
    * @param size the side length of this snake object
    */
-  SnakeObject(int x, int y, int size) {
+  SnakeObject(int x, int y, int size, SnakeShape shape) {
     this.x = x;
     this.y = y;
     this.size = size;
     this.paint.setTextSize(size);
     this.paint.setColor(Color.WHITE);
+    this.shape = shape;
   }
 
   /**
@@ -41,7 +45,16 @@ abstract class SnakeObject extends GameObject {
    * @param canvas the graphics context in which to draw this item.
    */
   public void draw(Canvas canvas) {
-    canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1) * size, paint);
+    switch (shape){
+      case CIRCLE:
+        float radiusAdjustment = ((float)this.size)/ 2;
+        canvas.drawCircle(x * size + radiusAdjustment, y * size + radiusAdjustment, size / 2, paint);
+        break;
+      case SQUARE:
+        canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1) * size, paint);
+        break;
+    }
+
   }
 
   public void setColor(int color){
@@ -50,5 +63,13 @@ abstract class SnakeObject extends GameObject {
 
   public int getColor(){
     return this.paint.getColor();
+  }
+
+  public SnakeShape getShape() {
+    return shape;
+  }
+
+  public void setShape(SnakeShape shape) {
+    this.shape = shape;
   }
 }

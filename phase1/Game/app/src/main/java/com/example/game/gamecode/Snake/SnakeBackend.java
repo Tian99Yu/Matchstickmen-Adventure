@@ -31,6 +31,9 @@ public class SnakeBackend extends GameBackend {
   /** The height of Snake. */
   private int gridHeight;
 
+  /** The shape of its snake objects. */
+  private SnakeShape shape = SnakeShape.CIRCLE;
+
   public ArrayList<GameObject> getGameObjects() {
     return gameObjects;
   }
@@ -61,8 +64,15 @@ public class SnakeBackend extends GameBackend {
     this.size = (int) Double.min(h / 64, w / 64);
     gridHeight = h / size;
     gridWidth = w / size;
-    System.out.println(size);
-    System.out.println(gridHeight);
+  }
+
+  SnakeBackend(int h, int w, SnakeShape shape) {
+    gameObjects = new ArrayList<>();
+    lost = false;
+    this.size = (int) Double.min(h / 64, w / 64);
+    gridHeight = h / size;
+    gridWidth = w / size;
+    this.shape = shape;
   }
 
   void draw(Canvas canvas) {
@@ -73,29 +83,29 @@ public class SnakeBackend extends GameBackend {
     }
   }
 
-  public void setHeadColor(int color){
+  public void setHeadColor(int color) {
     this.snakeHead.setColor(color);
   }
 
-  public void setAppleColor(int color){
-    for (GameObject gameObject: gameObjects){
-      if (gameObject instanceof Apple){
+  public void setAppleColor(int color) {
+    for (GameObject gameObject : gameObjects) {
+      if (gameObject instanceof Apple) {
         ((Apple) gameObject).setColor(color);
       }
     }
   }
 
-  public void setWallColor(int color){
-    for (GameObject gameObject: gameObjects){
-      if (gameObject instanceof Wall){
+  public void setWallColor(int color) {
+    for (GameObject gameObject : gameObjects) {
+      if (gameObject instanceof Wall) {
         ((Wall) gameObject).setColor(color);
       }
     }
   }
 
-  public void setBodyColor(int color){
-    for (GameObject gameObject: gameObjects){
-      if (gameObject instanceof SnakeComponent && !(gameObject instanceof SnakeHead)){
+  public void setBodyColor(int color) {
+    for (GameObject gameObject : gameObjects) {
+      if (gameObject instanceof SnakeComponent && !(gameObject instanceof SnakeHead)) {
         ((SnakeComponent) gameObject).setColor(color);
       }
     }
@@ -163,23 +173,22 @@ public class SnakeBackend extends GameBackend {
     Random random = new Random();
 
     for (int x = 0; x < gridWidth; x++) {
-      gameObjects.add(new Wall(x, 0, size));
-      gameObjects.add(new Wall(x, gridHeight - 1, size));
+      gameObjects.add(new Wall(x, 0, size, shape));
+      gameObjects.add(new Wall(x, gridHeight - 1, size, shape));
     }
     for (int y = 0; y < gridHeight; y++) {
-      gameObjects.add(new Wall(0, y, size));
-      gameObjects.add(new Wall(gridWidth - 1, y, size));
+      gameObjects.add(new Wall(0, y, size, shape));
+      gameObjects.add(new Wall(gridWidth - 1, y, size, shape));
     }
     gameObjects.add(
-        new Apple(random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size));
+        new Apple(random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size, shape));
     gameObjects.add(
-        new Apple(random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size));
+        new Apple(random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size, shape));
     gameObjects.add(
-        new Apple(random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size));
+        new Apple(random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size, shape));
 
-    snakeHead = new SnakeHead(gridWidth / 2, gridHeight / 2, size);
+    snakeHead = new SnakeHead(gridWidth / 2, gridHeight / 2, size, shape);
     gameObjects.add(snakeHead);
-
 
     addSnakeComponent();
     addSnakeComponent();
@@ -188,5 +197,12 @@ public class SnakeBackend extends GameBackend {
     setBodyColor(Color.GREEN);
     setHeadColor(Color.YELLOW);
     setWallColor(Color.YELLOW);
+  }
+
+  public void setShape(SnakeShape shape){
+      this.shape = shape;
+      for (GameObject gameObject: gameObjects) {
+          ((SnakeObject) gameObject).setShape(shape);
+      }
   }
 }

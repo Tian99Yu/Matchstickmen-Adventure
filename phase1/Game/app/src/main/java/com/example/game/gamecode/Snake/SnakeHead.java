@@ -9,12 +9,13 @@ public class SnakeHead extends SnakeComponent {
   /**
    * Constructs a new snake head.
    *
-   * @param x the initial x coordinate of this snake object
-   * @param y the initial y coordinate of this snake object
-   * @param size the side length of this snake object
+   * @param x the initial x coordinate of this snake head
+   * @param y the initial y coordinate of this snake head
+   * @param size the side length of this snake head
+   * @param shape the shape of this snake head
    */
-  SnakeHead(int x, int y, int size) {
-    super(x, y, size);
+  SnakeHead(int x, int y, int size, SnakeShape shape) {
+    super(x, y, size, shape);
   }
 
   /** turn this snake left. */
