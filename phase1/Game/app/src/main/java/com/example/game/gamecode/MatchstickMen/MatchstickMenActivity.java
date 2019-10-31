@@ -1,7 +1,6 @@
 package com.example.game.gamecode.MatchstickMen;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -16,32 +15,7 @@ import com.example.game.gamecode.GameView;
 
 public class MatchstickMenActivity extends GameActivity {
 
-
-    private int level = 0;
-    private int color = Color.WHITE;
-    private String character = "circle";
-
-
-
-    public void customization(int level, int color, String character){
-        this.level = level;
-        this.color = color;
-        this.character = character;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public String getCharacter() {
-        return character;
-    }
-
-    private ProgressBar pgbar;
+  private ProgressBar pgbar;
   private TextView timeleft, count;
   private Button btn_add, btn_minus, btn_done, btn_restart;
   private int num = 0;
@@ -57,12 +31,39 @@ public class MatchstickMenActivity extends GameActivity {
     // private ImageView;
 
   protected void onCreate(Bundle savedInstanceState) {
-        customization(2,Color.YELLOW, "rect");
     super.onCreate(savedInstanceState);
     setContentView(R.layout.matchstickmen_layout);
     gameView = this.setView();
     FrameLayout frameLayout = findViewById(R.id.canvas_matches);
     frameLayout.addView(gameView);
+
+// Process the count down display on progressbar and timeleft.
+      pgbar = findViewById(R.id.progressBar);
+      timeleft = findViewById(R.id.text_timeleft);
+
+      pgbar.setProgress(0);
+      // Count down and display the time left in the textbar on the upper right corner
+      final CountDownTimer timer =
+              new CountDownTimer(10000, 1000) {
+                  int i = 0;
+
+                  @Override
+                  public void onTick(long l) {
+                      i++;
+                      pgbar.setProgress((int) i * 10);
+                      timeleft.setText(Float.toString(l / 1000) + "secs");
+                  }
+
+                  @Override
+                  public void onFinish() {
+                      timeleft.setText("Time's up!");
+                      i++;
+                      pgbar.setProgress(100);
+                      //todo: if there's no time left, stop the game
+
+                      gameView.game.update();
+                  }
+              }.start();
 
     // Display and control count.
     btn_add = findViewById(R.id.btn_add);
@@ -107,7 +108,10 @@ public class MatchstickMenActivity extends GameActivity {
               ((MatchstickMenBackend) gameView.game).score += 1;
                 count.setTextSize(30);
                 count.setText("Correct!!! :)");
-            }
+                timer.cancel(); //todo:???????????
+                  gameView.game.update();
+
+              }
             else{
                 count.setTextSize(30);
                 count.setText("Wrong -_-");
@@ -115,7 +119,10 @@ public class MatchstickMenActivity extends GameActivity {
               String text = timeleft.getText().toString();
             String time_remaining = text.substring(0, text.indexOf('.'));
               ((MatchstickMenBackend) gameView.game).setTimeUsed(time_remaining);
-              gameView.game.update();
+//              gameView.game.update();
+
+              //todo: 1. if you click on btn_done after time's up, it crashes
+              // 2. stop the count down timer
           }
         });
 
@@ -125,64 +132,18 @@ public class MatchstickMenActivity extends GameActivity {
           @Override
           public void onClick(View view) {
               gameView.toggleRunning();
+              finish();
               Intent intent = new Intent(MatchstickMenActivity.this, MatchstickMenActivity.class);
               startActivity(intent);
-
+              //todo: the game freeze after clicking on restart
           }
         });
 
-    // Process the count down display on progressbar and timeleft.
-    pgbar = findViewById(R.id.progressBar);
-    timeleft = findViewById(R.id.text_timeleft);
 
-    pgbar.setProgress(0);
-
-
-    // Count down and display the time left in the textbar on the upper right corner
-    int totalTime = getTotalTime();
-
-    CountDownTimer timer =
-        new CountDownTimer(totalTime*1000, 1000) {
-          int i = 0;
-
-          @Override
-          public void onTick(long l) {
-            i++;
-            pgbar.setProgress((int) i * 10);
-            timeleft.setText(Float.toString(l / 1000) + "secs");
-          }
-
-          @Override
-          public void onFinish() {
-            timeleft.setText("Time's up!");
-            i++;
-            pgbar.setProgress(100);
-
-          }
-        }.start();
   }
 
   @Override
   protected GameView setView() {
-    return new MatchstickMenView(this, this);
+    return new MatchstickMenView(this);
   }
-
-    public int getTotalTime () {
-        int totalTime;
-        switch (level){
-
-            case 0:
-                totalTime = 10;
-                break;
-            case 1:
-                totalTime = 7;
-                break;
-            case 2:
-                totalTime = 5;
-                break;
-            default:
-                totalTime = 10;
-        };
-        return totalTime;
-    }
 }
