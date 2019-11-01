@@ -117,14 +117,6 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
     }
 
     @Override
-    public void setDifficulty(int difficulty) {
-    }
-
-    @Override
-    public void setCharacter(String character) {
-    }
-
-    @Override
     public void setTheme(String theme) {
         View mainMenuContainer = findViewById(R.id.mainMenuContainer);
         int color;

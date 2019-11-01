@@ -3,7 +3,6 @@ package com.example.game.leaderboardcode;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -105,14 +104,6 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
 
     public Games getCurrentGame() {
         return Games.valueOf(gameSpinner.getSelectedItem().toString());
-    }
-
-    @Override
-    public void setDifficulty(int difficulty) {
-    }
-
-    @Override
-    public void setCharacter(String character) {
     }
 
     @Override

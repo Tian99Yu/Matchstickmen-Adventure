@@ -15,12 +15,12 @@ import com.example.game.R;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
-import com.example.game.settingscode.Customizable;
+import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
 import java.io.IOException;
 
-public class MatchstickMenActivity extends GameActivity implements Customizable {
+public class MatchstickMenActivity extends GameActivity implements CustomizableGame {
   /** A flag recording whether the data of this game is saved. */
   private boolean saved = false;
 
