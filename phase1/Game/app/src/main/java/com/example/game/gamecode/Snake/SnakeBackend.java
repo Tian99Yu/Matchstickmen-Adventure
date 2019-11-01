@@ -246,8 +246,15 @@ public class SnakeBackend extends GameBackend {
     return this.snakeLength;
   }
 
-  public String getStatistics(){
-    return this.snakeLength + "," + this.apples + "," + this.distance + "," + this.lost;
+  public String[][] getStatistics(){
+    String[][]  statistic = new String[2][3];
+    statistic[0][0] = "Snake Length";
+    statistic[0][1] = "Apples Eaten";
+    statistic[0][2] = "Distance Traveled";
+    statistic[1][0] = ((Integer)this.snakeLength).toString();
+    statistic[1][1] = ((Integer)this.apples).toString();
+    statistic[1][2] = ((Integer)this.distance).toString();
+    return statistic;
   }
 
   @Override
@@ -261,5 +268,9 @@ public class SnakeBackend extends GameBackend {
           }
       }
       return string.toString();
+  }
+
+  public void setDifficulty(){
+
   }
 }
