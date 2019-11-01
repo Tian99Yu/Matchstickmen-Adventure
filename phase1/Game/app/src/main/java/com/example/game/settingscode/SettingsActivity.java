@@ -32,8 +32,8 @@ public class SettingsActivity extends AppCompatActivity implements Serializable 
     }
 
     private void addCloseButton() {
-        ImageButton closeLeaderboard = findViewById(R.id.closeSettings);
-        closeLeaderboard.setOnClickListener(new View.OnClickListener() {
+        ImageButton closeSettings = findViewById(R.id.closeSettings);
+        closeSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SettingsActivity.this, MainMenuScreen.class);

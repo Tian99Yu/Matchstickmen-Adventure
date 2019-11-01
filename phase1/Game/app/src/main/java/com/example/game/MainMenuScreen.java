@@ -19,6 +19,7 @@ import com.example.game.leaderboardcode.LeaderboardActivity;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.settingscode.SettingsActivity;
 import com.example.game.settingscode.SettingsManager;
+import java.io.InputStream;
 
 public class MainMenuScreen extends AppCompatActivity {
     private String username;
@@ -37,9 +38,11 @@ public class MainMenuScreen extends AppCompatActivity {
         final ImageButton openSettings = findViewById(R.id.settingsButton);
         final TextView usernameField = findViewById(R.id.usernameField);
 
+        InputStream defaultSettingsStream = getResources().openRawResource(R.raw.defaultsettings);
+
         username = usernameField.getText().toString();
         leaderboardManager = new LeaderboardManager(getDataDir());
-        settingsManager = new SettingsManager();
+        settingsManager = new SettingsManager(getDataDir(), defaultSettingsStream);
 
         launchGame1.setOnClickListener(new GameView.OnClickListener() {
             public void onClick(View view) {
