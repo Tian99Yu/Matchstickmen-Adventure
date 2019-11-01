@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.example.game.R;
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GameObject;
 
@@ -45,10 +44,6 @@ public class SnakeBackend extends GameBackend {
 
   private void addSnakeObj(SnakeObject g) {
     this.gameObjects.add(g);
-  }
-
-  boolean isLost() {
-    return lost;
   }
 
   private void setLost(boolean lost) {
@@ -223,5 +218,15 @@ public class SnakeBackend extends GameBackend {
 
   public void setCanvasColor(int color) {
     canvasColor = color;
+  }
+
+  @Override
+  public boolean isGameOver() {
+    return lost;
+  }
+
+  @Override
+  public int getCurrentScore() {
+    return 0;
   }
 }

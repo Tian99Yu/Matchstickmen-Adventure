@@ -2,8 +2,6 @@ package com.example.game.gamecode.Asteroids;
 
 import android.annotation.SuppressLint;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -46,10 +44,10 @@ public class AsteroidsActivity extends GameActivity {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    ((AsteroidGameManager) gameView.game).setFireActive(true);
+                    ((AsteroidGameManager) gameView.gameBackend).setFireActive(true);
                 }
                 else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    ((AsteroidGameManager) gameView.game).setFireActive(false);
+                    ((AsteroidGameManager) gameView.gameBackend).setFireActive(false);
                     return true;
                 }
                 return false;
@@ -60,10 +58,10 @@ public class AsteroidsActivity extends GameActivity {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    ((AsteroidGameManager) gameView.game).setThrusterActive(true);
+                    ((AsteroidGameManager) gameView.gameBackend).setThrusterActive(true);
                 }
                 else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    ((AsteroidGameManager) gameView.game).setThrusterActive(false);
+                    ((AsteroidGameManager) gameView.gameBackend).setThrusterActive(false);
                     return true;
                 }
                 return false;
@@ -74,7 +72,7 @@ public class AsteroidsActivity extends GameActivity {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 joystick.onTouchEvent(event);
-                ((AsteroidGameManager) gameView.game).setTargetDirection(joystick.getAngle());
+                ((AsteroidGameManager) gameView.gameBackend).setTargetDirection(joystick.getAngle());
                 return true;
             }
         });

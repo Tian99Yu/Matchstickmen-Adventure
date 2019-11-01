@@ -20,6 +20,8 @@ public class AsteroidGameManager extends GameBackend {
   private int lives = 3;
   /** The player's ship. */
   private Ship player;
+  /** The players current score. */
+  private int currentScore;
 
   public AsteroidGameManager() {
     player =
@@ -30,7 +32,7 @@ public class AsteroidGameManager extends GameBackend {
             0,
             3 * Math.PI / 2,
             30,
-            WeaponFactory.getWeapon(WeaponType.DEFAULT_CANNON));
+            WeaponFactory.getWeapon(WeaponType.STANDARD_SHOTGUN));
     gameObjects.add(player);
     int asteroidStartCount = (int) (Math.random() * 3) + 5;
     for (int i = 0; i < asteroidStartCount; i++) {
@@ -114,6 +116,7 @@ public class AsteroidGameManager extends GameBackend {
         } else if (asteroidGameObject instanceof Projectile) {
           iter.remove();
         } else if (asteroidGameObject instanceof Asteroid) {
+          currentScore += ((Asteroid) asteroidGameObject).getValue();
           newObjects.addAll(((Asteroid) asteroidGameObject).split(1));
           iter.remove();
         }
@@ -139,5 +142,15 @@ public class AsteroidGameManager extends GameBackend {
   /** Sets the firing state based on user input. */
   public void setFireActive(boolean active) {
     player.setMainArmamentActive(active);
+  }
+
+  @Override
+  public boolean isGameOver() {
+    return lives <= 0;
+  }
+
+  @Override
+  public int getCurrentScore() {
+    return currentScore;
   }
 }
