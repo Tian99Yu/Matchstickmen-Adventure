@@ -37,4 +37,16 @@ public class SnakeView extends GameView {
   public String getValue(){
     return gameBackend.toString();
   }
+
+    public void setDifficulty(int difficulty) {
+      this.thread.setUpdateInterval(Math.max(500 - (difficulty * 50), 30));
+    }
+
+    public void setCharacter(SnakeShape shape) {
+        ((SnakeBackend)this.gameBackend).setShape(shape);
+    }
+
+    public void setBackground(int background) {
+        ((SnakeBackend)this.gameBackend).setCanvasColor(background);
+    }
 }
