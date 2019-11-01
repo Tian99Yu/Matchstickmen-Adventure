@@ -10,9 +10,11 @@ class AutoCannon extends WeaponSystem {
       double spread,
       int cooldown,
       double projectileSize,
+      int playAreaWidth,
+      int playAreaHeight,
       int range,
       int damage) {
-    super(muzzleVelocity, spread, cooldown, projectileSize, range, damage);
+    super(muzzleVelocity, spread, cooldown, projectileSize, range, damage, playAreaWidth, playAreaHeight);
   }
 
   @Override
@@ -30,6 +32,8 @@ class AutoCannon extends WeaponSystem {
               (muzzleVelocity + weaponVelocity) * Math.sin(angle),
               angle,
               projectileSize,
+              playAreaWidth,
+              playAreaHeight,
               range,
               damage));
       cooldownState = cooldown;

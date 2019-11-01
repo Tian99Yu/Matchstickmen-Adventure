@@ -20,9 +20,11 @@ class Asteroid extends AsteroidGameObject {
       double vY,
       double angle,
       double collisionRadius,
+      int playAreaWidth,
+      int playAreaHeight,
       int hp,
       int level) {
-    super(x, y, vX, vY, angle, collisionRadius);
+    super(x, y, vX, vY, angle, collisionRadius, playAreaWidth, playAreaHeight);
     this.hp = hp;
     this.level = level;
   }
@@ -41,6 +43,8 @@ class Asteroid extends AsteroidGameObject {
                 1.1 * vY + 200 * Math.random() - 100,
                 Math.random() * 2 * Math.PI,
                 collisionRadius * 0.6,
+                playAreaWidth,
+                playAreaHeight,
                 newHp,
                 level - 1));
       }
@@ -54,7 +58,7 @@ class Asteroid extends AsteroidGameObject {
    * @return the value of this asteroid.
    */
   public int getValue() {
-    return level * ((int)(Math.random() * 90) + 10);
+    return level * ((int) (Math.random() * 90) + 10);
   }
 
   @Override
@@ -65,8 +69,8 @@ class Asteroid extends AsteroidGameObject {
   @Override
   void resolveCollision(AsteroidGameObject other) {
     if (other instanceof Asteroid) {
-      double dx = x - other.y;
-      double dy = y - other.y;
+      double dx = getNonEuclidianDistance(x, other.x, playAreaWidth);
+      double dy = getNonEuclidianDistance(y, other.y, playAreaHeight);
       if (dx == 0 && dy == 0) {
         return;
       }
@@ -75,8 +79,12 @@ class Asteroid extends AsteroidGameObject {
       double speed = Math.sqrt(vX * vX + vY * vY);
       vX = speed * dx / norm;
       vY = speed * dy / norm;
-      x += 0.5 * dx / Math.abs(dx);
-      y += 0.5 * dy / Math.abs(dy);
+      if (dx != 0) {
+        x += 0.5 * dx / Math.abs(dx);
+      }
+      if (dy != 0) {
+        y += 0.5 * dy / Math.abs(dy);
+      }
     } else if (other instanceof Projectile) {
       hp -= ((Projectile) other).getDamage();
     }

@@ -11,10 +11,20 @@ public class AutoShotgun extends WeaponSystem {
       double spread,
       int cooldown,
       double projectileSize,
+      int playAreaWidth,
+      int playAreaHeight,
       int range,
       int damage,
       int numProjectiles) {
-    super(muzzleVelocity, spread, cooldown, projectileSize, range, damage);
+    super(
+        muzzleVelocity,
+        spread,
+        cooldown,
+        projectileSize,
+        range,
+        damage,
+        playAreaWidth,
+        playAreaHeight);
     this.numProjectiles = numProjectiles;
   }
 
@@ -34,6 +44,8 @@ public class AutoShotgun extends WeaponSystem {
                 (muzzleVelocity + weaponVelocity) * Math.sin(angle),
                 angle,
                 projectileSize,
+                playAreaWidth,
+                playAreaHeight,
                 range,
                 damage));
       }
