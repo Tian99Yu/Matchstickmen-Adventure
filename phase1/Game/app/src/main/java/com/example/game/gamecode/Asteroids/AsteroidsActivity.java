@@ -88,6 +88,7 @@ public class AsteroidsActivity extends GameActivity {
                         return true;
                     }
                 });
+
     }
 
     @Override

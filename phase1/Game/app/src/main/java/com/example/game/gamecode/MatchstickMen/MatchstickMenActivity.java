@@ -1,5 +1,6 @@
 package com.example.game.gamecode.MatchstickMen;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -219,7 +220,7 @@ public class MatchstickMenActivity extends GameActivity implements Customizable 
 //          @Override
 //          public void onClick(View view) {
 //
-//            //              gameView.toggleRunning();
+//            //              gameView.togglePause();
 //
 //            Intent intent = getIntent();
 //            new Intent(MatchstickMenActivity.this, MatchstickMenActivity.class);
