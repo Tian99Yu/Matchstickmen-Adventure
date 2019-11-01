@@ -15,7 +15,7 @@ public class MatchstickMenView extends GameView {
 
     public MatchstickMenView(Context context, MatchstickMenActivity matchstickMenActivity) {
         super(context);
-        thread = new GameThread(getHolder(), this);
+        thread = new GameThread(getHolder(), this, null);
         gameBackend = new MatchstickMenBackend(); //change it after you know the size of the canvas
 
 

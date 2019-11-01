@@ -1,6 +1,7 @@
 package com.example.game.gamecode.Asteroids;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -10,18 +11,19 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
+import com.example.game.Games;
+import com.example.game.MainMenuScreen;
 import com.example.game.R;
 import com.example.game.gamecode.CustomControls.JoystickView;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
+import com.example.game.leaderboardcode.Savable;
 import com.example.game.settingscode.SettingsManager;
 
-public class AsteroidsActivity extends GameActivity {
-  private LeaderboardManager leaderboardManager;
-  private SettingsManager settingsManager;
-  private String username;
+import java.io.IOException;
 
+public class AsteroidsActivity extends GameActivity implements Savable {
   @SuppressLint("ClickableViewAccessibility")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -102,5 +104,18 @@ public class AsteroidsActivity extends GameActivity {
             - (int)
                 TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP, 96, getResources().getDisplayMetrics()));
+  }
+
+
+  public void saveScore() {
+    try {
+      leaderboardManager.saveData(
+              Games.ASTEROIDS,
+              username,
+              "Score",
+              String.valueOf(gameView.gameBackend.getCurrentScore()));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

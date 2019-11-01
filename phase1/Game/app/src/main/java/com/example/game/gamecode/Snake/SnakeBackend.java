@@ -313,9 +313,9 @@ public class SnakeBackend extends GameBackend {
      */
   String[][] getStatistics(){
     String[][]  statistic = new String[2][3];
-    statistic[0][0] = "Snake Length";
-    statistic[0][1] = "Apples Eaten";
-    statistic[0][2] = "Distance Traveled";
+    statistic[0][0] = "Length";
+    statistic[0][1] = "Apples";
+    statistic[0][2] = "Distance";
     statistic[1][0] = ((Integer)this.snakeLength).toString();
     statistic[1][1] = ((Integer)this.apples).toString();
     statistic[1][2] = ((Integer)this.distance).toString();

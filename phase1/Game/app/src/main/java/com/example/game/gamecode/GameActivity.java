@@ -8,11 +8,20 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.game.Games;
 import com.example.game.MainMenuScreen;
 import com.example.game.R;
+import com.example.game.leaderboardcode.LeaderboardManager;
+import com.example.game.leaderboardcode.Savable;
+import com.example.game.settingscode.SettingsManager;
+
+import java.io.IOException;
 
 public abstract class GameActivity extends AppCompatActivity {
   protected GameView gameView;
+  protected LeaderboardManager leaderboardManager;
+  protected SettingsManager settingsManager;
+  protected String username;
 
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

@@ -21,10 +21,6 @@ import com.example.game.settingscode.SettingsManager;
 import java.io.IOException;
 
 public class MatchstickMenActivity extends GameActivity implements Customizable {
-  private LeaderboardManager leaderboardManager;
-  private SettingsManager settingsManager;
-  private String username;
-
   /** A flag recording whether the data of this game is saved. */
   private boolean saved = false;
 
