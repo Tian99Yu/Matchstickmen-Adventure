@@ -8,7 +8,7 @@ import java.util.List;
 
 class Ship extends AsteroidGameObject {
   /** Fixed amount of acceleration ship has when thruster is on. */
-  private static final double THRUST = 200;
+  private static final double THRUST = 300;
   /** Fixed rate ship can turn. */
   private static final double TURN_RATE = 8;
   /** Maximum velocity ship can travel. */
@@ -40,8 +40,10 @@ class Ship extends AsteroidGameObject {
       double vY,
       double angle,
       double collisionRadius,
+      int playAreaWidth,
+      int playAreaHeight,
       WeaponSystem mainArmament) {
-    super(x, y, vX, vY, angle, collisionRadius);
+    super(x, y, vX, vY, angle, collisionRadius, playAreaWidth, playAreaHeight);
     this.mainArmament = mainArmament;
     startX = x;
     startY = y;
@@ -52,14 +54,14 @@ class Ship extends AsteroidGameObject {
   @Override
   void move() {
     if (angle != targetAngle) {
-      if (Math.abs(AngleUtils.signedAngularDifference(targetAngle, angle)) < TURN_RATE*dt) {
+      if (Math.abs(AngleUtils.signedAngularDifference(targetAngle, angle)) < TURN_RATE * dt) {
         angle = targetAngle;
       } else {
         angle =
             AngleUtils.normalize(
                 angle
                     + Math.copySign(
-                        TURN_RATE*dt, AngleUtils.signedAngularDifference(targetAngle, angle)));
+                        TURN_RATE * dt, AngleUtils.signedAngularDifference(targetAngle, angle)));
       }
     }
     if (thrusterActive) {

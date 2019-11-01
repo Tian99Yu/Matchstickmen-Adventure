@@ -32,7 +32,8 @@ class AngleUtils {
   }
 
   /**
-   * Returns the angle between the firstAngle and secondAngle in the clockwise direction from the secondAngle.
+   * Returns the angle between the firstAngle and secondAngle in the clockwise direction from the
+   * secondAngle.
    *
    * @param firstAngle first angle to consider
    * @param secondAngle second angle to consider

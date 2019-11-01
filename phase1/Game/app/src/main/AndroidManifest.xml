@@ -14,9 +14,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_main_menu_screen"
             android:theme="@style/FullscreenTheme"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -46,7 +47,12 @@
 
         <activity android:name=".leaderboardcode.LeaderboardActivity"
             android:label="LeaderboardActivity"
-            android:theme="@style/LeaderboardTheme"
+            android:theme="@style/MenuTheme"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".settingscode.SettingsActivity"
+            android:label="SettingsActivity"
+            android:theme="@style/MenuTheme"
             android:screenOrientation="portrait" />
     </application>
 

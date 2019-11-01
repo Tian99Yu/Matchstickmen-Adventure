@@ -1,6 +1,7 @@
 package com.example.game.gamecode.Snake;
 
 import android.content.Context;
+import android.graphics.Color;
 
 import com.example.game.gamecode.GameThread;
 import com.example.game.gamecode.GameView;
@@ -20,10 +21,15 @@ public class SnakeView extends GameView {
     gameBackend = new SnakeBackend(screenHeight, screenWidth);
 
     ((SnakeBackend) gameBackend).createObjects();
+    setCanvasColor(Color.WHITE);
   }
 
   @Override
   public void update() {
     super.update();
+  }
+
+  public void setCanvasColor(int color){
+    ((SnakeBackend) gameBackend).setCanvasColor(color);
   }
 }
