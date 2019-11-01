@@ -5,11 +5,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.example.game.Games;
 import com.example.game.R;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.settingscode.SettingsManager;
+
+import java.io.IOException;
 
 public class SnakeActivity extends GameActivity {
     Button LeftButton;
@@ -55,6 +58,27 @@ public class SnakeActivity extends GameActivity {
         };
 
         RightButton.setOnClickListener(rightListener);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        try{
+            this.leaderboardManager.saveData(Games.SNAKE, this.username,
+                    ((SnakeView)gameView).getStatistics(), ((SnakeView)gameView).getValue());
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     protected GameView setView() {

@@ -4,6 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import androidx.annotation.NonNull;
+
 import com.example.game.gamecode.GameObject;
 
 /** A generic object in Snake */
@@ -23,19 +25,24 @@ abstract class SnakeObject extends GameObject {
   /** The shape of this snake object */
   private SnakeShape shape;
 
+  /** The type of this snake object */
+  private SnakeObjectType type;
+
   /**
    * Constructs a new snake object.
    *
    * @param x the initial x coordinate of this snake object
    * @param y the initial y coordinate of this snake object
    * @param size the side length of this snake object
+   * @param type the type of this snake object
    */
-  SnakeObject(int x, int y, int size, SnakeShape shape) {
+  SnakeObject(int x, int y, int size, SnakeShape shape, SnakeObjectType type) {
     this.x = x;
     this.y = y;
     this.size = size;
     this.paint.setColor(Color.WHITE);
     this.shape = shape;
+    this.type = type;
   }
 
   /**
@@ -70,5 +77,12 @@ abstract class SnakeObject extends GameObject {
 
   public void setShape(SnakeShape shape) {
     this.shape = shape;
+  }
+
+  @Override
+  @NonNull
+  public String toString(){
+    return this.type + "|" + this.x + "|" + this.y + "|" + this.paint.getColor() +
+            "|" + this.shape;
   }
 }

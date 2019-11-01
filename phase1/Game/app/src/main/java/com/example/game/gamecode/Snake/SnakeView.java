@@ -13,15 +13,12 @@ public class SnakeView extends GameView {
     thread = new GameThread(getHolder(), this);
     thread.setUpdateInterval(100);
 
-    // int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels - 104;
-    // int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels - 16;
-
     int screenHeight = 1650;
     int screenWidth = 960;
     gameBackend = new SnakeBackend(screenHeight, screenWidth);
 
     ((SnakeBackend) gameBackend).createObjects();
-    setCanvasColor(Color.WHITE);
+    setCanvasColor(Color.DKGRAY);
   }
 
   @Override
@@ -31,5 +28,13 @@ public class SnakeView extends GameView {
 
   public void setCanvasColor(int color){
     ((SnakeBackend) gameBackend).setCanvasColor(color);
+  }
+
+  public String getStatistics(){
+    return ((SnakeBackend)gameBackend).getStatistics();
+  }
+
+  public String getValue(){
+    return gameBackend.toString();
   }
 }

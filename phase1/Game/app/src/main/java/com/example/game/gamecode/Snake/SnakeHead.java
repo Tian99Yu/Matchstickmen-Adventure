@@ -15,7 +15,7 @@ public class SnakeHead extends SnakeComponent {
    * @param shape the shape of this snake head
    */
   SnakeHead(int x, int y, int size, SnakeShape shape) {
-    super(x, y, size, shape);
+    super(x, y, size, shape, SnakeObjectType.SNAKE_HEAD);
   }
 
   /** turn this snake left. */

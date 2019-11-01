@@ -14,7 +14,7 @@ class Apple extends SnakeObject {
    * @param shape the shape of this apple
    */
   Apple(int x, int y, int size, SnakeShape shape) {
-    super(x, y, size, shape);
+    super(x, y, size, shape, SnakeObjectType.APPLE);
     this.isEaten = false;
   }
 
