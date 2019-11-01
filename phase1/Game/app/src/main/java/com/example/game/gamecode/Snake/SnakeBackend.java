@@ -4,6 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import androidx.annotation.NonNull;
+
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GameObject;
 
@@ -149,6 +151,20 @@ public class SnakeBackend extends GameBackend {
       addSnakeComponent();
     }
 
+    Random random = new Random();
+    int randomInt = random.nextInt(100);
+    if (randomInt == 50){
+      Apple apple = new Apple(random.nextInt(gridHeight - 2) + 1,
+              random.nextInt(gridHeight - 2) + 1, size, shape);
+      addSnakeObj(apple);
+      apple.setColor(Color.RED);
+    }
+
+    randomInt = random.nextInt(500);
+    if (randomInt == 100) {
+      addSnakeComponent();
+    }
+
     distance++;
   }
 
@@ -168,6 +184,7 @@ public class SnakeBackend extends GameBackend {
   private void addSnakeComponent() {
     SnakeComponent component = snakeHead.addComponent();
     addSnakeObj(component);
+    component.setColor(Color.GREEN);
     snakeLength++;
   }
 
@@ -182,12 +199,12 @@ public class SnakeBackend extends GameBackend {
       gameObjects.add(new Wall(0, y, size, shape));
       gameObjects.add(new Wall(gridWidth - 1, y, size, shape));
     }
-    gameObjects.add(
-        new Apple(random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size, shape));
-    gameObjects.add(
-        new Apple(random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size, shape));
-    gameObjects.add(
-        new Apple(random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size, shape));
+    addSnakeObj(new Apple(random.nextInt(gridHeight - 2) + 1,
+            random.nextInt(gridHeight - 2) + 1, size, shape));
+    addSnakeObj(new Apple(random.nextInt(gridHeight - 2) + 1,
+            random.nextInt(gridHeight - 2) + 1, size, shape));
+    addSnakeObj(new Apple(random.nextInt(gridHeight - 2) + 1,
+            random.nextInt(gridHeight - 2) + 1, size, shape));
 
     snakeHead = new SnakeHead(gridWidth / 2, gridHeight / 2, size, shape);
     gameObjects.add(snakeHead);
@@ -213,7 +230,6 @@ public class SnakeBackend extends GameBackend {
     paint.setColor(canvasColor);
     paint.setStyle(Paint.Style.FILL);
     canvas.drawPaint(paint);
-    //canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), paint);
   }
 
   public void setCanvasColor(int color) {
@@ -227,6 +243,23 @@ public class SnakeBackend extends GameBackend {
 
   @Override
   public int getCurrentScore() {
-    return 0;
+    return this.snakeLength;
+  }
+
+  public String getStatistics(){
+    return this.snakeLength + "," + this.apples + "," + this.distance + "," + this.lost;
+  }
+
+  @Override
+  @NonNull
+  public String toString(){
+      StringBuilder string = new StringBuilder();
+      for (GameObject gameObject: gameObjects){
+          if (gameObject instanceof SnakeObject && !(gameObject instanceof Wall)){
+              SnakeObject snakeObject = (SnakeObject) gameObject;
+              string.append(snakeObject.toString() + ",");
+          }
+      }
+      return string.toString();
   }
 }
