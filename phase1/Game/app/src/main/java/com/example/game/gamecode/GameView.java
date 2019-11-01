@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 public abstract class GameView extends SurfaceView implements SurfaceHolder.Callback {
   protected GameThread thread;
   public GameBackend gameBackend;
+  private ImageButton pauseButton;
 
   public GameView(Context context) {
     super(context);
@@ -18,16 +19,16 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
 
   @Override
   public void surfaceCreated(SurfaceHolder surfaceHolder) {
-    thread.setUnpaused(true);
     if (!thread.isAlive()) {
+      unpause();
       thread.start();
     }
   }
 
   @Override
   public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-    if (!thread.isUnpaused()) {
-      thread.setUnpaused(true);
+    if (pauseButton == null) {
+      unpause();
     }
   }
 
@@ -35,7 +36,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
     boolean retry = true;
     while (retry) {
-      thread.setUnpaused(false);
+      pause();
       retry = false;
     }
   }
@@ -49,13 +50,31 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     gameBackend.draw(canvas);
   }
 
+  public void setPauseButton(ImageButton pauseButton) {
+    this.pauseButton = pauseButton;
+  }
+
   public void togglePause() {
+    if (pauseButton != null) {
+      pauseButton.setBackgroundResource(
+          thread.isUnpaused()
+              ? android.R.drawable.ic_media_play
+              : android.R.drawable.ic_media_pause);
+    }
     thread.setUnpaused(!thread.isUnpaused());
   }
 
-  public void togglePause(ImageButton togglePauseButton) {
-    togglePauseButton.setBackgroundResource(
-        thread.isUnpaused() ? android.R.drawable.ic_media_play : android.R.drawable.ic_media_pause);
-    togglePause();
+  public void pause() {
+    if (pauseButton != null) {
+      pauseButton.setBackgroundResource(android.R.drawable.ic_media_play);
+    }
+    thread.setUnpaused(false);
+  }
+
+  public void unpause() {
+    if (pauseButton != null) {
+      pauseButton.setBackgroundResource(android.R.drawable.ic_media_pause);
+    }
+    thread.setUnpaused(true);
   }
 }

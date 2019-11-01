@@ -20,10 +20,11 @@ public abstract class GameActivity extends AppCompatActivity {
 
   protected void addRunningButton() {
     final ImageButton toggleRunningButton = findViewById(R.id.toggleRunningButton);
+    gameView.setPauseButton(toggleRunningButton);
     toggleRunningButton.setOnClickListener(
         new GameView.OnClickListener() {
           public void onClick(View view) {
-            gameView.togglePause(toggleRunningButton);
+            gameView.togglePause();
           }
         });
     toggleRunningButton.bringToFront();

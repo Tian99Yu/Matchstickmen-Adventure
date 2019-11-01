@@ -29,28 +29,26 @@ public class GameThread extends Thread {
 
   public void run() {
     while (!this.gameView.gameBackend.isGameOver() && !isTerminated) {
-      if (isUnpaused) {
-        canvas = null;
-        try {
-          canvas = this.surfaceHolder.lockCanvas();
-          synchronized (surfaceHolder) {
-            this.gameView.update();
-            if (canvas != null) {
-              this.gameView.draw(canvas);
-            }
-          }
-        } catch (Exception e) {
-          e.printStackTrace();
-        } finally {
+      try {
+        canvas = this.surfaceHolder.lockCanvas();
+        synchronized (surfaceHolder) {
           if (canvas != null) {
-            try {
-              surfaceHolder.unlockCanvasAndPost(canvas);
-            } catch (Exception e) {
-              e.printStackTrace();
-            }
+            this.gameView.draw(canvas);
           }
         }
-
+      } catch (Exception e) {
+        e.printStackTrace();
+      } finally {
+        if (canvas != null) {
+          try {
+            surfaceHolder.unlockCanvasAndPost(canvas);
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+        }
+      }
+      if (isUnpaused) {
+        this.gameView.update();
         try {
           Thread.sleep(updateInterval);
         } catch (Exception e) {
