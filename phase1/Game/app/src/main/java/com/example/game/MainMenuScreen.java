@@ -13,9 +13,10 @@ import com.example.game.gamecode.GameView;
 import com.example.game.gamecode.MatchstickMen.MatchstickMenActivity;
 import com.example.game.gamecode.Snake.SnakeActivity;
 import com.example.game.leaderboardcode.LeaderboardActivity;
-import com.example.game.R;
+import com.example.game.settingscode.SettingsActivity;
 
 public class MainMenuScreen extends AppCompatActivity {
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MainMenuScreen extends AppCompatActivity {
         final Button launchGame2 = findViewById(R.id.game2);
         final Button launchGame3 = findViewById(R.id.game3);
         final ImageButton openLeaderboard = findViewById(R.id.leaderboardButton);
+        final ImageButton openSettings = findViewById(R.id.settingsButton);
 
         launchGame1.setOnClickListener(new GameView.OnClickListener() {
             public void onClick(View view) {
@@ -48,9 +50,16 @@ public class MainMenuScreen extends AppCompatActivity {
             }
         });
 
-        openLeaderboard.setOnClickListener(new GameView.OnClickListener() {
+        openLeaderboard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent mainIntent = new Intent(MainMenuScreen.this, LeaderboardActivity.class);
+                MainMenuScreen.this.startActivity(mainIntent);
+            }
+        });
+
+        openSettings.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent mainIntent = new Intent(MainMenuScreen.this, SettingsActivity.class);
                 MainMenuScreen.this.startActivity(mainIntent);
             }
         });
