@@ -87,6 +87,8 @@ class Asteroid extends AsteroidGameObject {
       }
     } else if (other instanceof Projectile) {
       hp -= ((Projectile) other).getDamage();
+    } else if (other instanceof Ship && !((Ship) other).hasSpawnProtection()) {
+      hp = 0;
     }
   }
 

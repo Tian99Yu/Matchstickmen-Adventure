@@ -118,6 +118,10 @@ class Ship extends AsteroidGameObject {
     spawnProtectionLeft = spawnProtectionTime;
   }
 
+  boolean hasSpawnProtection() {
+    return spawnProtectionLeft > 0;
+  }
+
   @Override
   void resolveCollision(AsteroidGameObject other) {
     if (spawnProtectionLeft == 0 && other instanceof Asteroid) {
