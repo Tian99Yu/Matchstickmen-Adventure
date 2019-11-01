@@ -1,6 +1,7 @@
 package com.example.game.gamecode;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.SurfaceHolder;
 
 import com.example.game.leaderboardcode.Saver;
@@ -35,17 +36,6 @@ public class GameThread extends Thread {
     while (!gameView.gameBackend.isGameOver() && !isTerminated) {
       if (!isPaused) {
         this.gameView.update();
-        try {
-          Thread.sleep(updateInterval);
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      } else {
-        try {
-          Thread.sleep(50);
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
       }
       try {
         canvas = this.surfaceHolder.lockCanvas();
@@ -64,6 +54,15 @@ public class GameThread extends Thread {
             e.printStackTrace();
           }
         }
+      }
+      try {
+        if (!isPaused) {
+          Thread.sleep(updateInterval);
+        } else {
+          Thread.sleep(50);
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
       }
     }
     if (saver != null) {
