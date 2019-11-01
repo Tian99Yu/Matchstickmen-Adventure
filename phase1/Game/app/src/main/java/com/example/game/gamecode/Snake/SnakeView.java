@@ -30,7 +30,7 @@ public class SnakeView extends GameView {
     ((SnakeBackend) gameBackend).setCanvasColor(color);
   }
 
-  public String getStatistics(){
+  public String[][] getStatistics(){
     return ((SnakeBackend)gameBackend).getStatistics();
   }
 

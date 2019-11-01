@@ -75,8 +75,11 @@ public class SnakeActivity extends GameActivity implements Customizable {
     protected void onStop() {
         super.onStop();
         try{
-            this.leaderboardManager.saveData(Games.SNAKE, this.username,
-                    ((SnakeView)gameView).getStatistics(), ((SnakeView)gameView).getValue());
+            String[][] statistic = ((SnakeView)gameView).getStatistics();
+            for (int i = 0; i < statistic.length; i++){
+                this.leaderboardManager.saveData(Games.SNAKE, this.username, statistic[0][i]
+                        , statistic[1][i]);
+            }
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -88,7 +91,6 @@ public class SnakeActivity extends GameActivity implements Customizable {
 
     @Override
     public void setDifficulty() {
-        
     }
 
     @Override

@@ -54,16 +54,21 @@ public class SnakeHead extends SnakeComponent {
     }
   }
 
+  /**
+   * Return if this snake head is at the position
+   * @param x the x coordinate of the position
+   * @param y the y coordinate of the position
+   * @return true if this snake head is at the position, false otherwise
+   */
   boolean atPosition(int x, int y) {
     return (this.x == x && this.y == y);
   }
 
+  /**
+   * Mark if this snake is dead
+   * @param dead true if this snake is dead, false otherwise.
+   */
   void setDead(boolean dead) {
     this.isDead = dead;
-  }
-
-  @Override
-  public void move() {
-    super.move();
   }
 }

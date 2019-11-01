@@ -63,22 +63,42 @@ abstract class SnakeObject extends GameObject {
 
   }
 
+  /**
+   * Set the color of this snake object.
+   * @param color the color that the snake object will have
+   */
   public void setColor(int color){
     this.paint.setColor(color);
   }
 
+  /**
+   * Return the color of this snake object
+   * @return the color of this snake object
+   */
   public int getColor(){
     return this.paint.getColor();
   }
 
-  public SnakeShape getShape() {
+    /**
+     * Return the shape of this snake object
+     * @return the shape of this snake object
+     */
+  SnakeShape getShape() {
     return shape;
   }
 
-  public void setShape(SnakeShape shape) {
+    /**
+     * Set the shape of this snake object
+     * @param shape the shape that this snake object will have.
+     */
+  void setShape(SnakeShape shape) {
     this.shape = shape;
   }
 
+    /**
+     * Return the string representation of this snake object
+     * @return the type, coordinate, color, and shape separated by |.
+     */
   @Override
   @NonNull
   public String toString(){
