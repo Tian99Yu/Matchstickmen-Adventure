@@ -10,7 +10,7 @@ public class GameThread extends Thread {
   private SurfaceHolder surfaceHolder; // Container containing the Canvas
   private Canvas canvas; // Canvas
   private GameView gameView;
-  private volatile boolean isUnpaused;
+  private volatile boolean isPaused;
   private volatile boolean isTerminated;
   protected int updateInterval;
 
@@ -28,8 +28,8 @@ public class GameThread extends Thread {
   }
 
   public void run() {
-    while (!this.gameView.gameBackend.isGameOver() && !isTerminated) {
-      if (isUnpaused) {
+    while (!gameView.gameBackend.isGameOver() && !isTerminated) {
+      if (!isPaused) {
         this.gameView.update();
         try {
           Thread.sleep(updateInterval);
@@ -64,12 +64,12 @@ public class GameThread extends Thread {
     }
   }
 
-  public void setUnpaused(boolean isUnpaused) {
-    this.isUnpaused = isUnpaused;
+  public void setPaused(boolean isPaused) {
+    this.isPaused = isPaused;
   }
 
-  public boolean isUnpaused() {
-    return this.isUnpaused;
+  public boolean isPaused() {
+    return this.isPaused;
   }
 
   public void terminateThread() {

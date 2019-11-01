@@ -57,24 +57,28 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   public void togglePause() {
     if (pauseButton != null) {
       pauseButton.setBackgroundResource(
-          thread.isUnpaused()
-              ? android.R.drawable.ic_media_play
-              : android.R.drawable.ic_media_pause);
+          thread.isPaused()
+              ? android.R.drawable.ic_media_pause
+              : android.R.drawable.ic_media_play);
     }
-    thread.setUnpaused(!thread.isUnpaused());
+    thread.setPaused(!thread.isPaused());
   }
 
   public void pause() {
     if (pauseButton != null) {
       pauseButton.setBackgroundResource(android.R.drawable.ic_media_play);
     }
-    thread.setUnpaused(false);
+    thread.setPaused(true);
   }
 
   public void unpause() {
     if (pauseButton != null) {
       pauseButton.setBackgroundResource(android.R.drawable.ic_media_pause);
     }
-    thread.setUnpaused(true);
+    thread.setPaused(false);
+  }
+
+  public boolean isPaused() {
+    return thread.isPaused();
   }
 }

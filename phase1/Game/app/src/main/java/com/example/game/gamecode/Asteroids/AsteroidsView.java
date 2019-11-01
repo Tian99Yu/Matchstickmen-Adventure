@@ -13,9 +13,12 @@ class AsteroidsView extends GameView {
   private int playAreaWidth;
   /** Screen height. */
   private int playAreaHeight;
+  /** density of screen */
+  private float density;
 
   public AsteroidsView(Context context, int playAreaWidth, int playAreaHeight) {
     super(context);
+    this.density = context.getResources().getDisplayMetrics().density;
     this.playAreaWidth = playAreaWidth;
     this.playAreaHeight = playAreaHeight;
     thread = new GameThread(getHolder(), this);
@@ -26,16 +29,16 @@ class AsteroidsView extends GameView {
     super.draw(canvas);
     Paint paint = new Paint();
     paint.setColor(Color.WHITE);
-    paint.setTextSize(50);
+    paint.setTextSize(24 * density);
     paint.setTextAlign(Paint.Align.RIGHT);
     canvas.drawText(
         "Lives: " + ((AsteroidGameManager) gameBackend).getLives(),
-        playAreaWidth - 50,
+        playAreaWidth - 24 * density,
         paint.getTextSize(),
         paint);
     canvas.drawText(
         "Score: " + gameBackend.getCurrentScore(),
-        playAreaWidth - 50,
+        playAreaWidth - 24 * density,
         2 * paint.getTextSize(),
         paint);
   }
