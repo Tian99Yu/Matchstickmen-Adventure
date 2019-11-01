@@ -1,7 +1,5 @@
 package com.example.game.gamecode.Asteroids;
 
-import android.content.res.Resources;
-
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GameObject;
 
@@ -11,9 +9,9 @@ import java.util.List;
 
 public class AsteroidGameManager extends GameBackend {
   /** Screen width. */
-  private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+  private int playAreaWidth;
   /** Screen height. */
-  private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+  private int playAreaHeight;
   /** number of pixels objects can be outside of screen. */
   private static final int outOfScreenOffset = 5;
   /** number of lives player has left. */
@@ -23,26 +21,30 @@ public class AsteroidGameManager extends GameBackend {
   /** The players current score. */
   private int currentScore;
 
-  public AsteroidGameManager() {
+  public AsteroidGameManager(int playAreaWidth, int playAreaHeight) {
+    this.playAreaWidth = playAreaWidth;
+    this.playAreaHeight = playAreaHeight;
     player =
         new Ship(
-            screenWidth / 2,
-            screenHeight / 2,
+            playAreaWidth / 2,
+            playAreaHeight / 2,
             0,
             0,
             3 * Math.PI / 2,
             30,
-            WeaponFactory.getWeapon(WeaponType.STANDARD_SHOTGUN));
+            playAreaWidth,
+            playAreaHeight,
+            WeaponFactory.getWeapon(WeaponType.STANDARD_SHOTGUN, playAreaWidth, playAreaHeight));
     gameObjects.add(player);
     int asteroidStartCount = (int) (Math.random() * 3) + 5;
     for (int i = 0; i < asteroidStartCount; i++) {
       Asteroid newAsteroid;
       double newX, newY;
       do {
-        newX = Math.random() * screenWidth;
-        newY = Math.random() * screenHeight;
-      } while ((newX - screenWidth / 2) * (newX - screenWidth / 2)
-              + (newY - screenHeight / 2) * (newY - screenHeight / 2)
+        newX = Math.random() * playAreaWidth;
+        newY = Math.random() * playAreaHeight;
+      } while ((newX - playAreaWidth / 2) * (newX - playAreaWidth / 2)
+              + (newY - playAreaHeight / 2) * (newY - playAreaHeight / 2)
           <= 300 * 300); // while spawning coordinates are too close to ship
       newAsteroid =
           new Asteroid(
@@ -52,6 +54,8 @@ public class AsteroidGameManager extends GameBackend {
               Math.random() * 100 + 50,
               Math.random() * 2 * Math.PI,
               Math.random() * 100 + 50,
+              playAreaWidth,
+              playAreaHeight,
               1,
               2);
       gameObjects.add(newAsteroid);
@@ -76,13 +80,13 @@ public class AsteroidGameManager extends GameBackend {
   private void handleObjectsOutOfScreen() {
     for (GameObject asteroidGameObject : gameObjects) {
       if (((AsteroidGameObject) asteroidGameObject).x < -outOfScreenOffset) {
-        ((AsteroidGameObject) asteroidGameObject).x = screenWidth + outOfScreenOffset;
-      } else if (((AsteroidGameObject) asteroidGameObject).x > screenWidth + outOfScreenOffset) {
+        ((AsteroidGameObject) asteroidGameObject).x = playAreaWidth + outOfScreenOffset;
+      } else if (((AsteroidGameObject) asteroidGameObject).x > playAreaWidth + outOfScreenOffset) {
         ((AsteroidGameObject) asteroidGameObject).x = -outOfScreenOffset;
       }
       if (((AsteroidGameObject) asteroidGameObject).y < -outOfScreenOffset) {
-        ((AsteroidGameObject) asteroidGameObject).y = screenHeight + outOfScreenOffset;
-      } else if (((AsteroidGameObject) asteroidGameObject).y > screenHeight + outOfScreenOffset) {
+        ((AsteroidGameObject) asteroidGameObject).y = playAreaHeight + outOfScreenOffset;
+      } else if (((AsteroidGameObject) asteroidGameObject).y > playAreaHeight + outOfScreenOffset) {
         ((AsteroidGameObject) asteroidGameObject).y = -outOfScreenOffset;
       }
     }
@@ -146,7 +150,13 @@ public class AsteroidGameManager extends GameBackend {
 
   @Override
   public boolean isGameOver() {
-    return lives <= 0;
+    int asteroidCount = 0;
+    for (GameObject asteroidGameObject : gameObjects) {
+      if (asteroidGameObject instanceof Asteroid) {
+        asteroidCount++;
+      }
+    }
+    return lives <= 0 || asteroidCount == 0;
   }
 
   @Override

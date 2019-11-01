@@ -18,9 +18,11 @@ class Projectile extends AsteroidGameObject {
       double vY,
       double angle,
       double collisionRadius,
+      int playAreaWidth,
+      int playAreaHeight,
       int range,
       int damage) {
-    super(x, y, vX, vY, angle, collisionRadius);
+    super(x, y, vX, vY, angle, collisionRadius, playAreaWidth, playAreaHeight);
     this.range = range;
     this.damage = damage;
   }
@@ -42,9 +44,9 @@ class Projectile extends AsteroidGameObject {
 
   @Override
   void resolveCollision(AsteroidGameObject other) {
-      if (other instanceof Asteroid) {
-        range = 0;
-      }
+    if (other instanceof Asteroid) {
+      range = 0;
+    }
   }
 
   @Override
