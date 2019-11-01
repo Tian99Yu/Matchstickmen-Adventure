@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.game.Games;
 import com.example.game.MainMenuScreen;
 import com.example.game.R;
+import com.example.game.settingscode.SettingsManager;
 
 import java.io.IOException;
 
@@ -24,6 +25,9 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
     private Spinner gameSpinner;
     private TableLayout scoreTable;
     private LeaderboardPresenter leaderboardPresenter;
+    private LeaderboardManager leaderboardManager;
+    private SettingsManager settingsManager;
+    private String username;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,7 +37,10 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
         gameSpinner = findViewById(R.id.gameList);
         scoreTable = findViewById(R.id.scoreTable);
 
-        leaderboardPresenter = new LeaderboardPresenter(this, new LeaderboardManager(getDataDir()));
+        username = (String) getIntent().getSerializableExtra("username");
+        settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
+        leaderboardManager = (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
+        leaderboardPresenter = new LeaderboardPresenter(this, leaderboardManager);
 
         addCloseButton();
         addSpinnerListener();

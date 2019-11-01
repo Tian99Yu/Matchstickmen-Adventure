@@ -13,15 +13,17 @@ import android.widget.TextView;
 import com.example.game.R;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
+import com.example.game.leaderboardcode.LeaderboardManager;
+import com.example.game.settingscode.SettingsManager;
 
 public class MatchstickMenActivity extends GameActivity {
-
+    private LeaderboardManager leaderboardManager;
+    private SettingsManager settingsManager;
+    private String username;
 
     private int level = 0;
     private int color = Color.WHITE;
     private String character = "circle";
-
-
 
     public void customization(int level, int color, String character){
         this.level = level;
@@ -59,7 +61,9 @@ public class MatchstickMenActivity extends GameActivity {
   protected void onCreate(Bundle savedInstanceState) {
         customization(2,Color.YELLOW, "rect");
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.matchstickmen_layout);
+    setContentView(R.layout.matchstickmen_layout);        username = (String) getIntent().getSerializableExtra("username");
+      settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
+      leaderboardManager = (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
     gameView = this.setView();
     FrameLayout frameLayout = findViewById(R.id.canvas_matches);
     frameLayout.addView(gameView);

@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
@@ -15,12 +16,12 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class LeaderboardManager {
+public class LeaderboardManager implements Serializable {
     private File saveDirectory;
     private List<String> games = new ArrayList<>();
     private HashMap<Games, String> gameFilename = new HashMap<>();
 
-    LeaderboardManager(File saveDirectory) {
+    public LeaderboardManager(File saveDirectory) {
         this.saveDirectory = saveDirectory;
 
         for (Games game : Games.values()) {
@@ -153,7 +154,7 @@ public class LeaderboardManager {
         }
     }
 
-    private Comparator<String> scoreSorter = new Comparator<String>() {
+    transient private Comparator<String> scoreSorter = new Comparator<String>() {
         @Override
         public int compare(String o1, String o2) {
             int first = Integer.valueOf(o1.substring(o1.lastIndexOf(" ") + 1));

@@ -10,12 +10,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game.MainMenuScreen;
 import com.example.game.R;
+import com.example.game.leaderboardcode.LeaderboardManager;
 
-public class SettingsActivity extends AppCompatActivity {
+import java.io.Serializable;
+
+public class SettingsActivity extends AppCompatActivity implements Serializable {
+    private LeaderboardManager leaderboardManager;
+    private SettingsManager settingsManager;
+    private String username;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        username = (String) getIntent().getSerializableExtra("username");
+        settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
+        leaderboardManager = (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
         setContentView(R.layout.settings_layout);
 
         addCloseButton();

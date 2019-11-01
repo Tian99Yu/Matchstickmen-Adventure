@@ -1,4 +1,6 @@
 package com.example.game.settingscode;
 
-public class SettingsManager {
+import java.io.Serializable;
+
+public class SettingsManager implements Serializable {
 }
