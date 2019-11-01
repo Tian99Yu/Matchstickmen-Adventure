@@ -80,10 +80,10 @@ class Asteroid extends AsteroidGameObject {
       vX = speed * dx / norm;
       vY = speed * dy / norm;
       if (dx != 0) {
-        x += 0.5 * dx / Math.abs(dx);
+        x += 1.5 * dx / Math.abs(dx);
       }
       if (dy != 0) {
-        y += 0.5 * dy / Math.abs(dy);
+        y += 1.5 * dy / Math.abs(dy);
       }
     } else if (other instanceof Projectile) {
       hp -= ((Projectile) other).getDamage();
