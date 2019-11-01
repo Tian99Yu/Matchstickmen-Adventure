@@ -96,14 +96,6 @@ public class SettingsActivity extends AppCompatActivity implements Serializable,
     }
 
     @Override
-    public void setDifficulty(int difficulty) {
-    }
-
-    @Override
-    public void setCharacter(String character) {
-    }
-
-    @Override
     public void setTheme(String theme) {
         View settingsContainer = findViewById(R.id.settingsLayout);
         int color;
