@@ -10,24 +10,24 @@ import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 
 public class SnakeActivity extends GameActivity {
-    Button LeftButton;
-    Button RightButton;
+  Button LeftButton;
+  Button RightButton;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.snake_layout);
+    setContentView(R.layout.snake_layout);
 
-        LeftButton = findViewById(R.id.LeftButton);
-        RightButton = findViewById(R.id.RightButton);
+    LeftButton = findViewById(R.id.LeftButton);
+    RightButton = findViewById(R.id.RightButton);
 
-        // add the gameview as a second layout:
-        gameView = this.setView();
-        FrameLayout frameLayout =  findViewById(R.id.snakeLayout);
-        frameLayout.addView(gameView);
+    // add the gameview as a second layout:
+    gameView = this.setView();
+    FrameLayout frameLayout = findViewById(R.id.snakeLayout);
+    frameLayout.addView(gameView);
 
-        //super.addRunningButton();
+    // super.addRunningButton();
 
         View.OnClickListener leftListener = new View.OnClickListener() {
             @Override
@@ -36,7 +36,7 @@ public class SnakeActivity extends GameActivity {
             }
         };
 
-        LeftButton.setOnClickListener(leftListener);
+    LeftButton.setOnClickListener(leftListener);
 
 
         View.OnClickListener rightListener = new View.OnClickListener() {
@@ -46,10 +46,10 @@ public class SnakeActivity extends GameActivity {
             }
         };
 
-        RightButton.setOnClickListener(rightListener);
-    }
+    RightButton.setOnClickListener(rightListener);
+  }
 
-    protected GameView setView() {
-        return new SnakeView(this);
-    }
+  protected GameView setView() {
+    return new SnakeView(this);
+  }
 }

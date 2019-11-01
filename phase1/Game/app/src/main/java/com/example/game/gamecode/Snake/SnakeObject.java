@@ -34,7 +34,6 @@ abstract class SnakeObject extends GameObject {
     this.x = x;
     this.y = y;
     this.size = size;
-    this.paint.setTextSize(size);
     this.paint.setColor(Color.WHITE);
     this.shape = shape;
   }
