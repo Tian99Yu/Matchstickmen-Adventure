@@ -19,8 +19,11 @@
     <string name="general_color_scheme">Color Scheme</string>
     <string name="dark_theme">Dark</string>
     <string name="light_theme">Light</string>
-    <string name="snake_speed">Snake Speed</string>
-    <string name="snake_fast">Fast</string>
-    <string name="snake_medium">Medium</string>
-    <string name="snake_slow">Slow</string>
+    <string name="character_title">Character</string>
+    <string name="first_character">Character 1</string>
+    <string name="second_character">Character 2</string>
+    <string name="difficulty_title">Game Difficulty</string>
+    <string name="easy_difficulty">Easy</string>
+    <string name="medium_difficulty">Medium</string>
+    <string name="hard_difficulty">Hard</string>
 </resources>

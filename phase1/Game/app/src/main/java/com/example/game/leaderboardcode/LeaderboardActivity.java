@@ -1,7 +1,9 @@
 package com.example.game.leaderboardcode;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,11 +19,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.game.Games;
 import com.example.game.MainMenuScreen;
 import com.example.game.R;
+import com.example.game.settingscode.Customizable;
 import com.example.game.settingscode.SettingsManager;
 
 import java.io.IOException;
 
-public class LeaderboardActivity extends AppCompatActivity implements LeaderboardInterface{
+public class LeaderboardActivity extends AppCompatActivity implements LeaderboardInterface, Customizable {
     private Spinner gameSpinner;
     private TableLayout scoreTable;
     private LeaderboardPresenter leaderboardPresenter;
@@ -41,6 +44,8 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
         settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
         leaderboardManager = (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
         leaderboardPresenter = new LeaderboardPresenter(this, leaderboardManager);
+
+        setTheme(settingsManager.getSetting("theme"));
 
         addCloseButton();
         addSpinnerListener();
@@ -100,5 +105,34 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
 
     public Games getCurrentGame() {
         return Games.valueOf(gameSpinner.getSelectedItem().toString());
+    }
+
+    @Override
+    public void setDifficulty(int difficulty) {
+    }
+
+    @Override
+    public void setCharacter(String character) {
+    }
+
+    @Override
+    public void setTheme(String theme) {
+        View leaderboardContainer = findViewById(R.id.leaderboardLayout);
+        TextView leaderboardTitle = findViewById(R.id.leaderboardTitle);
+        Spinner gameSpinner = findViewById(R.id.gameList);
+
+        int backgroundColor;
+        int textColor;
+        if (theme.equals("dark")) {
+            backgroundColor = Color.parseColor("#001C27");
+            textColor = Color.parseColor("#FFFFFF");
+        } else {
+            backgroundColor = Color.parseColor("#FFFFFF");
+            textColor = Color.parseColor("#001C27");
+        }
+
+        leaderboardContainer.setBackgroundColor(backgroundColor);
+        leaderboardTitle.setTextColor(textColor);
+
     }
 }
