@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -106,13 +105,13 @@ public class SettingsActivity extends AppCompatActivity implements Serializable,
 
     @Override
     public void setTheme(String theme) {
-        View mainMenuContainer = findViewById(R.id.mainMenuContainer);
+        View settingsContainer = findViewById(R.id.settingsLayout);
         int color;
         if (theme.equals("dark")) {
             color = Color.parseColor("#001C27");
         } else {
             color = Color.parseColor("#FF006F9C");
         }
-        mainMenuContainer.setBackgroundColor(color);
+        settingsContainer.setBackgroundColor(color);
     }
 }
