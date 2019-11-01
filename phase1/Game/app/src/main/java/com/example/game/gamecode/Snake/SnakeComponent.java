@@ -51,7 +51,7 @@ class SnakeComponent extends SnakeObject {
     // Move the next snake component
     if (this.next != null) {
       this.next.move(this.x, this.y);
-      this.next.direction = this.direction;
+      this.next.setDirection(this.direction);
     }
 
     // Move this snake component.
@@ -84,6 +84,10 @@ class SnakeComponent extends SnakeObject {
     this.y = y;
   }
 
+  /**
+   * Add a snake component to the end of the snake and return the component added
+   * @return the snake component that is just added
+   */
   SnakeComponent addComponent() {
     SnakeComponent snakeComponent = this;
     while (snakeComponent.next != null) {
@@ -109,6 +113,10 @@ class SnakeComponent extends SnakeObject {
     return added;
   }
 
+  /**
+   * Return the string representation of this snake object
+   * @return the type, coordinate, color, shape, and direction separated by |.
+   */
   @NonNull
   @Override
   public String toString() {

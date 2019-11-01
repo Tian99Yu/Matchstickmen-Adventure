@@ -40,43 +40,47 @@ public class SnakeBackend extends GameBackend {
   /** The color of the background */
   private int canvasColor = Color.BLACK;
 
+    /**
+     * Return an array list of game objects that this snake backend controls
+     * @return an array of game object that this snake backend controls
+     */
   public ArrayList<GameObject> getGameObjects() {
     return gameObjects;
   }
 
-  private void addSnakeObj(SnakeObject g) {
-    this.gameObjects.add(g);
+    /**
+     * Add the snake object to game objects
+     * @param snakeObject the snake object to be added.
+     */
+  private void addSnakeObj(SnakeObject snakeObject) {
+    this.gameObjects.add(snakeObject);
   }
 
+    /**
+     * Set if this game is still running or is lost
+     * @param lost true if the game is lost and ended, false otherwise.
+     */
   private void setLost(boolean lost) {
     this.lost = lost;
   }
 
-  public int getGridWidth() {
-    return gridWidth;
-  }
-
-  public int getGridHeight() {
-    return gridHeight;
-  }
-
-  SnakeBackend(int h, int w) {
+    /**
+     * Constructor for snake backend
+     * @param height the height of this game
+     * @param width the width of this game
+     */
+  SnakeBackend(int height, int width) {
     gameObjects = new ArrayList<>();
     lost = false;
-    this.size = (int) Double.min(h / 64, w / 64);
-    gridHeight = h / size;
-    gridWidth = w / size;
+    this.size = (int) Double.min(height / 64, width / 64);
+    gridHeight = height / size;
+    gridWidth = width / size;
   }
 
-  SnakeBackend(int h, int w, SnakeShape shape) {
-    gameObjects = new ArrayList<>();
-    lost = false;
-    this.size = (int) Double.min(h / 64, w / 64);
-    gridHeight = h / size;
-    gridWidth = w / size;
-    this.shape = shape;
-  }
-
+    /**
+     * Draw the current status of this game on the canvas
+     * @param canvas the canvas to draw this game on.
+     */
   @Override
   public void draw(Canvas canvas) {
     drawBackground(canvas);
@@ -87,11 +91,19 @@ public class SnakeBackend extends GameBackend {
     }
   }
 
-  public void setHeadColor(int color) {
+    /**
+     * Set the color of the snake head
+     * @param color the color that the snake head will be in
+     */
+  private void setHeadColor(int color) {
     this.snakeHead.setColor(color);
   }
 
-  public void setAppleColor(int color) {
+    /**
+     * Set the color of the apples in the game
+     * @param color the color that the apples will be in
+     */
+  private void setAppleColor(int color) {
     for (GameObject gameObject : gameObjects) {
       if (gameObject instanceof Apple) {
         ((Apple) gameObject).setColor(color);
@@ -99,7 +111,11 @@ public class SnakeBackend extends GameBackend {
     }
   }
 
-  public void setWallColor(int color) {
+    /**
+     * Set the color of all the walls in the game
+     * @param color the color that the walls will be in
+     */
+  private void setWallColor(int color) {
     for (GameObject gameObject : gameObjects) {
       if (gameObject instanceof Wall) {
         ((Wall) gameObject).setColor(color);
@@ -107,7 +123,11 @@ public class SnakeBackend extends GameBackend {
     }
   }
 
-  public void setBodyColor(int color) {
+    /**
+     * Set the color of the body of the snake
+     * @param color the color that the body of the snake will be in
+     */
+  private void setBodyColor(int color) {
     for (GameObject gameObject : gameObjects) {
       if (gameObject instanceof SnakeComponent && !(gameObject instanceof SnakeHead)) {
         ((SnakeComponent) gameObject).setColor(color);
@@ -115,6 +135,9 @@ public class SnakeBackend extends GameBackend {
     }
   }
 
+    /**
+     * Update and refresh the game status.
+     */
   @Override
   public void update() {
     snakeHead.move();
@@ -168,19 +191,34 @@ public class SnakeBackend extends GameBackend {
     distance++;
   }
 
+    /**
+     * Turn the snake in turn direction
+     * @param turnDirection The direction for this turn
+     */
   void turnSnake(TurnDirection turnDirection) {
     snakeHead.turn(turnDirection);
   }
 
+    /**
+     * Mark that the apple is eaten and add one to the number of apple eaten
+     * @param apple the apple that is eaten
+     */
   private void eatApple(Apple apple) {
     apple.setIsEaten(true);
     this.apples += 1;
   }
 
-  private void deleteItem(GameObject g) {
-    gameObjects.remove(g);
+    /**
+     * Remove the item from game objects
+     * @param gameObject the game object to be removed
+     */
+  private void deleteItem(GameObject gameObject) {
+    gameObjects.remove(gameObject);
   }
 
+    /**
+     * Add one body component to the snake
+     */
   private void addSnakeComponent() {
     SnakeComponent component = snakeHead.addComponent();
     addSnakeObj(component);
@@ -188,6 +226,9 @@ public class SnakeBackend extends GameBackend {
     snakeLength++;
   }
 
+    /**
+     * Initialize and create all the objects when stating the game
+     */
   void createObjects() {
     Random random = new Random();
 
@@ -218,6 +259,10 @@ public class SnakeBackend extends GameBackend {
     setWallColor(Color.YELLOW);
   }
 
+    /**
+     * Set the shape of the characters in the game
+     * @param shape the shape that the characters will take
+     */
   public void setShape(SnakeShape shape){
       this.shape = shape;
       for (GameObject gameObject: gameObjects) {
@@ -225,6 +270,10 @@ public class SnakeBackend extends GameBackend {
       }
   }
 
+    /**
+     * Draw the background of this game on canvas.
+     * @param canvas the canvas that the game in running on.
+     */
   public void drawBackground(Canvas canvas){
     Paint paint = new Paint();
     paint.setColor(canvasColor);
@@ -232,21 +281,37 @@ public class SnakeBackend extends GameBackend {
     canvas.drawPaint(paint);
   }
 
+    /**
+     * Set the background color
+     * @param color the background color this game will have
+     */
   public void setCanvasColor(int color) {
     canvasColor = color;
   }
 
+    /**
+     * Return whether the game is over
+     * @return true if the game is over, false otherwise.
+     */
   @Override
   public boolean isGameOver() {
     return lost;
   }
 
+    /**
+     * Return the length of the snake
+     * @return the length of the snake
+     */
   @Override
   public int getCurrentScore() {
     return this.snakeLength;
   }
 
-  public String[][] getStatistics(){
+    /**
+     * Get the statistics recorded in the game
+     * @return the statistics recorded in the game
+     */
+  String[][] getStatistics(){
     String[][]  statistic = new String[2][3];
     statistic[0][0] = "Snake Length";
     statistic[0][1] = "Apples Eaten";
@@ -257,6 +322,10 @@ public class SnakeBackend extends GameBackend {
     return statistic;
   }
 
+    /**
+     * Return a string representation of this snake backend
+     * @return a string that contain all the information needed to reconstruct the backend
+     */
   @Override
   @NonNull
   public String toString(){
@@ -268,9 +337,5 @@ public class SnakeBackend extends GameBackend {
           }
       }
       return string.toString();
-  }
-
-  public void setDifficulty(){
-
   }
 }
