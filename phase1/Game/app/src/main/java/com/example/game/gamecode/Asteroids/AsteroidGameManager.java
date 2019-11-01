@@ -32,9 +32,7 @@ public class AsteroidGameManager extends GameBackend {
             0,
             3 * Math.PI / 2,
             30,
-            playAreaWidth,
-            playAreaHeight,
-            WeaponFactory.getWeapon(WeaponType.STANDARD_SHOTGUN, playAreaWidth, playAreaHeight));
+            WeaponFactory.getWeapon(WeaponType.STANDARD_SHOTGUN));
     gameObjects.add(player);
     int asteroidStartCount = (int) (Math.random() * 3) + 5;
     for (int i = 0; i < asteroidStartCount; i++) {
@@ -54,8 +52,6 @@ public class AsteroidGameManager extends GameBackend {
               Math.random() * 100 + 50,
               Math.random() * 2 * Math.PI,
               Math.random() * 100 + 50,
-              playAreaWidth,
-              playAreaHeight,
               1,
               2);
       gameObjects.add(newAsteroid);
@@ -162,5 +158,9 @@ public class AsteroidGameManager extends GameBackend {
   @Override
   public int getCurrentScore() {
     return currentScore;
+  }
+
+  public int getLives() {
+    return lives;
   }
 }

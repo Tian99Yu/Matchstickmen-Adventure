@@ -29,6 +29,20 @@ public class GameThread extends Thread {
 
   public void run() {
     while (!this.gameView.gameBackend.isGameOver() && !isTerminated) {
+      if (isUnpaused) {
+        this.gameView.update();
+        try {
+          Thread.sleep(updateInterval);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      } else {
+        try {
+          Thread.sleep(50);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
       try {
         canvas = this.surfaceHolder.lockCanvas();
         synchronized (surfaceHolder) {
@@ -45,20 +59,6 @@ public class GameThread extends Thread {
           } catch (Exception e) {
             e.printStackTrace();
           }
-        }
-      }
-      if (isUnpaused) {
-        this.gameView.update();
-        try {
-          Thread.sleep(updateInterval);
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      } else {
-        try {
-          Thread.sleep(50);
-        } catch (Exception e) {
-          e.printStackTrace();
         }
       }
     }

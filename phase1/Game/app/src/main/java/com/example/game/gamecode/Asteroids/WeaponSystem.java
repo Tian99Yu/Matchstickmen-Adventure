@@ -17,10 +17,6 @@ abstract class WeaponSystem {
   int range;
   /** Damage each projectile fired by this weapon inflicts. */
   int damage;
-  /** Screen width. */
-  int playAreaWidth;
-  /** Screen height. */
-  int playAreaHeight;
 
   public WeaponSystem(
       double muzzleVelocity,
@@ -28,17 +24,13 @@ abstract class WeaponSystem {
       int cooldown,
       double projectileSize,
       int range,
-      int damage,
-      int playAreaWidth,
-      int playAreaHeight) {
+      int damage) {
     this.muzzleVelocity = muzzleVelocity;
     this.spread = spread;
     this.cooldown = cooldown;
     this.projectileSize = projectileSize;
     this.range = range;
     this.damage = damage;
-    this.playAreaWidth = playAreaWidth;
-    this.playAreaHeight = playAreaHeight;
   }
 
   /** Attempts to fire this weapon. */

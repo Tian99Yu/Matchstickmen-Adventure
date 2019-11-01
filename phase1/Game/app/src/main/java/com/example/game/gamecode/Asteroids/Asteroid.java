@@ -20,11 +20,9 @@ class Asteroid extends AsteroidGameObject {
       double vY,
       double angle,
       double collisionRadius,
-      int playAreaWidth,
-      int playAreaHeight,
       int hp,
       int level) {
-    super(x, y, vX, vY, angle, collisionRadius, playAreaWidth, playAreaHeight);
+    super(x, y, vX, vY, angle, collisionRadius);
     this.hp = hp;
     this.level = level;
   }
@@ -43,8 +41,6 @@ class Asteroid extends AsteroidGameObject {
                 1.1 * vY + 200 * Math.random() - 100,
                 Math.random() * 2 * Math.PI,
                 collisionRadius * 0.6,
-                playAreaWidth,
-                playAreaHeight,
                 newHp,
                 level - 1));
       }
@@ -69,16 +65,16 @@ class Asteroid extends AsteroidGameObject {
   @Override
   void resolveCollision(AsteroidGameObject other) {
     if (other instanceof Asteroid) {
-      double dx = getNonEuclidianDistance(x, other.x, playAreaWidth);
-      double dy = getNonEuclidianDistance(y, other.y, playAreaHeight);
+      double dx = x - other.x;
+      double dy = y - other.y;
       if (dx == 0 && dy == 0) {
         return;
       }
       // basic collision resolution where objects reflect at the same speed away from each other
       double norm = Math.sqrt(dx * dx + dy * dy);
       double speed = Math.sqrt(vX * vX + vY * vY);
-      vX = speed * dx / norm;
-      vY = speed * dy / norm;
+      vX = speed * dx / norm + Math.random()*20 - 10;
+      vY = speed * dy / norm + Math.random()*20 - 10;
       if (dx != 0) {
         x += 1.5 * dx / Math.abs(dx);
       }
