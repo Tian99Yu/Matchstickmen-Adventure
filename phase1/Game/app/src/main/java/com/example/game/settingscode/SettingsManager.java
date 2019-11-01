@@ -35,9 +35,9 @@ public class SettingsManager implements Serializable {
       }
     } else {
       settings = JsonParser.parseString(convertStreamtoString(defaultSettings)).getAsJsonObject();
-      writeSettingsToFile();
     }
     settingsString = settings.toString();
+    writeSettingsToFile();
   }
 
   private void writeSettingsToFile() {
