@@ -32,12 +32,12 @@ public class MatchstickMenActivity extends GameActivity implements Customizable 
   private int color = Color.WHITE;
   private String character = "circle";
 
-  public void customization(int level, int color, String character) {
+  public void customization(int level, String theme, String character) {
 //    this.level = level;
 //    this.color = color;
 //    this.character = character;
      setDifficulty(level);
-     setBackground(color);
+     setTheme(theme);
      setCharacter(character);
 
   }
@@ -76,7 +76,8 @@ public class MatchstickMenActivity extends GameActivity implements Customizable 
     leaderboardManager =
         (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
 
-    customization(level, color, character);
+
+    customization(level, settingsManager.getSetting("theme"), character);
 //    setCharacter();
 //    setBackground();
 //    setDifficulty();
@@ -269,8 +270,12 @@ public class MatchstickMenActivity extends GameActivity implements Customizable 
   }
 
   @Override
-  public void setBackground(int background) {
-      this.color = background;
+  public void setTheme(String theme) {
+    if (theme == "dark") {
+      this.color = Color.BLACK;
+    } else {
+      this.color = Color.WHITE;
+    }
       //    final FrameLayout frameLayout = findViewById(R.id.canvas_matches);
 //    frameLayout.setBackgroundColor(color);
   }

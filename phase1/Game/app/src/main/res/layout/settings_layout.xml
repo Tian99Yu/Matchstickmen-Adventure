@@ -5,7 +5,7 @@
     android:id="@+id/settingsLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#001C27">
 
     <ImageButton
         android:id="@+id/closeSettings"
@@ -55,14 +55,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/generalSettingsTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/general_settings_title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-            <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/colorSchemeTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/general_color_scheme"
@@ -77,9 +70,11 @@
 
                 <RadioButton
                     android:id="@+id/darkTheme"
+                    style="@android:style/Widget.Material.CompoundButton.RadioButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
+                    android:checked="true"
                     android:text="@string/dark_theme" />
 
                 <RadioButton
@@ -91,63 +86,70 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/snakeSettingsTitle"
+                android:id="@+id/characterTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:text="@string/snake_settings_title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/snake_speed"
+                android:text="@string/character_title"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
             <RadioGroup
+                android:id="@+id/characterGroup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/snakeFast"
+                    android:id="@+id/firstCharacter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.33"
-                    android:text="@string/snake_fast" />
+                    android:layout_weight="0.5"
+                    android:text="@string/first_character" />
 
                 <RadioButton
-                    android:id="@+id/snakeMedium"
+                    android:id="@+id/secondCharacter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.33"
-                    android:text="@string/snake_medium" />
-
-                <RadioButton
-                    android:id="@+id/snakeSlow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.34"
-                    android:text="@string/snake_slow" />
+                    android:layout_weight="0.5"
+                    android:text="@string/second_character" />
             </RadioGroup>
 
             <TextView
-                android:id="@+id/asteroidsSettingsTitle"
+                android:id="@+id/difficultyTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:text="@string/asteroids_settings_title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:text="@string/difficulty_title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-            <TextView
-                android:id="@+id/matchstickSettingsTitle"
+            <RadioGroup
+                android:id="@+id/difficultyGroup"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:text="@string/matchstickmen_settings_title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/easy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="@string/easy_difficulty" />
+
+                <RadioButton
+                    android:id="@+id/medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="@string/medium_difficulty" />
+
+                <RadioButton
+                    android:id="@+id/hard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="@string/hard_difficulty" />
+
+            </RadioGroup>
         </LinearLayout>
     </ScrollView>
 

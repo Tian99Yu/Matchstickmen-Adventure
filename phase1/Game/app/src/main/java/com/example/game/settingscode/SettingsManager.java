@@ -40,7 +40,7 @@ public class SettingsManager implements Serializable {
     writeSettingsToFile();
   }
 
-  private void writeSettingsToFile() {
+  public void writeSettingsToFile() {
     JsonObject settings = convertStringToJsonObject(settingsString);
     try {
       BufferedWriter bw = new BufferedWriter(new FileWriter(settingsFile));
@@ -83,6 +83,6 @@ public class SettingsManager implements Serializable {
 
   public String getSetting(String setting) {
     JsonObject settings = convertStringToJsonObject(settingsString);
-    return settings.get(setting).toString();
+    return settings.get(setting).toString().replaceAll("\"", "");
   }
 }
