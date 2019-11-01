@@ -190,7 +190,7 @@ public class MatchstickMenBackend extends GameBackend {
 
   @Override
   public void update() {
-    setOver(true);
+//    setOver(true);
   }
 
 

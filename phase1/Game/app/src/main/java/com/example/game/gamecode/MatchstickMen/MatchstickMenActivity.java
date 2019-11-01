@@ -90,6 +90,8 @@ public class MatchstickMenActivity extends GameActivity {
                       timeleft.setText("Time's up!");
                       i++;
                       pgbar.setProgress(100);
+                      ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
+
 
                   }
               }.start();
@@ -109,22 +111,27 @@ public class MatchstickMenActivity extends GameActivity {
 
           @Override
           public void onClick(View view) {
+              if(!gameView.gameBackend.isGameOver()){
             setNum(getNum() + 1);
             count.setText(Integer.toString(getNum()));
             ((MatchstickMenBackend) gameView.gameBackend).addCount();
+          }
           }
         });
 
     btn_minus.setOnClickListener(
         new View.OnClickListener() {
+
           int i = getNum();
 
           @Override
           public void onClick(View view) {
-            setNum(getNum()-1);
+              if(!(gameView.gameBackend).isGameOver()){
+                        setNum(getNum()-1);
+
             count.setText(Integer.toString(getNum()));
             ((MatchstickMenBackend) gameView.gameBackend).minusCount();
-          }
+          }}
         });
 
     btn_done.setOnClickListener(
@@ -132,13 +139,16 @@ public class MatchstickMenActivity extends GameActivity {
 
           @Override
           public void onClick(View view) {
+              if(!gameView.gameBackend.isGameOver()){
               String result = count.getText().toString();
               if (((MatchstickMenBackend) gameView.gameBackend).compare(result)) {
               ((MatchstickMenBackend) gameView.gameBackend).score += 1;
                 count.setTextSize(30);
                 count.setText("Correct!!! :)");
                 timer.cancel();
-            }
+                  ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
+
+              }
             else{
                 count.setTextSize(30);
                 count.setText("Wrong -_-");
@@ -146,8 +156,8 @@ public class MatchstickMenActivity extends GameActivity {
               String text = timeleft.getText().toString();
             String time_remaining = text.substring(0, text.indexOf('.'));
               ((MatchstickMenBackend) gameView.gameBackend).setTimeUsed(time_remaining);
-              gameView.gameBackend.update();
-          }
+//              gameView.gameBackend.update();
+          }}
         });
 
     // Restart the gameBackend
@@ -155,10 +165,12 @@ public class MatchstickMenActivity extends GameActivity {
         new View.OnClickListener() {
           @Override
           public void onClick(View view) {
-              gameView.toggleRunning();
+
+//              gameView.toggleRunning();
+
               Intent intent = new Intent(MatchstickMenActivity.this, MatchstickMenActivity.class);
               startActivity(intent);
-
+//              MatchstickMenActivity.super.onStop();
           }
         });
   }
