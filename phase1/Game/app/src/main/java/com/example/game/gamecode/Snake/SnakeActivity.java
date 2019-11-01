@@ -10,12 +10,11 @@ import com.example.game.R;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
-import com.example.game.settingscode.Customizable;
 import com.example.game.settingscode.SettingsManager;
 
 import java.io.IOException;
 
-public class SnakeActivity extends GameActivity implements Customizable {
+public class SnakeActivity extends GameActivity{
     Button LeftButton;
     Button RightButton;
     private LeaderboardManager leaderboardManager;
@@ -89,17 +88,17 @@ public class SnakeActivity extends GameActivity implements Customizable {
         return new SnakeView(this);
     }
 
-    @Override
-    public void setDifficulty() {
-    }
-
-    @Override
-    public void setCharacter() {
-
-    }
-
-    @Override
-    public void setBackground() {
-
-    }
+//    @Override
+//    public void setDifficulty() {
+//    }
+//
+//    @Override
+//    public void setCharacter() {
+//
+//    }
+//
+//    @Override
+//    public void setBackground() {
+//
+//    }
 }

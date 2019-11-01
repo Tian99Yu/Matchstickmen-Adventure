@@ -1,5 +1,7 @@
 package com.example.game.gamecode.MatchstickMen;
 
+import android.graphics.Canvas;
+
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GameObject;
 import com.example.game.leaderboardcode.LeaderboardManager;
@@ -119,4 +121,26 @@ public class MatchstickMenBackend extends GameBackend {
   public int getCurrentScore() {
     return score;
   }
+
+  /**
+   * Draw the current status of this game on the canvas
+   * @param canvas the canvas to draw this game on.
+   */
+  @Override
+  public void draw(Canvas canvas) {
+//    drawBackground(canvas);
+    for (int a = 0; a < gameObjects.size(); a++) {
+      if (gameObjects.get(a) != null) {
+        gameObjects.get(a).draw(canvas);
+      }
+    }
+  }
+
+//  public void drawBackground(Canvas canvas) {
+//    Paint paint = new Paint();
+//    paint.setColor(canvasColor);
+//    paint.setStyle(Paint.Style.FILL);
+//    canvas.drawPaint(paint);
+//    }
+
 }

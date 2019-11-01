@@ -19,7 +19,10 @@ public class MatchstickMenObject extends GameObject {
 
     private MatchstickMenBackend backend;
 
+    /** The color of the character. */
     private int color;
+
+    /** The character that will appear on the screen. */
     private String character;
 
     /**
@@ -37,7 +40,11 @@ public class MatchstickMenObject extends GameObject {
         this.paint.setColor(color);
     }
 
-
+    /**
+     * Randomly draw the characters on the canvas and record the number of characters drawn.
+     *
+     * @param canvas the graphics context in which to draw this item.
+     */
     public void draw(Canvas canvas) {
         Random random = new Random();
 
