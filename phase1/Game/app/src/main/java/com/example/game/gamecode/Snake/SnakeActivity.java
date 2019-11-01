@@ -10,12 +10,12 @@ import com.example.game.R;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
-import com.example.game.leaderboardcode.Savable;
+import com.example.game.leaderboardcode.Saver;
 import com.example.game.settingscode.SettingsManager;
 
 import java.io.IOException;
 
-public class SnakeActivity extends GameActivity implements Savable {
+public class SnakeActivity extends GameActivity implements Saver {
     Button LeftButton;
     Button RightButton;
 

@@ -1,5 +1,5 @@
 package com.example.game.leaderboardcode;
 
-public interface Savable {
+public interface Saver {
   void saveScore();
 }

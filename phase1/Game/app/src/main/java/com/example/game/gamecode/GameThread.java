@@ -3,7 +3,7 @@ package com.example.game.gamecode;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.example.game.leaderboardcode.Savable;
+import com.example.game.leaderboardcode.Saver;
 
 /*
 Handles the update events for all games.
@@ -15,9 +15,9 @@ public class GameThread extends Thread {
   private volatile boolean isPaused;
   private volatile boolean isTerminated;
   protected int updateInterval;
-  private Savable saver;
+  private Saver saver;
 
-  public GameThread(SurfaceHolder surfaceHolder, GameView gameView, Savable saver) {
+  public GameThread(SurfaceHolder surfaceHolder, GameView gameView, Saver saver) {
     this.surfaceHolder = surfaceHolder;
     this.gameView = gameView;
     this.saver = saver;
