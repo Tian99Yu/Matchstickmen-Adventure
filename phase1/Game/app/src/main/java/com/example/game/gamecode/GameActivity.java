@@ -2,20 +2,15 @@ package com.example.game.gamecode;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.game.Games;
 import com.example.game.MainMenuScreen;
 import com.example.game.R;
 import com.example.game.leaderboardcode.LeaderboardManager;
-import com.example.game.leaderboardcode.Savable;
 import com.example.game.settingscode.SettingsManager;
-
-import java.io.IOException;
 
 public abstract class GameActivity extends AppCompatActivity {
   protected GameView gameView;

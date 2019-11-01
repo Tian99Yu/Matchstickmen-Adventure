@@ -7,7 +7,7 @@ import android.graphics.Paint;
 
 import com.example.game.gamecode.GameThread;
 import com.example.game.gamecode.GameView;
-import com.example.game.leaderboardcode.Savable;
+import com.example.game.leaderboardcode.Saver;
 
 class AsteroidsView extends GameView {
   /** Screen width. */
@@ -22,7 +22,7 @@ class AsteroidsView extends GameView {
     this.density = context.getResources().getDisplayMetrics().density;
     this.playAreaWidth = playAreaWidth;
     this.playAreaHeight = playAreaHeight;
-    thread = new GameThread(getHolder(), this, (Savable) context);
+    thread = new GameThread(getHolder(), this, (Saver) context);
     gameBackend = new AsteroidGameManager(playAreaWidth, playAreaHeight);
   }
 
