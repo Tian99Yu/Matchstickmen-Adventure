@@ -66,26 +66,9 @@ public class LeaderboardManager implements Serializable {
             currLine = br.readLine();
         }
 
+        br.close();
         Collections.sort(data, scoreSorter);
         return data.toArray(new String[0]);
-    }
-
-    public String[] getGameStatistics(Games game, String statistic) throws IOException {
-        File gameFile = getGameFile(game);
-        BufferedReader br = new BufferedReader(new FileReader(gameFile.getAbsolutePath()));
-        List<String> data = new ArrayList<>();
-
-        String currLine = br.readLine();
-        while (currLine != null) {
-            String[] sArray = currLine.split(" ");
-            if (statistic.equals(sArray[0])) {
-                data.add(String.join(" ", sArray));
-            }
-            currLine = br.readLine();
-        }
-
-        Collections.sort(data, scoreSorter);
-        return (String[]) data.toArray();
     }
 
     private String getGameName(Games game) {

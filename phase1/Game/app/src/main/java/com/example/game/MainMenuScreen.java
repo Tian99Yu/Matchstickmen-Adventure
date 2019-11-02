@@ -1,6 +1,7 @@
 package com.example.game;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,10 +18,12 @@ import com.example.game.gamecode.MatchstickMen.MatchstickMenActivity;
 import com.example.game.gamecode.Snake.SnakeActivity;
 import com.example.game.leaderboardcode.LeaderboardActivity;
 import com.example.game.leaderboardcode.LeaderboardManager;
+import com.example.game.settingscode.Customizable;
 import com.example.game.settingscode.SettingsActivity;
 import com.example.game.settingscode.SettingsManager;
+import java.io.InputStream;
 
-public class MainMenuScreen extends AppCompatActivity {
+public class MainMenuScreen extends AppCompatActivity implements Customizable {
     private String username;
     private LeaderboardManager leaderboardManager;
     private SettingsManager settingsManager;
@@ -37,9 +40,13 @@ public class MainMenuScreen extends AppCompatActivity {
         final ImageButton openSettings = findViewById(R.id.settingsButton);
         final TextView usernameField = findViewById(R.id.usernameField);
 
+        InputStream defaultSettingsStream = getResources().openRawResource(R.raw.defaultsettings);
+
         username = usernameField.getText().toString();
         leaderboardManager = new LeaderboardManager(getDataDir());
-        settingsManager = new SettingsManager();
+        settingsManager = new SettingsManager(getDataDir(), defaultSettingsStream);
+
+        setTheme(settingsManager.getSetting("theme"));
 
         launchGame1.setOnClickListener(new GameView.OnClickListener() {
             public void onClick(View view) {
@@ -107,5 +114,17 @@ public class MainMenuScreen extends AppCompatActivity {
         intent.putExtra("username", username);
         intent.putExtra("leaderboardManager", leaderboardManager);
         intent.putExtra("settingsManager", settingsManager);
+    }
+
+    @Override
+    public void setTheme(String theme) {
+        View mainMenuContainer = findViewById(R.id.mainMenuContainer);
+        int color;
+        if (theme.equals("dark")) {
+            color = Color.parseColor("#001C27");
+        } else {
+            color = Color.parseColor("#FF006F9C");
+        }
+        mainMenuContainer.setBackgroundColor(color);
     }
 }

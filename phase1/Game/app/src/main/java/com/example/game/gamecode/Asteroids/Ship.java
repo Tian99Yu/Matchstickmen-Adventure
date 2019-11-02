@@ -40,10 +40,8 @@ class Ship extends AsteroidGameObject {
       double vY,
       double angle,
       double collisionRadius,
-      int playAreaWidth,
-      int playAreaHeight,
       WeaponSystem mainArmament) {
-    super(x, y, vX, vY, angle, collisionRadius, playAreaWidth, playAreaHeight);
+    super(x, y, vX, vY, angle, collisionRadius);
     this.mainArmament = mainArmament;
     startX = x;
     startY = y;

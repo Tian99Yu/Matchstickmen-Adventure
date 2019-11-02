@@ -20,6 +20,10 @@ public class AsteroidGameManager extends GameBackend {
   private Ship player;
   /** The players current score. */
   private int currentScore;
+  /** Number of asteroids destroyed. */
+  private int asteroidsDestroyed;
+  /** Number of projectiles fired by player. */
+  private int projectilesFired;
 
   public AsteroidGameManager(int playAreaWidth, int playAreaHeight) {
     this.playAreaWidth = playAreaWidth;
@@ -32,9 +36,7 @@ public class AsteroidGameManager extends GameBackend {
             0,
             3 * Math.PI / 2,
             30,
-            playAreaWidth,
-            playAreaHeight,
-            WeaponFactory.getWeapon(WeaponType.STANDARD_SHOTGUN, playAreaWidth, playAreaHeight));
+            WeaponFactory.getWeapon(WeaponType.STANDARD_SHOTGUN));
     gameObjects.add(player);
     int asteroidStartCount = (int) (Math.random() * 3) + 5;
     for (int i = 0; i < asteroidStartCount; i++) {
@@ -54,8 +56,6 @@ public class AsteroidGameManager extends GameBackend {
               Math.random() * 100 + 50,
               Math.random() * 2 * Math.PI,
               Math.random() * 100 + 50,
-              playAreaWidth,
-              playAreaHeight,
               1,
               2);
       gameObjects.add(newAsteroid);
@@ -122,6 +122,7 @@ public class AsteroidGameManager extends GameBackend {
         } else if (asteroidGameObject instanceof Asteroid) {
           currentScore += ((Asteroid) asteroidGameObject).getValue();
           newObjects.addAll(((Asteroid) asteroidGameObject).split(1));
+          asteroidsDestroyed++;
           iter.remove();
         }
       }
@@ -130,7 +131,9 @@ public class AsteroidGameManager extends GameBackend {
   }
 
   private void attemptFire() {
-    gameObjects.addAll(player.attemptFireMainArmament());
+    List<Projectile> projectiles = player.attemptFireMainArmament();
+    projectilesFired += projectiles.size();
+    gameObjects.addAll(projectiles);
   }
 
   /** Sets the target direction based on user input. */
@@ -162,5 +165,19 @@ public class AsteroidGameManager extends GameBackend {
   @Override
   public int getCurrentScore() {
     return currentScore;
+  }
+
+
+  public int getAsteroidsDestroyed() {
+    return asteroidsDestroyed;
+  }
+
+  public int getProjectilesFired() {
+    return projectilesFired;
+  }
+
+
+  public int getLives() {
+    return lives;
   }
 }

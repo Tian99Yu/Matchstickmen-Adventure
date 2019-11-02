@@ -14,16 +14,12 @@ import com.example.game.R;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
-import com.example.game.settingscode.Customizable;
+import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
 import java.io.IOException;
 
-public class MatchstickMenActivity extends GameActivity implements Customizable {
-  private LeaderboardManager leaderboardManager;
-  private SettingsManager settingsManager;
-  private String username;
-
+public class MatchstickMenActivity extends GameActivity implements CustomizableGame {
   /** A flag recording whether the data of this game is saved. */
   private boolean saved = false;
 
@@ -31,12 +27,14 @@ public class MatchstickMenActivity extends GameActivity implements Customizable 
   private int color = Color.WHITE;
   private String character = "circle";
 
-  public void customization(int level, int color, String character) {
+
+  public void customization(String level, String theme, String character) {
 //    this.level = level;
 //    this.color = color;
 //    this.character = character;
+
      setDifficulty(level);
-     setBackground(color);
+     setTheme(theme);
      setCharacter(character);
 
   }
@@ -75,7 +73,8 @@ public class MatchstickMenActivity extends GameActivity implements Customizable 
     leaderboardManager =
         (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
 
-    customization(level, color, character);
+
+    customization(settingsManager.getSetting("difficulty"), settingsManager.getSetting("theme"), settingsManager.getSetting("character"));
 //    setCharacter();
 //    setBackground();
 //    setDifficulty();
@@ -219,7 +218,7 @@ public class MatchstickMenActivity extends GameActivity implements Customizable 
 //          @Override
 //          public void onClick(View view) {
 //
-//            //              gameView.toggleRunning();
+//            //              gameView.togglePause();
 //
 //            Intent intent = getIntent();
 //            new Intent(MatchstickMenActivity.this, MatchstickMenActivity.class);
@@ -258,18 +257,32 @@ public class MatchstickMenActivity extends GameActivity implements Customizable 
   }
 
   @Override
-  public void setDifficulty(int difficulty) {
-    this.level = difficulty;
+  public void setDifficulty(String difficulty) {
+    if (difficulty.equals("easy")) {
+      this.level = 0;
+    } else if (difficulty.equals("medium")) {
+      this.level = 1;
+    } else {
+      this.level = 2;
+    }
   }
 
   @Override
   public void setCharacter(String character) {
-    this.character = character;
+    if (character.equals("one")) {
+      this.character = "rect";
+    } else {
+      this.character = "circle";
+    }
   }
 
   @Override
-  public void setBackground(int background) {
-      this.color = background;
+  public void setTheme(String theme) {
+    if (theme.equals("dark")) {
+      this.color = Color.MAGENTA;
+    } else {
+      this.color = Color.WHITE;
+    }
       //    final FrameLayout frameLayout = findViewById(R.id.canvas_matches);
 //    frameLayout.setBackgroundColor(color);
   }

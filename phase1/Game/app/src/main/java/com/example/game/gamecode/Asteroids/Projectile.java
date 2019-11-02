@@ -18,11 +18,9 @@ class Projectile extends AsteroidGameObject {
       double vY,
       double angle,
       double collisionRadius,
-      int playAreaWidth,
-      int playAreaHeight,
       int range,
       int damage) {
-    super(x, y, vX, vY, angle, collisionRadius, playAreaWidth, playAreaHeight);
+    super(x, y, vX, vY, angle, collisionRadius);
     this.range = range;
     this.damage = damage;
   }

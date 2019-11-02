@@ -10,17 +10,16 @@ import com.example.game.R;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
+import com.example.game.leaderboardcode.Saver;
 import com.example.game.settingscode.Customizable;
 import com.example.game.settingscode.SettingsManager;
 
 import java.io.IOException;
 
+public class SnakeActivity extends GameActivity implements Saver {
 public class SnakeActivity extends GameActivity implements Customizable {
     Button LeftButton;
     Button RightButton;
-    private LeaderboardManager leaderboardManager;
-    private SettingsManager settingsManager;
-    private String username;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,11 +71,10 @@ public class SnakeActivity extends GameActivity implements Customizable {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    public void saveScore() {
         try{
             String[][] statistic = ((SnakeView)gameView).getStatistics();
-            for (int i = 0; i < statistic.length; i++){
+            for (int i = 0; i < statistic[0].length; i++){
                 this.leaderboardManager.saveData(Games.SNAKE, this.username, statistic[0][i]
                         , statistic[1][i]);
             }

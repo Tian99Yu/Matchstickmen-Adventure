@@ -5,12 +5,13 @@ import android.graphics.Color;
 
 import com.example.game.gamecode.GameThread;
 import com.example.game.gamecode.GameView;
+import com.example.game.leaderboardcode.Saver;
 
 public class SnakeView extends GameView {
 
   public SnakeView(Context context) {
     super(context);
-    thread = new GameThread(getHolder(), this);
+    thread = new GameThread(getHolder(), this, (Saver) context);
     thread.setUpdateInterval(100);
 
     int screenHeight = 1650;
