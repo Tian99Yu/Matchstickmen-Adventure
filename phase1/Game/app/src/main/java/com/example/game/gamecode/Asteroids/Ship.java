@@ -129,6 +129,7 @@ class Ship extends AsteroidGameObject {
 
   @Override
   public void draw(Canvas canvas) {
-    drawRotatedBitmap(canvas, appearance);
+    drawRotatedBitmap(
+        canvas, appearance, AsteroidCustomizations.shipColor[AsteroidCustomizations.themeIndex]);
   }
 }

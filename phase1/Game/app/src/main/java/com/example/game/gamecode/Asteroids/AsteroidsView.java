@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 
 import com.example.game.gamecode.GameThread;
 import com.example.game.gamecode.GameView;
@@ -26,6 +27,7 @@ class AsteroidsView extends GameView {
     gameBackend = new AsteroidGameManager(playAreaWidth, playAreaHeight);
   }
 
+  @Override
   public void draw(Canvas canvas) {
     super.draw(canvas);
     Paint paint = new Paint();

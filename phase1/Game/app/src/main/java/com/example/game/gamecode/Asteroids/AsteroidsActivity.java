@@ -40,6 +40,10 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
 
     Projectile.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.laser);
 
+    setDifficulty(settingsManager.getSetting("difficulty"));
+    setTheme(settingsManager.getSetting("theme"));
+    setCharacter(settingsManager.getSetting("character"));
+
     gameView = this.setView();
 
     FrameLayout frameLayout = findViewById(R.id.frameLayout);
@@ -130,17 +134,31 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
 
   @Override
   public void setDifficulty(String difficulty) {
-
+    if (difficulty.equals("easy")) {
+      AsteroidCustomizations.splittingRatio = 2;
+    } else if (difficulty.equals("medium")) {
+      AsteroidCustomizations.splittingRatio = 3;
+    } else {
+      AsteroidCustomizations.splittingRatio = 4;
+    }
   }
 
   @Override
   public void setCharacter(String character) {
-
+    if (character.equals("one")) {
+      AsteroidCustomizations.weaponOption = 0;
+    } else {
+      AsteroidCustomizations.weaponOption = 1;
+    }
   }
 
   @Override
   public void setTheme(String theme) {
-
+    if (theme.equals("dark")) {
+      AsteroidCustomizations.themeIndex = 0;
+    } else {
+      AsteroidCustomizations.themeIndex = 1;
+    }
   }
 
 }

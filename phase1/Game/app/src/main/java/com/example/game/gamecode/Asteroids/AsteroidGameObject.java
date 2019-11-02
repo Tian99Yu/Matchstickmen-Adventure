@@ -2,7 +2,12 @@ package com.example.game.gamecode.Asteroids;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 
 import com.example.game.gamecode.GameObject;
 
@@ -80,7 +85,10 @@ abstract class AsteroidGameObject extends GameObject {
    * @param canvas the canvas to draw on
    * @param bitmap the bitmap to draw
    */
-  void drawRotatedBitmap(Canvas canvas, Bitmap bitmap) {
+  void drawRotatedBitmap(Canvas canvas, Bitmap bitmap, int color) {
+    Paint paint = new Paint();
+    ColorFilter filter = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
+    paint.setColorFilter(filter);
     Matrix matrix = new Matrix();
     matrix.preRotate((float) Math.toDegrees(angle), bitmap.getWidth() / 2, bitmap.getHeight() / 2);
     matrix.postScale(
@@ -90,6 +98,6 @@ abstract class AsteroidGameObject extends GameObject {
             bitmap.getHeight() / 2);
     matrix.postTranslate(
             (float) (x - bitmap.getWidth() / 2.0), (float) (y - bitmap.getHeight() / 2.0));
-    canvas.drawBitmap(bitmap, matrix, null);
+    canvas.drawBitmap(bitmap, matrix, paint);
   }
 }
