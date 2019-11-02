@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/settings_title"
-        android:textColor="#000000"
+        android:textColor="@android:color/background_light"
         android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +60,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/general_color_scheme"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/background_light" />
 
             <RadioGroup
                 android:id="@+id/colorSchemeGroup"
@@ -76,14 +77,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:checked="true"
-                    android:text="@string/dark_theme" />
+                    android:text="@string/dark_theme"
+                    android:textColor="@android:color/background_light" />
 
                 <RadioButton
                     android:id="@+id/lightTheme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="@string/light_theme" />
+                    android:text="@string/light_theme"
+                    android:textColor="@android:color/background_light" />
             </RadioGroup>
 
             <TextView
@@ -91,7 +94,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/character_title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/background_light" />
 
             <RadioGroup
                 android:id="@+id/characterGroup"
@@ -105,14 +109,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="@string/first_character" />
+                    android:text="@string/first_character"
+                    android:textColor="@android:color/background_light" />
 
                 <RadioButton
                     android:id="@+id/secondCharacter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="@string/second_character" />
+                    android:text="@string/second_character"
+                    android:textColor="@android:color/background_light" />
             </RadioGroup>
 
             <TextView
@@ -120,7 +126,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/difficulty_title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/background_light" />
 
             <RadioGroup
                 android:id="@+id/difficultyGroup"
@@ -134,21 +141,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="@string/easy_difficulty" />
+                    android:text="@string/easy_difficulty"
+                    android:textColor="@android:color/background_light" />
 
                 <RadioButton
                     android:id="@+id/medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="@string/medium_difficulty" />
+                    android:text="@string/medium_difficulty"
+                    android:textColor="@android:color/background_light" />
 
                 <RadioButton
                     android:id="@+id/hard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="@string/hard_difficulty" />
+                    android:text="@string/hard_difficulty"
+                    android:textColor="@android:color/background_light" />
 
             </RadioGroup>
         </LinearLayout>
