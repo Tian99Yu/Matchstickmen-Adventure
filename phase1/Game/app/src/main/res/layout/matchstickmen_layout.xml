@@ -23,7 +23,7 @@
 
 
     <Button
-        android:id="@+id/btn_add"
+        android:id="@+id/btnAdd"
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_marginStart="32dp"
@@ -31,7 +31,7 @@
         android:text="add"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_minus"
+        app:layout_constraintEnd_toStartOf="@id/btnMinus"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.989" />
 
@@ -44,7 +44,7 @@
         android:layout_marginTop="33dp"
         android:background="@color/black_overlay"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintRight_toLeftOf="@id/text_timeleft"
+        app:layout_constraintRight_toLeftOf="@id/textTimeleft"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,7 +62,7 @@
 
 
     <TextView
-        android:id="@+id/text_timeleft"
+        android:id="@+id/textTimeleft"
         android:layout_width="70dp"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_restart"
+        android:id="@+id/btnRestart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -87,17 +87,17 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/text_count"
+        android:id="@+id/textCount"
         android:layout_width="193dp"
         android:layout_height="37dp"
         android:layout_marginBottom="24dp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/btn_add"
+        app:layout_constraintBottom_toTopOf="@+id/btnAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_minus"
+        android:id="@+id/btnMinus"
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
@@ -107,10 +107,10 @@
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_add" />
+        app:layout_constraintStart_toEndOf="@+id/btnAdd" />
 
     <Button
-        android:id="@+id/btn_done"
+        android:id="@+id/btnDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"

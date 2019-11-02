@@ -84,7 +84,7 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
     frameLayout.addView(gameView);
     // Process the count down display on progressbar and timeleft.
     pgBar = findViewById(R.id.progressBar);
-    timeleft = findViewById(R.id.text_timeleft);
+    timeleft = findViewById(R.id.textTimeleft);
 
     pgBar.setProgress(0);
 
@@ -117,7 +117,7 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
                     Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed());
                 leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Count", count);
                 leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Score", score);
-                leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Time used", timeUsed);
+                leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Time", timeUsed);
                 saved = true;
               } catch (IOException e) {
                 e.printStackTrace();
@@ -127,12 +127,12 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
         }.start();
 
     // Display and control count.
-    btnAdd = findViewById(R.id.btn_add);
-    btnMinus = findViewById(R.id.btn_minus);
-    btnDone = findViewById(R.id.btn_done);
-    btnRestart = findViewById(R.id.btn_restart);
+    btnAdd = findViewById(R.id.btnAdd);
+    btnMinus = findViewById(R.id.btnMinus);
+    btnDone = findViewById(R.id.btnDone);
+    btnRestart = findViewById(R.id.btnRestart);
 
-    count = findViewById(R.id.text_count);
+    count = findViewById(R.id.textCount);
     count.setText(Integer.toString(0));
 
     btnAdd.setOnClickListener(
@@ -201,7 +201,7 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
                       Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed());
                   leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Count", count);
                   leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Score", score);
-                  leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Time used", timeused);
+                  leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Time", timeused);
                   saved = true;
                 } catch (IOException e) {
                   e.printStackTrace();
