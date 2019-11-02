@@ -26,4 +26,6 @@
     <string name="easy_difficulty">Easy</string>
     <string name="medium_difficulty">Medium</string>
     <string name="hard_difficulty">Hard</string>
+    <string name="left">LEFT</string>
+    <string name="right">RIGHT</string>
 </resources>
