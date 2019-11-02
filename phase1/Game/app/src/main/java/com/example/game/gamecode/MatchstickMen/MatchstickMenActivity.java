@@ -13,13 +13,15 @@ import com.example.game.Games;
 import com.example.game.R;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
+import com.example.game.gamecode.Snake.SnakeBackend;
 import com.example.game.leaderboardcode.LeaderboardManager;
+import com.example.game.leaderboardcode.Saver;
 import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
 import java.io.IOException;
 
-public class MatchstickMenActivity extends GameActivity implements CustomizableGame {
+public class MatchstickMenActivity extends GameActivity implements Saver, CustomizableGame {
   /** A flag recording whether the data of this game is saved. */
   private boolean saved = false;
 
@@ -27,16 +29,16 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
   private int color = Color.WHITE;
   private String character = "circle";
 
-
+  /**
+   * Make the customizations.
+   * @param level the level of this game
+   * @param theme the theme of this game
+   * @param character the character that will be shown on the screen
+   */
   public void customization(String level, String theme, String character) {
-//    this.level = level;
-//    this.color = color;
-//    this.character = character;
-
-     setDifficulty(level);
-     setTheme(theme);
-     setCharacter(character);
-
+    setDifficulty(level);
+    setTheme(theme);
+    setCharacter(character);
   }
 
   public int getLevel() {
@@ -71,14 +73,12 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
     username = (String) getIntent().getSerializableExtra("username");
     settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
     leaderboardManager =
-        (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
+            (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
 
-
-    customization(settingsManager.getSetting("difficulty"), settingsManager.getSetting("theme"), settingsManager.getSetting("character"));
-//    setCharacter();
-//    setBackground();
-//    setDifficulty();
-
+    customization(
+            settingsManager.getSetting("difficulty"),
+            settingsManager.getSetting("theme"),
+            settingsManager.getSetting("character"));
     gameView = this.setView();
     final FrameLayout frameLayout = findViewById(R.id.canvas_matches);
     frameLayout.addView(gameView);
@@ -92,39 +92,39 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
     int totalTime = getTotalTime();
 
     final CountDownTimer timer =
-        new CountDownTimer(totalTime * 1000, 1000) {
-          int i = 0;
+            new CountDownTimer(totalTime * 1000, 1000) {
+              int i = 0;
 
-          @Override
-          public void onTick(long l) {
-            i++;
-            pgBar.setProgress((int) i * 10);
-            timeleft.setText(Float.toString(l / 1000) + "secs");
-          }
-
-          @Override
-          public void onFinish() {
-            timeleft.setText("Time's up!");
-            i++;
-            pgBar.setProgress(100);
-            ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
-            if (!saved) {
-              try {
-                String count =
-                    Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getCount());
-                String score = Integer.toString(gameView.gameBackend.getCurrentScore());
-                String timeUsed =
-                    Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed());
-                leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Count", count);
-                leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Score", score);
-                leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Time", timeUsed);
-                saved = true;
-              } catch (IOException e) {
-                e.printStackTrace();
+              @Override
+              public void onTick(long l) {
+                i++;
+                pgBar.setProgress((int) i * 10);
+                timeleft.setText(Float.toString(l / 1000) + "secs");
               }
-            }
-          }
-        }.start();
+
+              @Override
+              public void onFinish() {
+                timeleft.setText("Time's up!");
+                i++;
+                pgBar.setProgress(100);
+                ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
+                if (!saved) {
+                  try {
+                    String count =
+                            Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getCount());
+                    String score = Integer.toString(gameView.gameBackend.getCurrentScore());
+                    String timeUsed =
+                            Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed());
+                    leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Count", count);
+                    leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Score", score);
+                    leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Time", timeUsed);
+                    saved = true;
+                  } catch (IOException e) {
+                    e.printStackTrace();
+                  }
+                }
+              }
+            }.start();
 
     // Display and control count.
     btnAdd = findViewById(R.id.btnAdd);
@@ -135,81 +135,84 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
     count.setText(Integer.toString(0));
 
     btnAdd.setOnClickListener(
-        new View.OnClickListener() {
-          int i = getNum();
+            new View.OnClickListener() {
+              int i = getNum();
 
-          @Override
-          public void onClick(View view) {
-            if (!gameView.gameBackend.isGameOver()) {
-              setNum(getNum() + 1);
-              count.setText(Integer.toString(getNum()));
-              ((MatchstickMenBackend) gameView.gameBackend).addCount();
-            }
-          }
-        });
-
-    btnMinus.setOnClickListener(
-        new View.OnClickListener() {
-
-          int i = getNum();
-
-          @Override
-          public void onClick(View view) {
-            if (!(gameView.gameBackend).isGameOver()) {
-              setNum(getNum() - 1);
-
-              count.setText(Integer.toString(getNum()));
-              ((MatchstickMenBackend) gameView.gameBackend).minusCount();
-            }
-          }
-        });
-
-    btnDone.setOnClickListener(
-        new View.OnClickListener() {
-
-          @Override
-          public void onClick(View view) {
-            //              String result = count.getText().toString();
-            //
-            //              while(((MatchstickMenBackend) gameView.gameBackend).compare(result)) {
-            //                  ((MatchstickMenBackend)
-            // gameView.gameBackend).draw(((MatchstickMenView) gameView).canvas);
-
-            if (!gameView.gameBackend.isGameOver()) {
-              String result = count.getText().toString();
-              if (((MatchstickMenBackend) gameView.gameBackend).compare(result)) {
-                ((MatchstickMenBackend) gameView.gameBackend).score += 1;
-                count.setTextSize(30);
-                count.setText("Correct!!! :)");
-                timer.cancel();
-                ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
-
-              } else {
-                count.setTextSize(30);
-                count.setText("Wrong -_-");
-              }
-              String text = timeleft.getText().toString();
-              String time_remaining = text.substring(0, text.indexOf('.'));
-              ((MatchstickMenBackend) gameView.gameBackend).setTimeUsed(time_remaining);
-              if (!saved) {
-                try {
-                  String count =
-                      Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getCount());
-                  String score = Integer.toString(gameView.gameBackend.getCurrentScore());
-                  String timeused =
-                      Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed());
-                  leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Count", count);
-                  leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Score", score);
-                  leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Time", timeused);
-                  saved = true;
-                } catch (IOException e) {
-                  e.printStackTrace();
+              @Override
+              public void onClick(View view) {
+                if (!gameView.gameBackend.isGameOver()) {
+                  setNum(getNum() + 1);
+                  count.setText(Integer.toString(getNum()));
+                  ((MatchstickMenBackend) gameView.gameBackend).addCount();
                 }
               }
-              //              gameView.gameBackend.update();
-            }
-          }
-        });
+            });
+
+    btnMinus.setOnClickListener(
+            new View.OnClickListener() {
+
+              int i = getNum();
+
+              @Override
+              public void onClick(View view) {
+                if (!(gameView.gameBackend).isGameOver()) {
+                  setNum(getNum() - 1);
+
+                  count.setText(Integer.toString(getNum()));
+                  ((MatchstickMenBackend) gameView.gameBackend).minusCount();
+                }
+              }
+            });
+
+    btnDone.setOnClickListener(
+            new View.OnClickListener() {
+
+              @Override
+              public void onClick(View view) {
+                if (!gameView.gameBackend.isGameOver()) {
+                  String result = count.getText().toString();
+                  if (((MatchstickMenBackend) gameView.gameBackend).compare(result)) {
+                    ((MatchstickMenBackend) gameView.gameBackend).score += 1;
+                    count.setTextSize(30);
+                    count.setText("Correct!!! :)");
+                    timer.cancel();
+                    ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
+
+                  } else {
+                    count.setTextSize(30);
+                    count.setText("Wrong -_-");
+                  }
+                  String text = timeleft.getText().toString();
+                  String time_remaining = text.substring(0, text.indexOf('.'));
+                  ((MatchstickMenBackend) gameView.gameBackend).setTimeUsed(time_remaining);
+                }
+              }
+            });
+  }
+
+  @Override
+  public void saveScore() {
+    if (!saved) {
+      try {
+        leaderboardManager.saveData(
+                Games.MATCHSTICKMEN,
+                username,
+                "Count",
+                String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCount()));
+        leaderboardManager.saveData(
+                Games.MATCHSTICKMEN,
+                username,
+                "Score",
+                String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCurrentScore()));
+        leaderboardManager.saveData(
+                Games.MATCHSTICKMEN,
+                username,
+                "Time",
+                String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed()));
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
   }
 
   @Override
@@ -263,7 +266,5 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
     } else {
       this.color = Color.WHITE;
     }
-      //    final FrameLayout frameLayout = findViewById(R.id.canvas_matches);
-//    frameLayout.setBackgroundColor(color);
   }
 }
