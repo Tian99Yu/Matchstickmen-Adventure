@@ -74,15 +74,8 @@ public class SnakeActivity extends GameActivity implements Saver, CustomizableGa
 
     @Override
     public void saveScore() {
-        try{
-            String[][] statistic = ((SnakeView)gameView).getStatistics();
-            for (int i = 0; i < statistic[0].length; i++){
-                this.leaderboardManager.saveData(Games.SNAKE, this.username, statistic[0][i]
-                        , statistic[1][i]);
-            }
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+        String[][] statistic = ((SnakeView)gameView).getStatistics();
+        this.leaderboardManager.saveData(Games.SNAKE, this.username, statistic[0], statistic[1]);
     }
 
     /**

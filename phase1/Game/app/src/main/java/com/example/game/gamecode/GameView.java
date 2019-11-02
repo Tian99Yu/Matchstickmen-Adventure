@@ -20,7 +20,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
 
   @Override
   public void surfaceCreated(SurfaceHolder surfaceHolder) {
-    if (!thread.isAlive()) {
+    if (thread.getState() == Thread.State.NEW) {
       unpause();
       thread.start();
     }

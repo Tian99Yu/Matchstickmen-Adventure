@@ -85,16 +85,13 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
                 TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1);
         String[] scoreData = leaderboardPresenter.getScoreData(getCurrentGame());
         for (String data : scoreData) {
-            String[] splitData = data.split(" ");
-            TableRow row = new TableRow(this);
-            row.setLayoutParams(params);
-            row.setWeightSum((float) 0.33);
-            for (int i = 0; i < 3; i++) {
-                TextView temp = new TextView(this);
-                temp.setText(splitData[i]);
-                row.addView(temp);
-            }
-            scoreTable.addView(row);
+          TableRow row = new TableRow(this);
+          row.setLayoutParams(params);
+          row.setWeightSum((float) 0.5);
+          TextView temp = new TextView(this);
+          temp.setText(data);
+          row.addView(temp);
+          scoreTable.addView(row);
         }
     }
 

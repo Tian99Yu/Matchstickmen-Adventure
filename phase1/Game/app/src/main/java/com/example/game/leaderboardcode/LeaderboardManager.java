@@ -1,148 +1,113 @@
 package com.example.game.leaderboardcode;
 
 import com.example.game.Games;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.List;
 
 public class LeaderboardManager implements Serializable {
-    private File saveDirectory;
-    private List<String> games = new ArrayList<>();
-    private HashMap<Games, String> gameFilename = new HashMap<>();
+  private File saveFile;
+  private String leaderboardString;
 
-    public LeaderboardManager(File saveDirectory) {
-        this.saveDirectory = saveDirectory;
+  public LeaderboardManager(File saveDirectory) {
+    saveFile = new File(saveDirectory, "save_data.json");
+    loadData();
+  }
 
-        for (Games game : Games.values()) {
-            String gameName = getGameName(game);
-            games.add(gameName);
-            gameFilename.put(game, gameName);
+  private void loadData() {
+    JsonObject data = new JsonObject();
+    if (saveFile.exists()) {
+      try {
+        data = JsonParser.parseReader(new FileReader(saveFile)).getAsJsonObject();
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+      }
+    }
+    leaderboardString = data.toString();
+    writeDataToFile();
+  }
 
-            if (!fileExists(game)) {
-                File gameFile = new File(saveDirectory, gameName);
-                try {
-                    gameFile.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+  private void writeDataToFile() {
+    JsonObject data = convertStringToJsonObject(leaderboardString);
+    try {
+      BufferedWriter bw = new BufferedWriter(new FileWriter(saveFile));
+      bw.write(data.toString());
+      bw.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private JsonObject convertStringToJsonObject(String jsonString) {
+    return JsonParser.parseString(jsonString).getAsJsonObject();
+  }
+
+  public void saveData(Games game, String username, String[] statistics, String[] values) {
+    JsonObject data = convertStringToJsonObject(leaderboardString);
+    JsonArray statData;
+    if (data.get(game.toString()) != null) {
+      statData = (JsonArray) data.get(game.toString());
+    } else {
+      statData = new JsonArray();
+      data.add(game.toString(), statData);
+    }
+    JsonObject save = new JsonObject();
+    save.addProperty("username", username);
+    for (int i = 0; i < Math.min(statistics.length, values.length); i++) {
+      save.addProperty(statistics[i], values[i]);
+    }
+    statData.add(save);
+    leaderboardString = data.toString();
+
+    writeDataToFile();
+  }
+
+  public String[] getGames() {
+    JsonObject data = convertStringToJsonObject(leaderboardString);
+    return data.keySet().toArray(new String[data.keySet().size()]);
+  }
+
+  public String[] getGameStatistics(final Games game) {
+    String[] ret = new String[10];
+    JsonObject data = convertStringToJsonObject(leaderboardString);
+    JsonArray jsonArray = (JsonArray) data.get(game.toString());
+    List<JsonObject> gameData = new ArrayList<>();
+    for (int i = 0; i < jsonArray.size(); i++ ) {
+      gameData.add((JsonObject) jsonArray.get(i));
+    }
+    Collections.sort(gameData, new Comparator<JsonObject>() {
+      @Override
+      public int compare(JsonObject first, JsonObject second) {
+        if (game == Games.ASTEROIDS) {
+          return -first.get("Score").getAsInt() + second.get("Score").getAsInt();
+        } else if (game == Games.MATCHSTICKMEN) {
+          return -first.get("Count").getAsInt() + second.get("Count").getAsInt();
+        } else {
+          return -first.get("Length").getAsInt() + second.get("Length").getAsInt();
         }
-    }
-
-    public void saveData(Games game, String username, String statistic, String value) throws IOException {
-        File gameFile = getGameFile(game);
-        String[] data = {username, statistic, value};
-        BufferedWriter bw = new BufferedWriter(new FileWriter(gameFile.getAbsolutePath(), true));
-        bw.write(String.join(" ", data));
-        bw.newLine();
-        bw.close();
-    }
-
-    String[] getGames() {
-        return games.toArray(new String[0]);
-    }
-
-    String[] getGameStatistics(Games game) throws IOException {
-        File gameFile = getGameFile(game);
-        BufferedReader br = new BufferedReader(new FileReader(gameFile.getAbsolutePath()));
-        List<String> data = new ArrayList<>();
-
-        String currLine = br.readLine();
-        while (currLine != null) {
-            String[] sArray = currLine.split(" ");
-            data.add(String.join(" ", sArray));
-
-            currLine = br.readLine();
-        }
-
-        br.close();
-        Collections.sort(data, scoreSorter);
-        return data.toArray(new String[0]);
-    }
-
-    private String getGameName(Games game) {
-        return game.toString();
-    }
-
-    private File getGameFile(Games game) {
-        return new File(saveDirectory, getGameName(game));
-    }
-
-    private boolean fileExists(Games game) {
-        String gameName = gameFilename.get(game);
-        if (gameName == null) {
-            return false;
-        }
-        File temp = new File(saveDirectory, gameName);
-        return temp.exists();
-    }
-
-    /**
-     * Reads in data for each gameBackend and each statistic and purges all but the top ten statistic data.
-     * Writes the updated data back to the file.
-     */
-    private void retainTopTen() {
-        for (Games game : Games.values()) {
-            File gameFile = getGameFile(game);
-            HashMap<String, List<String>> gameStats = new HashMap<>();
-
-            try {
-                BufferedReader br = new BufferedReader(new FileReader(gameFile.getAbsolutePath()));
-                String currLine = br.readLine();
-                while (currLine != null) {
-                    String[] splitLine = currLine.split(" ");
-                    if (!gameStats.containsKey(splitLine[0])) {
-                        List<String> temp = new ArrayList<>();
-                        temp.add(currLine);
-                        gameStats.put(splitLine[0], temp);
-                    } else {
-                        Objects.requireNonNull(gameStats.get(splitLine[0])).add(currLine);
-                    }
-                    currLine = br.readLine();
-                }
-                br.close();
-
-                for (String statistic : gameStats.keySet()) {
-                    List<String> statisticData = gameStats.get(statistic);
-                    if (statisticData != null) {
-                        Collections.sort(statisticData, scoreSorter);
-                        gameStats.put(statistic, statisticData.subList(0,
-                                Math.min(statisticData.size(), 10)));
-                    }
-                }
-
-                BufferedWriter bw = new BufferedWriter(
-                        new FileWriter(gameFile.getAbsolutePath(), false));
-                for (String statistic : gameStats.keySet()) {
-                    for (String data : Objects.requireNonNull(gameStats.get(statistic))) {
-                        bw.write(data);
-                        bw.newLine();
-                    }
-                }
-                bw.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private static Comparator<String> scoreSorter = new Comparator<String>() {
-        @Override
-        public int compare(String o1, String o2) {
-            int first = Integer.valueOf(o1.substring(o1.lastIndexOf(" ") + 1));
-            int second = Integer.valueOf(o2.substring(o2.lastIndexOf(" ") + 1));
-            return -Integer.compare(first, second);
-        }
-    };
+      }
+    });
+    for (int i = 0; i < Math.min(gameData.size(), 10); i++)
+      if (game == Games.ASTEROIDS) {
+        ret[i] = gameData.get(i).get("username").toString() + gameData.get(i).get("Score").toString();
+      } else if (game == Games.MATCHSTICKMEN) {
+        ret[i] = gameData.get(i).get("username").toString() + gameData.get(i).get("Count").toString();
+      } else {
+        ret[i] = gameData.get(i).get("username").toString() + gameData.get(i).get("Length").toString();
+      }
+    return ret;
+  }
 }

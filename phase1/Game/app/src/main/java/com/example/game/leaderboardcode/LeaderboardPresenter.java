@@ -24,12 +24,7 @@ class LeaderboardPresenter {
     }
 
     String[] getScoreData(Games game) {
-        String[] ret = {};
-        try {
-            ret = leaderboardManager.getGameStatistics(game);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String[] ret = leaderboardManager.getGameStatistics(game);
         return ret;
     }
 }

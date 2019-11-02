@@ -1,22 +1,30 @@
 package com.example.game.gamecode.Asteroids;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ToggleButton;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.example.game.Games;
+import com.example.game.MainMenuScreen;
 import com.example.game.R;
 import com.example.game.gamecode.CustomControls.JoystickView;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.leaderboardcode.Saver;
+import com.example.game.settingscode.Customizable;
 import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
@@ -111,25 +119,81 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
 
   @Override
   public void saveScore() {
-    try {
-      leaderboardManager.saveData(
-          Games.ASTEROIDS,
-          username,
-          "Score",
-          String.valueOf(gameView.gameBackend.getCurrentScore()));
-      leaderboardManager.saveData(
-          Games.ASTEROIDS,
-          username,
-          "AsteroidsDestroyed",
-          String.valueOf(((AsteroidGameManager) gameView.gameBackend).getAsteroidsDestroyed()));
-      leaderboardManager.saveData(
-          Games.ASTEROIDS,
-          username,
-          "ProjectilesFired",
-          String.valueOf(((AsteroidGameManager) gameView.gameBackend).getProjectilesFired()));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    final GameActivity currentGame = this;
+    runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(currentGame);
+        builder.setCancelable(false);
+        builder.setTitle("You've died! :(");
+
+        LinearLayout rows = new LinearLayout(currentGame);
+        rows.setOrientation(LinearLayout.VERTICAL);
+        builder.setView(rows);
+
+        LinearLayout bottomButtons = new LinearLayout(currentGame);
+        bottomButtons.setOrientation(LinearLayout.HORIZONTAL);
+        bottomButtons.setLayoutParams(
+                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
+
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,
+                0.5f);
+
+        final ToggleButton saveToggle = new ToggleButton(currentGame);
+        final Button retryButton = new Button(currentGame);
+        final Button mainMenuButton = new Button(currentGame);
+        retryButton.setLayoutParams(buttonParams);
+        mainMenuButton.setLayoutParams(buttonParams);
+
+        saveToggle.setTextOn("Save?");
+        saveToggle.setTextOff("Save off");
+        retryButton.setText("Retry");
+        mainMenuButton.setText("Main Menu");
+
+        retryButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            Intent mainIntent = new Intent(AsteroidsActivity.this, AsteroidsActivity.class);
+            if (saveToggle.isChecked()) {
+              saveData();
+            }
+            AsteroidsActivity.this.startActivity(mainIntent);
+          }
+        });
+
+        mainMenuButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            Intent mainIntent = new Intent(AsteroidsActivity.this, MainMenuScreen.class);
+            if (saveToggle.isChecked()) {
+              saveData();
+            }
+            AsteroidsActivity.this.startActivity(mainIntent);
+          }
+        });
+
+        bottomButtons.addView(retryButton);
+        bottomButtons.addView(mainMenuButton);
+
+        rows.addView(saveToggle);
+        rows.addView(bottomButtons);
+
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+      }
+    });
+  }
+
+  private void saveData() {String[] score = {"Score"};
+    String[] value = {String.valueOf(gameView.gameBackend.getCurrentScore())};
+    leaderboardManager.saveData(
+            Games.ASTEROIDS,
+            username,
+            score,
+            value);
   }
 
   @Override

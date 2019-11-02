@@ -13,16 +13,15 @@ import com.example.game.Games;
 import com.example.game.R;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
-import com.example.game.gamecode.Snake.SnakeBackend;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.leaderboardcode.Saver;
 import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
-import java.io.IOException;
-
-public class MatchstickMenActivity extends GameActivity implements Saver, CustomizableGame {
-  /** A flag recording whether the data of this game is saved. */
+public class MatchstickMenActivity extends GameActivity implements CustomizableGame, Saver {
+  /**
+   * A flag recording whether the data of this game is saved.
+   */
   private boolean saved = false;
 
   private int level = 0;
@@ -31,14 +30,20 @@ public class MatchstickMenActivity extends GameActivity implements Saver, Custom
 
   /**
    * Make the customizations.
-   * @param level the level of this game
-   * @param theme the theme of this game
+   *
+   * @param level     the level of this game
+   * @param theme     the theme of this game
    * @param character the character that will be shown on the screen
    */
   public void customization(String level, String theme, String character) {
+//    this.level = level;
+//    this.color = color;
+//    this.character = character;
+
     setDifficulty(level);
     setTheme(theme);
     setCharacter(character);
+
   }
 
   public int getLevel() {
@@ -109,19 +114,14 @@ public class MatchstickMenActivity extends GameActivity implements Saver, Custom
                 pgBar.setProgress(100);
                 ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
                 if (!saved) {
-                  try {
-                    String count =
-                            Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getCount());
-                    String score = Integer.toString(gameView.gameBackend.getCurrentScore());
-                    String timeUsed =
-                            Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed());
-                    leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Count", count);
-                    leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Score", score);
-                    leaderboardManager.saveData(Games.MATCHSTICKMEN, username, "Time", timeUsed);
-                    saved = true;
-                  } catch (IOException e) {
-                    e.printStackTrace();
-                  }
+                  String count =
+                          Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getCount());
+                  String score = Integer.toString(gameView.gameBackend.getCurrentScore());
+                  String timeUsed =
+                          Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed());
+                  String[] stats = {"Count", "Score", "Time used"};
+                  String[] values = {count, score, timeUsed};
+                  leaderboardManager.saveData(Games.MATCHSTICKMEN, username, stats, values);
                 }
               }
             }.start();
@@ -193,25 +193,11 @@ public class MatchstickMenActivity extends GameActivity implements Saver, Custom
   @Override
   public void saveScore() {
     if (!saved) {
-      try {
-        leaderboardManager.saveData(
-                Games.MATCHSTICKMEN,
-                username,
-                "Count",
-                String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCount()));
-        leaderboardManager.saveData(
-                Games.MATCHSTICKMEN,
-                username,
-                "Score",
-                String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCurrentScore()));
-        leaderboardManager.saveData(
-                Games.MATCHSTICKMEN,
-                username,
-                "Time",
-                String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed()));
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
+      String[] stats = {"Count", "Score", "Time"};
+      String[] values = {String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCount()),
+              String.valueOf((gameView.gameBackend).getCurrentScore()),
+              String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed())
+      };
     }
   }
 
