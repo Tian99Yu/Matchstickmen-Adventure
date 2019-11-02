@@ -118,15 +118,15 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
           "Score",
           String.valueOf(gameView.gameBackend.getCurrentScore()));
       leaderboardManager.saveData(
-              Games.ASTEROIDS,
-              username,
-              "AsteroidsDestroyed",
-              String.valueOf(((AsteroidGameManager) gameView.gameBackend).getAsteroidsDestroyed()));
+          Games.ASTEROIDS,
+          username,
+          "AsteroidsDestroyed",
+          String.valueOf(((AsteroidGameManager) gameView.gameBackend).getAsteroidsDestroyed()));
       leaderboardManager.saveData(
-              Games.ASTEROIDS,
-              username,
-              "ProjectilesFired",
-              String.valueOf(((AsteroidGameManager) gameView.gameBackend).getProjectilesFired()));
+          Games.ASTEROIDS,
+          username,
+          "ProjectilesFired",
+          String.valueOf(((AsteroidGameManager) gameView.gameBackend).getProjectilesFired()));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -160,5 +160,4 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
       AsteroidCustomizations.themeIndex = 1;
     }
   }
-
 }

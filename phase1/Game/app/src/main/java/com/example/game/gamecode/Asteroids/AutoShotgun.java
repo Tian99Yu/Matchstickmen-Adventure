@@ -1,7 +1,5 @@
 package com.example.game.gamecode.Asteroids;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,13 +14,7 @@ public class AutoShotgun extends WeaponSystem {
       int range,
       int damage,
       int numProjectiles) {
-    super(
-        muzzleVelocity,
-        spread,
-        cooldown,
-        projectileSize,
-        range,
-        damage);
+    super(muzzleVelocity, spread, cooldown, projectileSize, range, damage);
     this.numProjectiles = Math.max(2, numProjectiles);
   }
 
@@ -37,7 +29,9 @@ public class AutoShotgun extends WeaponSystem {
         double angle =
             AngleUtils.normalize(
                 startAngle
-                    + i * spread / (numProjectiles - 1) + 0.1*spread*Math.random() - 0.05*spread);
+                    + i * spread / (numProjectiles - 1)
+                    + 0.1 * spread * Math.random()
+                    - 0.05 * spread);
         newProjectiles.add(
             new Projectile(
                 x,
