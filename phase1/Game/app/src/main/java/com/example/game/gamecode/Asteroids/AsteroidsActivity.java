@@ -17,11 +17,12 @@ import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.leaderboardcode.Saver;
+import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
 import java.io.IOException;
 
-public class AsteroidsActivity extends GameActivity implements Saver {
+public class AsteroidsActivity extends GameActivity implements Saver, CustomizableGame {
   @SuppressLint("ClickableViewAccessibility")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -112,8 +113,34 @@ public class AsteroidsActivity extends GameActivity implements Saver {
           username,
           "Score",
           String.valueOf(gameView.gameBackend.getCurrentScore()));
+      leaderboardManager.saveData(
+              Games.ASTEROIDS,
+              username,
+              "AsteroidsDestroyed",
+              String.valueOf(((AsteroidGameManager) gameView.gameBackend).getAsteroidsDestroyed()));
+      leaderboardManager.saveData(
+              Games.ASTEROIDS,
+              username,
+              "ProjectilesFired",
+              String.valueOf(((AsteroidGameManager) gameView.gameBackend).getProjectilesFired()));
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
+
+  @Override
+  public void setDifficulty(String difficulty) {
+
+  }
+
+  @Override
+  public void setCharacter(String character) {
+
+  }
+
+  @Override
+  public void setTheme(String theme) {
+
+  }
+
 }

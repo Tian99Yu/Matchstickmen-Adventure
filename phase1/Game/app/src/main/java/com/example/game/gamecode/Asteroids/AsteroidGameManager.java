@@ -20,6 +20,10 @@ public class AsteroidGameManager extends GameBackend {
   private Ship player;
   /** The players current score. */
   private int currentScore;
+  /** Number of asteroids destroyed. */
+  private int asteroidsDestroyed;
+  /** Number of projectiles fired by player. */
+  private int projectilesFired;
 
   public AsteroidGameManager(int playAreaWidth, int playAreaHeight) {
     this.playAreaWidth = playAreaWidth;
@@ -118,6 +122,7 @@ public class AsteroidGameManager extends GameBackend {
         } else if (asteroidGameObject instanceof Asteroid) {
           currentScore += ((Asteroid) asteroidGameObject).getValue();
           newObjects.addAll(((Asteroid) asteroidGameObject).split(1));
+          asteroidsDestroyed++;
           iter.remove();
         }
       }
@@ -126,7 +131,9 @@ public class AsteroidGameManager extends GameBackend {
   }
 
   private void attemptFire() {
-    gameObjects.addAll(player.attemptFireMainArmament());
+    List<Projectile> projectiles = player.attemptFireMainArmament();
+    projectilesFired += projectiles.size();
+    gameObjects.addAll(projectiles);
   }
 
   /** Sets the target direction based on user input. */
@@ -159,6 +166,16 @@ public class AsteroidGameManager extends GameBackend {
   public int getCurrentScore() {
     return currentScore;
   }
+
+
+  public int getAsteroidsDestroyed() {
+    return asteroidsDestroyed;
+  }
+
+  public int getProjectilesFired() {
+    return projectilesFired;
+  }
+
 
   public int getLives() {
     return lives;
