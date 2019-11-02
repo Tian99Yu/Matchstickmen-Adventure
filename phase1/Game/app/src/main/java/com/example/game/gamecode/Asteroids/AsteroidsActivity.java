@@ -104,6 +104,7 @@ public class AsteroidsActivity extends GameActivity implements Saver {
                     TypedValue.COMPLEX_UNIT_DIP, 96, getResources().getDisplayMetrics()));
   }
 
+  @Override
   public void saveScore() {
     try {
       leaderboardManager.saveData(

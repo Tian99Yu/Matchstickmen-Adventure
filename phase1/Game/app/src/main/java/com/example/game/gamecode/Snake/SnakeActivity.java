@@ -68,6 +68,7 @@ public class SnakeActivity extends GameActivity implements Saver {
         super.onResume();
     }
 
+    @Override
     public void saveScore() {
         try{
             String[][] statistic = ((SnakeView)gameView).getStatistics();
