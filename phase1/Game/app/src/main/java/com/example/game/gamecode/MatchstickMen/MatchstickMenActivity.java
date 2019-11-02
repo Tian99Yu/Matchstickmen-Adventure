@@ -53,7 +53,7 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
 
   private ProgressBar pgBar;
   private TextView timeleft, count;
-  private Button btnAdd, btnMinus, btnDone, btnRestart;
+  private Button btnAdd, btnMinus, btnDone;
   private int num = 0;
 
   public int getNum() {
@@ -130,7 +130,6 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
     btnAdd = findViewById(R.id.btnAdd);
     btnMinus = findViewById(R.id.btnMinus);
     btnDone = findViewById(R.id.btnDone);
-    btnRestart = findViewById(R.id.btnRestart);
 
     count = findViewById(R.id.textCount);
     count.setText(Integer.toString(0));
@@ -211,25 +210,6 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
             }
           }
         });
-
-    // Restart the gameBackend
-//    btnRestart.setOnClickListener(
-//        new View.OnClickListener() {
-//          @Override
-//          public void onClick(View view) {
-//
-//            //              gameView.togglePause();
-//
-//            Intent intent = getIntent();
-//            new Intent(MatchstickMenActivity.this, MatchstickMenActivity.class);
-//            ////              intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            startActivity(intent);
-//            //              ((MatchstickMenBackend) gameView.gameBackend).setOver(false);
-//            //            System.out.println();
-//            //            onCreate(null);
-//            //              MatchstickMenActivity.super.onStop();
-//          }
-//        });
   }
 
   @Override
