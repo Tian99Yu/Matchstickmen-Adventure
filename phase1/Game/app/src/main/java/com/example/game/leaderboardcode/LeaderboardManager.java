@@ -137,12 +137,12 @@ public class LeaderboardManager implements Serializable {
         }
     }
 
-    transient private Comparator<String> scoreSorter = new Comparator<String>() {
+    private static Comparator<String> scoreSorter = new Comparator<String>() {
         @Override
         public int compare(String o1, String o2) {
             int first = Integer.valueOf(o1.substring(o1.lastIndexOf(" ") + 1));
             int second = Integer.valueOf(o2.substring(o2.lastIndexOf(" ") + 1));
-            return Integer.compare(first, second);
+            return -Integer.compare(first, second);
         }
     };
 }

@@ -76,19 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:srcCompat="@drawable/logo" />
-
-    <Button
-        android:id="@+id/storymode"
-        android:layout_width="245dp"
-        android:layout_height="67dp"
-        android:background="@drawable/bigbutton"
-        android:text="@string/story_mode_button"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/game1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:srcCompat="@drawable/group0540_placeholder_logo" />
 
     <Button
         android:id="@+id/game1"
@@ -99,7 +87,7 @@
         app:layout_constraintBottom_toTopOf="@+id/game2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/storymode" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/game2"

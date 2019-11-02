@@ -31,8 +31,7 @@ class Asteroid extends AsteroidGameObject {
   List<Asteroid> split(int newHp) {
     List<Asteroid> smallerAsteroids = new ArrayList<>();
     if (isDestroyed() && level > 0) {
-      int count = (int) (Math.random() * 2) + 2;
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < AsteroidCustomizations.splittingRatio; i++) {
         smallerAsteroids.add(
             new Asteroid(
                 x + (int) ((int) (Math.random() * collisionRadius) - collisionRadius / 2),
@@ -73,8 +72,8 @@ class Asteroid extends AsteroidGameObject {
       // basic collision resolution where objects reflect at the same speed away from each other
       double norm = Math.sqrt(dx * dx + dy * dy);
       double speed = Math.sqrt(vX * vX + vY * vY);
-      vX = speed * dx / norm + Math.random()*20 - 10;
-      vY = speed * dy / norm + Math.random()*20 - 10;
+      vX = speed * dx / norm + Math.random() * 20 - 10;
+      vY = speed * dy / norm + Math.random() * 20 - 10;
       if (dx != 0) {
         x += 1.5 * dx / Math.abs(dx);
       }
@@ -90,6 +89,9 @@ class Asteroid extends AsteroidGameObject {
 
   @Override
   public void draw(Canvas canvas) {
-    drawRotatedBitmap(canvas, appearance);
+    drawRotatedBitmap(
+        canvas,
+        appearance,
+        AsteroidCustomizations.asteroidColor[AsteroidCustomizations.themeIndex]);
   }
 }

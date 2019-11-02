@@ -1,5 +1,8 @@
 package com.example.game.gamecode.Asteroids;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GameObject;
 
@@ -36,7 +39,10 @@ public class AsteroidGameManager extends GameBackend {
             0,
             3 * Math.PI / 2,
             30,
-            WeaponFactory.getWeapon(WeaponType.STANDARD_SHOTGUN));
+            WeaponFactory.getWeapon(
+                AsteroidCustomizations.weaponOption == 0
+                    ? WeaponType.STANDARD_CANNON
+                    : WeaponType.STANDARD_SHOTGUN));
     gameObjects.add(player);
     int asteroidStartCount = (int) (Math.random() * 3) + 5;
     for (int i = 0; i < asteroidStartCount; i++) {
@@ -167,7 +173,6 @@ public class AsteroidGameManager extends GameBackend {
     return currentScore;
   }
 
-
   public int getAsteroidsDestroyed() {
     return asteroidsDestroyed;
   }
@@ -176,8 +181,17 @@ public class AsteroidGameManager extends GameBackend {
     return projectilesFired;
   }
 
-
   public int getLives() {
     return lives;
+  }
+
+  @Override
+  public void draw(Canvas canvas) {
+    Paint backgroundPaint = new Paint();
+    backgroundPaint.setStyle(Paint.Style.FILL);
+    backgroundPaint.setColor(
+        AsteroidCustomizations.backgroundColor[AsteroidCustomizations.themeIndex]);
+    canvas.drawRect(canvas.getClipBounds(), backgroundPaint);
+    super.draw(canvas);
   }
 }
