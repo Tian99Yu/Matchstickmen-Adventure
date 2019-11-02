@@ -1,6 +1,5 @@
 package com.example.game.gamecode.MatchstickMen;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -28,10 +27,12 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
   private int color = Color.WHITE;
   private String character = "circle";
 
-  public void customization(int level, String theme, String character) {
+
+  public void customization(String level, String theme, String character) {
 //    this.level = level;
 //    this.color = color;
 //    this.character = character;
+
      setDifficulty(level);
      setTheme(theme);
      setCharacter(character);
@@ -73,7 +74,7 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
         (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
 
 
-    customization(level, settingsManager.getSetting("theme"), character);
+    customization(settingsManager.getSetting("difficulty"), settingsManager.getSetting("theme"), settingsManager.getSetting("character"));
 //    setCharacter();
 //    setBackground();
 //    setDifficulty();
@@ -256,19 +257,29 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
   }
 
   @Override
-  public void setDifficulty(int difficulty) {
-    this.level = difficulty;
+  public void setDifficulty(String difficulty) {
+    if (difficulty.equals("easy")) {
+      this.level = 0;
+    } else if (difficulty.equals("medium")) {
+      this.level = 1;
+    } else {
+      this.level = 2;
+    }
   }
 
   @Override
   public void setCharacter(String character) {
-    this.character = character;
+    if (character.equals("one")) {
+      this.character = "rect";
+    } else {
+      this.character = "circle";
+    }
   }
 
   @Override
   public void setTheme(String theme) {
-    if (theme == "dark") {
-      this.color = Color.BLACK;
+    if (theme.equals("dark")) {
+      this.color = Color.MAGENTA;
     } else {
       this.color = Color.WHITE;
     }

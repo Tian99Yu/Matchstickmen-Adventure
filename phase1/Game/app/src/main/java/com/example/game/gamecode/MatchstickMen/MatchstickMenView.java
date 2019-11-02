@@ -43,6 +43,10 @@ public class MatchstickMenView extends GameView {
 
 
     }
+
+    /**
+     * Update and refresh the game.
+     */
     @Override
     public void update() {
         super.update();
