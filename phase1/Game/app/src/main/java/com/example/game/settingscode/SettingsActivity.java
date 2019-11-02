@@ -155,4 +155,11 @@ public class SettingsActivity extends AppCompatActivity implements Serializable,
 
 
     }
+
+    @Override
+    public void onBackPressed(){
+        applySettings();
+        Intent intent = new Intent(SettingsActivity.this, MainMenuScreen.class);
+        startActivity(intent);
+    }
 }
