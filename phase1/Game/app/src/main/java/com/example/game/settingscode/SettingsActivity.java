@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -33,6 +35,19 @@ public class SettingsActivity extends AppCompatActivity implements Serializable,
         settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
         leaderboardManager = (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
         setContentView(R.layout.settings_layout);
+
+        final RadioButton radioButtonDark = findViewById(R.id.darkTheme);
+        RadioButton radioButtonLight = findViewById(R.id.lightTheme);
+        radioButtonDark.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    setTheme("dark");
+                }else{
+                    setTheme("light");
+                }
+            }
+        });
 
         addCloseButton();
         markSettings();
