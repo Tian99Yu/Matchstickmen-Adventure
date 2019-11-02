@@ -5,7 +5,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -16,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.game.MainMenuScreen;
 import com.example.game.R;
 import com.example.game.leaderboardcode.LeaderboardManager;
+
+import org.w3c.dom.Text;
 
 import java.io.Serializable;
 
@@ -41,10 +45,16 @@ public class SettingsActivity extends AppCompatActivity implements Serializable,
         radioButtonDark.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     setTheme("dark");
-                }else{
+                    setColorText((LinearLayout) findViewById(R.id.colorSetting), Color.WHITE);
+                    TextView title = findViewById(R.id.textView2);
+                    title.setTextColor(Color.WHITE);
+                } else {
                     setTheme("light");
+                    setColorText((LinearLayout) findViewById(R.id.colorSetting), Color.BLACK);
+                    TextView title = findViewById(R.id.textView2);
+                    title.setTextColor(Color.BLACK);
                 }
             }
         });
@@ -120,5 +130,29 @@ public class SettingsActivity extends AppCompatActivity implements Serializable,
             color = Color.parseColor("#FF006F9C");
         }
         settingsContainer.setBackgroundColor(color);
+    }
+
+    public void setColorText(Object layout, int color) {
+        if (layout instanceof RadioButton) {
+            ((RadioButton) layout).setTextColor(color);
+        } else if (layout instanceof TextView) {
+            ((TextView) layout).setTextColor(color);
+        } else {
+            if (layout instanceof LinearLayout) {
+                for (int i = 0; i < ((LinearLayout) layout).getChildCount(); i++) {
+                    setColorText(((LinearLayout) layout).getChildAt(i), color);
+                }
+
+            } else {
+                for (int i = 0; i < ((RadioGroup) layout).getChildCount(); i++) {
+                    setColorText(((RadioGroup) layout).getChildAt(i), color);
+
+                }
+
+
+            }
+        }
+
+
     }
 }
