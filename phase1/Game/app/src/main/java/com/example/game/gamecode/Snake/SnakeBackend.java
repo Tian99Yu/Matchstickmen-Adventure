@@ -78,6 +78,20 @@ public class SnakeBackend extends GameBackend {
   }
 
     /**
+     * Constructor for snake backend
+     * @param height the height of this game
+     * @param width the width of this game
+     * @param restoreInformation the information stored to reconstruct snake game.
+     */
+    SnakeBackend(int height, int width, String restoreInformation) {
+        gameObjects = new ArrayList<>();
+        lost = false;
+        this.size = (int) Double.min(height / 64, width / 64);
+        gridHeight = height / size;
+        gridWidth = width / size;
+    }
+
+    /**
      * Draw the current status of this game on the canvas
      * @param canvas the canvas to draw this game on.
      */
