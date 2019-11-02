@@ -14,7 +14,7 @@ public class AsteroidCustomizations {
   /** Ship colors. */
   static final int[] shipColor = {Color.rgb(192, 192, 192), Color.rgb(248, 248, 255)};
   /** Background colors */
-  static final int[] backgroundColor = {Color.BLACK, Color.rgb(10,10,100)};
+  static final int[] backgroundColor = {Color.BLACK, Color.rgb(10, 10, 100)};
   /** The weapon selected. */
   static int weaponOption = 0;
 

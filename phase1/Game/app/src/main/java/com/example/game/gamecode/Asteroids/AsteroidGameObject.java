@@ -2,7 +2,6 @@ package com.example.game.gamecode.Asteroids;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -27,12 +26,7 @@ abstract class AsteroidGameObject extends GameObject {
   double collisionRadius;
 
   AsteroidGameObject(
-      double x,
-      double y,
-      double vX,
-      double vY,
-      double angle,
-      double collisionRadius) {
+      double x, double y, double vX, double vY, double angle, double collisionRadius) {
     this.x = x;
     this.y = y;
     this.vX = vX;
@@ -92,12 +86,12 @@ abstract class AsteroidGameObject extends GameObject {
     Matrix matrix = new Matrix();
     matrix.preRotate((float) Math.toDegrees(angle), bitmap.getWidth() / 2, bitmap.getHeight() / 2);
     matrix.postScale(
-            2 * (float) collisionRadius / (float) bitmap.getWidth(),
-            2 * (float) collisionRadius / (float) bitmap.getWidth(),
-            bitmap.getWidth() / 2,
-            bitmap.getHeight() / 2);
+        2 * (float) collisionRadius / (float) bitmap.getWidth(),
+        2 * (float) collisionRadius / (float) bitmap.getWidth(),
+        bitmap.getWidth() / 2,
+        bitmap.getHeight() / 2);
     matrix.postTranslate(
-            (float) (x - bitmap.getWidth() / 2.0), (float) (y - bitmap.getHeight() / 2.0));
+        (float) (x - bitmap.getWidth() / 2.0), (float) (y - bitmap.getHeight() / 2.0));
     canvas.drawBitmap(bitmap, matrix, paint);
   }
 }
