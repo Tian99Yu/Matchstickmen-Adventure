@@ -46,12 +46,4 @@ class Projectile extends AsteroidGameObject {
       range = 0;
     }
   }
-
-  @Override
-  public void draw(Canvas canvas) {
-    drawRotatedBitmap(
-        canvas,
-        appearance,
-        AsteroidCustomizations.projectileColor[AsteroidCustomizations.themeIndex]);
-  }
 }

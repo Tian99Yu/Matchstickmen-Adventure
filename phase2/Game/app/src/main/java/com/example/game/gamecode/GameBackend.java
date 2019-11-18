@@ -3,6 +3,7 @@ package com.example.game.gamecode;
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public abstract class GameBackend {
     protected ArrayList<GameObject> gameObjects = new ArrayList<>();
@@ -27,4 +28,9 @@ public abstract class GameBackend {
      * @return the players current score.
      */
     public abstract int getCurrentScore();
+
+    public Iterator<GameObject> getGameObjectsIterator() {
+        return gameObjects.iterator();
+    }
+
 }

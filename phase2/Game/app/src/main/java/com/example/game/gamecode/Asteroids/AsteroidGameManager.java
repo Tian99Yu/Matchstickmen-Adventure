@@ -187,14 +187,4 @@ public class AsteroidGameManager extends GameBackend {
   public int getLives() {
     return lives;
   }
-
-  @Override
-  public void draw(Canvas canvas) {
-    Paint backgroundPaint = new Paint();
-    backgroundPaint.setStyle(Paint.Style.FILL);
-    backgroundPaint.setColor(
-        AsteroidCustomizations.backgroundColor[AsteroidCustomizations.themeIndex]);
-    canvas.drawRect(canvas.getClipBounds(), backgroundPaint);
-    super.draw(canvas);
-  }
 }

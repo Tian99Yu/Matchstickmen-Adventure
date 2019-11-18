@@ -42,11 +42,11 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
     leaderboardManager =
         (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
 
-    Asteroid.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.asteroid);
-
-    Ship.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.ship);
-
-    Projectile.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.laser);
+//    Asteroid.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.asteroid);
+//
+//    Ship.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.ship);
+//
+//    Projectile.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.laser);
 
     setDifficulty(settingsManager.getSetting("difficulty"));
     setTheme(settingsManager.getSetting("theme"));

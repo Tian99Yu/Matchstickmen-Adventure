@@ -86,12 +86,4 @@ class Asteroid extends AsteroidGameObject {
       hitPoints = 0;
     }
   }
-
-  @Override
-  public void draw(Canvas canvas) {
-    drawRotatedBitmap(
-        canvas,
-        appearance,
-        AsteroidCustomizations.asteroidColor[AsteroidCustomizations.themeIndex]);
-  }
 }

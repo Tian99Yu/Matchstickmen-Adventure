@@ -72,26 +72,7 @@ abstract class AsteroidGameObject extends GameObject {
    */
   abstract void resolveCollision(AsteroidGameObject other);
 
-  /**
-   * Draws the bitmap onto canvas centered at x, y rotated by angle and scaled to have a radius of
-   * size
-   *
-   * @param canvas the canvas to draw on
-   * @param bitmap the bitmap to draw
-   */
-  void drawRotatedBitmap(Canvas canvas, Bitmap bitmap, int color) {
-    Paint paint = new Paint();
-    ColorFilter filter = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
-    paint.setColorFilter(filter);
-    Matrix matrix = new Matrix();
-    matrix.preRotate((float) Math.toDegrees(angle), bitmap.getWidth() / 2, bitmap.getHeight() / 2);
-    matrix.postScale(
-        2 * (float) collisionRadius / (float) bitmap.getWidth(),
-        2 * (float) collisionRadius / (float) bitmap.getWidth(),
-        bitmap.getWidth() / 2,
-        bitmap.getHeight() / 2);
-    matrix.postTranslate(
-        (float) (x - bitmap.getWidth() / 2.0), (float) (y - bitmap.getHeight() / 2.0));
-    canvas.drawBitmap(bitmap, matrix, paint);
+  @Override
+  public void draw(Canvas canvas) {
   }
 }
