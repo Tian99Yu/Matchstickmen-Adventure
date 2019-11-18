@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Game</string>
+
+    <string name="title_activity_main_menu_screen">MainMenuScreen</string>
+    <string name="story_mode_button">Story Mode</string>
+    <string name="game_1_button">Snake</string>
+    <string name="game_2_button">Asteroids</string>
+    <string name="game_3_button">Matchstick Men</string>
+    <string name="game_screen">Game Screen</string>
+    <string name="toggle_running_button">Toggle Running Button</string>
+    <string name="add">Add</string>
+    <string name="leaderboard_title">Leaderboards</string>
+    <string name="settings_title">Settings</string>
+    <string name="username_placeholder">Username</string>
+    <string name="general_settings_title">General</string>
+    <string name="asteroids_settings_title">Asteroids</string>
+    <string name="snake_settings_title">Snake</string>
+    <string name="matchstickmen_settings_title">Matchstick Men</string>
+    <string name="general_color_scheme">Color Scheme</string>
+    <string name="dark_theme">Dark</string>
+    <string name="light_theme">Light</string>
+    <string name="character_title">Character</string>
+    <string name="first_character">Character 1</string>
+    <string name="second_character">Character 2</string>
+    <string name="difficulty_title">Game Difficulty</string>
+    <string name="easy_difficulty">Easy</string>
+    <string name="medium_difficulty">Medium</string>
+    <string name="hard_difficulty">Hard</string>
+    <string name="left">LEFT</string>
+    <string name="right">RIGHT</string>
+</resources>
