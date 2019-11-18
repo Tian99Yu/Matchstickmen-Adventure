@@ -7,7 +7,7 @@ import java.util.List;
 
 class Asteroid extends AsteroidGameObject {
   /** Number of hitpoints this asteroid has remaining. */
-  private int hp;
+  private int hitPoints;
   /** The level of the asteroid, higher means larger. Asteroids of level 0 will not divide. */
   private int level;
   /** appearance */
@@ -20,10 +20,10 @@ class Asteroid extends AsteroidGameObject {
       double vY,
       double angle,
       double collisionRadius,
-      int hp,
+      int hitPoints,
       int level) {
     super(x, y, vX, vY, angle, collisionRadius);
-    this.hp = hp;
+    this.hitPoints = hitPoints;
     this.level = level;
   }
 
@@ -58,7 +58,7 @@ class Asteroid extends AsteroidGameObject {
 
   @Override
   boolean isDestroyed() {
-    return hp <= 0;
+    return hitPoints <= 0;
   }
 
   @Override
@@ -81,9 +81,9 @@ class Asteroid extends AsteroidGameObject {
         y += 1.5 * dy / Math.abs(dy);
       }
     } else if (other instanceof Projectile) {
-      hp -= ((Projectile) other).getDamage();
+      hitPoints -= ((Projectile) other).getDamage();
     } else if (other instanceof Ship && !((Ship) other).hasSpawnProtection()) {
-      hp = 0;
+      hitPoints = 0;
     }
   }
 
