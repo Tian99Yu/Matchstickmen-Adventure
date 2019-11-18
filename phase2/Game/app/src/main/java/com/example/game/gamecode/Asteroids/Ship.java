@@ -8,11 +8,11 @@ import java.util.List;
 
 class Ship extends AsteroidGameObject {
   /** Fixed amount of acceleration ship has when thruster is on. */
-  private static final double THRUST = 300;
+  private double thrust;
   /** Fixed rate ship can turn. */
-  private static final double TURN_RATE = 8;
+  private double turnRate;
   /** Maximum velocity ship can travel. */
-  private static final double maxVelocity = 800;
+  private double maxVelocity;
   /** Whether or not the thruster is on. */
   private boolean thrusterActive = false;
   /** Whether or not the main weapon is firing. */
@@ -40,8 +40,14 @@ class Ship extends AsteroidGameObject {
       double vY,
       double angle,
       double collisionRadius,
+      double thrust,
+      double turnRate,
+      double maxVelocity,
       WeaponSystem mainArmament) {
     super(x, y, vX, vY, angle, collisionRadius);
+    this.thrust = thrust;
+    this.turnRate = turnRate;
+    this.maxVelocity = maxVelocity;
     this.mainArmament = mainArmament;
     startX = x;
     startY = y;
@@ -52,19 +58,19 @@ class Ship extends AsteroidGameObject {
   @Override
   void move() {
     if (angle != targetAngle) {
-      if (Math.abs(AngleUtils.signedAngularDifference(targetAngle, angle)) < TURN_RATE * dt) {
+      if (Math.abs(AngleUtils.signedAngularDifference(targetAngle, angle)) < turnRate * dt) {
         angle = targetAngle;
       } else {
         angle =
             AngleUtils.normalize(
                 angle
                     + Math.copySign(
-                        TURN_RATE * dt, AngleUtils.signedAngularDifference(targetAngle, angle)));
+                        turnRate * dt, AngleUtils.signedAngularDifference(targetAngle, angle)));
       }
     }
     if (thrusterActive) {
-      double aX = THRUST * Math.cos(angle);
-      double aY = THRUST * Math.sin(angle);
+      double aX = thrust * Math.cos(angle);
+      double aY = thrust * Math.sin(angle);
       double newVX = vX + aX * dt;
       double newVY = vY + aY * dt;
       if (newVX * newVX + newVY * newVY <= maxVelocity * maxVelocity) {

@@ -39,6 +39,9 @@ public class AsteroidGameManager extends GameBackend {
             0,
             3 * Math.PI / 2,
             30,
+            300,
+            8,
+            800,
             WeaponFactory.getWeapon(
                 AsteroidCustomizations.weaponOption == 0
                     ? WeaponType.STANDARD_CANNON
