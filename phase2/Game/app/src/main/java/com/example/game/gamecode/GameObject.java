@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 
 import androidx.annotation.Nullable;
 
-abstract public class GameObject {
+abstract public class GameObject<T> {
+    //To be deprecated
     public abstract void draw(Canvas canvas);
 }

@@ -1,8 +1,10 @@
-package com.example.game.gamecode;
+package com.example.game.gamecode.Asteroids;
+
+import com.example.game.gamecode.GameObject;
 
 import java.util.HashMap;
 
-public interface Drawer<T, S> {
+interface AsteroidsDrawer<T, S> {
   /**
    * Gets a mapping between game objects classes and sprites of type S that can be drawn on drawing
    * surfaces of type T.
@@ -37,14 +39,14 @@ public interface Drawer<T, S> {
    * @param height the height to scale the image to.
    */
   void drawSprite(
-      T drawingSurface,
-      S sprite,
-      int color,
-      double x,
-      double y,
-      double angle,
-      double width,
-      double height);
+          T drawingSurface,
+          S sprite,
+          int color,
+          double x,
+          double y,
+          double angle,
+          double width,
+          double height);
 
   /**
    * Draws a solid background with color color onto drawingSurface.

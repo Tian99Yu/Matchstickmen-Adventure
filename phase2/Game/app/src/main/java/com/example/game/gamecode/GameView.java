@@ -16,18 +16,16 @@ import android.widget.ImageButton;
 import java.util.HashMap;
 
 public abstract class GameView extends SurfaceView
-    implements SurfaceHolder.Callback, Drawer<Canvas, Bitmap> {
+    implements SurfaceHolder.Callback {
   protected GameThread thread;
   public GameBackend gameBackend;
   private ImageButton pauseButton;
-  private GamePresenter<Canvas, Bitmap> presenter;
-  private float density;
+  private GamePresenter<Canvas> presenter;
 
   public GameView(Context context) {
     super(context);
     getHolder().addCallback(this);
     setFocusable(true);
-    density = context.getResources().getDisplayMetrics().density;
   }
 
   @Override
@@ -95,64 +93,7 @@ public abstract class GameView extends SurfaceView
     return thread.isPaused();
   }
 
-  @Override
-  public HashMap<Class<? extends GameObject>, Bitmap> getClassToSprite() {
-    return null;
-  }
-
-  @Override
-  public HashMap<Class<? extends GameObject>, Integer> getClassToColor() {
-    return null;
-  }
-
-  @Override
-  public float getDensity() {
-    return density;
-  }
-
-  @Override
-  public void drawSprite(
-      Canvas drawingSurface,
-      Bitmap sprite,
-      int color,
-      double x,
-      double y,
-      double angle,
-      double width,
-      double height) {
-    Paint paint = new Paint();
-    ColorFilter filter = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
-    paint.setColorFilter(filter);
-    Matrix matrix = new Matrix();
-    matrix.preRotate((float) Math.toDegrees(angle), sprite.getWidth() / 2, sprite.getHeight() / 2);
-    matrix.postScale(
-        (float) (width / (float) sprite.getWidth()),
-        (float) (height / (float) sprite.getHeight()),
-        sprite.getWidth() / 2,
-        sprite.getHeight() / 2);
-    matrix.postTranslate(
-        (float) (x - sprite.getWidth() / 2.0), (float) (y - sprite.getHeight() / 2.0));
-    drawingSurface.drawBitmap(sprite, matrix, paint);
-  }
-
-  @Override
-  public void drawSolidBackground(Canvas drawingSurface, int color) {
-    Paint backgroundPaint = new Paint();
-    backgroundPaint.setStyle(Paint.Style.FILL);
-    backgroundPaint.setColor(color);
-    drawingSurface.drawRect(drawingSurface.getClipBounds(), backgroundPaint);
-  }
-
-  @Override
-  public void drawText(Canvas drawingSurface, String text, int color, float x, float y, float fontSize, int rowOffset) {
-    Paint paint = new Paint();
-    paint.setColor(Color.WHITE);
-    paint.setTextSize(fontSize);
-    paint.setTextAlign(Paint.Align.RIGHT);
-    drawingSurface.drawText(text, x, y + rowOffset*paint.getTextSize(), paint);
-  }
-
-  public void setPresenter(GamePresenter<Canvas, Bitmap> presenter) {
+  public void setPresenter(GamePresenter<Canvas> presenter) {
     this.presenter = presenter;
   }
 }
