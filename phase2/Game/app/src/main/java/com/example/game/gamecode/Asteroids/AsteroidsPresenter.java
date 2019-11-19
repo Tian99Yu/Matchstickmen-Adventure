@@ -59,7 +59,7 @@ public class AsteroidsPresenter<T, S> extends GamePresenter<T> {
           Optional.ofNullable(classToColor.get(asteroidGameObject.getClass())).orElse(0),
           asteroidGameObject.x,
           asteroidGameObject.y,
-          asteroidGameObject.angle,
+          asteroidGameObject.getAngle(),
           asteroidGameObject.collisionRadius * 2,
           asteroidGameObject.collisionRadius * 2);
     }

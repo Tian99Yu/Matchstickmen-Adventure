@@ -21,7 +21,7 @@ class AutoCannon extends WeaponSystem {
     double weaponVelocity = Math.sqrt(vX * vX + vY * vY);
     List<Projectile> newProjectiles = new ArrayList<>();
     if (cooldownState == 0 && weaponActive) {
-      double angle = AngleUtils.normalize(shipAngle + Math.random() * spread - spread / 2);
+      double angle = shipAngle + Math.random() * spread - spread / 2;
       newProjectiles.add(
           new Projectile(
               x,

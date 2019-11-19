@@ -21,7 +21,26 @@ abstract class AsteroidGameObject extends GameObject {
    * angle AsteroidGameObject is pointing with respect to horizontal with 0 being east rotating
    * clockwise restricted to be between 0 inclusive and 2 pi exclusive
    */
-  double angle;
+  private double angle;
+
+  /**
+   * Returns the angle the AsteroidGameObject is facing.
+   *
+   * @return the angle.
+   */
+  public double getAngle() {
+    return angle;
+  }
+
+  /**
+   * Sets attribute angle to normalized version of angle.
+   *
+   * @param angle the new angle the AsteroidGameObject is facing.
+   */
+  public void setAngle(double angle) {
+    this.angle = AngleUtils.normalize(angle);
+  }
+
   /** hitbox of AsteroidGameObject assuming perfect ball */
   double collisionRadius;
 
@@ -31,7 +50,7 @@ abstract class AsteroidGameObject extends GameObject {
     this.y = y;
     this.vX = vX;
     this.vY = vY;
-    this.angle = angle;
+    this.setAngle(angle);
     this.collisionRadius = collisionRadius;
   }
 

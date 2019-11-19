@@ -57,15 +57,15 @@ class Ship extends AsteroidGameObject {
 
   @Override
   void move() {
+    double angle = getAngle();
     if (angle != targetAngle) {
       if (Math.abs(AngleUtils.signedAngularDifference(targetAngle, angle)) < turnRate * dt) {
-        angle = targetAngle;
+        setAngle(targetAngle);
       } else {
-        angle =
-            AngleUtils.normalize(
-                angle
-                    + Math.copySign(
-                        turnRate * dt, AngleUtils.signedAngularDifference(targetAngle, angle)));
+        setAngle(
+            angle
+                + Math.copySign(
+                    turnRate * dt, AngleUtils.signedAngularDifference(targetAngle, angle)));
       }
     }
     if (thrusterActive) {
@@ -95,7 +95,7 @@ class Ship extends AsteroidGameObject {
    * @return the projectiles that just got fired.
    */
   List<Projectile> attemptFireMainArmament() {
-    return mainArmament.attemptFire(x, y, vX, vY, angle, mainArmamentActive);
+    return mainArmament.attemptFire(x, y, vX, vY, getAngle(), mainArmamentActive);
   }
 
   void setThrusterActive(boolean thrusterActive) {
@@ -116,7 +116,7 @@ class Ship extends AsteroidGameObject {
     y = startY;
     vX = 0;
     vY = 0;
-    angle = startAngle;
+    setAngle(startAngle);
     targetAngle = startAngle;
     destroyed = false;
     spawnProtectionLeft = spawnProtectionTime;
