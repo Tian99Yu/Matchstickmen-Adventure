@@ -5,14 +5,16 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4e305c63-d34f-4f0f-8265-4ff0336f2694" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsDrawer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoCannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoCannon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoShotgun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoShotgun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Ship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ColoredSprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ColoredSprite.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +38,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
+            <state relative-caret-position="477">
+              <caret line="73" column="56" lean-forward="true" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
+              <folding>
+                <element signature="e#2554#2555#0" expanded="true" />
+                <element signature="e#2578#2579#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="38" column="7" lean-forward="true" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -60,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="794">
-              <caret line="61" column="40" lean-forward="true" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
+            <state relative-caret-position="725">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,22 +88,16 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsDrawer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="18" column="33" lean-forward="true" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AngleUtils.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ColoredSprite.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="319">
-              <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+              <folding>
+                <element signature="e#244#245#0" expanded="true" />
+                <element signature="e#267#268#0" expanded="true" />
+                <element signature="e#294#295#0" expanded="true" />
+                <element signature="e#316#317#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,23 +114,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+            <state relative-caret-position="464">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
               <folding>
-                <element signature="e#855#856#0" expanded="true" />
-                <element signature="e#877#878#0" expanded="true" />
-                <element signature="e#915#916#0" expanded="true" />
-                <element signature="e#964#965#0" expanded="true" />
+                <element signature="e#884#885#0" expanded="true" />
+                <element signature="e#906#907#0" expanded="true" />
+                <element signature="e#1050#1051#0" expanded="true" />
+                <element signature="e#1100#1101#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Asteroid.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsDrawer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="15" column="11" lean-forward="true" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
+            <state relative-caret-position="274">
+              <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -164,21 +176,23 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Asteroid.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Projectile.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Drawer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeBackend.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameBackend.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GamePresenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameObject.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsDrawer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeDrawer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakePresenter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Ship.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoShotgun.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoCannon.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ColoredSprite.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsDrawer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsPresenter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameThread.java" />
       </list>
     </option>
   </component>
@@ -253,6 +267,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3_API_28" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-11-19T21:15:07.797Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -359,13 +375,13 @@
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Run" order="0" />
-      <window_info anchor="bottom" id="Logcat" order="1" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.32972386" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49760383" weight="0.3284632" />
+      <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49760383" visible="true" weight="0.3280996" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50026625" side_tool="true" weight="0.32972386" />
       <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49973375" weight="0.32972386" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49920127" visible="true" weight="0.32918245" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49920127" weight="0.32918245" />
       <window_info anchor="bottom" id="Android Profiler" order="8" />
       <window_info anchor="bottom" id="Find" order="9" sideWeight="0.49973375" weight="0.32972386" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
@@ -469,13 +485,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Drawer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeComponent.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -575,16 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsDrawer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="18" column="33" lean-forward="true" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Asteroid.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -592,30 +591,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
-          <folding>
-            <element signature="e#855#856#0" expanded="true" />
-            <element signature="e#877#878#0" expanded="true" />
-            <element signature="e#915#916#0" expanded="true" />
-            <element signature="e#964#965#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AngleUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
           <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -647,13 +626,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsPresenter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="794">
-          <caret line="61" column="40" lean-forward="true" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
+        <state relative-caret-position="464">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="e#884#885#0" expanded="true" />
+            <element signature="e#906#907#0" expanded="true" />
+            <element signature="e#1050#1051#0" expanded="true" />
+            <element signature="e#1100#1101#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ColoredSprite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+          <folding>
+            <element signature="e#244#245#0" expanded="true" />
+            <element signature="e#267#268#0" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#316#317#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsDrawer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="725">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="73" column="56" lean-forward="true" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
+          <folding>
+            <element signature="e#2554#2555#0" expanded="true" />
+            <element signature="e#2578#2579#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="38" column="7" lean-forward="true" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
         </state>
       </provider>
     </entry>

@@ -5,17 +5,6 @@ import com.example.game.gamecode.GameObject;
 import java.util.HashMap;
 
 interface AsteroidsDrawer<T, S> {
-  /**
-   * Gets a mapping between game objects classes and sprites of type S that can be drawn on drawing
-   * surfaces of type T.
-   */
-  HashMap<Class<? extends GameObject>, S> getClassToSprite();
-
-  /**
-   * Gets a mapping between game objects classes and their colors.
-   */
-  HashMap<Class<? extends GameObject>, Integer> getClassToColor();
-
   /** Returns width of screen. */
   int getWidth();
 

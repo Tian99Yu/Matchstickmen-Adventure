@@ -26,27 +26,33 @@ class AsteroidsView extends GameView implements AsteroidsDrawer<Canvas, Bitmap> 
     super(context);
     this.thread = new GameThread(getHolder(), this, (Saver) context);
     this.gameBackend = new AsteroidGameManager(playAreaWidth, playAreaHeight);
-    setPresenter(new AsteroidsPresenter<>(this, this.gameBackend));
+
+    setPresenter(new AsteroidsPresenter<>(this, this.gameBackend, getClassToColoredSprite()));
     density = context.getResources().getDisplayMetrics().density;
   }
 
-
-  @Override
-  public HashMap<Class<? extends GameObject>, Bitmap> getClassToSprite() {
-    HashMap<Class<? extends GameObject>, Bitmap> classToSprites = new HashMap<>();
-    classToSprites.put(Asteroid.class, BitmapFactory.decodeResource(getResources(), R.drawable.asteroid));
-    classToSprites.put(Projectile.class, BitmapFactory.decodeResource(getResources(), R.drawable.laser));
-    classToSprites.put(Ship.class, BitmapFactory.decodeResource(getResources(), R.drawable.ship));
-    return classToSprites;
-  }
-
-  @Override
-  public HashMap<Class<? extends GameObject>, Integer> getClassToColor() {
-    HashMap<Class<? extends GameObject>, Integer> classToColor = new HashMap<>();
-    classToColor.put(Asteroid.class, AsteroidCustomizations.asteroidColor[AsteroidCustomizations.themeIndex]);
-    classToColor.put(Projectile.class, AsteroidCustomizations.projectileColor[AsteroidCustomizations.themeIndex]);
-    classToColor.put(Ship.class, AsteroidCustomizations.shipColor[AsteroidCustomizations.themeIndex]);
-    return classToColor;
+  public HashMap<Class<? extends AsteroidGameObject>, ColoredSprite<Bitmap>>
+      getClassToColoredSprite() {
+    HashMap<Class<? extends AsteroidGameObject>, ColoredSprite<Bitmap>> classToColoredSprite =
+        new HashMap<>();
+    // create colored sprites
+    ColoredSprite<Bitmap> asteroidColoredSprite =
+        new ColoredSprite<>(
+            BitmapFactory.decodeResource(getResources(), R.drawable.asteroid),
+            AsteroidCustomizations.asteroidColor[AsteroidCustomizations.themeIndex]);
+    ColoredSprite<Bitmap> laserColoredSprite =
+        new ColoredSprite<>(
+            BitmapFactory.decodeResource(getResources(), R.drawable.laser),
+            AsteroidCustomizations.projectileColor[AsteroidCustomizations.themeIndex]);
+    ColoredSprite<Bitmap> shipColoredSprite =
+        new ColoredSprite<>(
+            BitmapFactory.decodeResource(getResources(), R.drawable.ship),
+            AsteroidCustomizations.shipColor[AsteroidCustomizations.themeIndex]);
+    // add colored sprites to hashmap
+    classToColoredSprite.put(Asteroid.class, asteroidColoredSprite);
+    classToColoredSprite.put(Projectile.class, laserColoredSprite);
+    classToColoredSprite.put(Ship.class, shipColoredSprite);
+    return classToColoredSprite;
   }
 
   @Override
@@ -56,26 +62,26 @@ class AsteroidsView extends GameView implements AsteroidsDrawer<Canvas, Bitmap> 
 
   @Override
   public void drawSprite(
-          Canvas drawingSurface,
-          Bitmap sprite,
-          int color,
-          double x,
-          double y,
-          double angle,
-          double width,
-          double height) {
+      Canvas drawingSurface,
+      Bitmap sprite,
+      int color,
+      double x,
+      double y,
+      double angle,
+      double width,
+      double height) {
     Paint paint = new Paint();
     ColorFilter filter = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
     paint.setColorFilter(filter);
     Matrix matrix = new Matrix();
     matrix.preRotate((float) Math.toDegrees(angle), sprite.getWidth() / 2, sprite.getHeight() / 2);
     matrix.postScale(
-            (float) (width / (float) sprite.getWidth()),
-            (float) (height / (float) sprite.getHeight()),
-            sprite.getWidth() / 2,
-            sprite.getHeight() / 2);
+        (float) (width / (float) sprite.getWidth()),
+        (float) (height / (float) sprite.getHeight()),
+        sprite.getWidth() / 2,
+        sprite.getHeight() / 2);
     matrix.postTranslate(
-            (float) (x - sprite.getWidth() / 2.0), (float) (y - sprite.getHeight() / 2.0));
+        (float) (x - sprite.getWidth() / 2.0), (float) (y - sprite.getHeight() / 2.0));
     drawingSurface.drawBitmap(sprite, matrix, paint);
   }
 
@@ -88,11 +94,18 @@ class AsteroidsView extends GameView implements AsteroidsDrawer<Canvas, Bitmap> 
   }
 
   @Override
-  public void drawText(Canvas drawingSurface, String text, int color, float x, float y, float fontSize, int rowOffset) {
+  public void drawText(
+      Canvas drawingSurface,
+      String text,
+      int color,
+      float x,
+      float y,
+      float fontSize,
+      int rowOffset) {
     Paint paint = new Paint();
     paint.setColor(Color.WHITE);
     paint.setTextSize(fontSize);
     paint.setTextAlign(Paint.Align.RIGHT);
-    drawingSurface.drawText(text, x, y + rowOffset*paint.getTextSize(), paint);
+    drawingSurface.drawText(text, x, y + rowOffset * paint.getTextSize(), paint);
   }
 }
