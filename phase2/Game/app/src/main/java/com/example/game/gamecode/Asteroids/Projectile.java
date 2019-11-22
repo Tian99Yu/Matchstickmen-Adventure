@@ -28,7 +28,7 @@ class Projectile extends AsteroidGameObject {
   @Override
   void move() {
     range--;
-    updatePosition();
+    super.move();
   }
 
   @Override

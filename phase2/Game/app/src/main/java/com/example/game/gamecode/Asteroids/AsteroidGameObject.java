@@ -72,11 +72,6 @@ abstract class AsteroidGameObject extends GameObject {
 
   /** Moves this AsteroidGameObject. */
   void move() {
-    updatePosition();
-  }
-
-  /** Updates the position of this AsteroidGameObject. */
-  void updatePosition() {
     x = x + vX * dt;
     y = y + vY * dt;
   }

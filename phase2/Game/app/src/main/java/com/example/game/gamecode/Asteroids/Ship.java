@@ -81,7 +81,7 @@ class Ship extends AsteroidGameObject {
     if (spawnProtectionLeft > 0) {
       spawnProtectionLeft--;
     }
-    updatePosition();
+    super.move();
   }
 
   @Override
