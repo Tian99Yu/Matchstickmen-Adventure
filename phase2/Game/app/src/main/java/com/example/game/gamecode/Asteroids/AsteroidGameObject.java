@@ -87,6 +87,5 @@ abstract class AsteroidGameObject extends GameObject {
   abstract void resolveCollision(AsteroidGameObject other);
 
   @Override
-  public void draw(Canvas canvas) {
-  }
+  public void draw(Canvas canvas) {}
 }

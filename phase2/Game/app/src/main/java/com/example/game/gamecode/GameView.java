@@ -15,8 +15,7 @@ import android.widget.ImageButton;
 
 import java.util.HashMap;
 
-public abstract class GameView extends SurfaceView
-    implements SurfaceHolder.Callback {
+public abstract class GameView extends SurfaceView implements SurfaceHolder.Callback {
   protected GameThread thread;
   public GameBackend gameBackend;
   private ImageButton pauseButton;

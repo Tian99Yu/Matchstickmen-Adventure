@@ -28,14 +28,14 @@ interface AsteroidsDrawer<T, S> {
    * @param height the height to scale the image to.
    */
   void drawSprite(
-          T drawingSurface,
-          S sprite,
-          int color,
-          double x,
-          double y,
-          double angle,
-          double width,
-          double height);
+      T drawingSurface,
+      S sprite,
+      int color,
+      double x,
+      double y,
+      double angle,
+      double width,
+      double height);
 
   /**
    * Draws a solid background with color color onto drawingSurface.
@@ -47,6 +47,7 @@ interface AsteroidsDrawer<T, S> {
 
   /**
    * Draws text with color color onto the drawingSurface at x, y offset by rowOffset number of rows.
+   *
    * @param drawingSurface the surface to be drawn on.
    * @param text the text to display.
    * @param color the color of the text.
@@ -55,5 +56,6 @@ interface AsteroidsDrawer<T, S> {
    * @param fontSize the size of the font.
    * @param rowOffset the number of rows to offset the text down by.
    */
-  void drawText(T drawingSurface, String text, int color, float x, float y, float fontSize, int rowOffset);
+  void drawText(
+      T drawingSurface, String text, int color, float x, float y, float fontSize, int rowOffset);
 }

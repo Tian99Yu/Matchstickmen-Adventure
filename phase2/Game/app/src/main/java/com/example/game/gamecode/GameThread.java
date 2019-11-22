@@ -68,7 +68,6 @@ public class GameThread extends Thread {
     if (saver != null) {
       saver.saveScore();
     }
-
   }
 
   public void setPaused(boolean isPaused) {
@@ -82,5 +81,4 @@ public class GameThread extends Thread {
   public void terminateThread() {
     isTerminated = true;
   }
-
 }
