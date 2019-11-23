@@ -1,8 +1,6 @@
 package com.example.game.gamecode.Snake;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 
 import androidx.annotation.NonNull;
 
@@ -90,20 +88,6 @@ public class SnakeBackend extends GameBackend {
         gridHeight = height / size;
         gridWidth = width / size;
     }
-
-    /**
-     * Draw the current status of this game on the canvas
-     * @param canvas the canvas to draw this game on.
-     */
-  @Override
-  public void draw(Canvas canvas) {
-    drawBackground(canvas);
-    for (int a = 0; a < gameObjects.size(); a++) {
-      if (gameObjects.get(a) != null) {
-        gameObjects.get(a).draw(canvas);
-      }
-    }
-  }
 
     /**
      * Set the color of the snake head
@@ -277,30 +261,11 @@ public class SnakeBackend extends GameBackend {
      * Set the shape of the characters in the game
      * @param shape the shape that the characters will take
      */
-  public void setShape(SnakeShape shape){
+  void setShape(SnakeShape shape){
       this.shape = shape;
       for (GameObject gameObject: gameObjects) {
           ((SnakeObject) gameObject).setShape(shape);
       }
-  }
-
-    /**
-     * Draw the background of this game on canvas.
-     * @param canvas the canvas that the game in running on.
-     */
-  public void drawBackground(Canvas canvas){
-    Paint paint = new Paint();
-    paint.setColor(canvasColor);
-    paint.setStyle(Paint.Style.FILL);
-    canvas.drawPaint(paint);
-  }
-
-    /**
-     * Set the background color
-     * @param color the background color this game will have
-     */
-  public void setCanvasColor(int color) {
-    canvasColor = color;
   }
 
     /**
@@ -347,7 +312,8 @@ public class SnakeBackend extends GameBackend {
       for (GameObject gameObject: gameObjects){
           if (gameObject instanceof SnakeObject && !(gameObject instanceof Wall)){
               SnakeObject snakeObject = (SnakeObject) gameObject;
-              string.append(snakeObject.toString() + ",");
+              string.append(snakeObject.toString());
+              string.append(",");
           }
       }
       return string.toString();

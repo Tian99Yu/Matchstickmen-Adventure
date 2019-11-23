@@ -17,6 +17,6 @@ public class SnakePresenter<T> extends GamePresenter<T> {
   @Override
   public void draw(T drawingSurface) {
     //example usage
-    snakeDrawer.drawRect(drawingSurface, 0, 0, 50, 50, Color.WHITE);
+    snakeDrawer.drawUpdate(drawingSurface);
   }
 }

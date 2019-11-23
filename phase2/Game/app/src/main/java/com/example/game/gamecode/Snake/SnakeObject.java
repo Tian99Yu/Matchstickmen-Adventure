@@ -105,4 +105,12 @@ abstract class SnakeObject extends GameObject {
     return this.type + "|" + this.x + "|" + this.y + "|" + this.paint.getColor() +
             "|" + this.shape;
   }
+
+  /**
+   * return the paint for this snake object.
+   * @return the paint for this snake object.
+   */
+  public Paint getPaint() {
+    return paint;
+  }
 }
