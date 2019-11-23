@@ -1,6 +1,7 @@
 package com.example.game.gamecode.Snake;
 
-import androidx.annotation.NonNull;
+
+import android.graphics.Canvas;
 
 /** A generic part of the snake character. */
 class SnakeComponent extends SnakeObject {
@@ -117,7 +118,6 @@ class SnakeComponent extends SnakeObject {
    * Return the string representation of this snake object
    * @return the type, coordinate, color, shape, and direction separated by |.
    */
-  @NonNull
   @Override
   public String toString() {
     return super.toString() + "|" + this.direction;

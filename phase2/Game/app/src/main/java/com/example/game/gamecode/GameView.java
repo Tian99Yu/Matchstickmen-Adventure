@@ -52,6 +52,7 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
   }
 
   public void update() {
+    // Should we use the presenter to interact with backend rather than let the view do it?
     gameBackend.update();
   }
 
@@ -94,5 +95,9 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
 
   public void setPresenter(GamePresenter<Canvas> presenter) {
     this.presenter = presenter;
+  }
+
+  public GamePresenter<Canvas> getPresenter() {
+    return presenter;
   }
 }

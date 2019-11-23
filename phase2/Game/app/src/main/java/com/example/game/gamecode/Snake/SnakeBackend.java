@@ -12,6 +12,7 @@ import java.util.Random;
 
 public class SnakeBackend extends GameBackend {
   private SnakeHead snakeHead;
+
   private boolean lost;
 
   /** The number of apples eaten. */
@@ -37,6 +38,11 @@ public class SnakeBackend extends GameBackend {
 
   /** The color of the background */
   private int canvasColor = Color.BLACK;
+
+  SnakeBackend(){
+    gameObjects = new ArrayList<>();
+    lost = false;
+  }
 
     /**
      * Return an array list of game objects that this snake backend controls
@@ -70,7 +76,7 @@ public class SnakeBackend extends GameBackend {
   SnakeBackend(int height, int width) {
     gameObjects = new ArrayList<>();
     lost = false;
-    this.size = (int) Double.min(height / 64, width / 64);
+    this.size = Math.min(height / 64, width / 64);
     gridHeight = height / size;
     gridWidth = width / size;
   }
@@ -317,5 +323,29 @@ public class SnakeBackend extends GameBackend {
           }
       }
       return string.toString();
+  }
+
+  /**
+   * Set the size of each snake object to size.
+   * @param size the size of each snake object.
+   */
+  public void setSize(int size) {
+    this.size = size;
+  }
+
+  /**
+   * Set the width of the game grid to gridWidth
+   * @param gridWidth the width of the game grid
+   */
+  public void setGridWidth(int gridWidth) {
+    this.gridWidth = gridWidth;
+  }
+
+  /**
+   * Set the height of game grid to gridHeight
+   * @param gridHeight the height of the game grid
+   */
+  public void setGridHeight(int gridHeight) {
+    this.gridHeight = gridHeight;
   }
 }

@@ -24,15 +24,13 @@ public class SnakeView extends GameView implements SnakeDrawer<Canvas> {
     thread = new GameThread(getHolder(), this, (Saver) context);
     thread.setUpdateInterval(100);
 
-    gameBackend = new SnakeBackend(1650, 960);
+    gameBackend = new SnakeBackend();
     setPresenter(new SnakePresenter<>(this, this.gameBackend));
-
-    ((SnakeBackend) gameBackend).createObjects();
   }
 
   @Override
   public void update() {
-    super.update();
+    ((SnakePresenter)getPresenter()).update();
   }
 
   public String[][] getStatistics() {
@@ -80,7 +78,8 @@ public class SnakeView extends GameView implements SnakeDrawer<Canvas> {
     int size = snakeObject.size;
     int x = snakeObject.x;
     int y = snakeObject.y;
-    Paint paint = snakeObject.getPaint();
+    Paint paint = new Paint();
+    paint.setColor(snakeObject.getColor());
     switch (shape) {
       case CIRCLE:
         float radiusAdjustment = ((float) size) / 2;

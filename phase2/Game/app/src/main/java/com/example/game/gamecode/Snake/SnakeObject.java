@@ -2,9 +2,6 @@ package com.example.game.gamecode.Snake;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-
-import androidx.annotation.NonNull;
 
 import com.example.game.gamecode.GameObject;
 
@@ -20,7 +17,7 @@ abstract class SnakeObject extends GameObject {
   int size;
 
   /** The color of this snake object */
-  private Paint paint = new Paint();
+  private int color;
 
   /** The shape of this snake object */
   private SnakeShape shape;
@@ -40,77 +37,59 @@ abstract class SnakeObject extends GameObject {
     this.x = x;
     this.y = y;
     this.size = size;
-    this.paint.setColor(Color.WHITE);
+    this.color = Color.WHITE;
     this.shape = shape;
     this.type = type;
   }
 
   /**
-   * Draws this snake object.
-   *
-   * @param canvas the graphics context in which to draw this item.
-   */
-  public void draw(Canvas canvas) {
-    switch (shape){
-      case CIRCLE:
-        float radiusAdjustment = ((float)this.size)/ 2;
-        canvas.drawCircle(x * size + radiusAdjustment, y * size + radiusAdjustment, size / 2, paint);
-        break;
-      case SQUARE:
-        canvas.drawRect(x * size, y * size, (x + 1) * size, (y + 1) * size, paint);
-        break;
-    }
-
-  }
-
-  /**
    * Set the color of this snake object.
+   *
    * @param color the color that the snake object will have
    */
-  public void setColor(int color){
-    this.paint.setColor(color);
+  public void setColor(int color) {
+    this.color = color;
   }
 
   /**
    * Return the color of this snake object
+   *
    * @return the color of this snake object
    */
-  public int getColor(){
-    return this.paint.getColor();
+  public int getColor() {
+    return this.color;
   }
 
-    /**
-     * Return the shape of this snake object
-     * @return the shape of this snake object
-     */
+  /**
+   * Return the shape of this snake object
+   *
+   * @return the shape of this snake object
+   */
   SnakeShape getShape() {
     return shape;
   }
 
-    /**
-     * Set the shape of this snake object
-     * @param shape the shape that this snake object will have.
-     */
+  /**
+   * Set the shape of this snake object
+   *
+   * @param shape the shape that this snake object will have.
+   */
   void setShape(SnakeShape shape) {
     this.shape = shape;
   }
 
-    /**
-     * Return the string representation of this snake object
-     * @return the type, coordinate, color, and shape separated by |.
-     */
+  /**
+   * Return the string representation of this snake object
+   *
+   * @return the type, coordinate, color, and shape separated by |.
+   */
   @Override
-  @NonNull
-  public String toString(){
-    return this.type + "|" + this.x + "|" + this.y + "|" + this.paint.getColor() +
-            "|" + this.shape;
+  public String toString() {
+    return this.type + "|" + this.x + "|" + this.y + "|" + this.color + "|" + this.shape;
   }
 
-  /**
-   * return the paint for this snake object.
-   * @return the paint for this snake object.
-   */
-  public Paint getPaint() {
-    return paint;
+  @Override
+  public void draw(Canvas canvas) {
+
   }
 }
