@@ -1,7 +1,5 @@
 package com.example.game.gamecode.Snake;
 
-import android.graphics.Color;
-
 import androidx.annotation.NonNull;
 
 import com.example.game.gamecode.GameBackend;
@@ -35,9 +33,6 @@ public class SnakeBackend extends GameBackend {
 
   /** The shape of its snake objects. */
   private SnakeShape shape = SnakeShape.CIRCLE;
-
-  /** The color of the background */
-  private int canvasColor = Color.BLACK;
 
   /** Create an uninitialized empty snake backend */
   SnakeBackend() {
@@ -86,54 +81,6 @@ public class SnakeBackend extends GameBackend {
     gridWidth = width / size;
   }
 
-  /**
-   * Set the color of the snake head
-   *
-   * @param color the color that the snake head will be in
-   */
-  private void setHeadColor(int color) {
-    this.snakeHead.setColor(color);
-  }
-
-  /**
-   * Set the color of the apples in the game
-   *
-   * @param color the color that the apples will be in
-   */
-  private void setAppleColor(int color) {
-    for (GameObject gameObject : gameObjects) {
-      if (gameObject instanceof Apple) {
-        ((Apple) gameObject).setColor(color);
-      }
-    }
-  }
-
-  /**
-   * Set the color of all the walls in the game
-   *
-   * @param color the color that the walls will be in
-   */
-  private void setWallColor(int color) {
-    for (GameObject gameObject : gameObjects) {
-      if (gameObject instanceof Wall) {
-        ((Wall) gameObject).setColor(color);
-      }
-    }
-  }
-
-  /**
-   * Set the color of the body of the snake
-   *
-   * @param color the color that the body of the snake will be in
-   */
-  private void setBodyColor(int color) {
-    for (GameObject gameObject : gameObjects) {
-      if (gameObject instanceof SnakeComponent && !(gameObject instanceof SnakeHead)) {
-        ((SnakeComponent) gameObject).setColor(color);
-      }
-    }
-  }
-
   /** Update and refresh the game status. */
   @Override
   public void update() {
@@ -178,7 +125,6 @@ public class SnakeBackend extends GameBackend {
           new Apple(
               random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size, shape);
       addSnakeObj(apple);
-      apple.setColor(Color.RED);
     }
 
     randomInt = random.nextInt(500);
@@ -221,7 +167,6 @@ public class SnakeBackend extends GameBackend {
   private void addSnakeComponent() {
     SnakeComponent component = snakeHead.addComponent();
     addSnakeObj(component);
-    component.setColor(Color.GREEN);
     snakeLength++;
   }
 
@@ -252,11 +197,6 @@ public class SnakeBackend extends GameBackend {
 
     addSnakeComponent();
     addSnakeComponent();
-
-    setAppleColor(Color.RED);
-    setBodyColor(Color.GREEN);
-    setHeadColor(Color.YELLOW);
-    setWallColor(Color.YELLOW);
   }
 
   /**
@@ -340,7 +280,7 @@ public class SnakeBackend extends GameBackend {
    *
    * @param gridWidth the width of the game grid
    */
-  public void setGridWidth(int gridWidth) {
+  void setGridWidth(int gridWidth) {
     this.gridWidth = gridWidth;
   }
 
@@ -349,7 +289,7 @@ public class SnakeBackend extends GameBackend {
    *
    * @param gridHeight the height of the game grid
    */
-  public void setGridHeight(int gridHeight) {
+  void setGridHeight(int gridHeight) {
     this.gridHeight = gridHeight;
   }
 }

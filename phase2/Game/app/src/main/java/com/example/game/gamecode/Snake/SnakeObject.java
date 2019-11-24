@@ -1,7 +1,6 @@
 package com.example.game.gamecode.Snake;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 
 import com.example.game.gamecode.GameObject;
 
@@ -15,9 +14,6 @@ abstract class SnakeObject extends GameObject {
 
   /** The size of this snake object */
   int size;
-
-  /** The color of this snake object */
-  private int color;
 
   /** The shape of this snake object */
   private SnakeShape shape;
@@ -36,27 +32,8 @@ abstract class SnakeObject extends GameObject {
     this.x = x;
     this.y = y;
     this.size = size;
-    this.color = Color.WHITE;
     this.shape = shape;
     this.type = null;
-  }
-
-  /**
-   * Set the color of this snake object.
-   *
-   * @param color the color that the snake object will have
-   */
-  public void setColor(int color) {
-    this.color = color;
-  }
-
-  /**
-   * Return the color of this snake object
-   *
-   * @return the color of this snake object
-   */
-  public int getColor() {
-    return this.color;
   }
 
   /**
@@ -84,7 +61,7 @@ abstract class SnakeObject extends GameObject {
    */
   @Override
   public String toString() {
-    return this.type + "|" + this.x + "|" + this.y + "|" + this.color + "|" + this.shape;
+    return this.type + "|" + this.x + "|" + this.y + "|" + this.type + "|" + this.shape;
   }
 
   @Override
@@ -95,7 +72,7 @@ abstract class SnakeObject extends GameObject {
    *
    * @return the type of this snake object
    */
-  public SnakeObjectType getType() {
+  SnakeObjectType getType() {
     return this.type;
   }
 
@@ -104,7 +81,7 @@ abstract class SnakeObject extends GameObject {
    *
    * @param type the type of the snake object
    */
-  public void setType(SnakeObjectType type) {
+  void setType(SnakeObjectType type) {
     this.type = type;
   }
 }

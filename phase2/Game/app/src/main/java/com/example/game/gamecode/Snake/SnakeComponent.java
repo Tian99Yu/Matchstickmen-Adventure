@@ -1,8 +1,6 @@
 package com.example.game.gamecode.Snake;
 
 
-import android.graphics.Canvas;
-
 /** A generic part of the snake character. */
 class SnakeComponent extends SnakeObject {
   /** The direction that this component is traveling. */
@@ -31,12 +29,12 @@ class SnakeComponent extends SnakeObject {
    *
    * @param direction The direction this snake component is going.
    */
-  public void setDirection(Direction direction) {
+  private void setDirection(Direction direction) {
     this.direction = direction;
   }
 
   /** Move this snake component and all the snake component following this snake component */
-  public void move() {
+  void move() {
     // Move the next snake component
     if (this.next != null) {
       this.next.move(this.x, this.y);
