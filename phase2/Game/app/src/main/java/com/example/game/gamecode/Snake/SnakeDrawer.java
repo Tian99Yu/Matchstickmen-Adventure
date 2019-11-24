@@ -12,15 +12,26 @@ interface SnakeDrawer<T> {
    */
   void drawRect(T drawingSurface, float left, float top, float right, float bottom, int color);
 
-  /**
-   * Draw the current status of this game on the drawingSurface.
-   * @param drawingSurface the canvas to draw this game on.
-   */
-  void drawUpdate(T drawingSurface);
-
   /** Returns width of screen. */
   int getWidth();
 
   /** Returns height of screen. */
   int getHeight();
+
+  /**
+   * Draw the background of this game on canvas.
+   *
+   * @param drawingSurface the canvas that the game in running on.
+   */
+  void drawBackground(T drawingSurface);
+
+  /**
+   * Draw a circle on the drawing surface a circle determined by x, y and radius.
+   * @param drawingSurface the surface to be drawn in
+   * @param x the x coordinate of the center of the circle
+   * @param y the y coordinate of the center of the circle
+   * @param radius the radius of the circle
+   * @param color the color of the circle
+   */
+  void drawCircle(T drawingSurface, float x, float y, float radius, int color);
 }

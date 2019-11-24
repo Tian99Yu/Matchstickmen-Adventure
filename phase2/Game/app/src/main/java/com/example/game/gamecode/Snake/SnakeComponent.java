@@ -22,20 +22,8 @@ class SnakeComponent extends SnakeObject {
    * @param shape the shape of this snake component
    */
   SnakeComponent(int x, int y, int size, SnakeShape shape) {
-    super(x, y, size, shape, SnakeObjectType.SNAKE_COMPONENT);
-  }
-
-  /**
-   * Constructs a new snake component.
-   *
-   * @param x the initial x coordinate of this snake component
-   * @param y the initial y coordinate of this snake component
-   * @param size the side length of this snake component
-   * @param shape the shape of this snake component
-   * @param type the type of this snake component
-   */
-  SnakeComponent(int x, int y, int size, SnakeShape shape, SnakeObjectType type) {
-    super(x, y, size, shape, type);
+    super(x, y, size, shape);
+    setType(SnakeObjectType.SNAKE_COMPONENT);
   }
 
   /**
@@ -110,7 +98,6 @@ class SnakeComponent extends SnakeObject {
         break;
     }
     snakeComponent.next = added;
-    added.setColor(snakeComponent.getColor());
     return added;
   }
 

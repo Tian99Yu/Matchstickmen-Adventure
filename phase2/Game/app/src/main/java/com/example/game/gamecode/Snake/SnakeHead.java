@@ -1,7 +1,5 @@
 package com.example.game.gamecode.Snake;
 
-import java.util.ArrayList;
-
 public class SnakeHead extends SnakeComponent {
   /** whether this snake is alive/ whether the gameBackend is still running */
   private boolean isDead = false;
@@ -15,7 +13,8 @@ public class SnakeHead extends SnakeComponent {
    * @param shape the shape of this snake head
    */
   SnakeHead(int x, int y, int size, SnakeShape shape) {
-    super(x, y, size, shape, SnakeObjectType.SNAKE_HEAD);
+    super(x, y, size, shape);
+    setType(SnakeObjectType.SNAKE_HEAD);
   }
 
   /** turn this snake left. */
@@ -65,10 +64,9 @@ public class SnakeHead extends SnakeComponent {
   }
 
   /**
-   * Mark if this snake is dead
-   * @param dead true if this snake is dead, false otherwise.
+   * Mark this snake is dead
    */
-  void setDead(boolean dead) {
-    this.isDead = dead;
+  void setDead() {
+    this.isDead = true;
   }
 }

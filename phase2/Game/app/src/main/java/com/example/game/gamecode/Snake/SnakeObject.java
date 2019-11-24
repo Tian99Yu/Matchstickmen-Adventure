@@ -31,15 +31,14 @@ abstract class SnakeObject extends GameObject {
    * @param x the initial x coordinate of this snake object
    * @param y the initial y coordinate of this snake object
    * @param size the side length of this snake object
-   * @param type the type of this snake object
    */
-  SnakeObject(int x, int y, int size, SnakeShape shape, SnakeObjectType type) {
+  SnakeObject(int x, int y, int size, SnakeShape shape) {
     this.x = x;
     this.y = y;
     this.size = size;
     this.color = Color.WHITE;
     this.shape = shape;
-    this.type = type;
+    this.type = null;
   }
 
   /**
@@ -89,7 +88,23 @@ abstract class SnakeObject extends GameObject {
   }
 
   @Override
-  public void draw(Canvas canvas) {
+  public void draw(Canvas canvas) {}
 
+  /**
+   * Return the type of this snake object
+   *
+   * @return the type of this snake object
+   */
+  public SnakeObjectType getType() {
+    return this.type;
+  }
+
+  /**
+   * Set the type of this snake object to type
+   *
+   * @param type the type of the snake object
+   */
+  public void setType(SnakeObjectType type) {
+    this.type = type;
   }
 }

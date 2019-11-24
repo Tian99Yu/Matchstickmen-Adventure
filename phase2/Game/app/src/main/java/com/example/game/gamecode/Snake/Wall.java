@@ -11,6 +11,7 @@ class Wall extends SnakeObject {
    * @param shape the shape of this wall
    */
   Wall(int x, int y, int size, SnakeShape shape) {
-    super(x, y, size, shape, SnakeObjectType.WALL);
+    super(x, y, size, shape);
+    setType(SnakeObjectType.WALL);
   }
 }
