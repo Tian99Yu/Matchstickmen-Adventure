@@ -8,6 +8,7 @@ import com.example.game.gamecode.GameObject;
 import java.util.ArrayList;
 import java.util.Random;
 
+/** A back end that is responsible for managing all of the snake objects. */
 public class SnakeBackend extends GameBackend {
   private SnakeHead snakeHead;
 

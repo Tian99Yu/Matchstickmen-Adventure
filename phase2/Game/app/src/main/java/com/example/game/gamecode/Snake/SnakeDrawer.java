@@ -1,8 +1,14 @@
 package com.example.game.gamecode.Snake;
 
+/**
+ * A drawer that draws the game images onto the display
+ *
+ * @param <T> the surface that the game will be drawn onto
+ */
 interface SnakeDrawer<T> {
   /**
    * Draw a rectangle on the drawing surface a rectangle determined by left, top, right, and bottom.
+   *
    * @param drawingSurface the surface to be drawn in
    * @param left the x coordinate of the left side of the rectangle
    * @param top the y coordinate of the top side of the rectangle
@@ -27,6 +33,7 @@ interface SnakeDrawer<T> {
 
   /**
    * Draw a circle on the drawing surface a circle determined by x, y and radius.
+   *
    * @param drawingSurface the surface to be drawn in
    * @param x the x coordinate of the center of the circle
    * @param y the y coordinate of the center of the circle

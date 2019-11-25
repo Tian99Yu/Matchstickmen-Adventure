@@ -64,6 +64,11 @@ abstract class SnakeObject extends GameObject {
     return this.type + "|" + this.x + "|" + this.y + "|" + this.type + "|" + this.shape;
   }
 
+  /**
+   * Draw the snake object onto the canvas
+   *
+   * @param canvas the canvas to be drawn in.
+   */
   @Override
   public void draw(Canvas canvas) {}
 

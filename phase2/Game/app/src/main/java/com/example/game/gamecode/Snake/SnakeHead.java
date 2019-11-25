@@ -55,6 +55,7 @@ public class SnakeHead extends SnakeComponent {
 
   /**
    * Return if this snake head is at the position
+   *
    * @param x the x coordinate of the position
    * @param y the y coordinate of the position
    * @return true if this snake head is at the position, false otherwise
@@ -63,9 +64,7 @@ public class SnakeHead extends SnakeComponent {
     return (this.x == x && this.y == y);
   }
 
-  /**
-   * Mark this snake is dead
-   */
+  /** Mark this snake is dead */
   void setDead() {
     this.isDead = true;
   }

@@ -1,6 +1,5 @@
 package com.example.game.gamecode.Snake;
 
-
 /** A generic part of the snake character. */
 class SnakeComponent extends SnakeObject {
   /** The direction that this component is traveling. */
@@ -73,6 +72,7 @@ class SnakeComponent extends SnakeObject {
 
   /**
    * Add a snake component to the end of the snake and return the component added
+   *
    * @return the snake component that is just added
    */
   SnakeComponent addComponent() {
@@ -101,6 +101,7 @@ class SnakeComponent extends SnakeObject {
 
   /**
    * Return the string representation of this snake object
+   *
    * @return the type, coordinate, color, shape, and direction separated by |.
    */
   @Override

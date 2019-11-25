@@ -28,10 +28,7 @@ class Apple extends SnakeObject {
     return isEaten;
   }
 
-  /**
-   * Set if this apple is eaten.
-   *
-   */
+  /** Set if this apple is eaten. */
   void setEaten() {
     isEaten = true;
   }
