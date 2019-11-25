@@ -119,7 +119,7 @@ public class MatchstickMenBackend extends GameBackend {
   }
 
   /** Constructor for MatchStickMenBackend. */
-  public MatchstickMenBackend() {
+  MatchstickMenBackend() {
     this.answer = 0;
     this.over = false;
     gameObjects = new ArrayList<>();
@@ -141,8 +141,9 @@ public class MatchstickMenBackend extends GameBackend {
 
   /** Initialize and create all the objects when stating the game */
   void createObjects() {
-    gameObjects.add(new MatchstickMenObject(1, 1, this, color, character));
+      gameObjects.add(new MatchstickMenObject(1, 1, MatchstickMenType.CIRCLE));
   }
+    //TODO: chage the last parameter
 
   public void inject(int color, int level, String character) {
     this.color = color;
@@ -183,17 +184,4 @@ public class MatchstickMenBackend extends GameBackend {
     return score;
   }
 
-  /**
-   * Draw the current status of this game on the canvas
-   *
-   * @param canvas the canvas to draw this game on.
-   */
-  @Override
-  public void draw(Canvas canvas) {
-    for (int a = 0; a < gameObjects.size(); a++) {
-      if (gameObjects.get(a) != null) {
-        gameObjects.get(a).draw(canvas);
-      }
-    }
-  }
 }
