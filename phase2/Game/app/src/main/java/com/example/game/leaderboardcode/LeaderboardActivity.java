@@ -12,7 +12,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game.Games;
@@ -21,27 +20,21 @@ import com.example.game.R;
 import com.example.game.settingscode.Customizable;
 import com.example.game.settingscode.SettingsManager;
 
-import java.io.IOException;
-
-public class LeaderboardActivity extends AppCompatActivity implements LeaderboardInterface, Customizable {
+public class LeaderboardActivity extends AppCompatActivity implements LeaderboardView, Customizable {
     private Spinner gameSpinner;
     private TableLayout scoreTable;
     private LeaderboardPresenter leaderboardPresenter;
-    private LeaderboardManager leaderboardManager;
-    private SettingsManager settingsManager;
-    private String username;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.leaderboard_layout);
 
         gameSpinner = findViewById(R.id.gameList);
         scoreTable = findViewById(R.id.scoreTable);
 
-        username = (String) getIntent().getSerializableExtra("username");
-        settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
-        leaderboardManager = (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
+        SettingsManager settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
+        LeaderboardManager leaderboardManager = (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
         leaderboardPresenter = new LeaderboardPresenter(this, leaderboardManager);
 
         setTheme(settingsManager.getSetting("theme"));
@@ -80,7 +73,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
         gameSpinner.setAdapter(spinnerArrayAdapter);
     }
 
-    public void showScores(String game) throws IOException {
+    public void showScores(String game) {
         TableLayout.LayoutParams params = new TableLayout.LayoutParams(
                 TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1);
         String[] scoreData = leaderboardPresenter.getScoreData(getCurrentGame());
@@ -93,10 +86,6 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
           row.addView(temp);
           scoreTable.addView(row);
         }
-    }
-
-    public String[] getGames() {
-        return new String[0];
     }
 
     public Games getCurrentGame() {
