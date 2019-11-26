@@ -3,13 +3,12 @@ package com.example.game.gamecode.Snake;
 import androidx.annotation.NonNull;
 
 import com.example.game.gamecode.GameBackend;
-import com.example.game.gamecode.GameObject;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 /** A back end that is responsible for managing all of the snake objects. */
-public class SnakeBackend extends GameBackend {
+public class SnakeBackend extends GameBackend<SnakeObject> {
   private SnakeHead snakeHead;
 
   private boolean lost;
@@ -46,7 +45,7 @@ public class SnakeBackend extends GameBackend {
    *
    * @return an array of game object that this snake backend controls
    */
-  public ArrayList<GameObject> getGameObjects() {
+  public ArrayList<SnakeObject> getGameObjects() {
     return gameObjects;
   }
 
@@ -88,7 +87,7 @@ public class SnakeBackend extends GameBackend {
     snakeHead.move();
     boolean eatApple = false;
 
-    for (GameObject gameObject : gameObjects) {
+    for (SnakeObject gameObject : gameObjects) {
       if (gameObject instanceof Apple) {
         Apple apple = (Apple) gameObject;
         if (snakeHead.atPosition(apple.x, apple.y)) {
@@ -96,8 +95,7 @@ public class SnakeBackend extends GameBackend {
           eatApple = true;
         }
       } else if (gameObject instanceof Wall || gameObject instanceof SnakeComponent) {
-        SnakeObject snakeObject = (SnakeObject) gameObject;
-        if (snakeHead.atPosition(snakeObject.x, snakeObject.y) && snakeHead != snakeObject) {
+        if (snakeHead.atPosition(gameObject.x, gameObject.y) && snakeHead != gameObject) {
           snakeHead.setDead();
           setLost(true);
         }
@@ -160,7 +158,7 @@ public class SnakeBackend extends GameBackend {
    *
    * @param gameObject the game object to be removed
    */
-  private void deleteItem(GameObject gameObject) {
+  private void deleteItem(SnakeObject gameObject) {
     gameObjects.remove(gameObject);
   }
 
@@ -207,8 +205,8 @@ public class SnakeBackend extends GameBackend {
    */
   void setShape(SnakeShape shape) {
     this.shape = shape;
-    for (GameObject gameObject : gameObjects) {
-      ((SnakeObject) gameObject).setShape(shape);
+    for (SnakeObject gameObject : gameObjects) {
+      gameObject.setShape(shape);
     }
   }
 
@@ -257,9 +255,9 @@ public class SnakeBackend extends GameBackend {
   @NonNull
   public String toString() {
     StringBuilder string = new StringBuilder();
-    for (GameObject gameObject : gameObjects) {
-      if (gameObject instanceof SnakeObject && !(gameObject instanceof Wall)) {
-        SnakeObject snakeObject = (SnakeObject) gameObject;
+    for (SnakeObject gameObject : gameObjects) {
+      if (!(gameObject instanceof Wall)) {
+        SnakeObject snakeObject = gameObject;
         string.append(snakeObject.toString());
         string.append(",");
       }

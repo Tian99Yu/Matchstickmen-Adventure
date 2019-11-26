@@ -3,11 +3,9 @@ package com.example.game.gamecode.MatchstickMen;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.example.game.gamecode.GameObject;
-
 import java.util.Random;
 
-public class MatchstickMenObject extends GameObject {
+public class MatchstickMenObject {
     /**
      * The x-coordinate of this matchstick men object
      */
@@ -46,9 +44,5 @@ public class MatchstickMenObject extends GameObject {
 
     public void setManType(MatchstickMenType manType) {
         this.manType = manType;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
     }
 }

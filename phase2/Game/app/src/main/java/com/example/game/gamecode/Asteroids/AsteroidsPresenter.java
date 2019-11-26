@@ -3,7 +3,6 @@ package com.example.game.gamecode.Asteroids;
 import android.graphics.Color;
 
 import com.example.game.gamecode.GameBackend;
-import com.example.game.gamecode.GameObject;
 import com.example.game.gamecode.GamePresenter;
 
 import java.util.HashMap;
@@ -44,9 +43,9 @@ public class AsteroidsPresenter<T, S> extends GamePresenter<T> {
         0,
         24 * asteroidsDrawer.getDensity(),
         2);
-    for (Iterator<GameObject> gameObjectIterator = backend.getGameObjectsIterator();
+    for (Iterator<AsteroidGameObject> gameObjectIterator = backend.getGameObjectsIterator();
         gameObjectIterator.hasNext(); ) {
-      AsteroidGameObject asteroidGameObject = (AsteroidGameObject) gameObjectIterator.next();
+      AsteroidGameObject asteroidGameObject = gameObjectIterator.next();
       ColoredSprite<S> coloredSprite = classToColoredSprite.get(asteroidGameObject.getClass());
       if (coloredSprite != null) {
         asteroidsDrawer.drawSprite(

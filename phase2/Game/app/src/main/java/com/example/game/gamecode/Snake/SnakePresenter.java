@@ -3,7 +3,6 @@ package com.example.game.gamecode.Snake;
 import android.graphics.Color;
 
 import com.example.game.gamecode.GameBackend;
-import com.example.game.gamecode.GameObject;
 import com.example.game.gamecode.GamePresenter;
 
 import java.util.HashMap;
@@ -119,11 +118,11 @@ public class SnakePresenter<T> extends GamePresenter<T> {
 
     snakeDrawer.drawBackground(drawingSurface);
 
-    Iterator<GameObject> gameObjectIterator = snakeBackend.getGameObjectsIterator();
+    Iterator<SnakeObject> gameObjectIterator = snakeBackend.getGameObjectsIterator();
     while (gameObjectIterator.hasNext()) {
-      GameObject gameObject = gameObjectIterator.next();
+      SnakeObject gameObject = gameObjectIterator.next();
       if (gameObject != null) {
-        drawSnakeObject((SnakeObject) gameObject, drawingSurface);
+        drawSnakeObject(gameObject, drawingSurface);
       }
     }
   }

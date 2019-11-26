@@ -3,7 +3,6 @@ package com.example.game.gamecode.MatchstickMen;
 import android.graphics.Color;
 
 import com.example.game.gamecode.GameBackend;
-import com.example.game.gamecode.GameObject;
 import com.example.game.gamecode.GamePresenter;
 
 import java.util.Iterator;
@@ -37,7 +36,7 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T> {
      * Update and refresh the game status.
      */
     void update() {
-        ((MatchstickMenBackend) this.backend).update();
+        (this.backend).update();
     }
 
     /**
@@ -84,11 +83,11 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T> {
 
         matchstickMenDrawer.drawBackground(drawingSurface);
 
-        Iterator<GameObject> gameObjectIterator = matchstickMenBackend.getGameObjectsIterator();
+        Iterator<MatchstickMenObject> gameObjectIterator = matchstickMenBackend.getGameObjectsIterator();
         while (gameObjectIterator.hasNext()) {
-            GameObject gameObject = gameObjectIterator.next();
+            MatchstickMenObject gameObject = gameObjectIterator.next();
             if (gameObject != null) {
-                drawMatchstickMenObject((MatchstickMenObject) gameObject, drawingSurface);
+                drawMatchstickMenObject(gameObject, drawingSurface);
             }
         }
     }

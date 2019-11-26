@@ -1,7 +1,5 @@
 package com.example.game.gamecode.Asteroids;
 
-import com.example.game.gamecode.GameObject;
-
 import java.util.HashMap;
 
 interface AsteroidsDrawer<T, S> {

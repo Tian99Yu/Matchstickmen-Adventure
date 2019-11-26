@@ -2,10 +2,8 @@ package com.example.game.gamecode.Snake;
 
 import android.graphics.Canvas;
 
-import com.example.game.gamecode.GameObject;
-
 /** A generic object in Snake */
-abstract class SnakeObject extends GameObject {
+abstract class SnakeObject {
   /** The x-coordinate of this snake object */
   public int x;
 
@@ -63,14 +61,6 @@ abstract class SnakeObject extends GameObject {
   public String toString() {
     return this.type + "|" + this.x + "|" + this.y + "|" + this.type + "|" + this.shape;
   }
-
-  /**
-   * Draw the snake object onto the canvas
-   *
-   * @param canvas the canvas to be drawn in.
-   */
-  @Override
-  public void draw(Canvas canvas) {}
 
   /**
    * Return the type of this snake object

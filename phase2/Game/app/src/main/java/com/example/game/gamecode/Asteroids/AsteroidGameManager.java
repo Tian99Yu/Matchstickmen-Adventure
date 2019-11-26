@@ -1,16 +1,12 @@
 package com.example.game.gamecode.Asteroids;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-
 import com.example.game.gamecode.GameBackend;
-import com.example.game.gamecode.GameObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class AsteroidGameManager extends GameBackend {
+public class AsteroidGameManager extends GameBackend<AsteroidGameObject> {
   /** Screen width. */
   private int playAreaWidth;
   /** Screen height. */
@@ -81,22 +77,22 @@ public class AsteroidGameManager extends GameBackend {
   }
 
   private void moveAsteroidGameObjects() {
-    for (GameObject asteroidGameObject : gameObjects) {
-      ((AsteroidGameObject) asteroidGameObject).move();
+    for (AsteroidGameObject asteroidGameObject : gameObjects) {
+      (asteroidGameObject).move();
     }
   }
 
   private void handleObjectsOutOfScreen() {
-    for (GameObject asteroidGameObject : gameObjects) {
-      if (((AsteroidGameObject) asteroidGameObject).x < -outOfScreenOffset) {
-        ((AsteroidGameObject) asteroidGameObject).x = playAreaWidth + outOfScreenOffset;
-      } else if (((AsteroidGameObject) asteroidGameObject).x > playAreaWidth + outOfScreenOffset) {
-        ((AsteroidGameObject) asteroidGameObject).x = -outOfScreenOffset;
+    for (AsteroidGameObject asteroidGameObject : gameObjects) {
+      if ((asteroidGameObject).x < -outOfScreenOffset) {
+        (asteroidGameObject).x = playAreaWidth + outOfScreenOffset;
+      } else if ((asteroidGameObject).x > playAreaWidth + outOfScreenOffset) {
+        (asteroidGameObject).x = -outOfScreenOffset;
       }
-      if (((AsteroidGameObject) asteroidGameObject).y < -outOfScreenOffset) {
-        ((AsteroidGameObject) asteroidGameObject).y = playAreaHeight + outOfScreenOffset;
-      } else if (((AsteroidGameObject) asteroidGameObject).y > playAreaHeight + outOfScreenOffset) {
-        ((AsteroidGameObject) asteroidGameObject).y = -outOfScreenOffset;
+      if ((asteroidGameObject).y < -outOfScreenOffset) {
+        (asteroidGameObject).y = playAreaHeight + outOfScreenOffset;
+      } else if ((asteroidGameObject).y > playAreaHeight + outOfScreenOffset) {
+        (asteroidGameObject).y = -outOfScreenOffset;
       }
     }
   }
@@ -104,9 +100,9 @@ public class AsteroidGameManager extends GameBackend {
   private void handleCollisions() {
     // collision handling
     for (int i = 0; i < gameObjects.size(); i++) {
-      AsteroidGameObject first = (AsteroidGameObject) gameObjects.get(i);
+      AsteroidGameObject first = gameObjects.get(i);
       for (int j = i + 1; j < gameObjects.size(); j++) {
-        AsteroidGameObject second = (AsteroidGameObject) gameObjects.get(j);
+        AsteroidGameObject second = gameObjects.get(j);
         if (first.isColliding(second)) {
           first.resolveCollision(second);
           second.resolveCollision(first);
@@ -163,7 +159,7 @@ public class AsteroidGameManager extends GameBackend {
   @Override
   public boolean isGameOver() {
     int asteroidCount = 0;
-    for (GameObject asteroidGameObject : gameObjects) {
+    for (AsteroidGameObject asteroidGameObject : gameObjects) {
       if (asteroidGameObject instanceof Asteroid) {
         asteroidCount++;
       }

@@ -1,13 +1,10 @@
 package com.example.game.gamecode.MatchstickMen;
 
-import android.graphics.Canvas;
-
 import com.example.game.gamecode.GameBackend;
-import com.example.game.gamecode.GameObject;
 
 import java.util.ArrayList;
 
-public class MatchstickMenBackend extends GameBackend {
+public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
 
   /** Actual number of matchstick men generated. */
   private int answer;
@@ -87,7 +84,7 @@ public class MatchstickMenBackend extends GameBackend {
    *
    * @return an arraylist of game objects
    */
-  public ArrayList<GameObject> getGameObjects() {
+  public ArrayList<MatchstickMenObject> getGameObjects() {
     return gameObjects;
   }
 

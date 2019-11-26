@@ -12,7 +12,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 
 import com.example.game.R;
-import com.example.game.gamecode.GameObject;
 import com.example.game.gamecode.GameThread;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.Saver;

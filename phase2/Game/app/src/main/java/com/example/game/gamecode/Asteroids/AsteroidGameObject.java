@@ -8,9 +8,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 
-import com.example.game.gamecode.GameObject;
-
-abstract class AsteroidGameObject extends GameObject {
+abstract class AsteroidGameObject {
   /** time interval to approximate movement */
   static final double dt = 1.0 / 60.0;
   /** position of AsteroidGameObject */
@@ -85,7 +83,4 @@ abstract class AsteroidGameObject extends GameObject {
    * @param other object being collided with.
    */
   abstract void resolveCollision(AsteroidGameObject other);
-
-  @Override
-  public void draw(Canvas canvas) {}
 }
