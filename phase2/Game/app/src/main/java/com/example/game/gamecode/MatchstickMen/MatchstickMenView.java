@@ -4,9 +4,13 @@ import android.content.Context;
 
 import com.example.game.gamecode.GameThread;
 import com.example.game.gamecode.GameView;
+import com.example.game.R;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 
 public class MatchstickMenView extends GameView implements MatchstickMenDrawer<Canvas> {
@@ -15,6 +19,11 @@ public class MatchstickMenView extends GameView implements MatchstickMenDrawer<C
     private String character;
     private int level;
     private int setUpInterval;
+
+    /**
+     * The background color this view.
+     */
+    private int backgroundColor = Color.BLACK;
 
 
     public MatchstickMenView(Context context, MatchstickMenActivity matchstickMenActivity) {
@@ -57,7 +66,7 @@ public class MatchstickMenView extends GameView implements MatchstickMenDrawer<C
     @Override
     public void drawBackground(Canvas drawingSurface) {
         Paint paint = new Paint();
-        paint.setColor(Color.BLACK);
+        paint.setColor(backgroundColor);
         //
         paint.setStyle(Paint.Style.FILL);
         drawingSurface.drawPaint(paint);
@@ -94,6 +103,13 @@ public class MatchstickMenView extends GameView implements MatchstickMenDrawer<C
         Paint paint = new Paint();
         paint.setColor(color);
         drawingSurface.drawCircle(x, y, radius, paint);
+    }
+
+    public void drawMan(Canvas drawingSurface, float x, float y, int manResource) {
+        Paint paint = new Paint();
+        paint.setColorFilter(new LightingColorFilter(0xff000000, 0xffffffff));
+        Bitmap man1 = BitmapFactory.decodeResource(getContext().getResources(), manResource);
+        drawingSurface.drawBitmap(man1, x, y, paint);
     }
 
     /**

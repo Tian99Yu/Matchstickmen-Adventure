@@ -138,7 +138,7 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
 
   /** Initialize and create all the objects when stating the game */
   void createObjects() {
-      gameObjects.add(new MatchstickMenObject(1, 1, MatchstickMenType.CIRCLE));
+    gameObjects.add(new MatchstickMenObject(1, 1, MatchstickMenType.EXCITED_MAN));
   }
     //TODO: chage the last parameter
 

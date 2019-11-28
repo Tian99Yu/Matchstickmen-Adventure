@@ -1,7 +1,9 @@
 package com.example.game.gamecode.MatchstickMen;
 
+import android.graphics.Canvas;
 import android.graphics.Color;
 
+import com.example.game.R;
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GamePresenter;
 
@@ -51,19 +53,24 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T> {
         Random random = new Random();
         int height = matchstickMenDrawer.getHeight();
         int width = matchstickMenDrawer.getWidth();
-        int range = random.nextInt((int) width * height / 100000);
+        int range = random.nextInt((int) width * height);
 
         int i = 0;
         int sum = 0;
         while (i < range) {
-            if (manType == MatchstickMenType.RECT) {
+            if (manType == MatchstickMenType.HAPPY_MAN) {
                 int x = random.nextInt(width - 200);
                 int y = random.nextInt(height - 200);
-                matchstickMenDrawer.drawRect(drawingSurface, x, y, x + 100, y + 100, manColor);
-            } else if (manType == MatchstickMenType.CIRCLE) {
-                int x = random.nextInt(width - 100 + 1) + 50;
-                int y = random.nextInt(height - 100 + 1) + 50;
-                matchstickMenDrawer.drawCircle(drawingSurface, x, y, 50, manColor);
+//                matchstickMenDrawer.drawRect(drawingSurface, x, y, x + 100, y + 100, manColor);
+                matchstickMenDrawer.drawMan((Canvas) drawingSurface, x, y, R.drawable.happyman);
+            } else if (manType == MatchstickMenType.EXCITED_MAN) {
+//                int x = random.nextInt(width - 100 + 1) + 50;
+//                int y = random.nextInt(height - 100 + 1) + 50;
+//                matchstickMenDrawer.drawCircle(drawingSurface, x, y, 50, manColor);
+
+                int x = random.nextInt(width - 200);
+                int y = random.nextInt(height - 200);
+                matchstickMenDrawer.drawMan((Canvas) drawingSurface, x, y, R.drawable.excitedman);
             }
             int increment = random.nextInt(range - 1) + 1;
             i += increment;

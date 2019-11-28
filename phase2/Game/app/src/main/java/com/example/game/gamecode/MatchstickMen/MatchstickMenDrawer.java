@@ -1,5 +1,7 @@
 package com.example.game.gamecode.MatchstickMen;
 
+import android.graphics.Canvas;
+
 /**
  * A drawer that draws the game images onto the display
  *
@@ -25,6 +27,8 @@ public interface MatchstickMenDrawer<T> {
      * @param color          the color of the rectangle
      */
     void drawRect(T drawingSurface, float left, float top, float right, float bottom, int color);
+
+    public void drawMan(Canvas drawingSurface, float x, float y, int manResource);
 
     /**
      * Returns width of screen.
