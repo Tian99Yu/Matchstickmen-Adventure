@@ -34,10 +34,13 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
   /** The shape of its snake objects. */
   private SnakeShape shape = SnakeShape.CIRCLE;
 
+  private ArrayList<MysteryObject> mysteryObjects;
+
   /** Create an uninitialized empty snake backend */
   SnakeBackend() {
     gameObjects = new ArrayList<>();
     lost = false;
+    mysteryObjects = new ArrayList<>();
   }
 
   /**
@@ -75,6 +78,7 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
    */
   SnakeBackend(int height, int width) {
     gameObjects = new ArrayList<>();
+    mysteryObjects = new ArrayList<>();
     lost = false;
     this.size = Math.min(height / 64, width / 64);
     gridHeight = height / size;
@@ -84,8 +88,20 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
   /** Update and refresh the game status. */
   @Override
   public void update() {
-    snakeHead.move();
     boolean eatApple = false;
+    boolean eatMysteryObject = false;
+
+    snakeHead.move();
+    for (MysteryObject mysteryObject: mysteryObjects){
+      int x = mysteryObject.x;
+      int y = mysteryObject.y;
+      if (! snakeHead.atPosition(mysteryObject.x, mysteryObject.y)) {
+      mysteryObject.move();
+      } else {
+        eatMysteryObject(mysteryObject);
+        eatMysteryObject = true;
+      }
+    }
 
     for (SnakeObject gameObject : gameObjects) {
       if (gameObject instanceof Apple) {
@@ -104,17 +120,29 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
 
     int length = gameObjects.size();
     for (int i = 0; i < length; i++) {
-      if (gameObjects.get(i) instanceof Apple) {
-        if (((Apple) gameObjects.get(i)).isEaten()) {
-          deleteItem(gameObjects.get(i));
-          i--;
-          length--;
+      boolean eaten = false;
+      if (gameObjects.get(i) instanceof Edible) {
+        if (((Edible) gameObjects.get(i)).isEaten()) {
+          eaten = true;
         }
+      }
+      if (eaten) {
+        deleteItem(gameObjects.get(i));
+        i--;
+        length--;
       }
     }
 
     if (eatApple) {
       addSnakeComponent();
+    }
+
+    if (eatMysteryObject) {
+      Random random = new Random();
+      int bonus = random.nextInt(10);
+      for (int i = 0; i < bonus; i++) {
+        addSnakeComponent();
+      }
     }
 
     Random random = new Random();
@@ -129,6 +157,15 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
     randomInt = random.nextInt(500);
     if (randomInt == 100) {
       addSnakeComponent();
+    }
+
+    randomInt = random.nextInt(1000);
+    if (randomInt == 1) {
+      MysteryObject mysteryObject =
+          new MysteryObject(
+              random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size, shape);
+      addSnakeObj(mysteryObject);
+      mysteryObjects.add(mysteryObject);
     }
 
     distance++;
@@ -151,6 +188,15 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
   private void eatApple(Apple apple) {
     apple.setEaten();
     this.apples += 1;
+  }
+
+  /**
+   * Mark that the mystery object is eaten and give bonus points
+   *
+   * @param mysteryObject the apple that is eaten
+   */
+  private void eatMysteryObject(MysteryObject mysteryObject) {
+    mysteryObject.setEaten();
   }
 
   /**
@@ -181,15 +227,6 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
       gameObjects.add(new Wall(0, y, size, shape));
       gameObjects.add(new Wall(gridWidth - 1, y, size, shape));
     }
-    addSnakeObj(
-        new Apple(
-            random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size, shape));
-    addSnakeObj(
-        new Apple(
-            random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size, shape));
-    addSnakeObj(
-        new Apple(
-            random.nextInt(gridHeight - 2) + 1, random.nextInt(gridHeight - 2) + 1, size, shape));
 
     snakeHead = new SnakeHead(gridWidth / 2, gridHeight / 2, size, shape);
     gameObjects.add(snakeHead);

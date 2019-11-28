@@ -1,7 +1,7 @@
 package com.example.game.gamecode.Snake;
 
 /** An apple in Snake. */
-class Apple extends SnakeObject {
+class Apple extends SnakeObject implements Edible {
   /** Indicates if this apple is been eaten. */
   private boolean isEaten;
 
@@ -24,12 +24,12 @@ class Apple extends SnakeObject {
    *
    * @return true if this apple is eaten, false otherwise.
    */
-  boolean isEaten() {
+  public boolean isEaten() {
     return isEaten;
   }
 
   /** Set if this apple is eaten. */
-  void setEaten() {
+  public void setEaten() {
     isEaten = true;
   }
 }

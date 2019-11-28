@@ -44,6 +44,7 @@ public class SnakePresenter<T> extends GamePresenter<T> {
     snakeColor.put(SnakeObjectType.APPLE, Color.RED);
     snakeColor.put(SnakeObjectType.SNAKE_HEAD, Color.YELLOW);
     snakeColor.put(SnakeObjectType.WALL, Color.YELLOW);
+    snakeColor.put(SnakeObjectType.MYSTERY_OBJECT, Color.BLACK);
     snakeColor.put(null, Color.WHITE);
   }
 
