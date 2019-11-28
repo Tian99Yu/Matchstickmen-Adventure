@@ -138,9 +138,9 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
 
   /** Initialize and create all the objects when stating the game */
   void createObjects() {
-    gameObjects.add(new MatchstickMenObject(1, 1, MatchstickMenType.EXCITED_MAN));
+    gameObjects.add(new MatchstickMenObject(1, 1, MatchstickMenType.HAPPY_MAN));
   }
-    //TODO: chage the last parameter
+  //TODO: change the last parameter
 
   public void inject(int color, int level, String character) {
     this.color = color;

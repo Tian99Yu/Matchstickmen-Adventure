@@ -72,9 +72,12 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T> {
                 int y = random.nextInt(height - 200);
                 matchstickMenDrawer.drawMan((Canvas) drawingSurface, x, y, R.drawable.excitedman);
             }
+            int x = random.nextInt(width - 200);
+            int y = random.nextInt(height - 200);
+            matchstickMenDrawer.drawMan((Canvas) drawingSurface, x, y, R.drawable.baldman);
             int increment = random.nextInt(range - 1) + 1;
             i += increment;
-            sum++;
+            sum += 2;
         }
         ((MatchstickMenBackend) this.backend).setAnswer(sum);
     }

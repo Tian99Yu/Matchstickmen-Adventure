@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LightingColorFilter;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 
 public class MatchstickMenView extends GameView implements MatchstickMenDrawer<Canvas> {
@@ -108,8 +109,11 @@ public class MatchstickMenView extends GameView implements MatchstickMenDrawer<C
     public void drawMan(Canvas drawingSurface, float x, float y, int manResource) {
         Paint paint = new Paint();
         paint.setColorFilter(new LightingColorFilter(0xff000000, 0xffffffff));
-        Bitmap man1 = BitmapFactory.decodeResource(getContext().getResources(), manResource);
-        drawingSurface.drawBitmap(man1, x, y, paint);
+        Bitmap man = BitmapFactory.decodeResource(getContext().getResources(), manResource);
+        Matrix matrix = new Matrix();
+        matrix.postScale(0.25f, 0.25f);
+        Bitmap resizedMan = Bitmap.createBitmap(man, 0, 0, man.getWidth(), man.getHeight(), matrix, true);
+        drawingSurface.drawBitmap(resizedMan, x, y, paint);
     }
 
     /**

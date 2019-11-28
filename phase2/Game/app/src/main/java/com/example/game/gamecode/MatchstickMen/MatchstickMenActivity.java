@@ -105,6 +105,7 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
                 i++;
                 pgBar.setProgress((int) i * 10);
                 timeleft.setText(Float.toString(l / 1000) + "secs");
+                  //TODO: fix progress bar
               }
 
               @Override
