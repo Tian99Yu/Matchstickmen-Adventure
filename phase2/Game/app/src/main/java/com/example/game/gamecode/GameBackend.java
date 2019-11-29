@@ -2,10 +2,12 @@ package com.example.game.gamecode;
 
 import android.graphics.Canvas;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public abstract class GameBackend<T> {
+public abstract class GameBackend<T> implements Iterable<T> {
   protected ArrayList<T> gameObjects = new ArrayList<>();
 
   public abstract void update();
@@ -23,7 +25,10 @@ public abstract class GameBackend<T> {
    */
   public abstract int getCurrentScore();
 
-  public Iterator<T> getGameObjectsIterator() {
+
+  @NonNull
+  @Override
+  public Iterator<T> iterator() {
     return gameObjects.iterator();
   }
 }

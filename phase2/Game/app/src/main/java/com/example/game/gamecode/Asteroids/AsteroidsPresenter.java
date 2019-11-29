@@ -8,7 +8,7 @@ import com.example.game.gamecode.GamePresenter;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class AsteroidsPresenter<T, S> extends GamePresenter<T> {
+public class AsteroidsPresenter<T, S> extends GamePresenter<T, AsteroidGameObject> {
   /** A mapping between game objects classes and the color of that game object. */
   private HashMap<Class<? extends AsteroidGameObject>, ColoredSprite<S>> classToColoredSprite;
   /** The AsteroidsDrawer that handles drawing for the asteroids game. */
@@ -16,7 +16,7 @@ public class AsteroidsPresenter<T, S> extends GamePresenter<T> {
 
   AsteroidsPresenter(
       AsteroidsDrawer<T, S> asteroidsDrawer,
-      GameBackend backend,
+      GameBackend<AsteroidGameObject> backend,
       HashMap<Class<? extends AsteroidGameObject>, ColoredSprite<S>> classToColoredSprite) {
     super(backend);
     this.asteroidsDrawer = asteroidsDrawer;
@@ -43,20 +43,34 @@ public class AsteroidsPresenter<T, S> extends GamePresenter<T> {
         0,
         24 * asteroidsDrawer.getDensity(),
         2);
-    for (Iterator<AsteroidGameObject> gameObjectIterator = backend.getGameObjectsIterator();
-        gameObjectIterator.hasNext(); ) {
-      AsteroidGameObject asteroidGameObject = gameObjectIterator.next();
+//    for (Iterator<AsteroidGameObject> gameObjectIterator = backend.getGameObjectsIterator();
+//        gameObjectIterator.hasNext(); ) {
+//      AsteroidGameObject asteroidGameObject = gameObjectIterator.next();
+//      ColoredSprite<S> coloredSprite = classToColoredSprite.get(asteroidGameObject.getClass());
+//      if (coloredSprite != null) {
+//        asteroidsDrawer.drawSprite(
+//            drawingSurface,
+//            coloredSprite.getSprite(),
+//            coloredSprite.getColor(),
+//            asteroidGameObject.x,
+//            asteroidGameObject.y,
+//            asteroidGameObject.getAngle(),
+//            asteroidGameObject.collisionRadius * 2,
+//            asteroidGameObject.collisionRadius * 2);
+//      }
+//    }
+    for (AsteroidGameObject asteroidGameObject: backend) {
       ColoredSprite<S> coloredSprite = classToColoredSprite.get(asteroidGameObject.getClass());
       if (coloredSprite != null) {
         asteroidsDrawer.drawSprite(
-            drawingSurface,
-            coloredSprite.getSprite(),
-            coloredSprite.getColor(),
-            asteroidGameObject.x,
-            asteroidGameObject.y,
-            asteroidGameObject.getAngle(),
-            asteroidGameObject.collisionRadius * 2,
-            asteroidGameObject.collisionRadius * 2);
+                drawingSurface,
+                coloredSprite.getSprite(),
+                coloredSprite.getColor(),
+                asteroidGameObject.x,
+                asteroidGameObject.y,
+                asteroidGameObject.getAngle(),
+                asteroidGameObject.collisionRadius * 2,
+                asteroidGameObject.collisionRadius * 2);
       }
     }
   }

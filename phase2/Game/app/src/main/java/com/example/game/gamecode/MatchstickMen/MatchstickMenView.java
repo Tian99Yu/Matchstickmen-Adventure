@@ -14,7 +14,7 @@ import android.graphics.LightingColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 
-public class MatchstickMenView extends GameView implements MatchstickMenDrawer<Canvas> {
+public class MatchstickMenView extends GameView<MatchstickMenObject> implements MatchstickMenDrawer<Canvas> {
     //    private MatchstickMenActivity matchstickMenActivity;
     private int color;
     private String character;

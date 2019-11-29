@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <include
+        android:id="@+id/matchstickManSurface"
         layout="@layout/canvas_matches"
         android:layout_width="0dp"
         android:layout_height="0dp"

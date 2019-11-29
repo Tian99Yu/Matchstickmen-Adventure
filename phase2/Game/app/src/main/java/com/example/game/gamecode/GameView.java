@@ -15,11 +15,11 @@ import android.widget.ImageButton;
 
 import java.util.HashMap;
 
-public abstract class GameView extends SurfaceView implements SurfaceHolder.Callback {
+public abstract class GameView<K> extends SurfaceView implements SurfaceHolder.Callback {
   protected GameThread thread;
   public GameBackend gameBackend;
   private ImageButton pauseButton;
-  private GamePresenter<Canvas> presenter;
+  private GamePresenter<Canvas, K> presenter;
 
   public GameView(Context context) {
     super(context);
@@ -93,11 +93,11 @@ public abstract class GameView extends SurfaceView implements SurfaceHolder.Call
     return thread.isPaused();
   }
 
-  public void setPresenter(GamePresenter<Canvas> presenter) {
+  public void setPresenter(GamePresenter<Canvas, K> presenter) {
     this.presenter = presenter;
   }
 
-  public GamePresenter<Canvas> getPresenter() {
+  public GamePresenter<Canvas, K> getPresenter() {
     return presenter;
   }
 }

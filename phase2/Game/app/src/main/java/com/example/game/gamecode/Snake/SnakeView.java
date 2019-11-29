@@ -9,7 +9,7 @@ import com.example.game.gamecode.GameThread;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.Saver;
 
-public class SnakeView extends GameView implements SnakeDrawer<Canvas> {
+public class SnakeView extends GameView<SnakeObject> implements SnakeDrawer<Canvas> {
   /** The background color this view. */
   private int backgroundColor = Color.WHITE;
 

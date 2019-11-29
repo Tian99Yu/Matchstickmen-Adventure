@@ -13,7 +13,7 @@ import java.util.Iterator;
  *
  * @param <T> the surface that the snake game will be presented on
  */
-public class SnakePresenter<T> extends GamePresenter<T> {
+public class SnakePresenter<T> extends GamePresenter<T, SnakeObject> {
   /** The SnakeDrawer that handles drawing for the snake game. */
   private SnakeDrawer<T> snakeDrawer;
 
@@ -35,7 +35,7 @@ public class SnakePresenter<T> extends GamePresenter<T> {
    * @param snakeDrawer the surface to be drawn on
    * @param backend the game backend of the game to be presented.
    */
-  SnakePresenter(SnakeDrawer<T> snakeDrawer, GameBackend backend) {
+  SnakePresenter(SnakeDrawer<T> snakeDrawer, GameBackend<SnakeObject> backend) {
     super(backend);
     this.snakeDrawer = snakeDrawer;
 
@@ -119,13 +119,19 @@ public class SnakePresenter<T> extends GamePresenter<T> {
 
     snakeDrawer.drawBackground(drawingSurface);
 
-    Iterator<SnakeObject> gameObjectIterator = snakeBackend.getGameObjectsIterator();
-    while (gameObjectIterator.hasNext()) {
-      SnakeObject gameObject = gameObjectIterator.next();
-      if (gameObject != null) {
-        drawSnakeObject(gameObject, drawingSurface);
+    for (SnakeObject snakeObject: backend) {
+        if (snakeObject != null) {
+          drawSnakeObject(snakeObject, drawingSurface);
+        }
       }
-    }
+
+//    Iterator<SnakeObject> gameObjectIterator = snakeBackend.getGameObjectsIterator();
+//    while (gameObjectIterator.hasNext()) {
+//      SnakeObject gameObject = gameObjectIterator.next();
+//      if (gameObject != null) {
+//        drawSnakeObject(gameObject, drawingSurface);
+//      }
+//    }
   }
 
   /**

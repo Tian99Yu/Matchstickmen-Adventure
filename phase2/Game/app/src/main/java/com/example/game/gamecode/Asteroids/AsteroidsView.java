@@ -18,7 +18,7 @@ import com.example.game.leaderboardcode.Saver;
 
 import java.util.HashMap;
 
-class AsteroidsView extends GameView implements AsteroidsDrawer<Canvas, Bitmap> {
+class AsteroidsView extends GameView<AsteroidGameObject> implements AsteroidsDrawer<Canvas, Bitmap> {
   private float density;
 
   public AsteroidsView(Context context, int playAreaWidth, int playAreaHeight) {

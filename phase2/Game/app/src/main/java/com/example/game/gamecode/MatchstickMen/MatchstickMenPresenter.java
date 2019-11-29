@@ -10,7 +10,7 @@ import com.example.game.gamecode.GamePresenter;
 import java.util.Iterator;
 import java.util.Random;
 
-public class MatchstickMenPresenter<T> extends GamePresenter<T> {
+public class MatchstickMenPresenter<T> extends GamePresenter<T, MatchstickMenObject> {
 
     /**
      * The MatchstickMenDrawer that handles drawing for the matchstick men game.
@@ -82,11 +82,9 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T> {
 
         matchstickMenDrawer.drawBackground(drawingSurface);
 
-        Iterator<MatchstickMenObject> gameObjectIterator = matchstickMenBackend.getGameObjectsIterator();
-        while (gameObjectIterator.hasNext()) {
-            MatchstickMenObject gameObject = gameObjectIterator.next();
-            if (gameObject != null) {
-                drawMatchstickMenObject(gameObject, drawingSurface);
+        for (MatchstickMenObject matchstickMenObject: backend) {
+            if (matchstickMenObject != null) {
+                drawMatchstickMenObject(matchstickMenObject, drawingSurface);
             }
         }
     }

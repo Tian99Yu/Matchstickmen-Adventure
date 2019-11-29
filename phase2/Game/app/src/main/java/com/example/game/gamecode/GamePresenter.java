@@ -1,10 +1,10 @@
 package com.example.game.gamecode;
 
-public abstract class GamePresenter<T> {
+public abstract class GamePresenter<T, K> {
   /** Backend of game being presented. */
-  protected GameBackend backend;
+  protected GameBackend<K> backend;
 
-  public GamePresenter(GameBackend backend) {
+  public GamePresenter(GameBackend<K> backend) {
     this.backend = backend;
   }
 
