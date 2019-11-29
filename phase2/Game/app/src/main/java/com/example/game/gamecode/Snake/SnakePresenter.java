@@ -6,7 +6,6 @@ import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GamePresenter;
 
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * Presenter for a snake game
@@ -28,6 +27,10 @@ public class SnakePresenter<T> extends GamePresenter<T, SnakeObject> {
 
   /** Whether the snake backend is initialized */
   private boolean initialized = false;
+  /**
+   * The customizations of this snake game
+   */
+  private SnakeCustomization snakeCustomization;
 
   /**
    * Constructor for snake presenter
@@ -82,7 +85,6 @@ public class SnakePresenter<T> extends GamePresenter<T, SnakeObject> {
    * @param drawingSurface the surface to be drawn in
    */
   private void drawSnakeObject(SnakeObject snakeObject, T drawingSurface) {
-    SnakeShape shape = snakeObject.getShape();
     int size = snakeObject.size;
     int x = snakeObject.x;
     int y = snakeObject.y;
@@ -91,7 +93,7 @@ public class SnakePresenter<T> extends GamePresenter<T, SnakeObject> {
     if (color == null) {
       color = Color.WHITE;
     }
-    switch (shape) {
+    switch (snakeCustomization.getCharacter()) {
       case CIRCLE:
         float radiusAdjustment = ((float) size) / 2;
         snakeDrawer.drawCircle(
@@ -115,7 +117,6 @@ public class SnakePresenter<T> extends GamePresenter<T, SnakeObject> {
    */
   @Override
   public void draw(T drawingSurface) {
-    SnakeBackend snakeBackend = (SnakeBackend) this.backend;
 
     snakeDrawer.drawBackground(drawingSurface);
 
@@ -124,14 +125,6 @@ public class SnakePresenter<T> extends GamePresenter<T, SnakeObject> {
           drawSnakeObject(snakeObject, drawingSurface);
         }
       }
-
-//    Iterator<SnakeObject> gameObjectIterator = snakeBackend.getGameObjectsIterator();
-//    while (gameObjectIterator.hasNext()) {
-//      SnakeObject gameObject = gameObjectIterator.next();
-//      if (gameObject != null) {
-//        drawSnakeObject(gameObject, drawingSurface);
-//      }
-//    }
   }
 
   /**
@@ -168,5 +161,13 @@ public class SnakePresenter<T> extends GamePresenter<T, SnakeObject> {
    */
   private void setBodyColor(int color) {
     this.snakeColor.put(SnakeObjectType.SNAKE_COMPONENT, color);
+  }
+
+  /**
+   * Set the customization of the game to snake customization
+   * @param snakeCustomization the customization object for this game.
+   */
+  void setSnakeCustomization(SnakeCustomization snakeCustomization) {
+    this.snakeCustomization = snakeCustomization;
   }
 }
