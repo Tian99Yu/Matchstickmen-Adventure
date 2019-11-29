@@ -15,7 +15,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 
 public class MatchstickMenView extends GameView implements MatchstickMenDrawer<Canvas> {
-    private MatchstickMenActivity matchstickMenActivity;
+    //    private MatchstickMenActivity matchstickMenActivity;
     private int color;
     private String character;
     private int level;
@@ -27,16 +27,14 @@ public class MatchstickMenView extends GameView implements MatchstickMenDrawer<C
     private int backgroundColor = Color.BLACK;
 
 
-    public MatchstickMenView(Context context, MatchstickMenActivity matchstickMenActivity) {
+    public MatchstickMenView(Context context) {
         super(context);
         thread = new GameThread(getHolder(), this, null);
         gameBackend = new MatchstickMenBackend(); //change it after you know the size of the canvas
 
 
-        this.matchstickMenActivity = matchstickMenActivity;
-        this.color = matchstickMenActivity.getColor();
-        this.level = matchstickMenActivity.getLevel();
-        this.character = matchstickMenActivity.getCharacter();
+//        this.matchstickMenActivity = matchstickMenActivity;
+
         switch (level){
             case 0:
                 setUpInterval = 10000000;
@@ -52,7 +50,6 @@ public class MatchstickMenView extends GameView implements MatchstickMenDrawer<C
         }
         thread.setUpdateInterval(setUpInterval);
         ((MatchstickMenBackend)this.gameBackend).inject(color, level, character);
-        ((MatchstickMenBackend) gameBackend).createObjects();
 
         setPresenter(new MatchstickMenPresenter<Canvas>(this, this.gameBackend));
 
@@ -74,46 +71,32 @@ public class MatchstickMenView extends GameView implements MatchstickMenDrawer<C
     }
 
     /**
-     * Draw a rectangle on the drawing surface a rectangle determined by left, top, right, and bottom.
-     *
-     * @param drawingSurface the surface to be drawn in
-     * @param left           the x coordinate of the left side of the rectangle
-     * @param top            the y coordinate of the top side of the rectangle
-     * @param right          the x coordinate of the right side of the rectangle
-     * @param bottom         the y coordinate of the bottom side of the rectangle
-     * @param color          the color of the rectangle
+     * Draw the MatchstickMenObject.
+     * @param drawingSurface the surface to be drawn onto
+     * @param man the man to be drawn
      */
     @Override
-    public void drawRect(
-            Canvas drawingSurface, float left, float top, float right, float bottom, int color) {
-        Paint paint = new Paint();
-        paint.setColor(color);
-        drawingSurface.drawRect(left, top, right, bottom, paint);
-    }
+    public void drawMan(Canvas drawingSurface, MatchstickMenObject man) {
 
-    /**
-     * Draw a circle on the drawing surface a circle determined by x, y and radius.
-     *
-     * @param drawingSurface the surface to be drawn in
-     * @param x              the x coordinate of the center of the circle
-     * @param y              the y coordinate of the center of the circle
-     * @param radius         the radius of the circle
-     * @param color          the color of the circle
-     */
-    public void drawCircle(Canvas drawingSurface, float x, float y, float radius, int color) {
-        Paint paint = new Paint();
-        paint.setColor(color);
-        drawingSurface.drawCircle(x, y, radius, paint);
-    }
-
-    public void drawMan(Canvas drawingSurface, float x, float y, int manResource) {
         Paint paint = new Paint();
         paint.setColorFilter(new LightingColorFilter(0xff000000, 0xffffffff));
-        Bitmap man = BitmapFactory.decodeResource(getContext().getResources(), manResource);
+        Bitmap manBmp = BitmapFactory.decodeResource(getContext().getResources(), man.getSourceId());
         Matrix matrix = new Matrix();
         matrix.postScale(0.25f, 0.25f);
-        Bitmap resizedMan = Bitmap.createBitmap(man, 0, 0, man.getWidth(), man.getHeight(), matrix, true);
-        drawingSurface.drawBitmap(resizedMan, x, y, paint);
+        Bitmap resizedMan = Bitmap.createBitmap(manBmp, 0, 0, manBmp.getWidth(), manBmp.getHeight(), matrix, true);
+        drawingSurface.drawBitmap(resizedMan, man.x, man.y, paint);
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
     }
 
     /**

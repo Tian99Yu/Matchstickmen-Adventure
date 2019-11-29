@@ -84,14 +84,24 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
             settingsManager.getSetting("difficulty"),
             settingsManager.getSetting("theme"),
             settingsManager.getSetting("character"));
-    gameView = this.setView();
-    final FrameLayout frameLayout = findViewById(R.id.canvas_matches);
+
+
+      gameView = this.setView();
+      final FrameLayout frameLayout = findViewById(R.id.matchstickManSurface);
     frameLayout.addView(gameView);
+
     // Process the count down display on progressbar and timeleft.
     pgBar = findViewById(R.id.progressBar);
     nextLevel = findViewById(R.id.nextLevel);
     restart = findViewById(R.id.restart);
     timeleft = findViewById(R.id.textTimeleft);
+
+
+      MatchstickMenView matchstickMenView = (MatchstickMenView) gameView;
+      matchstickMenView.setCharacter(character);
+      matchstickMenView.setColor(color);
+      matchstickMenView.setLevel(level);
+
 
     pgBar.setProgress(0);
 
@@ -227,7 +237,7 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
 
   @Override
   protected GameView setView() {
-    return new MatchstickMenView(this, this);
+      return new MatchstickMenView(this);
   }
 
   public int getTotalTime() {

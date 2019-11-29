@@ -23,6 +23,12 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T> {
     private int manColor;
 
     /**
+     * Whether the game backend is initialized
+     */
+    private boolean initialized = false;
+
+
+    /**
      * Constructor for matchstick men presenter
      *
      * @param matchstickMenDrawer the surface to be drawn on
@@ -38,48 +44,31 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T> {
      * Update and refresh the game status.
      */
     void update() {
-        (this.backend).update();
+        if (initialized) {
+            (this.backend).update();
+        } else {
+            int height = matchstickMenDrawer.getHeight();
+            int width = matchstickMenDrawer.getWidth();
+
+            MatchstickMenBackend matchstickMenBackend = (MatchstickMenBackend) backend;
+            matchstickMenBackend.setGridHeight(height);
+            matchstickMenBackend.setGridWidth(width);
+
+            matchstickMenBackend.createObjects();
+
+            this.initialized = true;
+        }
     }
 
     /**
-     * Randomly draw the characters on the drawing surface and record the number of characters drawn.
+     * Draw the man objects on the drawing surface.
      *
      * @param manObject      the man object that is going to be drawn
      * @param drawingSurface the surface to be drawn in
      */
     private void drawMatchstickMenObject(MatchstickMenObject manObject, T drawingSurface) {
-        MatchstickMenType manType = manObject.getManType();
-
-        Random random = new Random();
-        int height = matchstickMenDrawer.getHeight();
-        int width = matchstickMenDrawer.getWidth();
-        int range = random.nextInt((int) width * height);
-
-        int i = 0;
-        int sum = 0;
-        while (i < range) {
-            if (manType == MatchstickMenType.HAPPY_MAN) {
-                int x = random.nextInt(width - 200);
-                int y = random.nextInt(height - 200);
-//                matchstickMenDrawer.drawRect(drawingSurface, x, y, x + 100, y + 100, manColor);
-                matchstickMenDrawer.drawMan((Canvas) drawingSurface, x, y, R.drawable.happyman);
-            } else if (manType == MatchstickMenType.EXCITED_MAN) {
-//                int x = random.nextInt(width - 100 + 1) + 50;
-//                int y = random.nextInt(height - 100 + 1) + 50;
-//                matchstickMenDrawer.drawCircle(drawingSurface, x, y, 50, manColor);
-
-                int x = random.nextInt(width - 200);
-                int y = random.nextInt(height - 200);
-                matchstickMenDrawer.drawMan((Canvas) drawingSurface, x, y, R.drawable.excitedman);
-            }
-            int x = random.nextInt(width - 200);
-            int y = random.nextInt(height - 200);
-            matchstickMenDrawer.drawMan((Canvas) drawingSurface, x, y, R.drawable.baldman);
-            int increment = random.nextInt(range - 1) + 1;
-            i += increment;
-            sum += 2;
-        }
-        ((MatchstickMenBackend) this.backend).setAnswer(sum);
+        matchstickMenDrawer.drawMan(drawingSurface, manObject);
+        ((MatchstickMenBackend) this.backend).setAnswer();
     }
 
     /**

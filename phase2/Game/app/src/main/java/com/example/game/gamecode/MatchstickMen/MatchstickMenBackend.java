@@ -1,8 +1,12 @@
 package com.example.game.gamecode.MatchstickMen;
 
+import android.graphics.Canvas;
+
+import com.example.game.R;
 import com.example.game.gamecode.GameBackend;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
 
@@ -36,6 +40,16 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   /** A flag showing if the gameBackend is over. */
   private boolean over;
 
+    /**
+     * The width of matchstick men.
+     */
+    private int gridWidth;
+
+    /**
+     * The height of matchstick men.
+     */
+    private int gridHeight;
+
   /**
    * Gets the count of this game.
    *
@@ -57,11 +71,10 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
 
   /**
    * Sets the answer.
-   *
-   * @param answer the answer of this game
    */
-  public void setAnswer(int answer) {
-    this.answer = answer;
+  public void setAnswer() {
+//    this.answer = answer;
+      this.answer = getGameObjects().size();
   }
 
   /**
@@ -120,10 +133,42 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
 
   /** Constructor for MatchStickMenBackend. */
   MatchstickMenBackend() {
-    this.answer = 0;
-    this.over = false;
-    gameObjects = new ArrayList<>();
+      this.answer = 0;
+      this.over = false;
+      gameObjects = new ArrayList<>();
   }
+
+    /**
+     * Another constructor for MatchstickMenBackend.
+     *
+     * @param height the height of the drawing surface
+     * @param width  the width of the drawing surface
+     */
+    MatchstickMenBackend(int height, int width) {
+        this.answer = 0;
+        this.over = false;
+        gameObjects = new ArrayList<>();
+        this.gridWidth = width;
+        this.gridHeight = height;
+    }
+
+    /**
+     * Set the grid height to grid height
+     *
+     * @param gridHeight the grid height of this backend.
+     */
+    public void setGridHeight(int gridHeight) {
+        this.gridHeight = gridHeight;
+    }
+
+    /**
+     * Set the grid width to the grid width
+     *
+     * @param gridWidth the grid width of this backend.
+     */
+    public void setGridWidth(int gridWidth) {
+        this.gridWidth = gridWidth;
+    }
 
   /**
    * Compare the input string to the answer of this game.
@@ -132,18 +177,41 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
    * @return the boolean result of the comparison
    */
   public boolean compare(String r) {
-    return r.equals(Integer.toString(getAnswer()));
+      return r.equals(Integer.toString(getAnswer()));
   }
 
-  /** Update and refresh the game status. */
+    /**
+     * Update and refresh the game status.
+     */
   @Override
   public void update() {}
 
   /** Initialize and create all the objects when stating the game */
   void createObjects() {
-    gameObjects.add(new MatchstickMenObject(1, 1, MatchstickMenType.HAPPY_MAN));
+      Random random = new Random();
+      int range = random.nextInt((int) gridHeight * gridWidth);
+
+      int i = 0;
+      int sum = 0;
+      while (i < range) {
+          int happyX = random.nextInt(gridWidth - 200);
+          int happyY = random.nextInt(gridHeight - 200);
+          MatchstickMenObject happyMan = new MatchstickMenObject(happyX, happyY, MatchstickMenType.HAPPY_MAN);
+          happyMan.setSourceId(R.drawable.happyman);
+          //should i set mantype here also or set in the initializer??????????
+          addMatchstickMenObj(happyMan);
+          // TODO: add excited man, make customizations
+
+          int baldX = random.nextInt(gridWidth - 200);
+          int baldY = random.nextInt(gridHeight - 200);
+          MatchstickMenObject baldMan = new MatchstickMenObject(baldX, baldY, MatchstickMenType.BALD_MAN);
+          baldMan.setSourceId(R.drawable.baldman);
+          addMatchstickMenObj(baldMan);
+
+          int increment = random.nextInt(range - 1) + 1;
+          i += increment;
+      }
   }
-  //TODO: change the last parameter
 
   public void inject(int color, int level, String character) {
     this.color = color;
