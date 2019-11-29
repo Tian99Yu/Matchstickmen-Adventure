@@ -30,6 +30,7 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    System.out.println("dsa");
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main_menu_screen);
 
