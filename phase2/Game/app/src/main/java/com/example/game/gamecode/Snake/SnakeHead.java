@@ -1,8 +1,13 @@
 package com.example.game.gamecode.Snake;
 
+import java.util.HashMap;
+
 public class SnakeHead extends SnakeComponent {
   /** whether this snake is alive/ whether the gameBackend is still running */
   private boolean isDead = false;
+
+
+  private HashMap<Direction, DirectionChanger> directionAllocator;
 
   /**
    * Constructs a new snake head.
@@ -15,41 +20,14 @@ public class SnakeHead extends SnakeComponent {
   SnakeHead(int x, int y, int size, SnakeShape shape) {
     super(x, y, size, shape);
     setType(SnakeObjectType.SNAKE_HEAD);
+    createDirectionAllocator();
   }
 
   /** turn this snake left. */
   void turn(TurnDirection turnDirection) {
-    switch (turnDirection) {
-      case LEFT:
-        switch (this.direction) {
-          case LEFT:
-            this.direction = Direction.DOWN;
-            break;
-          case UP:
-            this.direction = Direction.LEFT;
-            break;
-          case DOWN:
-            this.direction = Direction.RIGHT;
-            break;
-          case RIGHT:
-            this.direction = Direction.UP;
-        }
-        break;
-      case RIGHT:
-        switch (this.direction) {
-          case LEFT:
-            this.direction = Direction.UP;
-            break;
-          case UP:
-            this.direction = Direction.RIGHT;
-            break;
-          case DOWN:
-            this.direction = Direction.LEFT;
-            break;
-          case RIGHT:
-            this.direction = Direction.DOWN;
-        }
-        break;
+    DirectionChanger directionChanger = directionAllocator.get(this.direction);
+    if (directionChanger != null) {
+      this.direction = directionChanger.getDirection(turnDirection);
     }
   }
 
@@ -67,5 +45,17 @@ public class SnakeHead extends SnakeComponent {
   /** Mark this snake is dead */
   void setDead() {
     this.isDead = true;
+  }
+
+  /**
+   * Generate and store direction changers to this.directionChangers.
+   */
+  private void createDirectionAllocator() {
+    HashMap<Direction, DirectionChanger> directionAllocator = new HashMap<>();
+    directionAllocator.put(Direction.UP, new DirectionChanger(Direction.LEFT, Direction.RIGHT));
+    directionAllocator.put(Direction.DOWN, new DirectionChanger(Direction.RIGHT, Direction.LEFT));
+    directionAllocator.put(Direction.LEFT, new DirectionChanger(Direction.DOWN, Direction.UP));
+    directionAllocator.put(Direction.RIGHT, new DirectionChanger(Direction.UP, Direction.DOWN));
+    this.directionAllocator = directionAllocator;
   }
 }

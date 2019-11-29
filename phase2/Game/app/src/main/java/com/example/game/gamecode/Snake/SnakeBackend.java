@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import com.example.game.gamecode.GameBackend;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Random;
 
 /** A back end that is responsible for managing all of the snake objects. */
@@ -35,6 +37,7 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
   private SnakeShape shape = SnakeShape.CIRCLE;
 
   private ArrayList<MysteryObject> mysteryObjects;
+
 
   /** Create an uninitialized empty snake backend */
   SnakeBackend() {
