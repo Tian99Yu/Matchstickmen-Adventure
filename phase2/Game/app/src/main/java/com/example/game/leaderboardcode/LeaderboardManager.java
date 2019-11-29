@@ -130,8 +130,8 @@ public class LeaderboardManager implements Serializable {
         }
       }
     });
-    String[] stat = new String[2];
     for (int i = 0; i < Math.min(gameData.size(), 10); i++) {
+      String[] stat = new String[2];
       stat[0] = gameData.get(i).get("username").toString().replaceAll("\"", "");
       String value;
       if (game == Games.ASTEROIDS) {
