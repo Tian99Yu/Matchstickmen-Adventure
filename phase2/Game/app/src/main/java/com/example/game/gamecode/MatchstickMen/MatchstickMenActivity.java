@@ -94,24 +94,28 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
     pgBar.setProgress(0);
 
     // Count down and display the time left in the textbar on the upper right corner
-    int totalTime = getTotalTime();
+    final int totalTime = getTotalTime();
 
     final CountDownTimer timer =
             new CountDownTimer(totalTime * 1000, 1000) {
               int i = 0;
-
               @Override
               public void onTick(long l) {
-                i++;
-                pgBar.setProgress((int) i * 10);
+                i += (int) (100/totalTime);
+
                 timeleft.setText(Float.toString(l / 1000) + "secs");
-                  //TODO: fix progress bar
+                if (l < 1000){
+                  pgBar.setProgress(100);
+                }
+                else
+                {
+                  pgBar.setProgress(i, true);
+                }
               }
 
               @Override
               public void onFinish() {
                 timeleft.setText("Time's up!");
-                i++;
                 pgBar.setProgress(100);
                 ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
                 if (!saved) {

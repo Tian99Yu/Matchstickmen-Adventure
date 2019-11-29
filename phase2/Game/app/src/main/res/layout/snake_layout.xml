@@ -42,7 +42,7 @@
             app:layout_constraintGuide_percent="0.20" />
 
         <Button
-            android:id="@+id/LeftButton"
+            android:id="@+id/leftButton"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -56,7 +56,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/RightButton"
+            android:id="@+id/rightButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:backgroundTint="#4CAF50"

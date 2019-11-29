@@ -12,16 +12,16 @@ import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.leaderboardcode.Saver;
-import com.example.game.settingscode.Customizable;
 import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
 /** Activity for snake game. */
 public class SnakeActivity extends GameActivity implements Saver, CustomizableGame {
   /** The button responsible for turning left */
-  Button LeftButton;
+  Button leftButton;
   /** the button responsible for turning right */
-  Button RightButton;
+  Button rightButton;
+
 
   /**
    * Initialize this activity
@@ -38,8 +38,8 @@ public class SnakeActivity extends GameActivity implements Saver, CustomizableGa
 
     setContentView(R.layout.snake_layout);
 
-    LeftButton = findViewById(R.id.LeftButton);
-    RightButton = findViewById(R.id.RightButton);
+    leftButton = findViewById(R.id.leftButton);
+    rightButton = findViewById(R.id.rightButton);
 
     // add the gameview as a second layout:
     gameView = this.setView();
@@ -59,7 +59,7 @@ public class SnakeActivity extends GameActivity implements Saver, CustomizableGa
           }
         };
 
-    LeftButton.setOnClickListener(leftListener);
+    leftButton.setOnClickListener(leftListener);
 
     View.OnClickListener rightListener =
         new View.OnClickListener() {
@@ -69,7 +69,7 @@ public class SnakeActivity extends GameActivity implements Saver, CustomizableGa
           }
         };
 
-    RightButton.setOnClickListener(rightListener);
+    rightButton.setOnClickListener(rightListener);
   }
 
   /** Pause this activity. */

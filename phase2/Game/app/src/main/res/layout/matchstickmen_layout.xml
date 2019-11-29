@@ -43,6 +43,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="33dp"
         android:background="@color/black_overlay"
+        android:indeterminate="false"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintRight_toLeftOf="@id/textTimeleft"
         app:layout_constraintStart_toStartOf="parent"
