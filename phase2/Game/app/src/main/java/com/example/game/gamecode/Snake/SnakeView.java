@@ -10,8 +10,10 @@ import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.Saver;
 
 public class SnakeView extends GameView<SnakeObject> implements SnakeDrawer<Canvas> {
-  /** The background color this view. */
-  private int backgroundColor = Color.WHITE;
+  /**
+   * The customizations of this snake game
+   */
+  SnakeCustomization snakeCustomization;
 
   /**
    * Constructor for snake view.
@@ -71,22 +73,13 @@ public class SnakeView extends GameView<SnakeObject> implements SnakeDrawer<Canv
   }
 
   /**
-   * Set the background color of the game
-   *
-   * @param background the background color of the game
-   */
-  public void setBackground(int background) {
-    this.backgroundColor = background;
-  }
-
-  /**
    * Draw the background of this game on canvas.
    *
    * @param drawingSurface the canvas that the game in running on.
    */
   public void drawBackground(Canvas drawingSurface) {
     Paint paint = new Paint();
-    paint.setColor(backgroundColor);
+    paint.setColor(this.snakeCustomization.getTheme());
     paint.setStyle(Paint.Style.FILL);
     drawingSurface.drawPaint(paint);
   }
@@ -122,5 +115,15 @@ public class SnakeView extends GameView<SnakeObject> implements SnakeDrawer<Canv
     Paint paint = new Paint();
     paint.setColor(color);
     drawingSurface.drawCircle(x, y, radius, paint);
+  }
+
+  /**
+   * Set the customization of the game to snake customization
+   * @param snakeCustomization the customization object for this game.
+   */
+  public void setSnakeCustomization(SnakeCustomization snakeCustomization) {
+    this.snakeCustomization = snakeCustomization;
+    this.setDifficulty(snakeCustomization.getDifficulty());
+    ((SnakePresenter)getPresenter()).setSnakeCustomization(snakeCustomization);
   }
 }

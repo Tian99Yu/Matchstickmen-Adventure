@@ -5,8 +5,6 @@ import androidx.annotation.NonNull;
 import com.example.game.gamecode.GameBackend;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Random;
 
 /** A back end that is responsible for managing all of the snake objects. */
