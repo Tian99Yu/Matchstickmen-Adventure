@@ -19,11 +19,6 @@ public class MatchstickMenObject {
     public int y;
 
     /**
-     * The color of the matchstick man.
-     */
-    private int color;
-
-    /**
      * The character that will appear on the screen.
      */
     private MatchstickMenType manType;

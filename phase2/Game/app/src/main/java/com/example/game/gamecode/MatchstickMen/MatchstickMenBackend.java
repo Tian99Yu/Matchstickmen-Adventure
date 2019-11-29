@@ -13,14 +13,14 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   /** Actual number of matchstick men generated. */
   private int answer;
 
-  /** The color of the character. */
-  private int color;
-
-  /** The level of this game. */
-  private int difficulty;
-
-  /** The character that will appear on the screen. */
-  private String character;
+//  /** The color of the character. */
+//  private int color;
+//
+//  /** The level of this game. */
+//  private int difficulty;
+//
+//  /** The character that will appear on the screen. */
+//  private String character;
 
   /** The time of this game. */
   private int totalTime;
@@ -213,24 +213,24 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
       }
   }
 
-  public void inject(int color, int level, String character) {
-    this.color = color;
-    this.difficulty = level;
-    this.character = character;
-    switch (level) {
-      case 0:
-        totalTime = 30;
-        break;
-      case 1:
-        totalTime = 20;
-        break;
-      case 2:
-        totalTime = 10;
-        break;
-      default:
-        totalTime = 10;
-    }
-  }
+//  public void inject(int color, int level, String character) {
+//    this.color = color;
+//    this.difficulty = level;
+//    this.character = character;
+//    switch (level) {
+//      case 0:
+//        totalTime = 30;
+//        break;
+//      case 1:
+//        totalTime = 20;
+//        break;
+//      case 2:
+//        totalTime = 10;
+//        break;
+//      default:
+//        totalTime = 10;
+//    }
+//  }
 
 
   public void setLevelNum(int levelNum) {

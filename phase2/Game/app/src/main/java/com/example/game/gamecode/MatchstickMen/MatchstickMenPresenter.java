@@ -1,14 +1,8 @@
 package com.example.game.gamecode.MatchstickMen;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-
-import com.example.game.R;
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GamePresenter;
 
-import java.util.Iterator;
-import java.util.Random;
 
 public class MatchstickMenPresenter<T> extends GamePresenter<T, MatchstickMenObject> {
 
@@ -18,14 +12,14 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T, MatchstickMenObj
     private MatchstickMenDrawer<T> matchstickMenDrawer;
 
     /**
-     * The color of the matchstick man.
-     */
-    private int manColor;
-
-    /**
      * Whether the game backend is initialized
      */
     private boolean initialized = false;
+
+    /**
+     * The customizations of this matchstick men game
+     */
+    private MatchstickMenCustomization matchstickMenCustomization;
 
 
     /**
@@ -37,7 +31,6 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T, MatchstickMenObj
     MatchstickMenPresenter(MatchstickMenDrawer<T> matchstickMenDrawer, GameBackend backend) {
         super(backend);
         this.matchstickMenDrawer = matchstickMenDrawer;
-        this.manColor = Color.WHITE;
     }
 
     /**
@@ -78,8 +71,6 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T, MatchstickMenObj
      */
     @Override
     public void draw(T drawingSurface) {
-        MatchstickMenBackend matchstickMenBackend = (MatchstickMenBackend) this.backend;
-
         matchstickMenDrawer.drawBackground(drawingSurface);
 
         for (MatchstickMenObject matchstickMenObject: backend) {
@@ -87,5 +78,13 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T, MatchstickMenObj
                 drawMatchstickMenObject(matchstickMenObject, drawingSurface);
             }
         }
+    }
+
+    /**
+     * Set the customization of the game to matchstick men customization
+     * @param matchstickMenCustomization the customization object for this game.
+     */
+    public void setMatchstickMenCustomization(MatchstickMenCustomization matchstickMenCustomization) {
+        this.matchstickMenCustomization = matchstickMenCustomization;
     }
 }

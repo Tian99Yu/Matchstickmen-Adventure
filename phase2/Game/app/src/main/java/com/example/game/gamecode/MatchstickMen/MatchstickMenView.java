@@ -16,26 +16,22 @@ import android.graphics.Paint;
 
 public class MatchstickMenView extends GameView<MatchstickMenObject> implements MatchstickMenDrawer<Canvas> {
     //    private MatchstickMenActivity matchstickMenActivity;
-    private int color;
-    private String character;
-    private int level;
     private int setUpInterval;
-
     /**
-     * The background color this view.
+     * The customizations of this matchstick men game
      */
-    private int backgroundColor = Color.BLACK;
-
+    MatchstickMenCustomization matchstickMenCustomization;
 
     public MatchstickMenView(Context context) {
         super(context);
         thread = new GameThread(getHolder(), this, null);
         gameBackend = new MatchstickMenBackend(); //change it after you know the size of the canvas
 
+        setPresenter(new MatchstickMenPresenter<Canvas>(this, this.gameBackend));
+    }
 
-//        this.matchstickMenActivity = matchstickMenActivity;
-
-        switch (level){
+    public void setDifficulty() {
+        switch (matchstickMenCustomization.getDifficulty()){
             case 0:
                 setUpInterval = 10000000;
                 break;
@@ -49,12 +45,7 @@ public class MatchstickMenView extends GameView<MatchstickMenObject> implements 
                 setUpInterval = 10000000;
         }
         thread.setUpdateInterval(setUpInterval);
-        ((MatchstickMenBackend)this.gameBackend).inject(color, level, character);
-
-        setPresenter(new MatchstickMenPresenter<Canvas>(this, this.gameBackend));
-
     }
-
 
     /**
      * Draw the background of this game on canvas.
@@ -64,8 +55,7 @@ public class MatchstickMenView extends GameView<MatchstickMenObject> implements 
     @Override
     public void drawBackground(Canvas drawingSurface) {
         Paint paint = new Paint();
-        paint.setColor(backgroundColor);
-        //
+        paint.setColor(matchstickMenCustomization.getTheme());
         paint.setStyle(Paint.Style.FILL);
         drawingSurface.drawPaint(paint);
     }
@@ -87,17 +77,6 @@ public class MatchstickMenView extends GameView<MatchstickMenObject> implements 
         drawingSurface.drawBitmap(resizedMan, man.x, man.y, paint);
     }
 
-    public void setColor(int color) {
-        this.color = color;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public void setCharacter(String character) {
-        this.character = character;
-    }
 
     /**
      * Update this view.
@@ -105,5 +84,14 @@ public class MatchstickMenView extends GameView<MatchstickMenObject> implements 
     @Override
     public void update() {
         ((MatchstickMenPresenter) getPresenter()).update();
+    }
+
+    /**
+     * Set the customization of the game to matchstick men customization
+     * @param matchstickMenCustomization the customization object for this game.
+     */
+    public void setMatchstickMenCustomization(MatchstickMenCustomization matchstickMenCustomization) {
+        this.matchstickMenCustomization = matchstickMenCustomization;
+        ((MatchstickMenPresenter)this.getPresenter()).setMatchstickMenCustomization(matchstickMenCustomization);
     }
 }
