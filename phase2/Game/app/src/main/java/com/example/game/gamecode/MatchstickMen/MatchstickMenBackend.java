@@ -13,7 +13,7 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   private int color;
 
   /** The level of this game. */
-  private int level;
+  private int difficulty;
 
   /** The character that will appear on the screen. */
   private String character;
@@ -23,6 +23,9 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
 
   /** Count from user. (1st statistic) */
   private int count;
+
+  /** the level of the current game */
+  private int levelNum;
 
   /** The score of the user. (2nd statistic) */
   int score;
@@ -144,7 +147,7 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
 
   public void inject(int color, int level, String character) {
     this.color = color;
-    this.level = level;
+    this.difficulty = level;
     this.character = character;
     switch (level) {
       case 0:
@@ -159,6 +162,15 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
       default:
         totalTime = 10;
     }
+  }
+
+
+  public void setLevelNum(int levelNum) {
+    this.levelNum = levelNum;
+  }
+
+  public int getLevelNum() {
+    return levelNum;
   }
 
   /**

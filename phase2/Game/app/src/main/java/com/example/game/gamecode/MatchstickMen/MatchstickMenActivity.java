@@ -60,7 +60,7 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
 
   private ProgressBar pgBar;
   private TextView timeleft, count;
-  private Button btnAdd, btnMinus, btnDone;
+  private Button btnAdd, btnMinus, btnDone, restart, nextLevel;
   private int num = 0;
 
   public int getNum() {
@@ -89,6 +89,8 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
     frameLayout.addView(gameView);
     // Process the count down display on progressbar and timeleft.
     pgBar = findViewById(R.id.progressBar);
+    nextLevel = findViewById(R.id.nextLevel);
+    restart = findViewById(R.id.restart);
     timeleft = findViewById(R.id.textTimeleft);
 
     pgBar.setProgress(0);
@@ -193,7 +195,24 @@ public class MatchstickMenActivity extends GameActivity implements CustomizableG
                 }
               }
             });
+
+    ((MatchstickMenBackend) gameView.gameBackend).setLevelNum(1);
+//to restart the game
+    restart.setOnClickListener(
+            new View.OnClickListener(){
+
+              @Override
+              public void onClick(View view) {
+                finish();
+                startActivity(getIntent());
+              }
+            }
+    );
+
+
   }
+
+
 
   @Override
   public void saveScore() {
