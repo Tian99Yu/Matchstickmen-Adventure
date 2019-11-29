@@ -45,6 +45,11 @@
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".gamecode.MatchstickMen.MatchstickMenActivityDoublePlayer"
+            android:label="MatchstickMenDoublePlayer"
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="portrait" />
+
         <activity android:name=".leaderboardcode.LeaderboardActivity"
             android:label="LeaderboardActivity"
             android:theme="@style/FullscreenTheme"
