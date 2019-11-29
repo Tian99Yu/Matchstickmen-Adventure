@@ -20,7 +20,7 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   private int difficulty;
 
   /** The character that will appear on the screen. */
-  private String character;
+  private MatchstickMenType character = MatchstickMenType.HAPPY_MAN;
 
   /** The time of this game. */
   private int totalTime;
@@ -41,12 +41,12 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   private boolean over;
 
     /**
-     * The width of matchstick men.
+     * The width of the displaying area.
      */
     private int gridWidth;
 
     /**
-     * The height of matchstick men.
+     * The height of displaying area.
      */
     private int gridHeight;
 
@@ -184,7 +184,15 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
      * Update and refresh the game status.
      */
   @Override
-  public void update() {}
+  public void update() {
+//      for
+//      move();
+      for (MatchstickMenObject matchstickMenObject : gameObjects) {
+          if (matchstickMenObject != null) {
+              matchstickMenObject.move();
+          }
+      }
+  }
 
   /** Initialize and create all the objects when stating the game */
   void createObjects() {
@@ -194,18 +202,31 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
       int i = 0;
       int sum = 0;
       while (i < range) {
-          int happyX = random.nextInt(gridWidth - 200);
-          int happyY = random.nextInt(gridHeight - 200);
-          MatchstickMenObject happyMan = new MatchstickMenObject(happyX, happyY, MatchstickMenType.HAPPY_MAN);
-          happyMan.setSourceId(R.drawable.happyman);
-          //should i set mantype here also or set in the initializer??????????
-          addMatchstickMenObj(happyMan);
+          int regularX = random.nextInt(gridWidth - 200);
+          int regularY = random.nextInt(gridHeight - 200);
+          MatchstickMenObject regularMan = null;
+          if (character == MatchstickMenType.HAPPY_MAN) {
+              regularMan =
+                      new RegularManObject(
+                              regularX, regularY, gridWidth, gridHeight, MatchstickMenType.HAPPY_MAN, R.drawable.happyman);
+          } else if (this.character == MatchstickMenType.EXCITED_MAN) {
+              regularMan = new RegularManObject(
+                      regularX, regularY, gridWidth, gridHeight, MatchstickMenType.EXCITED_MAN, R.drawable.excitedman);
+          }
+
+          //          happyMan.setManType(MatchstickMenType.HAPPY_MAN);
+          //          regularMan.setSourceId();
+          // should i set mantype here also or set in the initializer??????????
+          if (regularMan != null) {
+              addMatchstickMenObj(regularMan);
+          }
           // TODO: add excited man, make customizations
 
           int baldX = random.nextInt(gridWidth - 200);
           int baldY = random.nextInt(gridHeight - 200);
-          MatchstickMenObject baldMan = new MatchstickMenObject(baldX, baldY, MatchstickMenType.BALD_MAN);
-          baldMan.setSourceId(R.drawable.baldman);
+          MatchstickMenObject baldMan = new ExtraordinaryManObject(baldX, baldY, gridWidth, gridHeight, MatchstickMenType.BALD_MAN, R.drawable.baldman);
+//          baldMan.setManType(MatchstickMenType.BALD_MAN);
+//          baldMan.setSourceId(R.drawable.baldman);
           addMatchstickMenObj(baldMan);
 
           int increment = random.nextInt(range - 1) + 1;
@@ -213,7 +234,7 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
       }
   }
 
-  public void inject(int color, int level, String character) {
+    public void inject(int color, int level, MatchstickMenType character) {
     this.color = color;
     this.difficulty = level;
     this.character = character;

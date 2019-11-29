@@ -45,7 +45,7 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T, MatchstickMenObj
      */
     void update() {
         if (initialized) {
-            (this.backend).update();
+            backend.update();
         } else {
             int height = matchstickMenDrawer.getHeight();
             int width = matchstickMenDrawer.getWidth();

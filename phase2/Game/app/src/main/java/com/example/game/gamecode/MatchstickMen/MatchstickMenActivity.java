@@ -27,7 +27,7 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity implements
 
   private int level = 0;
   private int color = Color.WHITE;
-  private String character = "circle";
+    private MatchstickMenType character = MatchstickMenType.HAPPY_MAN;
 
   /**
    * Make the customizations.
@@ -55,7 +55,7 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity implements
     return color;
   }
 
-  public String getCharacter() {
+    public MatchstickMenType getCharacter() {
     return character;
   }
 
@@ -278,18 +278,18 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity implements
   @Override
   public void setCharacter(String character) {
     if (character.equals("one")) {
-      this.character = "rect";
+        this.character = MatchstickMenType.HAPPY_MAN;
     } else {
-      this.character = "circle";
+        this.character = MatchstickMenType.EXCITED_MAN;
     }
   }
 
   @Override
   public void setTheme(String theme) {
     if (theme.equals("dark")) {
-      this.color = Color.MAGENTA;
+        this.color = Color.BLACK;
     } else {
-      this.color = Color.WHITE;
+        this.color = Color.DKGRAY;
     }
   }
 

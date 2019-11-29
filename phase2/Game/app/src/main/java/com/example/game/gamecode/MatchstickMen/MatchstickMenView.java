@@ -17,7 +17,7 @@ import android.graphics.Paint;
 public class MatchstickMenView extends GameView<MatchstickMenObject> implements MatchstickMenDrawer<Canvas> {
     //    private MatchstickMenActivity matchstickMenActivity;
     private int color;
-    private String character;
+    private MatchstickMenType character;
     private int level;
     private int setUpInterval;
 
@@ -37,16 +37,16 @@ public class MatchstickMenView extends GameView<MatchstickMenObject> implements 
 
         switch (level){
             case 0:
-                setUpInterval = 10000000;
+                setUpInterval = 10;
                 break;
             case 1:
-                setUpInterval = 7000000;
+                setUpInterval = 7;
                 break;
             case 2:
-                setUpInterval = 5000000;
+                setUpInterval = 5;
                 break;
             default:
-                setUpInterval = 10000000;
+                setUpInterval = 10;
         }
         thread.setUpdateInterval(setUpInterval);
         ((MatchstickMenBackend)this.gameBackend).inject(color, level, character);
@@ -64,7 +64,7 @@ public class MatchstickMenView extends GameView<MatchstickMenObject> implements 
     @Override
     public void drawBackground(Canvas drawingSurface) {
         Paint paint = new Paint();
-        paint.setColor(backgroundColor);
+        paint.setColor(color);
         //
         paint.setStyle(Paint.Style.FILL);
         drawingSurface.drawPaint(paint);
@@ -95,7 +95,7 @@ public class MatchstickMenView extends GameView<MatchstickMenObject> implements 
         this.level = level;
     }
 
-    public void setCharacter(String character) {
+    public void setCharacter(MatchstickMenType character) {
         this.character = character;
     }
 
