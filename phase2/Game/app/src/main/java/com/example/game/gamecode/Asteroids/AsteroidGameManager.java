@@ -22,8 +22,8 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
   private int currentScore;
   /** Number of asteroids destroyed. */
   private int asteroidsDestroyed;
-  /** Number of projectiles fired by player. */
-  private int projectilesFired;
+  /** Number of powerups collected by player. */
+  private int powerupsCollected;
 
   public AsteroidGameManager(int playAreaWidth, int playAreaHeight) {
     this.playAreaWidth = playAreaWidth;
@@ -166,6 +166,9 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
         } else if (asteroidGameObject instanceof Asteroid) {
           currentScore += ((Asteroid) asteroidGameObject).getValue();
           newObjects.addAll(((Asteroid) asteroidGameObject).split(1, this, this));
+          if (asteroidGameObject instanceof  PowerupAsteroid) {
+            powerupsCollected++;
+          }
           asteroidsDestroyed++;
           iter.remove();
         }
@@ -176,9 +179,7 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
 
   /** Adds the recently fired objects into the game. */
   private void attemptFire() {
-    List<Projectile> projectiles = player.attemptFireMainArmament();
-    projectilesFired += projectiles.size();
-    gameObjects.addAll(projectiles);
+    gameObjects.addAll(player.attemptFireMainArmament());
     List<Asteroid> newAsteroids = new ArrayList<>();
     for (AsteroidGameObject asteroidGameObject : gameObjects) {
       if (asteroidGameObject instanceof AsteroidSpawner) {
@@ -223,8 +224,8 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
     return asteroidsDestroyed;
   }
 
-  public int getProjectilesFired() {
-    return projectilesFired;
+  public int getPowerupsCollected() {
+    return powerupsCollected;
   }
 
   public int getLives() {

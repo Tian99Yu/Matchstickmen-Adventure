@@ -30,8 +30,8 @@ public class AsteroidLauncher extends WeaponSystem<Asteroid> {
       double angle = firingAngle + Math.random() * spread - spread / 2;
       newAsteroid.add(
           new Asteroid(
-              x,
-              y,
+              x + 60*Math.cos(angle),
+              y + 60*Math.sin(angle),
               (muzzleVelocity + weaponVelocity) * Math.cos(angle),
               (muzzleVelocity + weaponVelocity) * Math.sin(angle),
               angle,
