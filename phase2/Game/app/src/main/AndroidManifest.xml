@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/FullscreenTheme">
         <activity
-            android:name="com.example.matchstickmenadventures.com.group_0540.matchstickmenadventures.MainMenuScreen"
+            android:name="com.group0540.matchstickmenadventures.MainMenuScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_main_menu_screen"
             android:theme="@style/FullscreenTheme"
@@ -23,44 +23,44 @@
         </activity>
 
         <activity
-            android:name="com.example.matchstickmenadventures.com.group_0540.matchstickmenadventures.gamecode.GameActivity"
+            android:name="com.group0540.matchstickmenadventures.gamecode.GameActivity"
             android:label="GameActivity"
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.example.matchstickmenadventures.com.group_0540.matchstickmenadventures.gamecode.asteroids.AsteroidsActivity"
+            android:name="com.group0540.matchstickmenadventures.gamecode.asteroids.AsteroidsActivity"
             android:label="AsteroidsActivity"
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.example.matchstickmenadventures.com.group_0540.matchstickmenadventures.gamecode.snake.SnakeActivity"
+            android:name="com.group0540.matchstickmenadventures.gamecode.snake.SnakeActivity"
             android:label="SnakeActivity"
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.example.matchstickmenadventures.com.group_0540.matchstickmenadventures.gamecode.matchstickmen.MatchstickMenActivity"
+        <activity android:name="com.group0540.matchstickmenadventures.gamecode.matchstickmen.MatchstickMenActivity"
             android:label="MatchstickMen"
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.example.matchstickmenadventures.com.group_0540.matchstickmenadventures.gamecode.matchstickmen.MatchstickMenActivityDoublePlayer"
+        <activity android:name="com.group0540.matchstickmenadventures.gamecode.matchstickmen.MatchstickMenActivityDoublePlayer"
             android:label="MatchstickMenDoublePlayer"
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.example.matchstickmenadventures.com.group_0540.matchstickmenadventures.leaderboardcode.LeaderboardActivity"
+        <activity android:name="com.group0540.matchstickmenadventures.leaderboardcode.LeaderboardActivity"
             android:label="LeaderboardActivity"
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.example.matchstickmenadventures.com.group_0540.matchstickmenadventures.settingscode.SettingsActivity"
+        <activity android:name="com.group0540.matchstickmenadventures.settingscode.SettingsActivity"
             android:label="SettingsActivity"
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.example.matchstickmenadventures.com.group_0540.matchstickmenadventures.logincode.LoginActivity"
+        <activity android:name="com.group0540.matchstickmenadventures.logincode.LoginActivity"
             android:label="LoginActivity"
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait"/>
