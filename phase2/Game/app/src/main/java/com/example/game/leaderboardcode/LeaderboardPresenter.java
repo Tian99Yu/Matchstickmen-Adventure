@@ -16,8 +16,7 @@ class LeaderboardPresenter {
         leaderboardView.showScores(leaderboardView.getCurrentGame().toString());
     }
 
-    String[] getScoreData(Games game) {
-        String[] ret = leaderboardManager.getGameStatistics(game);
-        return ret;
+    String[][] getScoreData(Games game) {
+        return leaderboardManager.getGameStatistics(game);
     }
 }

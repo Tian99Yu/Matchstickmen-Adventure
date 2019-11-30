@@ -11,12 +11,11 @@ import com.example.game.R;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
-import com.example.game.leaderboardcode.Saver;
 import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
 /** Activity for snake game. */
-public class SnakeActivity extends GameActivity implements Saver, CustomizableGame {
+public class SnakeActivity extends GameActivity implements CustomizableGame {
   /** The button responsible for turning left */
   Button leftButton;
   /** the button responsible for turning right */
@@ -90,9 +89,7 @@ public class SnakeActivity extends GameActivity implements Saver, CustomizableGa
     super.onResume();
   }
 
-  /** Save the score of this game to leader board manager. */
-  @Override
-  public void saveScore() {
+  protected void saveData() {
     String[][] statistic = ((SnakeView) gameView).getStatistics();
     this.leaderboardManager.saveData(Games.SNAKE, this.username, statistic[0], statistic[1]);
   }

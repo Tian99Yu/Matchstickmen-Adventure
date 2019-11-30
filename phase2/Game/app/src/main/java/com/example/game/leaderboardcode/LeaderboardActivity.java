@@ -3,7 +3,9 @@ package com.example.game.leaderboardcode;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -74,16 +76,31 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
     }
 
     public void showScores(String game) {
-        TableLayout.LayoutParams params = new TableLayout.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1);
-        String[] scoreData = leaderboardPresenter.getScoreData(getCurrentGame());
-        for (String data : scoreData) {
+        TableRow.LayoutParams textParams = new TableRow.LayoutParams(
+                0,
+                TableRow.LayoutParams.WRAP_CONTENT,
+                0.5f);
+        TableLayout.LayoutParams rowParams = new TableLayout.LayoutParams(
+                TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT,
+                1f);
+
+        String[][] scoreData = leaderboardPresenter.getScoreData(getCurrentGame());
+        scoreTable.removeAllViews();
+        for (String[] data : scoreData) {
           TableRow row = new TableRow(this);
-          row.setLayoutParams(params);
-          row.setWeightSum((float) 0.5);
-          TextView temp = new TextView(this);
-          temp.setText(data);
-          row.addView(temp);
+          row.setLayoutParams(rowParams);
+          TextView nameView = new TextView(this);
+          TextView scoreView = new TextView(this);
+          nameView.setText(data[0]);
+          nameView.setTextSize(24f);
+          nameView.setLayoutParams(textParams);
+          scoreView.setText(data[1]);
+          scoreView.setTextSize(24f);
+          scoreView.setLayoutParams(textParams);
+          scoreView.setGravity(Gravity.END);
+          row.addView(nameView);
+          row.addView(scoreView);
           scoreTable.addView(row);
         }
     }

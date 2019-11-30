@@ -42,9 +42,17 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
 
     InputStream defaultSettingsStream = getResources().openRawResource(R.raw.defaultsettings);
 
-    username = usernameField.getText().toString();
-    leaderboardManager = new LeaderboardManager(getDataDir());
-    settingsManager = new SettingsManager(getDataDir(), defaultSettingsStream);
+    Intent intent = getIntent();
+    if (intent.getExtras() == null) {
+      username = usernameField.getText().toString();
+      leaderboardManager = new LeaderboardManager(getDataDir());
+      settingsManager = new SettingsManager(getDataDir(), defaultSettingsStream);
+    } else {
+      username = (String) intent.getSerializableExtra("username");
+      usernameField.setText(username);
+      settingsManager = (SettingsManager) intent.getSerializableExtra("settingsManager");
+      leaderboardManager = (LeaderboardManager) intent.getSerializableExtra("leaderboardManager");
+    }
 
     setTheme(settingsManager.getSetting("theme"));
 
