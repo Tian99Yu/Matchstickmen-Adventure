@@ -127,15 +127,15 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
     public CountDownTimer setTimers(final ProgressBar pgBar, final TextView timeleft) {
         final int totalTime = getTotalTime();
 
-        CountDownTimer timer =
+        return
                 new CountDownTimer(totalTime * 1000, 1000) {
                     int i = 0;
 
                     @Override
                     public void onTick(long l) {
                         i += (int) (100 / totalTime);
-
-                        timeleft.setText(Float.toString(l / 1000) + "secs");
+                        String strTimeLeft = Float.toString(l / 1000) + "secs";
+                        timeleft.setText(strTimeLeft);
                         if (l < 1000) {
                             pgBar.setProgress(100);
                         } else {
@@ -145,7 +145,7 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
 
                     @Override
                     public void onFinish() {
-                        timeleft.setText("Time's up!");
+                        timeleft.setText(R.string.timeUp);
                         pgBar.setProgress(100);
                         ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
                         if (!saved) {
@@ -161,7 +161,7 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
                     }
                 };
 
-        return timer;
+//        return timer;
     }
 
     abstract void setOnclickListeners();
