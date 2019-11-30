@@ -23,183 +23,191 @@ import com.example.game.settingscode.SettingsManager;
 import java.util.ArrayList;
 
 public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivity
-    implements CustomizableGame, Saver {
-  /** A flag recording whether the data of this game is saved. */
-  private boolean saved = false;
-
-  private int level = 0;
-  private int color = Color.WHITE;
-  private String character = "circle";
-  private CountDownTimer timer;
-
-  /** The customizations of this matchstick men game */
-  MatchstickMenCustomization matchstickMenCustomization = new MatchstickMenCustomization();
-
-  /**
-   * Make the customizations.
-   *
-   * @param level the level of this game
-   * @param theme the theme of this game
-   * @param character the character that will be shown on the screen
-   */
-  public void customization(String level, String theme, String character) {
-
-    setDifficulty(level);
-    setTheme(theme);
-    setCharacter(character);
-  }
+        implements CustomizableGame, Saver {
+    /**
+     * A flag recording whether the data of this game is saved.
+     */
+    private boolean saved = false;
 
 
-  //    private ProgressBar pgBar;
-  private TextView count1, count2;
-  private Button addP1, addP2, minusP1, minusP2, restart, singlePlayer, btnDone;
-  private int num1 = 0;
-  private int num2 = 0;
+    /**
+     * Make the customizations.
+     *
+     * @param level     the level of this game
+     * @param theme     the theme of this game
+     * @param character the character that will be shown on the screen
+     */
+    public void customization(String level, String theme, String character) {
 
-  public int getNum2() {
-    return num2;
-  }
-
-  public void setNum2(int num2) {
-    this.num2 = num2;
-  }
-
-  public int getNum1() {
-    return num1;
-  }
-
-  public void setNum1(int num) {
-    this.num1 = num;
-  }
-
-  protected void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.matchstickmen_double_layout);
-
-    loginManager = (LoginManager) getIntent().getSerializableExtra("loginManager");
-    settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
-    leaderboardManager =
-        (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
-
-    customization(
-        settingsManager.getSetting("difficulty"),
-        settingsManager.getSetting("theme"),
-        settingsManager.getSetting("character"));
-
-    gameView = this.setView();
-    final FrameLayout frameLayout = findViewById(R.id.matchstickManSurface);
-    frameLayout.addView(gameView);
-    MatchstickMenView matchstickMenView = ((MatchstickMenView) gameView);
-    matchstickMenView.setMatchstickMenCustomization(matchstickMenCustomization);
-    matchstickMenView.setDifficulty();
-
-    setButtons();
-    setOnclickListeners();
-
-    pgBar.setProgress(0);
-
-    // Count down and display the time left in the textbar on the upper right corner
-    timer = setTimers(pgBar, timeleft);
-    timer.start();
-    setCount();
-
-    restart.setOnClickListener(
-        new View.OnClickListener() {
-
-          @Override
-          public void onClick(View view) {
-            finish();
-            startActivity(getIntent());
-          }
-        });
-  }
-
-  @Override
-  protected void saveData() {
-    if (!saved) {
-      String[] stats = {"Count", "Score", "Time"};
-      String[] values = {
-        String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCount()),
-        String.valueOf((gameView.gameBackend).getCurrentScore()),
-        String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed())
-      };
+        setDifficulty(level);
+        setTheme(theme);
+        setCharacter(character);
     }
-  }
 
-  @Override
-  protected GameView setView() {
-    return new MatchstickMenView(this);
-  }
 
-  public int getTotalTime() {
-    int totalTime;
-    switch (matchstickMenCustomization.getDifficulty()) {
-      case 0:
-        totalTime = 10;
-        break;
-      case 1:
-        totalTime = 7;
-        break;
-      case 2:
-        totalTime = 5;
-        break;
-      default:
-        totalTime = 10;
+    /**
+     * shows player one how many matchStickMen he has counted
+     */
+    private TextView count1;
+    /**
+     * shows player two how many matchstickMen he has counted
+     */
+    private TextView count2;
+    /**
+     * the add button for player one to add one more matchstickMen
+     */
+    private Button addP1;
+    /**
+     * the add button for player two to add one more matchstickmen
+     */
+    private Button addP2;
+    /**
+     * the minus button for player one to substract one from the number of matchstickmen he has counted
+     */
+    private Button minusP1;
+    /**
+     * the minus button for player two to substract one from the number of matchstickmen he has counted
+     */
+    private Button minusP2;
+    /**
+     * the restart Button for the game
+     */
+    private Button restart;
+    /**
+     * the single player button, press to go to the single player mode
+     */
+    private Button singlePlayer;
+    /**
+     * the done buttone, press to check your answer before time is up
+     */
+    private Button btnDone;
+    /**
+     * the number of matchstickmen player one has counted
+     */
+    private int num1 = 0;
+    /**
+     * the number of matchstickmen player two has counted
+     */
+    private int num2 = 0;
+
+    /**
+     * getter for variabel num2
+     *
+     * @return the number of matchstickmen player2 has counted
+     */
+    public int getNum2() {
+        return num2;
     }
-    ;
-    return totalTime;
-  }
 
-  @Override
-  public void setDifficulty(String difficulty) {
-    this.matchstickMenCustomization.setDifficulty(difficulty);
-  }
+    /**
+     * setter for variable num2
+     *
+     * @param num2 the number of matchstickmen player2 has counted
+     */
+    public void setNum2(int num2) {
+        this.num2 = num2;
+    }
 
-  @Override
-  public void setCharacter(String character) {
-    this.matchstickMenCustomization.setCharacter(character);
-  }
+    /**
+     * getter for variable num1
+     *
+     * @return the number of matchstickmen player 1 has counted
+     */
+    public int getNum1() {
+        return num1;
+    }
 
-  @Override
-  public void setTheme(String theme) {
-    this.matchstickMenCustomization.setTheme(theme);
-  }
+    /**
+     * setter for variable num1
+     *
+     * @param num the number of matchstickmen player 1 has counted
+     */
+    public void setNum1(int num) {
+        this.num1 = num;
+    }
 
-  @Override
-  void setButtons() {
+    /**
+     * create the view, (the entire game actually)
+     *
+     * @param savedInstanceState
+     */
 
-    // the buttons for the activity
-    pgBar = findViewById(R.id.progressBarDouble);
-    singlePlayer = findViewById(R.id.singlePlayer);
-    restart = findViewById(R.id.restartDouble);
-    timeleft = findViewById(R.id.textTimeleftDouble);
-    addP1 = findViewById(R.id.addP1);
-    addP2 = findViewById(R.id.addP2);
-    minusP1 = findViewById(R.id.minusP1);
-    minusP2 = findViewById(R.id.minusP2);
-    btnDone = findViewById(R.id.doneDouble);
-    // the TextView
-    count1 = findViewById(R.id.countP1);
-    count2 = findViewById(R.id.countP2);
-  }
+    protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.matchstickmen_double_layout);
 
-  @Override
-  void setOnclickListeners() {
+        loginManager = (LoginManager) getIntent().getSerializableExtra("loginManager");
+        settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
+        leaderboardManager =
+                (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
 
-    addP1.setOnClickListener(
-        new View.OnClickListener() {
-          int i = getNum1();
+        customization(
+                settingsManager.getSetting("difficulty"),
+                settingsManager.getSetting("theme"),
+                settingsManager.getSetting("character"));
 
-          @Override
-          public void onClick(View view) {
-            if (!gameView.gameBackend.isGameOver()) {
-              setNum1(getNum1() + 1);
-              String strCount1 = Integer.toString(getNum1());
-              count1.setText(strCount1);
-              ((MatchstickMenBackend) gameView.gameBackend).addCount();
-            }
-          }
-        });
+        gameView = this.setView();
+        final FrameLayout frameLayout = findViewById(R.id.matchstickManSurface);
+        frameLayout.addView(gameView);
+        MatchstickMenView matchstickMenView = ((MatchstickMenView) gameView);
+        matchstickMenView.setMatchstickMenCustomization(matchstickMenCustomization);
+        matchstickMenView.setDifficulty();
+
+        setButtons();
+        setOnclickListeners();
+
+        pgBar.setProgress(0);
+
+        // Count down and display the time left in the textbar on the upper right corner
+        timer = setTimers(pgBar, timeleft);
+        timer.start();
+        setCount();
+
+
+    }
+
+
+    /**
+     * link all view widgets with its corresponding id in the xml
+     */
+    @Override
+    void setButtons() {
+
+        // the buttons for the activity
+        pgBar = findViewById(R.id.progressBarDouble);
+        singlePlayer = findViewById(R.id.singlePlayer);
+        restart = findViewById(R.id.restartDouble);
+        timeleft = findViewById(R.id.textTimeleftDouble);
+        addP1 = findViewById(R.id.addP1);
+        addP2 = findViewById(R.id.addP2);
+        minusP1 = findViewById(R.id.minusP1);
+        minusP2 = findViewById(R.id.minusP2);
+        btnDone = findViewById(R.id.doneDouble);
+        // the TextView
+        count1 = findViewById(R.id.countP1);
+        count2 = findViewById(R.id.countP2);
+    }
+
+    /**
+     * set onClickListeners for all the buttons
+     */
+    @Override
+    void setOnclickListeners() {
+
+        addP1.setOnClickListener(
+                new View.OnClickListener() {
+                    int i = getNum1();
+
+                    @Override
+                    public void onClick(View view) {
+                        if (!gameView.gameBackend.isGameOver()) {
+                            setNum1(getNum1() + 1);
+                            String strCount1 = Integer.toString(getNum1());
+                            count1.setText(strCount1);
+                            ((MatchstickMenBackend) gameView.gameBackend).addCount();
+                        }
+                    }
+                });
 
         addP2.setOnClickListener(
                 new View.OnClickListener() {
@@ -288,18 +296,28 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
                         MatchstickMenActivityDoublePlayer.this.startActivity(mainIntent);
                     }
                 });
+
+        restart.setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        finish();
+                        startActivity(getIntent());
+                    }
+                });
     }
 
+
+    /**
+     * set the initial value for the count view in the screen
+     */
     @Override
     void setCount() {
-      String zero = Integer.toString(0);
+        String zero = Integer.toString(0);
         count1.setText(zero);
         count2.setText(zero);
     }
 
-  protected void sendToIntent(Intent intent) {
-    intent.putExtra("loginManager", loginManager);
-    intent.putExtra("leaderboardManager", leaderboardManager);
-    intent.putExtra("settingsManager", settingsManager);
-  }
+
 }
