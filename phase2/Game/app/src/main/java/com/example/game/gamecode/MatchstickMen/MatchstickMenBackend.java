@@ -1,8 +1,5 @@
 package com.example.game.gamecode.MatchstickMen;
 
-import android.graphics.Canvas;
-
-import com.example.game.R;
 import com.example.game.gamecode.GameBackend;
 
 import java.util.ArrayList;
