@@ -1,8 +1,5 @@
 package com.example.game.gamecode.MatchstickMen;
 
-import android.graphics.Canvas;
-
-import com.example.game.R;
 import com.example.game.gamecode.GameBackend;
 
 import java.util.ArrayList;
@@ -12,15 +9,6 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
 
   /** Actual number of matchstick men generated. */
   private int answer;
-
-  //  /** The color of the character. */
-  //  private int color;
-  //
-  //  /** The level of this game. */
-  //  private int difficulty;
-  //
-  //  /** The character that will appear on the screen. */
-  //  private String character;
 
   /** The time of this game. */
   private int totalTime;
@@ -37,20 +25,16 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   int score;
 
   /** The time the user used, in secs. (3rd statistic) */
-  int timeUsed;
+  private int timeUsed;
 
   /** A flag showing if the gameBackend is over. */
   private boolean over;
 
-    /**
-     * The width of the displaying area.
-     */
-    private int gridWidth;
+  /** The width of the displaying area. */
+  private int gridWidth;
 
-    /**
-     * The height of displaying area.
-     */
-    private int gridHeight;
+  /** The height of displaying area. */
+  private int gridHeight;
 
   public int getCountP2() {
     return countP2;
@@ -147,27 +131,11 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
     this.timeUsed = totalTime - Integer.parseInt(timeUsed);
   }
 
-    /**
-     * Constructor for MatchStickMenBackend.
-   * */
+  /** Constructor for MatchStickMenBackend. */
   MatchstickMenBackend() {
     this.answer = 0;
     this.over = false;
     gameObjects = new ArrayList<>();
-  }
-
-  /**
-   * Another constructor for MatchstickMenBackend.
-   *
-   * @param height the height of the drawing surface
-   * @param width the width of the drawing surface
-   */
-  MatchstickMenBackend(int height, int width) {
-    this.answer = 0;
-    this.over = false;
-    gameObjects = new ArrayList<>();
-    this.gridWidth = width;
-    this.gridHeight = height;
   }
 
   /**
@@ -196,6 +164,7 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
    */
   public boolean compare(String r) {
     return r.equals(Integer.toString(getAnswer()));
+
   }
 
   public String compare(String r1, String r2) {
@@ -214,13 +183,13 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   /** Update and refresh the game status. */
   @Override
   public void update() {
-      //      for
-      //      move();
-      for (MatchstickMenObject matchstickMenObject : gameObjects) {
-          if (matchstickMenObject != null) {
-              matchstickMenObject.move();
-          }
+    //      for
+    //      move();
+    for (MatchstickMenObject matchstickMenObject : gameObjects) {
+      if (matchstickMenObject != null) {
+        matchstickMenObject.move();
       }
+    }
   }
 
   /** Initialize and create all the objects when stating the game */
@@ -233,28 +202,26 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
       while (i < range) {
           int regularX = random.nextInt(gridWidth - 200);
           int regularY = random.nextInt(gridHeight - 200);
-          MatchstickMenObject regularMan = null;
+          MatchstickMenObject regularMan = new RegularManObject(regularX, regularY, gridWidth, gridHeight);
 //          if (character == MatchstickMenType.HAPPY_MAN) {
 //              regularMan =
-//                      new RegularManObject(
-//                              regularX, regularY, gridWidth, gridHeight, MatchstickMenType.HAPPY_MAN, R.drawable.happyman);
+
 //          } else if (this.character == MatchstickMenType.EXCITED_MAN) {
 //              regularMan = new RegularManObject(
 //                      regularX, regularY, gridWidth, gridHeight, MatchstickMenType.EXCITED_MAN, R.drawable.excitedman);
 //          }
 
-          //          happyMan.setManType(MatchstickMenType.HAPPY_MAN);
-          //          regularMan.setSourceId();
-          // should i set mantype here also or set in the initializer??????????
+      //          happyMan.setManType(MatchstickMenType.HAPPY_MAN);
+      //          regularMan.setSourceId();
+      // should i set mantype here also or set in the initializer??????????
 
-//          if (regularMan != null) {
-//              addMatchstickMenObj(regularMan);
-//          }
+          addMatchstickMenObj(regularMan);
+
           // TODO: add excited man, make customizations
 
           int baldX = random.nextInt(gridWidth - 200);
           int baldY = random.nextInt(gridHeight - 200);
-          MatchstickMenObject baldMan = new ExtraordinaryManObject(baldX, baldY, gridWidth, gridHeight, MatchstickMenType.BALD_MAN, R.drawable.baldman);
+          MatchstickMenObject baldMan = new ExtraordinaryManObject(baldX, baldY, gridWidth, gridHeight);
 //          baldMan.setManType(MatchstickMenType.BALD_MAN);
 //          baldMan.setSourceId(R.drawable.baldman);
           addMatchstickMenObj(baldMan);
@@ -262,26 +229,8 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
       int increment = random.nextInt(range - 1) + 1;
       i += increment;
     }
+      setAnswer();
   }
-
-  //  public void inject(int color, int level, String character) {
-  //    this.color = color;
-  //    this.difficulty = level;
-  //    this.character = character;
-  //    switch (level) {
-  //      case 0:
-  //        totalTime = 30;
-  //        break;
-  //      case 1:
-  //        totalTime = 20;
-  //        break;
-  //      case 2:
-  //        totalTime = 10;
-  //        break;
-  //      default:
-  //        totalTime = 10;
-  //    }
-  //  }
 
   public void setLevelNum(int levelNum) {
     this.levelNum = levelNum;

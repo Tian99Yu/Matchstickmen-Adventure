@@ -1,7 +1,5 @@
 package com.example.game.gamecode.Snake;
 
-import androidx.annotation.NonNull;
-
 import com.example.game.gamecode.GameBackend;
 
 import java.util.ArrayList;
@@ -44,15 +42,6 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
   }
 
   /**
-   * Return an array list of game objects that this snake backend controls
-   *
-   * @return an array of game object that this snake backend controls
-   */
-  public ArrayList<SnakeObject> getGameObjects() {
-    return gameObjects;
-  }
-
-  /**
    * Add the snake object to game objects
    *
    * @param snakeObject the snake object to be added.
@@ -62,27 +51,10 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
   }
 
   /**
-   * Set if this game is still running or is lost
-   *
-   * @param lost true if the game is lost and ended, false otherwise.
+   * Set if this game to lost
    */
-  private void setLost(boolean lost) {
-    this.lost = lost;
-  }
-
-  /**
-   * Constructor for snake backend
-   *
-   * @param height the height of this game
-   * @param width the width of this game
-   */
-  SnakeBackend(int height, int width) {
-    gameObjects = new ArrayList<>();
-    mysteryObjects = new ArrayList<>();
-    lost = false;
-    this.size = Math.min(height / 64, width / 64);
-    gridHeight = height / size;
-    gridWidth = width / size;
+  private void setLost() {
+    this.lost = true;
   }
 
   /** Update and refresh the game status. */
@@ -110,8 +82,7 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
         }
       } else if (gameObject instanceof Wall || gameObject instanceof SnakeComponent) {
         if (snakeHead.atPosition(gameObject.x, gameObject.y) && snakeHead != gameObject) {
-          snakeHead.setDead();
-          setLost(true);
+          setLost();
         }
       }
     }
@@ -129,8 +100,14 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
         i--;
         length--;
       }
-    }
 
+      if (gameObjects.get(i).x <= 0 || gameObjects.get(i).x >= gridWidth ||
+              gameObjects.get(i).y <= 0 || gameObjects.get(i).y >= gridHeight) {
+        deleteItem(gameObjects.get(i));
+        i--;
+        length--;
+      }
+    }
     if (eatApple) {
       addSnakeComponent();
     }
@@ -151,36 +128,25 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
   /** Create randomly apple, mystery object, or snake component and add them to snake objects. */
   private void createRandomObject() {
     Random random = new Random();
-    int randomInt = random.nextInt(100);
-    if (randomInt == 50) {
-      Apple apple =
-          new Apple(
-              random.nextInt(gridWidth - 4) + 2, random.nextInt(gridHeight - 4) + 2, size, shape);
-      addSnakeObj(apple);
-    }
+    int randomInt = random.nextInt(1000);
+    int x = random.nextInt(gridWidth - 4) + 2;
+    int y = random.nextInt(gridHeight - 4) + 2;
 
-    randomInt = random.nextInt(500);
-    if (randomInt == 100) {
-      addSnakeComponent();
-    }
-
-    randomInt = random.nextInt(1000);
-    if (randomInt == 1) {
-      MysteryObject mysteryObject =
-          new MysteryObject(
-              random.nextInt(gridWidth - 4) + 2, random.nextInt(gridHeight - 4) + 2, size, shape);
-      addSnakeObj(mysteryObject);
-      mysteryObjects.add(mysteryObject);
-    }
-
-    randomInt = random.nextInt(333);
-    if (randomInt == 111) {
-      int x = random.nextInt(gridWidth - 4) + 2;
-      int y = random.nextInt(gridHeight - 4) + 2;
-      if (!snakeHead.atPosition(x, y)) {
-        Wall wall = new Wall(x, y, size, shape);
-        addSnakeObj(wall);
+    if (! snakeHead.atPosition(x, y)){
+      if (randomInt == 0){
+        MysteryObject mysteryObject =
+                new MysteryObject(x, y, size, shape);
+        addSnakeObj(mysteryObject);
+        mysteryObjects.add(mysteryObject);
       }
+    } else if (20 <= randomInt && randomInt <= 40) {
+      Apple apple = new Apple(x, y, size, shape);
+      addSnakeObj(apple);
+    } else if (50 <= randomInt && randomInt <= 51) {
+      addSnakeComponent();
+    } else if (100 <= randomInt && randomInt <= 101) {
+      Wall wall = new Wall(x, y, size, shape);
+      addSnakeObj(wall);
     }
   }
 
@@ -292,25 +258,6 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
     statistic[1][1] = ((Integer) this.apples).toString();
     statistic[1][2] = ((Integer) this.distance).toString();
     return statistic;
-  }
-
-  /**
-   * Return a string representation of this snake backend
-   *
-   * @return a string that contain all the information needed to reconstruct the backend
-   */
-  @Override
-  @NonNull
-  public String toString() {
-    StringBuilder string = new StringBuilder();
-    for (SnakeObject gameObject : gameObjects) {
-      if (!(gameObject instanceof Wall)) {
-        SnakeObject snakeObject = gameObject;
-        string.append(snakeObject.toString());
-        string.append(",");
-      }
-    }
-    return string.toString();
   }
 
   /**

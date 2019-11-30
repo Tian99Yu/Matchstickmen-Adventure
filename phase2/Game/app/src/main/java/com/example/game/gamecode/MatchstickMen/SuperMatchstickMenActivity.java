@@ -197,16 +197,6 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
                         timeleft.setText(R.string.timeUp);
                         pgBar.setProgress(100);
                         ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
-                        if (!saved) {
-                            String count =
-                                    Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getCount());
-                            String score = Integer.toString(gameView.gameBackend.getCurrentScore());
-                            String timeUsed =
-                                    Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed());
-                            String[] stats = {"Count", "Score", "Time used"};
-                            String[] values = {count, score, timeUsed};
-                            leaderboardManager.saveData(Games.MATCHSTICKMEN, loginManager.getUsername(), stats, values);
-                        }
                     }
                 };
     }

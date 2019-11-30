@@ -46,6 +46,7 @@ public class LoginPresenter implements LoginManager.OnLoginFinishedListener {
     handler.postDelayed(new Runnable() {
       public void run() {
         onSuccess();
+        onDestroy();
       }
     }, 2500);
   }

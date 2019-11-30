@@ -98,14 +98,4 @@ class SnakeComponent extends SnakeObject {
     snakeComponent.next = added;
     return added;
   }
-
-  /**
-   * Return the string representation of this snake object
-   *
-   * @return the type, coordinate, color, shape, and direction separated by |.
-   */
-  @Override
-  public String toString() {
-    return super.toString() + "|" + this.direction;
-  }
 }
