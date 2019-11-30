@@ -25,13 +25,15 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T, MatchstickMenObj
     this.matchstickMenDrawer = matchstickMenDrawer;
   }
 
-  /** Update and refresh the game status. */
-  void update() {
-    if (initialized) {
-      (this.backend).update();
-    } else {
-      int height = matchstickMenDrawer.getHeight();
-      int width = matchstickMenDrawer.getWidth();
+    /**
+     * Update and refresh the game status.
+     */
+    void update() {
+        if (initialized) {
+            backend.update();
+        } else {
+            int height = matchstickMenDrawer.getHeight();
+            int width = matchstickMenDrawer.getWidth();
 
       MatchstickMenBackend matchstickMenBackend = (MatchstickMenBackend) backend;
       matchstickMenBackend.setGridHeight(height);

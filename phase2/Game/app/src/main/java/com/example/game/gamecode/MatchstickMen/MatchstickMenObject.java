@@ -1,36 +1,68 @@
 package com.example.game.gamecode.MatchstickMen;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
 
-import com.example.game.R;
-
-import java.util.Random;
-
-public class MatchstickMenObject {
-  /** The x-coordinate of this matchstick men object */
-  public int x;
+public abstract class MatchstickMenObject {
+    /**
+     * The x-coordinate of this MatchstickMenObjectv
+     */
+    public int x;
 
   /** The y-coordinate of this matchstick men object */
   public int y;
 
   /** The character that will appear on the screen. */
   private MatchstickMenType manType;
+    /**
+     * Indicates whether this MatchstickMenObject is moving right.
+     * */
+    private boolean goingRight;
 
   /** The id of the source image of this MatchstickMenObject. */
   private int sourceId;
 
-  /**
-   * Constructs a new MatchstickMen object.
-   *
-   * @param x the initial x coordinate of this MatchstickMen object
-   * @param y the initial y coordinate of this MatchstickMen object
-   */
-  MatchstickMenObject(int x, int y, MatchstickMenType manType) {
-    this.x = x;
-    this.y = y;
-    this.manType = manType;
-  }
+    /**
+     * The width of displaying area.
+     */
+    private int gridWidth;
+
+    /**
+     * The height of displaying area.
+     */
+    private int gridHeight;
+
+    /**
+     * Constructs a new MatchstickMen object.
+     *
+     * @param x the initial x coordinate of this MatchstickMen object
+     * @param y the initial y coordinate of this MatchstickMen object
+     */
+    MatchstickMenObject(int x, int y, int gridWidth, int gridHeight, MatchstickMenType manType, int sourceId) {
+        this.x = x;
+        this.y = y;
+        this.gridWidth = gridWidth;
+        this.gridHeight = gridHeight;
+        this.manType = manType;
+        this.sourceId = sourceId;
+        this.goingRight = true;
+    }
+
+    /**
+     * Gets the width of the displaying area.
+     *
+     * @return the gridWidth
+     */
+    int getGridWidth() {
+        return gridWidth;
+    }
+
+    /**
+     * Gets the height of the displaying area.
+     *
+     * @return the gridHeight
+     */
+    int getGridHeight() {
+        return gridHeight;
+    }
 
   /**
    * Gets the type of this MatchstickMenObject.
@@ -55,7 +87,7 @@ public class MatchstickMenObject {
    *
    * @return the source id of this MatchstickMenObject
    */
-  public int getSourceId() {
+  int getSourceId() {
     return sourceId;
   }
 
@@ -67,4 +99,20 @@ public class MatchstickMenObject {
   void setSourceId(int sourceId) {
     this.sourceId = sourceId;
   }
+
+    /**
+     * Turns this MatchstickMenObject around, causing it to reverse direction.
+     */
+    void turnAround() {
+        goingRight = !goingRight;
+    }
+
+    boolean isGoingRight() {
+        return goingRight;
+    }
+
+    /**
+     * Move this MatchstickMenObject.
+     */
+    abstract void move();
 }

@@ -23,9 +23,9 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
   /** A flag recording whether the data of this game is saved. */
   private boolean saved = false;
 
-  private int level = 0;
-  private int color = Color.WHITE;
-  private String character = "circle";
+    private int level = 0;
+    private int color = Color.WHITE;
+    private MatchstickMenType character = MatchstickMenType.HAPPY_MAN;
 
   /**
    * Make the customizations.
@@ -52,9 +52,9 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
     return color;
   }
 
-  public String getCharacter() {
-    return character;
-  }
+    public MatchstickMenType getCharacter() {
+        return character;
+    }
 
   protected ProgressBar pgBar;
   protected TextView timeleft;
@@ -121,14 +121,14 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
     }
   }
 
-  @Override
-  public void setCharacter(String character) {
-    if (character.equals("one")) {
-      this.character = "rect";
-    } else {
-      this.character = "circle";
+    @Override
+    public void setCharacter(String character) {
+        if (character.equals("one")) {
+            this.character = MatchstickMenType.HAPPY_MAN;
+        } else {
+            this.character = MatchstickMenType.EXCITED_MAN;
+        }
     }
-  }
 
   @Override
   public void setTheme(String theme) {

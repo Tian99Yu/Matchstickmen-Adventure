@@ -27,7 +27,7 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity
 
   private int level = 0;
   private int color = Color.WHITE;
-  private String character = "circle";
+    private MatchstickMenType character = MatchstickMenType.HAPPY_MAN;
 
   /** The customizations of this matchstick men game */
   MatchstickMenCustomization matchstickMenCustomization = new MatchstickMenCustomization();

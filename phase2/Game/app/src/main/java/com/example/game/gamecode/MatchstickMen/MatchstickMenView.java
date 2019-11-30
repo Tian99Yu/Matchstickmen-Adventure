@@ -32,16 +32,16 @@ public class MatchstickMenView extends GameView<MatchstickMenObject>
   public void setDifficulty() {
     switch (matchstickMenCustomization.getDifficulty()) {
       case 0:
-        setUpInterval = 10000000;
+        setUpInterval = 10;
         break;
       case 1:
-        setUpInterval = 7000000;
+        setUpInterval = 7;
         break;
       case 2:
-        setUpInterval = 5000000;
+        setUpInterval = 5;
         break;
       default:
-        setUpInterval = 10000000;
+        setUpInterval = 10;
     }
     thread.setUpdateInterval(setUpInterval);
   }
