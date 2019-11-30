@@ -11,8 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:enabled="false"
         android:gravity="start|top"
-        android:inputType="textMultiLine"
+        android:inputType="none"
         android:text="You may login or create a new account here. Usernames and passwords should both consist of 5-12 alphanumeric characters."
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,8 +56,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:enabled="false"
             android:gravity="start|top"
-            android:inputType="textMultiLine" />
+            android:inputType="none" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
