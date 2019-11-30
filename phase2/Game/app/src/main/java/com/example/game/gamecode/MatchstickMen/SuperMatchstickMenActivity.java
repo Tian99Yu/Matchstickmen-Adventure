@@ -207,4 +207,13 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
         intent.putExtra("settingsManager", settingsManager);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+    protected void onResume() {
+        super.onResume();
+    }
+
+
 }
