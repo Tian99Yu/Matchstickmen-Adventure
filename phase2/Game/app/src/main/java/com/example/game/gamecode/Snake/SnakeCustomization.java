@@ -70,7 +70,7 @@ public class SnakeCustomization {
     /**
      * Return the difficulty of this game
      *
-     * @return The difficulty of this game, can be easy, medium, or hard.
+     * @return The difficulty of this game
      */
     public int getDifficulty() {
         return difficulty;
@@ -88,7 +88,7 @@ public class SnakeCustomization {
     /**
      * Set the shape of the character of this game
      *
-     * @return the character of this game, can be one or two
+     * @return the character of this game
      */
     public SnakeShape getCharacter() {
         return character;

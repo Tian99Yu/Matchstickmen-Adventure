@@ -61,7 +61,7 @@
         android:layout_marginBottom="84dp"
         android:text="MINUS"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/minisP2"
+        app:layout_constraintEnd_toStartOf="@+id/minusP2"
         app:layout_constraintHorizontal_bias="0.343"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -70,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add"
-        app:layout_constraintBottom_toTopOf="@+id/minisP2"
+        app:layout_constraintBottom_toTopOf="@+id/minusP2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.597"
         app:layout_constraintStart_toEndOf="@+id/addP1"
@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.839" />
 
     <Button
-        android:id="@+id/minisP2"
+        android:id="@+id/minusP2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="72dp"
@@ -88,7 +88,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/restartDouble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="RESTART"
@@ -96,7 +96,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/singlePlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SINGLE PLAYER"
