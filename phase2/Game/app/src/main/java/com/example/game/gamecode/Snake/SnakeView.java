@@ -124,6 +124,6 @@ public class SnakeView extends GameView<SnakeObject> implements SnakeDrawer<Canv
   public void setSnakeCustomization(SnakeCustomization snakeCustomization) {
     this.snakeCustomization = snakeCustomization;
     this.setDifficulty(snakeCustomization.getDifficulty());
-    ((SnakePresenter)getPresenter()).setSnakeCustomization(snakeCustomization);
+    ((SnakePresenter)getPresenter()).setCharacter(snakeCustomization.getCharacter());
   }
 }

@@ -1,6 +1,5 @@
 package com.example.game.gamecode.Snake;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,11 +20,8 @@ public class SnakeActivity extends GameActivity implements CustomizableGame {
   Button leftButton;
   /** the button responsible for turning right */
   Button rightButton;
-  /**
-   * The customizations of this snake game
-   */
+  /** The customizations of this snake game */
   SnakeCustomization snakeCustomization = new SnakeCustomization();
-
 
   /**
    * Initialize this activity
@@ -55,7 +51,7 @@ public class SnakeActivity extends GameActivity implements CustomizableGame {
         settingsManager.getSetting("theme"),
         settingsManager.getSetting("character"));
 
-    ((SnakeView)gameView).setSnakeCustomization(snakeCustomization);
+    ((SnakeView) gameView).setSnakeCustomization(snakeCustomization);
 
     View.OnClickListener leftListener =
         new View.OnClickListener() {
@@ -93,10 +89,7 @@ public class SnakeActivity extends GameActivity implements CustomizableGame {
   protected void saveData() {
     String[][] statistic = ((SnakeView) gameView).getStatistics();
     this.leaderboardManager.saveData(
-            Games.SNAKE,
-            loginManager.getUsername(),
-            statistic[0],
-            statistic[1]);
+        Games.SNAKE, loginManager.getUsername(), statistic[0], statistic[1]);
   }
 
   /**

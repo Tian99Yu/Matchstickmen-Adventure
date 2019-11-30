@@ -25,20 +25,16 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   int score;
 
   /** The time the user used, in secs. (3rd statistic) */
-  int timeUsed;
+  private int timeUsed;
 
   /** A flag showing if the gameBackend is over. */
   private boolean over;
 
-    /**
-     * The width of the displaying area.
-     */
-    private int gridWidth;
+  /** The width of the displaying area. */
+  private int gridWidth;
 
-    /**
-     * The height of displaying area.
-     */
-    private int gridHeight;
+  /** The height of displaying area. */
+  private int gridHeight;
 
   public int getCountP2() {
     return countP2;
@@ -135,9 +131,7 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
     this.timeUsed = totalTime - Integer.parseInt(timeUsed);
   }
 
-    /**
-     * Constructor for MatchStickMenBackend.
-   * */
+  /** Constructor for MatchStickMenBackend. */
   MatchstickMenBackend() {
     this.answer = 0;
     this.over = false;
@@ -169,7 +163,6 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
    * @return the boolean result of the comparison
    */
   public boolean compare(String r) {
-      System.out.println(getAnswer());
     return r.equals(Integer.toString(getAnswer()));
 
   }
@@ -190,13 +183,13 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   /** Update and refresh the game status. */
   @Override
   public void update() {
-      //      for
-      //      move();
-      for (MatchstickMenObject matchstickMenObject : gameObjects) {
-          if (matchstickMenObject != null) {
-              matchstickMenObject.move();
-          }
+    //      for
+    //      move();
+    for (MatchstickMenObject matchstickMenObject : gameObjects) {
+      if (matchstickMenObject != null) {
+        matchstickMenObject.move();
       }
+    }
   }
 
   /** Initialize and create all the objects when stating the game */
@@ -218,9 +211,9 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
 //                      regularX, regularY, gridWidth, gridHeight, MatchstickMenType.EXCITED_MAN, R.drawable.excitedman);
 //          }
 
-          //          happyMan.setManType(MatchstickMenType.HAPPY_MAN);
-          //          regularMan.setSourceId();
-          // should i set mantype here also or set in the initializer??????????
+      //          happyMan.setManType(MatchstickMenType.HAPPY_MAN);
+      //          regularMan.setSourceId();
+      // should i set mantype here also or set in the initializer??????????
 
           addMatchstickMenObj(regularMan);
 

@@ -2,8 +2,6 @@ package com.example.game.gamecode.MatchstickMen;
 
 import android.graphics.Color;
 
-import com.example.game.gamecode.Snake.SnakeShape;
-
 /** A class storing the customization of the matchstick men game. */
 public class MatchstickMenCustomization {
   /** The difficulty of the game */

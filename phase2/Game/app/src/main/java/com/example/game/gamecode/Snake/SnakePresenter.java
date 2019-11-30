@@ -30,7 +30,7 @@ public class SnakePresenter<T> extends GamePresenter<T, SnakeObject> {
   /**
    * The customizations of this snake game
    */
-  private SnakeCustomization snakeCustomization;
+  private SnakeShape shape;
 
   /**
    * Constructor for snake presenter
@@ -93,7 +93,7 @@ public class SnakePresenter<T> extends GamePresenter<T, SnakeObject> {
     if (color == null) {
       color = Color.WHITE;
     }
-    switch (snakeCustomization.getCharacter()) {
+    switch (shape) {
       case CIRCLE:
         float radiusAdjustment = ((float) size) / 2;
         snakeDrawer.drawCircle(
@@ -128,46 +128,10 @@ public class SnakePresenter<T> extends GamePresenter<T, SnakeObject> {
   }
 
   /**
-   * Set the color of the snake head
-   *
-   * @param color the color that the snake head will be in
-   */
-  private void setHeadColor(int color) {
-    this.snakeColor.put(SnakeObjectType.SNAKE_HEAD, color);
-  }
-
-  /**
-   * Set the color of the apples in the game
-   *
-   * @param color the color that the apples will be in
-   */
-  private void setAppleColor(int color) {
-    this.snakeColor.put(SnakeObjectType.APPLE, color);
-  }
-
-  /**
-   * Set the color of all the walls in the game
-   *
-   * @param color the color that the walls will be in
-   */
-  private void setWallColor(int color) {
-    this.snakeColor.put(SnakeObjectType.WALL, color);
-  }
-
-  /**
-   * Set the color of the body of the snake
-   *
-   * @param color the color that the body of the snake will be in
-   */
-  private void setBodyColor(int color) {
-    this.snakeColor.put(SnakeObjectType.SNAKE_COMPONENT, color);
-  }
-
-  /**
    * Set the customization of the game to snake customization
-   * @param snakeCustomization the customization object for this game.
+   * @param snakeShape the customization object for this game.
    */
-  void setSnakeCustomization(SnakeCustomization snakeCustomization) {
-    this.snakeCustomization = snakeCustomization;
+  void setCharacter(SnakeShape snakeShape) {
+    this.shape = snakeShape;
   }
 }

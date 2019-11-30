@@ -2,11 +2,7 @@ package com.example.game.gamecode.Snake;
 
 import java.util.HashMap;
 
-public class SnakeHead extends SnakeComponent {
-  /** whether this snake is alive/ whether the gameBackend is still running */
-  private boolean isDead = false;
-
-
+class SnakeHead extends SnakeComponent {
   private HashMap<Direction, DirectionChanger> directionAllocator;
 
   /**
@@ -42,14 +38,7 @@ public class SnakeHead extends SnakeComponent {
     return (this.x == x && this.y == y);
   }
 
-  /** Mark this snake is dead */
-  void setDead() {
-    this.isDead = true;
-  }
-
-  /**
-   * Generate and store direction changers to this.directionChangers.
-   */
+  /** Generate and store direction changers to this.directionChangers. */
   private void createDirectionAllocator() {
     HashMap<Direction, DirectionChanger> directionAllocator = new HashMap<>();
     directionAllocator.put(Direction.UP, new DirectionChanger(Direction.LEFT, Direction.RIGHT));

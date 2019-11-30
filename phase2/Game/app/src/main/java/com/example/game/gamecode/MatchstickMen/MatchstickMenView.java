@@ -25,11 +25,11 @@ public class MatchstickMenView extends GameView<MatchstickMenObject>
 
     ImageGetter<Bitmap> imageGetter = getBitmapGetter(getContext());
 
-    setPresenter(new MatchstickMenPresenter<Canvas, Bitmap>(this, this.gameBackend, imageGetter));
+    setPresenter(new MatchstickMenPresenter<>(this, this.gameBackend, imageGetter));
   }
 
   public void setDifficulty() {
-    setUpInterval = (10 - (matchstickMenCustomization.getDifficulty()*2));
+    int setUpInterval = (10 - (matchstickMenCustomization.getDifficulty()*2));
     thread.setUpdateInterval(setUpInterval);
   }
 
@@ -64,25 +64,6 @@ public class MatchstickMenView extends GameView<MatchstickMenObject>
     drawingSurface.drawBitmap(resizedMan, x, y, paint);
   }
 
-
-//  /**
-//   * Draw the MatchstickMenObject.
-//   *
-//   * @param drawingSurface the surface to be drawn onto
-//   * @param man the man to be drawn
-//   */
-//  @Override
-//  public void drawMan(Canvas drawingSurface, MatchstickMenObject man) {
-//
-//    Paint paint = new Paint();
-//    paint.setColorFilter(new LightingColorFilter(0xff000000, 0xffffffff));
-//    Bitmap manBmp = BitmapFactory.decodeResource(getContext().getResources(), man.getSourceId());
-//    Matrix matrix = new Matrix();
-//    matrix.postScale(0.25f, 0.25f);
-//    Bitmap resizedMan =
-//        Bitmap.createBitmap(manBmp, 0, 0, manBmp.getWidth(), manBmp.getHeight(), matrix, true);
-//    drawingSurface.drawBitmap(resizedMan, man.x, man.y, paint);
-//  }
 
   /** Update this view. */
   @Override

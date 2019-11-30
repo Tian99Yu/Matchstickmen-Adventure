@@ -1,7 +1,5 @@
 package com.example.game.gamecode.Snake;
 
-import android.graphics.Canvas;
-
 /** A generic object in Snake */
 abstract class SnakeObject {
   /** The x-coordinate of this snake object */
@@ -50,16 +48,6 @@ abstract class SnakeObject {
    */
   void setShape(SnakeShape shape) {
     this.shape = shape;
-  }
-
-  /**
-   * Return the string representation of this snake object
-   *
-   * @return the type, coordinate, color, and shape separated by |.
-   */
-  @Override
-  public String toString() {
-    return this.type + "|" + this.x + "|" + this.y + "|" + this.type + "|" + this.shape;
   }
 
   /**

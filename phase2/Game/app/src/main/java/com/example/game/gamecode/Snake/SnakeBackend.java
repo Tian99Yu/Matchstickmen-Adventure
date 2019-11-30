@@ -1,7 +1,5 @@
 package com.example.game.gamecode.Snake;
 
-import androidx.annotation.NonNull;
-
 import com.example.game.gamecode.GameBackend;
 
 import java.util.ArrayList;
@@ -44,15 +42,6 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
   }
 
   /**
-   * Return an array list of game objects that this snake backend controls
-   *
-   * @return an array of game object that this snake backend controls
-   */
-  public ArrayList<SnakeObject> getGameObjects() {
-    return gameObjects;
-  }
-
-  /**
    * Add the snake object to game objects
    *
    * @param snakeObject the snake object to be added.
@@ -62,27 +51,10 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
   }
 
   /**
-   * Set if this game is still running or is lost
-   *
-   * @param lost true if the game is lost and ended, false otherwise.
+   * Set if this game to lost
    */
-  private void setLost(boolean lost) {
-    this.lost = lost;
-  }
-
-  /**
-   * Constructor for snake backend
-   *
-   * @param height the height of this game
-   * @param width the width of this game
-   */
-  SnakeBackend(int height, int width) {
-    gameObjects = new ArrayList<>();
-    mysteryObjects = new ArrayList<>();
-    lost = false;
-    this.size = Math.min(height / 64, width / 64);
-    gridHeight = height / size;
-    gridWidth = width / size;
+  private void setLost() {
+    this.lost = true;
   }
 
   /** Update and refresh the game status. */
@@ -110,8 +82,7 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
         }
       } else if (gameObject instanceof Wall || gameObject instanceof SnakeComponent) {
         if (snakeHead.atPosition(gameObject.x, gameObject.y) && snakeHead != gameObject) {
-          snakeHead.setDead();
-          setLost(true);
+          setLost();
         }
       }
     }
@@ -292,25 +263,6 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
     statistic[1][1] = ((Integer) this.apples).toString();
     statistic[1][2] = ((Integer) this.distance).toString();
     return statistic;
-  }
-
-  /**
-   * Return a string representation of this snake backend
-   *
-   * @return a string that contain all the information needed to reconstruct the backend
-   */
-  @Override
-  @NonNull
-  public String toString() {
-    StringBuilder string = new StringBuilder();
-    for (SnakeObject gameObject : gameObjects) {
-      if (!(gameObject instanceof Wall)) {
-        SnakeObject snakeObject = gameObject;
-        string.append(snakeObject.toString());
-        string.append(",");
-      }
-    }
-    return string.toString();
   }
 
   /**
