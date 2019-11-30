@@ -4,29 +4,24 @@ import android.content.Context;
 
 import com.example.game.gamecode.GameThread;
 import com.example.game.gamecode.GameView;
-import com.example.game.R;
+import com.example.game.leaderboardcode.Saver;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.LightingColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 
-import java.util.HashMap;
-
 public class MatchstickMenView extends GameView<MatchstickMenObject>
     implements MatchstickMenDrawer<Canvas, Bitmap> {
-  //    private MatchstickMenActivity matchstickMenActivity;
   private int setUpInterval;
   /** The customizations of this matchstick men game */
   MatchstickMenCustomization matchstickMenCustomization;
 
   public MatchstickMenView(Context context) {
     super(context);
-    thread = new GameThread(getHolder(), this, null);
-    gameBackend = new MatchstickMenBackend(); // change it after you know the size of the canvas
+    thread = new GameThread(getHolder(), this, (Saver) context);
+    gameBackend = new MatchstickMenBackend();
 
     ImageGetter<Bitmap> imageGetter = getBitmapGetter(getContext());
 
