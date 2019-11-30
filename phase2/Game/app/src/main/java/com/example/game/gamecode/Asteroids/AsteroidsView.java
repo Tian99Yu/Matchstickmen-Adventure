@@ -85,7 +85,9 @@ class AsteroidsView extends GameView<AsteroidGameObject>
       double height) {
     Paint paint = new Paint();
     ColorFilter filter = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
-    paint.setColorFilter(filter);
+    if (color != Color.TRANSPARENT) {
+      paint.setColorFilter(filter);
+    }
     Matrix matrix = new Matrix();
     matrix.preRotate((float) Math.toDegrees(angle), sprite.getWidth() / 2, sprite.getHeight() / 2);
     matrix.postScale(
