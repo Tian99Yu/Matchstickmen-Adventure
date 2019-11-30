@@ -194,7 +194,8 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
           public void onClick(View view) {
             if (!gameView.gameBackend.isGameOver()) {
               setNum1(getNum1() + 1);
-              count1.setText(Integer.toString(getNum1()));
+              String strCount1 = Integer.toString(getNum1());
+              count1.setText(strCount1);
               ((MatchstickMenBackend) gameView.gameBackend).addCount();
             }
           }
@@ -208,7 +209,8 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
                     public void onClick(View view) {
                         if (!gameView.gameBackend.isGameOver()) {
                             setNum2(getNum2() + 1);
-                            count2.setText(Integer.toString(getNum2()));
+                            String strCount2 = Integer.toString(getNum2());
+                            count2.setText(strCount2);
                             ((MatchstickMenBackend) gameView.gameBackend).addCount2();
                         }
                     }
@@ -223,8 +225,8 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
                     public void onClick(View view) {
                         if (!(gameView.gameBackend).isGameOver()) {
                             setNum1(getNum1() - 1);
-
-                            count1.setText(Integer.toString(getNum1()));
+                            String strCount1 = Integer.toString(getNum1());
+                            count1.setText(strCount1);
                             ((MatchstickMenBackend) gameView.gameBackend).minusCount();
                         }
                     }
@@ -239,8 +241,8 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
                     public void onClick(View view) {
                         if (!(gameView.gameBackend).isGameOver()) {
                             setNum2(getNum2() - 1);
-
-                            count1.setText(Integer.toString(getNum2()));
+                            String strCount1 = Integer.toString(getNum2());
+                            count2.setText(strCount1);
                             ((MatchstickMenBackend) gameView.gameBackend).minusCount2();
                         }
                     }
@@ -290,8 +292,9 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
 
     @Override
     void setCount() {
-        count1.setText(Integer.toString(0));
-        count2.setText(Integer.toString(0));
+      String zero = Integer.toString(0);
+        count1.setText(zero);
+        count2.setText(zero);
     }
 
   protected void sendToIntent(Intent intent) {

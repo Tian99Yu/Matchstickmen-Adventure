@@ -41,4 +41,6 @@
     <string name="save_enabled">Save On</string>
     <string name="replay">Replay</string>
     <string name="main_menu">Main Menu</string>
+    <string name="correct">Correct!!:)</string>
+    <string name="wrong">Wrong -_-</string>
 </resources>

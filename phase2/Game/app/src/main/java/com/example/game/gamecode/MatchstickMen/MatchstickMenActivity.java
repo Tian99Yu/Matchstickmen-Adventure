@@ -109,7 +109,8 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity
           public void onClick(View view) {
             if (!gameView.gameBackend.isGameOver()) {
               setNum(getNum() + 1);
-              count.setText(Integer.toString(getNum()));
+              String strCount = Integer.toString(getNum());
+              count.setText(strCount);
               ((MatchstickMenBackend) gameView.gameBackend).addCount();
             }
           }
@@ -124,8 +125,8 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity
           public void onClick(View view) {
             if (!(gameView.gameBackend).isGameOver()) {
               setNum(getNum() - 1);
-
-              count.setText(Integer.toString(getNum()));
+              String strCount = Integer.toString(getNum());
+              count.setText(strCount);
               ((MatchstickMenBackend) gameView.gameBackend).minusCount();
             }
           }
@@ -141,13 +142,13 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity
               if (((MatchstickMenBackend) gameView.gameBackend).compare(result)) {
                 ((MatchstickMenBackend) gameView.gameBackend).score += 1;
                 count.setTextSize(30);
-                count.setText("Correct!!! :)");
+                count.setText(R.string.correct);
                 timer.cancel();
                 ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
 
               } else {
                 count.setTextSize(30);
-                count.setText("Wrong -_-");
+                count.setText(R.string.wrong);
               }
               String text = timeleft.getText().toString();
               String time_remaining = text.substring(0, text.indexOf('.'));
@@ -171,7 +172,8 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity
 
   @Override
   void setCount() {
-    count.setText(Integer.toString(0));
+    String zero = Integer.toString(0);
+    count.setText(zero);
   }
 
 
