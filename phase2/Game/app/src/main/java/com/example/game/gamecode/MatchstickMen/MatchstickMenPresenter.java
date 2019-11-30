@@ -1,12 +1,16 @@
 package com.example.game.gamecode.MatchstickMen;
 
+import android.graphics.BitmapFactory;
+
 import com.example.game.gamecode.GameBackend;
 import com.example.game.gamecode.GamePresenter;
 
-public class MatchstickMenPresenter<T> extends GamePresenter<T, MatchstickMenObject> {
+import java.util.HashMap;
+
+public class MatchstickMenPresenter<T, K> extends GamePresenter<T, MatchstickMenObject> {
 
   /** The MatchstickMenDrawer that handles drawing for the matchstick men game. */
-  private MatchstickMenDrawer<T> matchstickMenDrawer;
+  private MatchstickMenDrawer<T, K> matchstickMenDrawer;
 
   /** Whether the game backend is initialized */
   private boolean initialized = false;
@@ -15,14 +19,20 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T, MatchstickMenObj
   private MatchstickMenCustomization matchstickMenCustomization;
 
   /**
+   * Get the image to be drawn
+   */
+  private ImageGetter<K> imageGetter;
+
+  /**
    * Constructor for matchstick men presenter
    *
    * @param matchstickMenDrawer the surface to be drawn on
    * @param backend the game backend of the game to be presented.
    */
-  MatchstickMenPresenter(MatchstickMenDrawer<T> matchstickMenDrawer, GameBackend backend) {
+  MatchstickMenPresenter(MatchstickMenDrawer<T, K> matchstickMenDrawer, GameBackend backend, ImageGetter imageGetter) {
     super(backend);
     this.matchstickMenDrawer = matchstickMenDrawer;
+    this.imageGetter = imageGetter;
   }
 
     /**
@@ -52,8 +62,8 @@ public class MatchstickMenPresenter<T> extends GamePresenter<T, MatchstickMenObj
    * @param drawingSurface the surface to be drawn in
    */
   private void drawMatchstickMenObject(MatchstickMenObject manObject, T drawingSurface) {
-    matchstickMenDrawer.drawMan(drawingSurface, manObject);
-    ((MatchstickMenBackend) this.backend).setAnswer();
+    K image = imageGetter.getImage(manObject.getManType());
+    matchstickMenDrawer.drawImage(drawingSurface, image, manObject.x, manObject.y);
   }
 
   /**
