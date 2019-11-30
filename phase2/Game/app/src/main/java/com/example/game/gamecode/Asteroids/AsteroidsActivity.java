@@ -31,11 +31,11 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
     leaderboardManager =
         (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
 
-//    Asteroid.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.asteroid);
-//
-//    Ship.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.ship);
-//
-//    Projectile.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.laser);
+    //    Asteroid.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.asteroid);
+    //
+    //    Ship.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.ship);
+    //
+    //    Projectile.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.laser);
 
     setDifficulty(settingsManager.getSetting("difficulty"));
     setTheme(settingsManager.getSetting("theme"));
@@ -106,13 +106,14 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
                     TypedValue.COMPLEX_UNIT_DIP, 96, getResources().getDisplayMetrics()));
   }
 
-  protected void saveData() {String[] score = {"Score"};
-    String[] value = {String.valueOf(gameView.gameBackend.getCurrentScore())};
-    leaderboardManager.saveData(
-            Games.ASTEROIDS,
-            username,
-            score,
-            value);
+  protected void saveData() {
+    String[] score = {"Score"};
+    String[] value = {
+      String.valueOf(gameView.gameBackend.getCurrentScore()),
+      String.valueOf(((AsteroidGameManager) gameView.gameBackend).getAsteroidsDestroyed()),
+      String.valueOf(((AsteroidGameManager) gameView.gameBackend).getPowerupsCollected())
+    };
+    leaderboardManager.saveData(Games.ASTEROIDS, username, score, value);
   }
 
   @Override
