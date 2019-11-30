@@ -4,15 +4,15 @@ import java.util.List;
 
 abstract class WeaponSystem<T extends AsteroidGameObject> {
   /** Speed projectiles fired by this weapon travels. */
-  double muzzleVelocity;
+  final double muzzleVelocity;
   /** Spread of projectiles fired by this weapon. */
-  double spread;
+  final double spread;
   /** Cooldown time before weapon can be fired again. */
-  int cooldown;
+  final int cooldown;
   /** Stage of cooldown, weapon can fire again once 0. */
   int cooldownState;
   /** Size of ammo fired by this weapon. */
-  double ammoSize;
+  final double ammoSize;
 
   public WeaponSystem(double muzzleVelocity, double spread, int cooldown, double ammoSize) {
     this.muzzleVelocity = muzzleVelocity;

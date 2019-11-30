@@ -55,7 +55,7 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
 
   /** Spawns asteroids. */
   private void spawnAsteroids() {
-    int asteroidStartCount = (int) (Math.random() * 3) + 6;
+    int asteroidStartCount = (int) (Math.random() * 3) + 3;
     for (int i = 0; i < asteroidStartCount; i++) {
       double newX, newY;
       do {
@@ -75,7 +75,7 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
               1,
               2));
     }
-    int asteroidSpawnerCount = (int) (Math.random() * 2) + 1;
+    int asteroidSpawnerCount = (int) (Math.random() * 2) + 2;
     for (int i = 0; i < asteroidSpawnerCount; i++) {
       double newX, newY;
       do {
@@ -98,7 +98,8 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
               3,
               0,
               AsteroidLauncherFactory.getAsteroidLauncher(
-                  AsteroidLauncherType.STANDARD_ASTEROID_LAUNCHER)));
+                  AsteroidLauncherType.STANDARD_ASTEROID_LAUNCHER),
+              player));
     }
   }
 
@@ -166,7 +167,7 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
         } else if (asteroidGameObject instanceof Asteroid) {
           currentScore += ((Asteroid) asteroidGameObject).getValue();
           newObjects.addAll(((Asteroid) asteroidGameObject).split(1, this, this));
-          if (asteroidGameObject instanceof  PowerupAsteroid) {
+          if (asteroidGameObject instanceof PowerupAsteroid) {
             powerupsCollected++;
           }
           asteroidsDestroyed++;

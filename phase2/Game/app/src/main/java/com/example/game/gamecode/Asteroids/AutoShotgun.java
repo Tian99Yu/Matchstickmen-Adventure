@@ -5,11 +5,11 @@ import java.util.List;
 
 class AutoShotgun extends WeaponSystem<Projectile> {
   /** Number of projectiles fired. */
-  private int numProjectiles;
+  final private int numProjectiles;
   /** Range of projectiles fired. */
-  private int range;
+  final private int range;
   /** Damage each projectile fired by this weapon inflicts. */
-  private int damage;
+  final private int damage;
 
   AutoShotgun(
       double muzzleVelocity,

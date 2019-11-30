@@ -7,7 +7,7 @@ import java.util.List;
 
 class Asteroid extends AsteroidGameObject {
   /** Number of hitpoints this asteroid has remaining. */
-  protected int hitPoints;
+  private int hitPoints;
   /** The level of the asteroid, higher means larger. Asteroids of level 0 will not divide. */
   private int level;
 
@@ -37,7 +37,7 @@ class Asteroid extends AsteroidGameObject {
         double newVY = 1.1 * vY + 200 * Math.random() - 100;
         double newAngle = Math.random() * 2 * Math.PI;
         double newCollisionRadius = collisionRadius * 0.6;
-        if (Math.random() < 0.02) {
+        if (Math.random() < 0.05) {
           smallerAsteroids.add(
               PowerupFactory.getRandomPowerup(
                   newX,

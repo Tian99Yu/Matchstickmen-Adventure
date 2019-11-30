@@ -1,8 +1,9 @@
 package com.example.game.gamecode.Asteroids;
 
 import java.util.List;
+import java.util.Random;
 
-public class AsteroidSpawner extends Asteroid {
+class AsteroidSpawner extends Asteroid {
   /** The launcher this spawner uses to make asteroids. */
   private WeaponSystem<Asteroid> asteroidLauncher;
   /** Angle this asteroid spawner turns towards. */
@@ -13,6 +14,12 @@ public class AsteroidSpawner extends Asteroid {
   private double turnRate;
   /** Maximum velocity this asteroid spawner can travel. */
   private double maxVelocity;
+  /** The targeting computer this ai uses. */
+  private TargetingComputer targetingComputer;
+  /** The target of this asteroid spawner. */
+  private AsteroidGameObject target;
+  /** The behaviour of this asteroid spawner. */
+  private boolean isAggressive = false;
 
   AsteroidSpawner(
       double x,
@@ -26,40 +33,51 @@ public class AsteroidSpawner extends Asteroid {
       double maxVelocity,
       int hitPoints,
       int level,
-      WeaponSystem<Asteroid> asteroidLauncher) {
+      WeaponSystem<Asteroid> asteroidLauncher,
+      AsteroidGameObject target) {
     super(x, y, vX, vY, angle, collisionRadius, hitPoints, level);
     this.thrust = thrust;
     this.turnRate = turnRate;
     this.maxVelocity = maxVelocity;
     this.asteroidLauncher = asteroidLauncher;
     targetAngle = Math.random() * 2 * Math.PI;
+    this.targetingComputer = new TargetingComputer(asteroidLauncher);
+    this.target = target;
   }
 
   @Override
   void move() {
     if (Math.random() < 0.01) {
+      isAggressive = !isAggressive;
+    }
+    if (isAggressive) {
+      moveAggressively();
+    } else {
+      moveRandomly();
+    }
+  }
+
+  private void moveRandomly() {
+    if (Math.random() < 0.01) {
       targetAngle = Math.random() * 2 * Math.PI;
     }
+    turn(targetAngle, turnRate);
+    double angle = getAngle();
+    if (Math.random() < 0.4) {
+      accelerate(thrust, maxVelocity);
+    }
+    super.move();
+  }
+
+  private void moveAggressively() {
+    targetAngle =
+        targetingComputer.getLeadAngle(
+            x + 2 * collisionRadius * Math.cos(getAngle()),
+            y + 2 * collisionRadius * Math.sin(getAngle()),
+            target);
     double angle = getAngle();
     if (angle != targetAngle) {
-      if (Math.abs(AngleUtils.signedAngularDifference(targetAngle, angle)) < turnRate * dt) {
-        setAngle(targetAngle);
-      } else {
-        setAngle(
-            angle
-                + Math.copySign(
-                    turnRate * dt, AngleUtils.signedAngularDifference(targetAngle, angle)));
-      }
-    }
-    if (Math.random() < 0.4) {
-      double aX = thrust * Math.cos(angle);
-      double aY = thrust * Math.sin(angle);
-      double newVX = vX + aX * dt;
-      double newVY = vY + aY * dt;
-      if (newVX * newVX + newVY * newVY <= maxVelocity * maxVelocity) {
-        vX = newVX;
-        vY = newVY;
-      }
+      turn(targetAngle, turnRate);
     }
     super.move();
   }
@@ -70,6 +88,12 @@ public class AsteroidSpawner extends Asteroid {
   }
 
   List<Asteroid> attemptSpawnAsteroid() {
-    return asteroidLauncher.attemptFire(x, y, vX, vY, getAngle(), true);
+    return asteroidLauncher.attemptFire(
+        x + 2 * collisionRadius * Math.cos(getAngle()),
+        y + 2 * collisionRadius * Math.sin(getAngle()),
+        vX,
+        vY,
+        getAngle(),
+        true);
   }
 }

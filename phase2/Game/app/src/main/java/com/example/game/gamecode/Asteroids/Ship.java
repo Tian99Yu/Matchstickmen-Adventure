@@ -56,26 +56,9 @@ class Ship extends AsteroidGameObject {
 
   @Override
   void move() {
-    double angle = getAngle();
-    if (angle != targetAngle) {
-      if (Math.abs(AngleUtils.signedAngularDifference(targetAngle, angle)) < turnRate * dt) {
-        setAngle(targetAngle);
-      } else {
-        setAngle(
-            angle
-                + Math.copySign(
-                    turnRate * dt, AngleUtils.signedAngularDifference(targetAngle, angle)));
-      }
-    }
+    turn(targetAngle, turnRate);
     if (thrusterActive) {
-      double aX = thrust * Math.cos(angle);
-      double aY = thrust * Math.sin(angle);
-      double newVX = vX + aX * dt;
-      double newVY = vY + aY * dt;
-      if (newVX * newVX + newVY * newVY <= maxVelocity * maxVelocity) {
-        vX = newVX;
-        vY = newVY;
-      }
+      accelerate(thrust, maxVelocity);
     }
     if (spawnProtectionLeft > 0) {
       spawnProtectionLeft--;
@@ -113,7 +96,7 @@ class Ship extends AsteroidGameObject {
   }
 
   void setTargetAngle(double targetAngle) {
-    this.targetAngle = targetAngle;
+    this.targetAngle = AngleUtils.normalize(targetAngle);
   }
 
   /** Returns ship to starting location */
@@ -142,5 +125,4 @@ class Ship extends AsteroidGameObject {
   public void setPowerupTime(int powerupTime) {
     this.powerupTime = powerupTime;
   }
-
 }

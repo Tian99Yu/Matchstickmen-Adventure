@@ -24,16 +24,15 @@ public class AsteroidLauncher extends WeaponSystem<Asteroid> {
   @Override
   List<Asteroid> attemptFire(
       double x, double y, double vX, double vY, double firingAngle, boolean weaponActive) {
-    double weaponVelocity = Math.sqrt(vX * vX + vY * vY);
     List<Asteroid> newAsteroid = new ArrayList<>();
     if (cooldownState == 0 && weaponActive) {
       double angle = firingAngle + Math.random() * spread - spread / 2;
       newAsteroid.add(
           new Asteroid(
-              x + 60*Math.cos(angle),
-              y + 60*Math.sin(angle),
-              (muzzleVelocity + weaponVelocity) * Math.cos(angle),
-              (muzzleVelocity + weaponVelocity) * Math.sin(angle),
+              x,
+              y,
+              muzzleVelocity * Math.cos(angle),
+              muzzleVelocity * Math.sin(angle),
               angle,
               ammoSize,
               asteroidHitPoints,

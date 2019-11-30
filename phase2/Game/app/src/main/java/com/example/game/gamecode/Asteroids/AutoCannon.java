@@ -5,9 +5,9 @@ import java.util.List;
 
 class AutoCannon extends WeaponSystem<Projectile> {
   /** Range of projectiles fired. */
-  private int range;
+  final private int range;
   /** Damage each projectile fired by this weapon inflicts. */
-  private int damage;
+  final private int damage;
 
   AutoCannon(
       double muzzleVelocity,

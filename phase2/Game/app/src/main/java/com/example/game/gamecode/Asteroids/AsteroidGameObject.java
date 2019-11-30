@@ -68,6 +68,40 @@ abstract class AsteroidGameObject {
     return false;
   }
 
+  /**
+   * Acclerates the asteroid game object.
+   * @param thrust the amount of thrust to accelerate at.
+   * @param maxVelocity the max velocity.
+   */
+  void  accelerate(double thrust, double maxVelocity) {
+    double aX = thrust * Math.cos(angle);
+    double aY = thrust * Math.sin(angle);
+    double newVX = vX + aX * dt;
+    double newVY = vY + aY * dt;
+    if (newVX * newVX + newVY * newVY <= maxVelocity * maxVelocity) {
+      vX = newVX;
+      vY = newVY;
+    }
+  }
+
+  /**
+   * Turns the asteroid game object.
+   * @param targetAngle the angle to turn towards.
+   * @param turnRate the turn rate of the asteroid game object.
+   */
+  void turn(double targetAngle, double turnRate) {
+    if (angle != targetAngle) {
+      if (Math.abs(AngleUtils.signedAngularDifference(targetAngle, angle)) < turnRate * dt) {
+        setAngle(targetAngle);
+      } else {
+        setAngle(
+                angle
+                        + Math.copySign(
+                        turnRate * dt, AngleUtils.signedAngularDifference(targetAngle, angle)));
+      }
+    }
+  }
+
   /** Moves this AsteroidGameObject. */
   void move() {
     x = x + vX * dt;
