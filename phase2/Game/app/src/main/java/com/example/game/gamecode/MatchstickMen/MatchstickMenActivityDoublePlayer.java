@@ -16,119 +16,189 @@ import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.leaderboardcode.Saver;
+import com.example.game.logincode.LoginManager;
 import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
 import java.util.ArrayList;
 
 public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivity
-        implements CustomizableGame, Saver {
-    /**
-     * A flag recording whether the data of this game is saved.
-     */
+    implements CustomizableGame, Saver {
+  /** A flag recording whether the data of this game is saved. */
+  private boolean saved = false;
+
+  private int level = 0;
+  private int color = Color.WHITE;
+  private String character = "circle";
+  private CountDownTimer timer;
+
+  /** The customizations of this matchstick men game */
+  MatchstickMenCustomization matchstickMenCustomization = new MatchstickMenCustomization();
+
+  /**
+   * Make the customizations.
+   *
+   * @param level the level of this game
+   * @param theme the theme of this game
+   * @param character the character that will be shown on the screen
+   */
+  public void customization(String level, String theme, String character) {
+
+    setDifficulty(level);
+    setTheme(theme);
+    setCharacter(character);
+  }
 
 
-    //    private ProgressBar pgBar;
-    private TextView count1, count2;
-    private Button addP1, addP2, minusP1, minusP2, restart, singlePlayer, btnDone;
-    private int num1 = 0;
-    private int num2 = 0;
+  //    private ProgressBar pgBar;
+  private TextView count1, count2;
+  private Button addP1, addP2, minusP1, minusP2, restart, singlePlayer, btnDone;
+  private int num1 = 0;
+  private int num2 = 0;
 
-    public int getNum2() {
-        return num2;
+  public int getNum2() {
+    return num2;
+  }
+
+  public void setNum2(int num2) {
+    this.num2 = num2;
+  }
+
+  public int getNum1() {
+    return num1;
+  }
+
+  public void setNum1(int num) {
+    this.num1 = num;
+  }
+
+  protected void onCreate(final Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.matchstickmen_double_layout);
+
+    loginManager = (LoginManager) getIntent().getSerializableExtra("loginManager");
+    settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
+    leaderboardManager =
+        (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
+
+    customization(
+        settingsManager.getSetting("difficulty"),
+        settingsManager.getSetting("theme"),
+        settingsManager.getSetting("character"));
+
+    gameView = this.setView();
+    final FrameLayout frameLayout = findViewById(R.id.matchstickManSurface);
+    frameLayout.addView(gameView);
+    MatchstickMenView matchstickMenView = ((MatchstickMenView) gameView);
+    matchstickMenView.setMatchstickMenCustomization(matchstickMenCustomization);
+    matchstickMenView.setDifficulty();
+
+    setButtons();
+    setOnclickListeners();
+
+    pgBar.setProgress(0);
+
+    // Count down and display the time left in the textbar on the upper right corner
+    timer = setTimers(pgBar, timeleft);
+    timer.start();
+    setCount();
+
+    restart.setOnClickListener(
+        new View.OnClickListener() {
+
+          @Override
+          public void onClick(View view) {
+            finish();
+            startActivity(getIntent());
+          }
+        });
+  }
+
+  @Override
+  protected void saveData() {
+    if (!saved) {
+      String[] stats = {"Count", "Score", "Time"};
+      String[] values = {
+        String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCount()),
+        String.valueOf((gameView.gameBackend).getCurrentScore()),
+        String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed())
+      };
     }
+  }
 
-    public void setNum2(int num2) {
-        this.num2 = num2;
+  @Override
+  protected GameView setView() {
+    return new MatchstickMenView(this);
+  }
+
+  public int getTotalTime() {
+    int totalTime;
+    switch (matchstickMenCustomization.getDifficulty()) {
+      case 0:
+        totalTime = 10;
+        break;
+      case 1:
+        totalTime = 7;
+        break;
+      case 2:
+        totalTime = 5;
+        break;
+      default:
+        totalTime = 10;
     }
+    ;
+    return totalTime;
+  }
 
-    public int getNum1() {
-        return num1;
-    }
+  @Override
+  public void setDifficulty(String difficulty) {
+    this.matchstickMenCustomization.setDifficulty(difficulty);
+  }
 
-    public void setNum1(int num) {
-        this.num1 = num;
-    }
+  @Override
+  public void setCharacter(String character) {
+    this.matchstickMenCustomization.setCharacter(character);
+  }
 
-    protected void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.matchstickmen_double_layout);
+  @Override
+  public void setTheme(String theme) {
+    this.matchstickMenCustomization.setTheme(theme);
+  }
 
-        username = (String) getIntent().getSerializableExtra("username");
-        settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
-        leaderboardManager =
-                (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
+  @Override
+  void setButtons() {
 
-        customization(
-                settingsManager.getSetting("difficulty"),
-                settingsManager.getSetting("theme"),
-                settingsManager.getSetting("character"));
+    // the buttons for the activity
+    pgBar = findViewById(R.id.progressBarDouble);
+    singlePlayer = findViewById(R.id.singlePlayer);
+    restart = findViewById(R.id.restartDouble);
+    timeleft = findViewById(R.id.textTimeleftDouble);
+    addP1 = findViewById(R.id.addP1);
+    addP2 = findViewById(R.id.addP2);
+    minusP1 = findViewById(R.id.minusP1);
+    minusP2 = findViewById(R.id.minusP2);
+    btnDone = findViewById(R.id.doneDouble);
+    // the TextView
+    count1 = findViewById(R.id.countP1);
+    count2 = findViewById(R.id.countP2);
+  }
 
-        gameView = this.setView();
-        final FrameLayout frameLayout = findViewById(R.id.matchstickManSurface);
-        frameLayout.addView(gameView);
-        MatchstickMenView matchstickMenView = ((MatchstickMenView) gameView);
-        matchstickMenView.setMatchstickMenCustomization(matchstickMenCustomization);
-        matchstickMenView.setDifficulty();
+  @Override
+  void setOnclickListeners() {
 
-        setButtons();
-        setOnclickListeners();
+    addP1.setOnClickListener(
+        new View.OnClickListener() {
+          int i = getNum1();
 
-        setUpTimer();
-        setCount();
-
-        restart.setOnClickListener(
-                new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View view) {
-                        finish();
-                        startActivity(getIntent());
-                    }
-                });
-    }
-
-
-    @Override
-    protected GameView setView() {
-        return new MatchstickMenView(this);
-    }
-
-
-    @Override
-    void setButtons() {
-
-        // the buttons for the activity
-        pgBar = findViewById(R.id.progressBarDouble);
-        singlePlayer = findViewById(R.id.singlePlayer);
-        restart = findViewById(R.id.restartDouble);
-        timeleft = findViewById(R.id.textTimeleftDouble);
-        addP1 = findViewById(R.id.addP1);
-        addP2 = findViewById(R.id.addP2);
-        minusP1 = findViewById(R.id.minusP1);
-        minusP2 = findViewById(R.id.minusP2);
-        btnDone = findViewById(R.id.doneDouble);
-        // the TextView
-        count1 = findViewById(R.id.countP1);
-        count2 = findViewById(R.id.countP2);
-    }
-
-    @Override
-    void setOnclickListeners() {
-
-        addP1.setOnClickListener(
-                new View.OnClickListener() {
-                    int i = getNum1();
-
-                    @Override
-                    public void onClick(View view) {
-                        if (!gameView.gameBackend.isGameOver()) {
-                            setNum1(getNum1() + 1);
-                            count1.setText(Integer.toString(getNum1()));
-                            ((MatchstickMenBackend) gameView.gameBackend).addCount();
-                        }
-                    }
-                });
+          @Override
+          public void onClick(View view) {
+            if (!gameView.gameBackend.isGameOver()) {
+              setNum1(getNum1() + 1);
+              count1.setText(Integer.toString(getNum1()));
+              ((MatchstickMenBackend) gameView.gameBackend).addCount();
+            }
+          }
+        });
 
         addP2.setOnClickListener(
                 new View.OnClickListener() {
@@ -224,5 +294,9 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
         count2.setText(Integer.toString(0));
     }
 
-
+  protected void sendToIntent(Intent intent) {
+    intent.putExtra("loginManager", loginManager);
+    intent.putExtra("leaderboardManager", leaderboardManager);
+    intent.putExtra("settingsManager", settingsManager);
+  }
 }

@@ -16,6 +16,7 @@ import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.leaderboardcode.Saver;
+import com.example.game.logincode.LoginManager;
 import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
@@ -26,7 +27,7 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
     super.onCreate(savedInstanceState);
     super.setContentView(R.layout.asteroids_layout);
 
-    username = (String) getIntent().getSerializableExtra("username");
+    loginManager = (LoginManager) getIntent().getSerializableExtra("loginManager");
     settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
     leaderboardManager =
         (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
@@ -110,7 +111,7 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
     String[] value = {String.valueOf(gameView.gameBackend.getCurrentScore())};
     leaderboardManager.saveData(
             Games.ASTEROIDS,
-            username,
+            loginManager.getUsername(),
             score,
             value);
   }

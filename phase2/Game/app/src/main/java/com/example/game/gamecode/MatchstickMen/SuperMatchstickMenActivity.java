@@ -82,18 +82,6 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
     }
 
     @Override
-    public void saveScore() {
-        if (!saved) {
-            String[] stats = {"Count", "Score", "Time"};
-            String[] values = {
-                    String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCount()),
-                    String.valueOf((gameView.gameBackend).getCurrentScore()),
-                    String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed())
-            };
-        }
-    }
-
-    @Override
     protected GameView setView() {
         return new MatchstickMenView(this);
     }
@@ -168,7 +156,7 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
                                     Integer.toString(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed());
                             String[] stats = {"Count", "Score", "Time used"};
                             String[] values = {count, score, timeUsed};
-                            leaderboardManager.saveData(Games.MATCHSTICKMEN, username, stats, values);
+                            leaderboardManager.saveData(Games.MATCHSTICKMEN, loginManager.getUsername(), stats, values);
                         }
                     }
                 };
@@ -198,11 +186,17 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
                     String.valueOf((gameView.gameBackend).getCurrentScore()),
                     String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed())
             };
+            leaderboardManager.saveData(
+                    Games.MATCHSTICKMEN,
+                    loginManager.getUsername(),
+                    stats,
+                    values
+            );
         }
     }
 
     protected void sendToIntent(Intent intent) {
-        intent.putExtra("username", username);
+        intent.putExtra("loginManager", loginManager);
         intent.putExtra("leaderboardManager", leaderboardManager);
         intent.putExtra("settingsManager", settingsManager);
     }

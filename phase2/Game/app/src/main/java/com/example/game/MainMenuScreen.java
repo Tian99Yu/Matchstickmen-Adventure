@@ -3,8 +3,6 @@ package com.example.game;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -18,15 +16,17 @@ import com.example.game.gamecode.MatchstickMen.MatchstickMenActivity;
 import com.example.game.gamecode.Snake.SnakeActivity;
 import com.example.game.leaderboardcode.LeaderboardActivity;
 import com.example.game.leaderboardcode.LeaderboardManager;
+import com.example.game.logincode.LoginActivity;
+import com.example.game.logincode.LoginManager;
 import com.example.game.settingscode.Customizable;
 import com.example.game.settingscode.SettingsActivity;
 import com.example.game.settingscode.SettingsManager;
 import java.io.InputStream;
 
 public class MainMenuScreen extends AppCompatActivity implements Customizable {
-  private String username;
   private LeaderboardManager leaderboardManager;
   private SettingsManager settingsManager;
+  private LoginManager loginManager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +38,26 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
     final Button launchGame3 = findViewById(R.id.game3);
     final ImageButton openLeaderboard = findViewById(R.id.leaderboardButton);
     final ImageButton openSettings = findViewById(R.id.settingsButton);
-    final TextView usernameField = findViewById(R.id.usernameField);
+    final ImageButton loginButton = findViewById(R.id.loginButton);
 
     InputStream defaultSettingsStream = getResources().openRawResource(R.raw.defaultsettings);
 
     Intent intent = getIntent();
     if (intent.getExtras() == null) {
-      username = usernameField.getText().toString();
       leaderboardManager = new LeaderboardManager(getDataDir());
       settingsManager = new SettingsManager(getDataDir(), defaultSettingsStream);
+      loginManager = new LoginManager(getDataDir());
     } else {
-      username = (String) intent.getSerializableExtra("username");
-      usernameField.setText(username);
       settingsManager = (SettingsManager) intent.getSerializableExtra("settingsManager");
       leaderboardManager = (LeaderboardManager) intent.getSerializableExtra("leaderboardManager");
+      loginManager = (LoginManager) intent.getSerializableExtra("loginManager");
+    }
+
+    if (!loginManager.isLoggedIn()) {
+      launchGame1.setVisibility(View.INVISIBLE);
+      launchGame2.setVisibility(View.INVISIBLE);
+      launchGame3.setVisibility(View.INVISIBLE);
+      findViewById(R.id.loginPrompt).setVisibility(View.VISIBLE);
     }
 
     setTheme(settingsManager.getSetting("theme"));
@@ -101,21 +107,14 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
           }
         });
 
-    usernameField.addTextChangedListener(
-        new TextWatcher() {
-          @Override
-          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-          @Override
-          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-          @Override
-          public void afterTextChanged(Editable editable) {
-            if (editable.length() != 0) {
-              username = editable.toString();
-            }
-          }
-        });
+    loginButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent mainIntent = new Intent(MainMenuScreen.this, LoginActivity.class);
+        sendToIntent(mainIntent);
+        MainMenuScreen.this.startActivity(mainIntent);
+      }
+    });
   }
 
   @Override
@@ -124,9 +123,9 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
   }
 
   private void sendToIntent(Intent intent) {
-    intent.putExtra("username", username);
     intent.putExtra("leaderboardManager", leaderboardManager);
     intent.putExtra("settingsManager", settingsManager);
+    intent.putExtra("loginManager", loginManager);
   }
 
   @Override

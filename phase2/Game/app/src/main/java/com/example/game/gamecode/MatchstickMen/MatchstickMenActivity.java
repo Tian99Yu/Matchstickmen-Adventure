@@ -16,6 +16,7 @@ import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.leaderboardcode.Saver;
+import com.example.game.logincode.LoginManager;
 import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
@@ -41,7 +42,7 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.matchstickmen_layout);
 
-    username = (String) getIntent().getSerializableExtra("username");
+    loginManager = (LoginManager) getIntent().getSerializableExtra("loginManager");
     settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
     leaderboardManager =
         (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
@@ -78,9 +79,10 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity
         });
   }
 
+  @Override
+  protected void saveData() {
 
-
-
+  }
 
 
   @Override
