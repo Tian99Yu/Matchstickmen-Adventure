@@ -36,7 +36,6 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
 
   private ArrayList<MysteryObject> mysteryObjects;
 
-
   /** Create an uninitialized empty snake backend */
   SnakeBackend() {
     gameObjects = new ArrayList<>();
@@ -93,9 +92,9 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
     boolean eatMysteryObject = false;
 
     snakeHead.move();
-    for (MysteryObject mysteryObject: mysteryObjects){
-      if (! snakeHead.atPosition(mysteryObject.x, mysteryObject.y)) {
-      mysteryObject.move();
+    for (MysteryObject mysteryObject : mysteryObjects) {
+      if (!snakeHead.atPosition(mysteryObject.x, mysteryObject.y)) {
+        mysteryObject.move();
       } else {
         eatMysteryObject(mysteryObject);
         eatMysteryObject = true;
@@ -149,16 +148,14 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
     distance++;
   }
 
-  /**
-   * Create randomly apple, mystery object, or snake component and add them to snake objects.
-   */
-  private void createRandomObject(){
+  /** Create randomly apple, mystery object, or snake component and add them to snake objects. */
+  private void createRandomObject() {
     Random random = new Random();
     int randomInt = random.nextInt(100);
     if (randomInt == 50) {
       Apple apple =
-              new Apple(
-                      random.nextInt(gridHeight - 4) + 2, random.nextInt(gridHeight - 4) + 2, size, shape);
+          new Apple(
+              random.nextInt(gridWidth - 4) + 2, random.nextInt(gridHeight - 4) + 2, size, shape);
       addSnakeObj(apple);
     }
 
@@ -170,10 +167,20 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
     randomInt = random.nextInt(1000);
     if (randomInt == 1) {
       MysteryObject mysteryObject =
-              new MysteryObject(
-                      random.nextInt(gridHeight - 4) + 2, random.nextInt(gridHeight - 4) + 2, size, shape);
+          new MysteryObject(
+              random.nextInt(gridWidth - 4) + 2, random.nextInt(gridHeight - 4) + 2, size, shape);
       addSnakeObj(mysteryObject);
       mysteryObjects.add(mysteryObject);
+    }
+
+    randomInt = random.nextInt(333);
+    if (randomInt == 111) {
+      int x = random.nextInt(gridWidth - 4) + 2;
+      int y = random.nextInt(gridHeight - 4) + 2;
+      if (!snakeHead.atPosition(x, y)) {
+        Wall wall = new Wall(x, y, size, shape);
+        addSnakeObj(wall);
+      }
     }
   }
 
@@ -223,8 +230,6 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
 
   /** Initialize and create all the objects when stating the game */
   void createObjects() {
-    Random random = new Random();
-
     for (int x = 0; x < gridWidth; x++) {
       gameObjects.add(new Wall(x, 0, size, shape));
       gameObjects.add(new Wall(x, gridHeight - 1, size, shape));
