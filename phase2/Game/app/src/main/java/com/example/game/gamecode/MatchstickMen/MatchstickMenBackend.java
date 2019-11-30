@@ -13,15 +13,6 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   /** Actual number of matchstick men generated. */
   private int answer;
 
-  //  /** The color of the character. */
-  //  private int color;
-  //
-  //  /** The level of this game. */
-  //  private int difficulty;
-  //
-  //  /** The character that will appear on the screen. */
-  //  private String character;
-
   /** The time of this game. */
   private int totalTime;
 
@@ -157,20 +148,6 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   }
 
   /**
-   * Another constructor for MatchstickMenBackend.
-   *
-   * @param height the height of the drawing surface
-   * @param width the width of the drawing surface
-   */
-  MatchstickMenBackend(int height, int width) {
-    this.answer = 0;
-    this.over = false;
-    gameObjects = new ArrayList<>();
-    this.gridWidth = width;
-    this.gridHeight = height;
-  }
-
-  /**
    * Set the grid height to grid height
    *
    * @param gridHeight the grid height of this backend.
@@ -254,7 +231,7 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
 
           int baldX = random.nextInt(gridWidth - 200);
           int baldY = random.nextInt(gridHeight - 200);
-          MatchstickMenObject baldMan = new ExtraordinaryManObject(baldX, baldY, gridWidth, gridHeight, MatchstickMenType.BALD_MAN, R.drawable.baldman);
+          MatchstickMenObject baldMan = new ExtraordinaryManObject(baldX, baldY, gridWidth, gridHeight, MatchstickMenType.BALD_MAN);
 //          baldMan.setManType(MatchstickMenType.BALD_MAN);
 //          baldMan.setSourceId(R.drawable.baldman);
           addMatchstickMenObj(baldMan);
@@ -263,25 +240,6 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
       i += increment;
     }
   }
-
-  //  public void inject(int color, int level, String character) {
-  //    this.color = color;
-  //    this.difficulty = level;
-  //    this.character = character;
-  //    switch (level) {
-  //      case 0:
-  //        totalTime = 30;
-  //        break;
-  //      case 1:
-  //        totalTime = 20;
-  //        break;
-  //      case 2:
-  //        totalTime = 10;
-  //        break;
-  //      default:
-  //        totalTime = 10;
-  //    }
-  //  }
 
   public void setLevelNum(int levelNum) {
     this.levelNum = levelNum;

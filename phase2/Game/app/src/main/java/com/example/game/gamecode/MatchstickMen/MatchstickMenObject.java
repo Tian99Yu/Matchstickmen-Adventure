@@ -17,9 +17,6 @@ public abstract class MatchstickMenObject {
      * */
     private boolean goingRight;
 
-  /** The id of the source image of this MatchstickMenObject. */
-  private int sourceId;
-
     /**
      * The width of displaying area.
      */
@@ -36,13 +33,12 @@ public abstract class MatchstickMenObject {
      * @param x the initial x coordinate of this MatchstickMen object
      * @param y the initial y coordinate of this MatchstickMen object
      */
-    MatchstickMenObject(int x, int y, int gridWidth, int gridHeight, MatchstickMenType manType, int sourceId) {
+    MatchstickMenObject(int x, int y, int gridWidth, int gridHeight, MatchstickMenType manType) {
         this.x = x;
         this.y = y;
         this.gridWidth = gridWidth;
         this.gridHeight = gridHeight;
         this.manType = manType;
-        this.sourceId = sourceId;
         this.goingRight = true;
     }
 
@@ -80,24 +76,6 @@ public abstract class MatchstickMenObject {
    */
   public void setManType(MatchstickMenType manType) {
     this.manType = manType;
-  }
-
-  /**
-   * Gets the source id of this MatchstickMenObject.
-   *
-   * @return the source id of this MatchstickMenObject
-   */
-  int getSourceId() {
-    return sourceId;
-  }
-
-  /**
-   * Sets the source id of this MatchstickMenObject.
-   *
-   * @param sourceId the source id of this MatchstickMenObject
-   */
-  void setSourceId(int sourceId) {
-    this.sourceId = sourceId;
   }
 
     /**

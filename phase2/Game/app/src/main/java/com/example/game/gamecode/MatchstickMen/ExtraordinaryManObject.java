@@ -16,8 +16,8 @@ class ExtraordinaryManObject extends MatchstickMenObject {
      * @param gridWidth  the width of the displaying area
      * @param gridHeight the height of the displaying area
      */
-    ExtraordinaryManObject(int x, int y, int gridWidth, int gridHeight, MatchstickMenType manType, int sourceId) {
-        super(x, y, gridWidth, gridHeight, manType, sourceId);
+    ExtraordinaryManObject(int x, int y, int gridWidth, int gridHeight, MatchstickMenType manType) {
+        super(x, y, gridWidth, gridHeight, manType);
         this.goingUp = true;
     }
 
