@@ -28,6 +28,9 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   /** Count from user. (1st statistic) */
   private int count;
 
+  private int countP2;
+
+
   /** the level of the current game */
   private int levelNum;
 
@@ -50,7 +53,16 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
      */
     private int gridHeight;
 
-  /**
+
+    public int getCountP2() {
+        return countP2;
+    }
+
+    public void setCountP2(int countP2) {
+        this.countP2 = countP2;
+    }
+
+    /**
    * Gets the count of this game.
    *
    * @return the count of this game.
@@ -67,6 +79,14 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   /** Decreases the count by 1. */
   public void minusCount() {
     this.count -= 1;
+  }
+
+  public void addCount2(){
+      this.countP2 += 1;
+  }
+
+  public void minusCount2(){
+      this.countP2 -= 1;
   }
 
   /**
@@ -178,6 +198,22 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
    */
   public boolean compare(String r) {
       return r.equals(Integer.toString(getAnswer()));
+  }
+
+  public String compare(String r1, String r2){
+      String strAnswer = Integer.toString(getAnswer());
+      if (r1.equals(strAnswer) && r2.equals(strAnswer)){
+          return "you both win";
+      }
+      else if (r1.equals(strAnswer) && !(r2.equals(strAnswer))){
+          return "player1 wins";
+      }else if (!r1.equals(strAnswer) && r2.equals(strAnswer) ){
+          return "player2 wins";
+      } else {
+          return "you both lose";
+      }
+
+
   }
 
     /**
