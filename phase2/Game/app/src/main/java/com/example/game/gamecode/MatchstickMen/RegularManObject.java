@@ -9,8 +9,8 @@ class RegularManObject extends MatchstickMenObject {
      * @param gridWidth the width of the displaying area
      * @param gridHeight the height of the displaying area
      */
-    RegularManObject(int x, int y, int gridWidth, int gridHeight, MatchstickMenType manType) {
-        super(x, y, gridWidth, gridHeight, manType);
+    RegularManObject(int x, int y, int gridWidth, int gridHeight) {
+        super(x, y, gridWidth, gridHeight);
 
     }
 

@@ -33,12 +33,12 @@ public abstract class MatchstickMenObject {
      * @param x the initial x coordinate of this MatchstickMen object
      * @param y the initial y coordinate of this MatchstickMen object
      */
-    MatchstickMenObject(int x, int y, int gridWidth, int gridHeight, MatchstickMenType manType) {
+    MatchstickMenObject(int x, int y, int gridWidth, int gridHeight) {
         this.x = x;
         this.y = y;
         this.gridWidth = gridWidth;
         this.gridHeight = gridHeight;
-        this.manType = manType;
+        this.manType = MatchstickMenType.EXCITED_MAN;
         this.goingRight = true;
     }
 
