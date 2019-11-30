@@ -100,8 +100,14 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
         i--;
         length--;
       }
-    }
 
+      if (gameObjects.get(i).x <= 0 || gameObjects.get(i).x >= gridWidth ||
+              gameObjects.get(i).y <= 0 || gameObjects.get(i).y >= gridHeight) {
+        deleteItem(gameObjects.get(i));
+        i--;
+        length--;
+      }
+    }
     if (eatApple) {
       addSnakeComponent();
     }
@@ -122,36 +128,25 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
   /** Create randomly apple, mystery object, or snake component and add them to snake objects. */
   private void createRandomObject() {
     Random random = new Random();
-    int randomInt = random.nextInt(100);
-    if (randomInt == 50) {
-      Apple apple =
-          new Apple(
-              random.nextInt(gridWidth - 4) + 2, random.nextInt(gridHeight - 4) + 2, size, shape);
-      addSnakeObj(apple);
-    }
+    int randomInt = random.nextInt(1000);
+    int x = random.nextInt(gridWidth - 4) + 2;
+    int y = random.nextInt(gridHeight - 4) + 2;
 
-    randomInt = random.nextInt(500);
-    if (randomInt == 100) {
-      addSnakeComponent();
-    }
-
-    randomInt = random.nextInt(1000);
-    if (randomInt == 1) {
-      MysteryObject mysteryObject =
-          new MysteryObject(
-              random.nextInt(gridWidth - 4) + 2, random.nextInt(gridHeight - 4) + 2, size, shape);
-      addSnakeObj(mysteryObject);
-      mysteryObjects.add(mysteryObject);
-    }
-
-    randomInt = random.nextInt(333);
-    if (randomInt == 111) {
-      int x = random.nextInt(gridWidth - 4) + 2;
-      int y = random.nextInt(gridHeight - 4) + 2;
-      if (!snakeHead.atPosition(x, y)) {
-        Wall wall = new Wall(x, y, size, shape);
-        addSnakeObj(wall);
+    if (! snakeHead.atPosition(x, y)){
+      if (randomInt == 0){
+        MysteryObject mysteryObject =
+                new MysteryObject(x, y, size, shape);
+        addSnakeObj(mysteryObject);
+        mysteryObjects.add(mysteryObject);
       }
+    } else if (20 <= randomInt && randomInt <= 40) {
+      Apple apple = new Apple(x, y, size, shape);
+      addSnakeObj(apple);
+    } else if (50 <= randomInt && randomInt <= 51) {
+      addSnakeComponent();
+    } else if (100 <= randomInt && randomInt <= 101) {
+      Wall wall = new Wall(x, y, size, shape);
+      addSnakeObj(wall);
     }
   }
 
