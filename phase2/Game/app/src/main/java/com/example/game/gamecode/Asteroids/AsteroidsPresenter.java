@@ -43,22 +43,7 @@ public class AsteroidsPresenter<T, S> extends GamePresenter<T, AsteroidGameObjec
         0,
         24 * asteroidsDrawer.getDensity(),
         2);
-//    for (Iterator<AsteroidGameObject> gameObjectIterator = backend.getGameObjectsIterator();
-//        gameObjectIterator.hasNext(); ) {
-//      AsteroidGameObject asteroidGameObject = gameObjectIterator.next();
-//      ColoredSprite<S> coloredSprite = classToColoredSprite.get(asteroidGameObject.getClass());
-//      if (coloredSprite != null) {
-//        asteroidsDrawer.drawSprite(
-//            drawingSurface,
-//            coloredSprite.getSprite(),
-//            coloredSprite.getColor(),
-//            asteroidGameObject.x,
-//            asteroidGameObject.y,
-//            asteroidGameObject.getAngle(),
-//            asteroidGameObject.collisionRadius * 2,
-//            asteroidGameObject.collisionRadius * 2);
-//      }
-//    }
+
     for (AsteroidGameObject asteroidGameObject: backend) {
       ColoredSprite<S> coloredSprite = classToColoredSprite.get(asteroidGameObject.getClass());
       if (coloredSprite != null) {
