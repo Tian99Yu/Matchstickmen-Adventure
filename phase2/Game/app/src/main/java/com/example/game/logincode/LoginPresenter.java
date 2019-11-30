@@ -3,8 +3,8 @@ package com.example.game.logincode;
 import android.os.Handler;
 
 public class LoginPresenter implements LoginManager.OnLoginFinishedListener {
-  LoginView loginView;
-  LoginManager loginManager;
+  private LoginView loginView;
+  private final LoginManager loginManager;
 
   LoginPresenter(LoginView view, LoginManager manager) {
     loginView = view;

@@ -23,7 +23,7 @@ import java.util.List;
 public class LeaderboardManager implements Serializable {
   // String representation of the leaderboard data.
   private String leaderboardString;
-  private File saveFile;
+  private final File saveFile;
 
   /**
    * Creates a LeaderboardManager with a corresponding location on disk.

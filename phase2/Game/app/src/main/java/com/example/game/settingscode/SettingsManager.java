@@ -13,10 +13,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class SettingsManager implements Serializable {
-  private File settingsFile;
+  private final File settingsFile;
   private String settingsString;
 
   public SettingsManager(File saveDirectory, InputStream defaultSettings) {
@@ -52,12 +52,9 @@ public class SettingsManager implements Serializable {
   }
 
   private String convertStreamtoString(InputStream is) {
-    BufferedReader streamReader = null;
-    try {
-      streamReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-    } catch (UnsupportedEncodingException e) {
-      e.printStackTrace();
-    }
+    BufferedReader streamReader = new BufferedReader(
+            new InputStreamReader(is, StandardCharsets.UTF_8)
+    );
     StringBuilder stringBuilder = new StringBuilder();
 
     String str;

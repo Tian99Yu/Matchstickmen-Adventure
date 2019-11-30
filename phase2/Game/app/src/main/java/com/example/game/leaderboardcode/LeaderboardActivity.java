@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -70,12 +69,12 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
     }
 
     public void setGames(String[] games) {
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, games);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, games);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gameSpinner.setAdapter(spinnerArrayAdapter);
     }
 
-    public void showScores(String game) {
+    public void showScores() {
         TableRow.LayoutParams textParams = new TableRow.LayoutParams(
                 0,
                 TableRow.LayoutParams.WRAP_CONTENT,
@@ -113,7 +112,6 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
     public void setTheme(String theme) {
         View leaderboardContainer = findViewById(R.id.leaderboardLayout);
         TextView leaderboardTitle = findViewById(R.id.leaderboardTitle);
-        Spinner gameSpinner = findViewById(R.id.gameList);
 
         int backgroundColor;
         int textColor;

@@ -1,6 +1,6 @@
 package com.example.game.logincode;
 
-public interface LoginView {
+interface LoginView {
   void setUsernameError();
   void setPasswordError();
   void setLoginFail();

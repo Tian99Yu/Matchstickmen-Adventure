@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 public class LoginManager implements Serializable {
-  private File saveFile;
+  private final File saveFile;
   private String loginString;
   private String username;
   private boolean isLoggedIn = false;
@@ -81,10 +81,10 @@ public class LoginManager implements Serializable {
    * @param listener presents response to user depending on result
    */
   void login(String username, String password, LoginManager.OnLoginFinishedListener listener) {
-    if (!isCredentialValid(username)) {
+    if (isCredentialInvalid(username)) {
       listener.onUsernameError();
       return;
-    } else if (!isCredentialValid(password)) {
+    } else if (isCredentialInvalid(password)) {
       listener.onPasswordError();
       return;
     }
@@ -123,11 +123,11 @@ public class LoginManager implements Serializable {
    * Enforces user credential requirements.
    *
    * @param credential the String to be checked
-   * @return true iff credential is matched by the regex
+   * @return false iff credential is matched by the regex
    */
-  private boolean isCredentialValid(String credential) {
+  private boolean isCredentialInvalid(String credential) {
     // Matches alphanumeric strings of length 5-12, inclusive
-    return credential.matches("^[a-zA-Z0-9]{5,12}$");
+    return !credential.matches("^[a-zA-Z0-9]{5,12}$");
   }
 
   /**

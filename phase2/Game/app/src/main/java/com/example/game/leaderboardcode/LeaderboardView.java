@@ -2,8 +2,8 @@ package com.example.game.leaderboardcode;
 
 import com.example.game.Games;
 
-public interface LeaderboardView {
+interface LeaderboardView {
     void setGames(String[] games);
-    void showScores(String game);
+    void showScores();
     Games getCurrentGame();
 }

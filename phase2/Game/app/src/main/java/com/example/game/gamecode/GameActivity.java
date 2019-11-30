@@ -81,12 +81,12 @@ public abstract class GameActivity extends AppCompatActivity implements Saver {
         retryButton.setLayoutParams(buttonParams);
         mainMenuButton.setLayoutParams(buttonParams);
 
-        saveToggle.setText("Save On");
+        saveToggle.setText(getString(R.string.save_enabled));
         saveToggle.setTextOn("Save On");
         saveToggle.setTextOff("Save Off");
 
-        retryButton.setText("Retry");
-        mainMenuButton.setText("Main Menu");
+        retryButton.setText(getString(R.string.replay));
+        mainMenuButton.setText(getString(R.string.main_menu));
 
         retryButton.setOnClickListener(new View.OnClickListener() {
           @Override

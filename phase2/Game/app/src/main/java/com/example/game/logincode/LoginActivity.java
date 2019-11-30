@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game.MainMenuScreen;
 import com.example.game.R;
-import com.example.game.gamecode.GameActivity;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.settingscode.Customizable;
 import com.example.game.settingscode.SettingsManager;

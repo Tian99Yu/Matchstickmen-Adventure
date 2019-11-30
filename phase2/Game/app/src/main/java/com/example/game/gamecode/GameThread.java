@@ -1,22 +1,21 @@
 package com.example.game.gamecode;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.view.SurfaceHolder;
 
 import com.example.game.leaderboardcode.Saver;
 
-/*
-Handles the update events for all games.
+/**
+ * Handles updates for all games.
  */
 public class GameThread extends Thread {
-  private SurfaceHolder surfaceHolder; // Container containing the Canvas
+  private final SurfaceHolder surfaceHolder; // Container containing the Canvas
   private Canvas canvas; // Canvas
-  private GameView gameView;
+  private final GameView gameView;
   private volatile boolean isPaused;
   private volatile boolean isTerminated;
-  protected int updateInterval;
-  private Saver saver;
+  private int updateInterval;
+  private final Saver saver;
 
   public GameThread(SurfaceHolder surfaceHolder, GameView gameView, Saver saver) {
     this.surfaceHolder = surfaceHolder;
@@ -70,15 +69,15 @@ public class GameThread extends Thread {
     }
   }
 
-  public void setPaused(boolean isPaused) {
+  void setPaused(boolean isPaused) {
     this.isPaused = isPaused;
   }
 
-  public boolean isPaused() {
+  boolean isPaused() {
     return this.isPaused;
   }
 
-  public void terminateThread() {
+  void terminateThread() {
     isTerminated = true;
   }
 }
