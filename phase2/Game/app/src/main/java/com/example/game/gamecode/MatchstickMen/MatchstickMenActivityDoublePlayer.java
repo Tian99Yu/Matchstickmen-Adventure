@@ -31,6 +31,9 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
   private String character = "circle";
   private CountDownTimer timer;
 
+  /** The customizations of this matchstick men game */
+  MatchstickMenCustomization matchstickMenCustomization = new MatchstickMenCustomization();
+
   /**
    * Make the customizations.
    *
@@ -45,17 +48,6 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
     setCharacter(character);
   }
 
-  public int getLevel() {
-    return level;
-  }
-
-  public int getColor() {
-    return color;
-  }
-
-  public String getCharacter() {
-    return character;
-  }
 
   //    private ProgressBar pgBar;
   private TextView count1, count2;
@@ -96,6 +88,9 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
     gameView = this.setView();
     final FrameLayout frameLayout = findViewById(R.id.matchstickManSurface);
     frameLayout.addView(gameView);
+    MatchstickMenView matchstickMenView = ((MatchstickMenView) gameView);
+    matchstickMenView.setMatchstickMenCustomization(matchstickMenCustomization);
+    matchstickMenView.setDifficulty();
 
     setButtons();
     setOnclickListeners();
@@ -137,7 +132,7 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
 
   public int getTotalTime() {
     int totalTime;
-    switch (level) {
+    switch (matchstickMenCustomization.getDifficulty()) {
       case 0:
         totalTime = 10;
         break;
@@ -156,31 +151,17 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
 
   @Override
   public void setDifficulty(String difficulty) {
-    if (difficulty.equals("easy")) {
-      this.level = 0;
-    } else if (difficulty.equals("medium")) {
-      this.level = 1;
-    } else {
-      this.level = 2;
-    }
+    this.matchstickMenCustomization.setDifficulty(difficulty);
   }
 
   @Override
   public void setCharacter(String character) {
-    if (character.equals("one")) {
-      this.character = "rect";
-    } else {
-      this.character = "circle";
-    }
+    this.matchstickMenCustomization.setCharacter(character);
   }
 
   @Override
   public void setTheme(String theme) {
-    if (theme.equals("dark")) {
-      this.color = Color.MAGENTA;
-    } else {
-      this.color = Color.WHITE;
-    }
+    this.matchstickMenCustomization.setTheme(theme);
   }
 
   @Override
