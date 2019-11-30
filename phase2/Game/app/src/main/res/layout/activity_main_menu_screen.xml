@@ -5,7 +5,7 @@
     android:id="@+id/mainMenuContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainMenuScreen">
+    tools:context="com.group0540.matchstickmenadventures.MainMenuScreen">
 
 
     <androidx.constraintlayout.widget.Guideline

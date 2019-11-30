@@ -10,18 +10,93 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e305c63-d34f-4f0f-8265-4ff0336f2694" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/TargetingComputer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Asteroid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncherFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncherFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidSpawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidSpawner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoCannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoCannon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoShotgun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoShotgun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Ship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/WeaponSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/WeaponSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/generated/source/buildConfig/androidTest/debug/com/example/matchstickmenadventures/test/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/build/generated/source/buildConfig/androidTest/debug/com/example/matchstickmenadventures/test/BuildConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/generated/source/buildConfig/debug/com/example/matchstickmenadventures/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/build/generated/source/buildConfig/debug/com/example/matchstickmenadventures/BuildConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/androidTest/java/com/example/game/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/androidTest/java/com/example/matchstickmenadventures/ExampleInstrumentedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/MainMenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/MainMenuScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AdditionalLifePowerupAsteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AdditionalLifePowerupAsteroid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AngleUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AngleUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/Asteroid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidCustomizations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidCustomizations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidGameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidGameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncherFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidLauncherFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncherType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidLauncherType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidSpawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidSpawner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidsDrawer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidsPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidsView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoCannon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AutoCannon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoShotgun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AutoShotgun.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ColoredSprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/ColoredSprite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ExplosivePowerupAsteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/ExplosivePowerupAsteroid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/LivesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/LivesManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/PowerupAsteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/PowerupAsteroid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/PowerupFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/PowerupFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Projectile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/Projectile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ProjectileLauncherFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/ProjectileLauncherFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ProjectileLauncherType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/ProjectileLauncherType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/Ship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/TargetingComputer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/TargetingComputer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/WeaponPowerupAsteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/WeaponPowerupAsteroid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/WeaponPowerupUnlocker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/WeaponPowerupUnlocker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/WeaponSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/WeaponSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/CustomControls/JoystickView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/CustomControls/JoystickView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/GameActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameBackend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/GameBackend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GamePresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/GamePresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/GameThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/GameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/BitmapGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/BitmapGetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/ExtraordinaryManObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/ExtraordinaryManObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/ImageGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/ImageGetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenActivityDoublePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenActivityDoublePlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenBackend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenBackend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenCustomization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenCustomization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenDrawer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/RegularManObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/RegularManObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/SuperMatchstickMenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/SuperMatchstickMenActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/Apple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/Apple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/DirectionChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/DirectionChanger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/Edible.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/Edible.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/MysteryObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/MysteryObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/SnakeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeBackend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/SnakeBackend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/SnakeComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeCustomization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/SnakeCustomization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/SnakeDrawer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeHead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/SnakeHead.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/SnakeObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeObjectType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/SnakeObjectType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakePresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/SnakePresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/SnakeShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/SnakeView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/TurnDirection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/TurnDirection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Snake/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/leaderboardcode/LeaderboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/leaderboardcode/LeaderboardActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/leaderboardcode/LeaderboardManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/leaderboardcode/LeaderboardManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/leaderboardcode/LeaderboardPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/leaderboardcode/LeaderboardPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/leaderboardcode/LeaderboardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/leaderboardcode/LeaderboardView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/leaderboardcode/Saver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/leaderboardcode/Saver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/logincode/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/logincode/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/logincode/LoginManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/logincode/LoginManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/logincode/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/logincode/LoginPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/logincode/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/logincode/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/settingscode/Customizable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/settingscode/Customizable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/settingscode/CustomizableGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/settingscode/CustomizableGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/settingscode/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/settingscode/SettingsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/game/settingscode/SettingsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/settingscode/SettingsManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/game/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/matchstickmenadventures/ExampleUnitTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +107,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_API_28" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="620eaaba" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -43,108 +118,68 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Asteroid.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidsView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="74" selection-start-line="74" selection-end-line="75" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncherFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsPresenter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1129">
-              <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
+            <state relative-caret-position="1218">
+              <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#3841#3842#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/drawable/ship.bmp">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidSpawner.java">
+        <entry file="file://$PROJECT_DIR$/src/main/res/drawable/laser.bmp">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/drawable/asteroid1.bmp">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/drawable/bigbutton.bmp">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/drawable/baldspaceship.bmp">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/drawable/asteroid2.bmp">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidCustomizations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1025">
-              <caret line="91" column="33" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2317#2318#0" expanded="true" />
-                <element signature="e#2367#2368#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="290">
+              <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Ship.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidGameManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="57" column="15" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="15" />
-              <folding>
-                <element signature="e#3379#3380#0" expanded="true" />
-                <element signature="e#3440#3441#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="696">
+              <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidCustomizations.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="14" column="86" lean-forward="true" selection-start-line="14" selection-start-column="86" selection-end-line="14" selection-end-column="86" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="71" column="39" lean-forward="true" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncher.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="27" column="42" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="91" column="7" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/WeaponSystem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/src/main/res/drawable/excitedspaceship.bmp">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -201,7 +236,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ProjectileLauncherType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ProjectileLauncherFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncherType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoCannon.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoShotgun.java" />
@@ -211,9 +245,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Ship.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncherFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Asteroid.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidSpawner.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidCustomizations.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameManager.java" />
       </list>
     </option>
   </component>
@@ -246,20 +282,20 @@
               <item name="Game" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="game" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="matchstickmenadventures" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
             <path>
               <item name="Game" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="game" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="matchstickmenadventures" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="gamecode" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Game" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="game" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="matchstickmenadventures" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="gamecode" type="462c0819:PsiDirectoryNode" />
               <item name="Asteroids" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -267,7 +303,7 @@
               <item name="Game" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="game" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="matchstickmenadventures" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="gamecode" type="462c0819:PsiDirectoryNode" />
               <item name="MatchstickMen" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -275,7 +311,7 @@
               <item name="Game" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="game" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="matchstickmenadventures" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="leaderboardcode" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -410,10 +446,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="44" width="3840" height="2116" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.20127796" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.20553781" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -422,7 +457,7 @@
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Run" order="0" weight="0.32972386" />
-      <window_info anchor="bottom" id="Logcat" order="1" visible="true" weight="0.32972386" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.32972386" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32972386" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49760383" weight="0.40877098" />
@@ -469,99 +504,14 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/Apple.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeBackend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="14" column="45" lean-forward="true" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameBackend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameObject.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeDrawer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeHead.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GamePresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2204">
-          <caret line="95" column="14" selection-start-line="95" selection-start-column="14" selection-end-line="95" selection-end-column="14" />
-          <folding>
-            <element signature="e#2331#2332#0" expanded="true" />
-            <element signature="e#2367#2368#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakeObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Snake/SnakePresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AngleUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AngleUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1189">
           <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/GameThread.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/GameThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="622">
           <caret line="47" column="28" lean-forward="true" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
@@ -572,7 +522,7 @@
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1508">
           <caret line="85" column="18" selection-start-line="85" selection-start-column="18" selection-end-line="85" selection-end-column="18" />
@@ -603,7 +553,7 @@
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/Games.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/Games.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
           <caret line="7" selection-start-line="6" selection-end-line="7" />
@@ -618,7 +568,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/PowerupAsteroid.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/PowerupAsteroid.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1102">
           <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
@@ -630,7 +580,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AdditionalLifePowerupAsteroid.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AdditionalLifePowerupAsteroid.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="696">
           <caret line="24" column="67" selection-start-line="24" selection-start-column="67" selection-end-line="24" selection-end-column="67" />
@@ -640,28 +590,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/LivesManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/LivesManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
           <caret line="9" column="51" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Projectile.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/Projectile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/PowerupFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/PowerupFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="667">
           <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="24" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ExplosivePowerupAsteroid.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/ExplosivePowerupAsteroid.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13">
           <caret line="9" column="55" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
@@ -671,14 +621,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/WeaponPowerupUnlocker.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/WeaponPowerupUnlocker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
           <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/WeaponPowerupAsteroid.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/WeaponPowerupAsteroid.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
           <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
@@ -688,35 +638,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ProjectileLauncherType.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/ProjectileLauncherType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="58">
           <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ProjectileLauncherFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/ProjectileLauncherFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87">
           <caret line="3" selection-start-line="3" selection-end-line="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsDrawer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidsDrawer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="783">
           <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncherType.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidLauncherType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="58">
           <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1160">
           <caret line="32" column="84" selection-start-line="32" selection-start-column="84" selection-end-line="32" selection-end-column="84" />
@@ -731,14 +681,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoShotgun.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AutoShotgun.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/TargetingComputer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/TargetingComputer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-164">
           <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
@@ -751,56 +701,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AutoCannon.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AutoCannon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-116">
           <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/ColoredSprite.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/ColoredSprite.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
           <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1015">
-          <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenType.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87">
           <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenDrawer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenDrawer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
           <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenPresenter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="844">
           <caret line="54" column="29" lean-forward="true" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/MatchstickMen/MatchstickMenView.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/MatchstickMen/MatchstickMenView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1237">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidsPresenter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidsPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1129">
           <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
@@ -810,14 +753,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/WeaponSystem.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/WeaponSystem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
           <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Ship.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/Ship.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
           <caret line="57" column="15" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="15" />
@@ -828,21 +771,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameObject.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidGameObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="91" column="7" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncherFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidLauncherFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidLauncher.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidLauncher.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="27" column="42" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="42" />
@@ -852,30 +795,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidGameManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="71" column="39" lean-forward="true" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidCustomizations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="14" column="86" lean-forward="true" selection-start-line="14" selection-start-column="86" selection-end-line="14" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/Asteroid.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/Asteroid.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="74" selection-start-line="74" selection-end-line="75" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/game/gamecode/Asteroids/AsteroidSpawner.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidSpawner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1025">
+        <state relative-caret-position="589">
           <caret line="91" column="33" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -884,6 +813,66 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/asteroid.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/baldman.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/subbutton.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/group0540_placeholder_logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/asteroid2.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/asteroid1.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidCustomizations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1218">
+          <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
+          <folding>
+            <element signature="e#3841#3842#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/bigbutton.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/baldspaceship.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/matchstickmenadventures/gamecode/Asteroids/AsteroidGameManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="696">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/excitedspaceship.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/ship.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/laser.bmp">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
   <component name="masterDetails">
