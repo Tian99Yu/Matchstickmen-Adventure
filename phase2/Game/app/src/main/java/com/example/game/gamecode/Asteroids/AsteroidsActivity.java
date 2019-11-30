@@ -16,6 +16,7 @@ import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.leaderboardcode.Saver;
+import com.example.game.logincode.LoginManager;
 import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
@@ -30,13 +31,6 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
     settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
     leaderboardManager =
         (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
-
-    //    Asteroid.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.asteroid);
-    //
-    //    Ship.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.ship);
-    //
-    //    Projectile.appearance = BitmapFactory.decodeResource(getResources(), R.drawable.laser);
-
     setDifficulty(settingsManager.getSetting("difficulty"));
     setTheme(settingsManager.getSetting("theme"));
     setCharacter(settingsManager.getSetting("character"));
