@@ -6,16 +6,16 @@ public class LoginPresenter implements LoginManager.OnLoginFinishedListener {
   LoginView loginView;
   LoginManager loginManager;
 
-  public LoginPresenter(LoginView view, LoginManager manager) {
+  LoginPresenter(LoginView view, LoginManager manager) {
     loginView = view;
     loginManager = manager;
   }
 
-  public void onDestroy() {
+  void onDestroy() {
     loginView = null;
   }
 
-  public void validateCredentials(String username, String password) {
+  void validateCredentials(String username, String password) {
     loginManager.login(username, password, this);
   }
 

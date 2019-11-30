@@ -34,4 +34,8 @@
     <string name="done">Done</string>
     <string name="double_player">Double Player</string>
     <string name="single_player">Single Player</string>
+    <string name="account_created">Account created!</string>
+    <string name="password_error">Passwords must be alphanumeric and be of length 5-12</string>
+    <string name="password_incorrect">Password incorrect!</string>
+    <string name="username_error">Usernames must alphanumeric and be of length 5-12</string>
 </resources>

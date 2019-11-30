@@ -30,6 +30,9 @@ public class LoginManager implements Serializable {
     loadData();
   }
 
+  /**
+   * Loads in existing data from saveFile.
+   */
   private void loadData() {
     JsonObject data = new JsonObject();
     if (saveFile.exists()) {
@@ -47,6 +50,9 @@ public class LoginManager implements Serializable {
     writeDataToFile();
   }
 
+  /**
+   * Writes the Json representation of LoginString to file.
+   */
   private void writeDataToFile() {
     JsonObject data = convertStringToJsonObject(loginString);
     try {
@@ -58,10 +64,22 @@ public class LoginManager implements Serializable {
     }
   }
 
+  /**
+   * Converts a Json String to JsonObject.
+   * @param jsonString String in Json format
+   * @return JsonObject
+   */
   private JsonObject convertStringToJsonObject(String jsonString) {
     return JsonParser.parseString(jsonString).getAsJsonObject();
   }
 
+  /**
+   * Attempts a login.
+   *
+   * @param username new or existing name
+   * @param password corresponding to username
+   * @param listener presents response to user depending on result
+   */
   void login(String username, String password, LoginManager.OnLoginFinishedListener listener) {
     if (!isCredentialValid(username)) {
       listener.onUsernameError();
@@ -71,37 +89,52 @@ public class LoginManager implements Serializable {
       return;
     }
     JsonObject data = convertStringToJsonObject(loginString);
-    if (data.has(username)) {
-      if (data.get(username).getAsString().equals(password)) {
-        this.username = username;
+    if (data.has(username)) { // Existing user check
+      if (data.get(username).getAsString().equals(password)) {  // Password correct
         isLoggedIn = true;
-        data.addProperty("_lastused", username);
-        writeDataToFile();
+        this.username = username;
+        addLastUser(data, username);
+
         listener.onSuccess();
-      } else {
+      } else { // Password incorrect
         isLoggedIn = false;
         listener.onFail();
       }
-    } else {
+    } else { // New user
       isLoggedIn = true;
       this.username = username;
-      data.addProperty(username, password);
-      data.addProperty("_lastused", username);
-      loginString = data.toString();
-      writeDataToFile();
+      addLastUser(data, username);
+
       listener.onAccountCreated();
     }
+  }
+
+  private void addLastUser(JsonObject data, String username) {
+    data.addProperty("_lastused", username);
+    loginString = data.toString();
+    writeDataToFile();
   }
 
   public boolean isLoggedIn() {
     return isLoggedIn;
   }
 
+  /**
+   * Enforces user credential requirements.
+   *
+   * @param credential the String to be checked
+   * @return true iff credential is matched by the regex
+   */
   private boolean isCredentialValid(String credential) {
     // Matches alphanumeric strings of length 5-12, inclusive
     return credential.matches("^[a-zA-Z0-9]{5,12}$");
   }
 
+  /**
+   * Gets the username of the currently logged in user.
+   *
+   * @return username
+   */
   public String getUsername() {
     return username;
   }

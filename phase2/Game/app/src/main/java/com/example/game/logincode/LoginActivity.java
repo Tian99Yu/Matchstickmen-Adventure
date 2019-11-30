@@ -68,22 +68,22 @@ public class LoginActivity extends AppCompatActivity implements Customizable, Lo
 
   @Override
   public void setUsernameError() {
-    username.setError("Usernames must alphanumeric and be of length 5-12");
+    username.setError(getString(R.string.username_error));
   }
 
   @Override
   public void setLoginFail() {
-    log.setText("Password invalid!");
+    log.setText(getString(R.string.password_incorrect));
   }
 
   @Override
   public void displayAccountCreated() {
-    log.setText("Account created!");
+    log.setText(getString(R.string.account_created));
   }
 
   @Override
   public void setPasswordError() {
-    password.setError("Passwords must be alphanumeric and be of length 5-12");
+    password.setError(getString(R.string.password_error));
   }
 
   @Override
