@@ -9,28 +9,24 @@ import android.graphics.Canvas;
  */
 public interface MatchstickMenDrawer<T> {
 
-    /**
-     * Draw the background of this game on canvas.
-     *
-     * @param drawingSurface the canvas that the game in running on.
-     */
-    void drawBackground(T drawingSurface);
+  /**
+   * Draw the background of this game on canvas.
+   *
+   * @param drawingSurface the canvas that the game in running on.
+   */
+  void drawBackground(T drawingSurface);
 
-    /**
-     * Draw the MatchstickMenObject.
-     * @param drawingSurface the surface to be drawn onto
-     * @param man the man to be drawn
-     */
-    void drawMan(T drawingSurface, MatchstickMenObject man);
+  /**
+   * Draw the MatchstickMenObject.
+   *
+   * @param drawingSurface the surface to be drawn onto
+   * @param man the man to be drawn
+   */
+  void drawMan(T drawingSurface, MatchstickMenObject man);
 
-    /**
-     * Returns width of screen.
-     */
-    int getWidth();
+  /** Returns width of screen. */
+  int getWidth();
 
-    /**
-     * Returns height of screen.
-     */
-    int getHeight();
-
+  /** Returns height of screen. */
+  int getHeight();
 }

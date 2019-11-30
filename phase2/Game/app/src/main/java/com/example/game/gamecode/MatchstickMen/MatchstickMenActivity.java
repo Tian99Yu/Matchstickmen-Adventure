@@ -19,15 +19,14 @@ import com.example.game.leaderboardcode.Saver;
 import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
-public class MatchstickMenActivity extends SuperMatchstickMenActivity implements CustomizableGame, Saver {
-    /**
-     * A flag recording whether the data of this game is saved.
-     */
-    private boolean saved = false;
+public class MatchstickMenActivity extends SuperMatchstickMenActivity
+    implements CustomizableGame, Saver {
+  /** A flag recording whether the data of this game is saved. */
+  private boolean saved = false;
 
-    private int level = 0;
-    private int color = Color.WHITE;
-    private String character = "circle";
+  private int level = 0;
+  private int color = Color.WHITE;
+  private String character = "circle";
 
   /** The customizations of this matchstick men game */
   MatchstickMenCustomization matchstickMenCustomization = new MatchstickMenCustomization();
@@ -45,28 +44,27 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity implements
     setCharacter(character);
   }
 
+  private Button btnAdd, btnMinus, btnDone, nextLevel;
+  private TextView count;
+  private CountDownTimer timer;
+  private int num = 0;
 
-    private Button btnAdd, btnMinus, btnDone, nextLevel;
-    private TextView count;
-    private CountDownTimer timer;
-    private int num = 0;
+  public int getNum() {
+    return num;
+  }
 
-    public int getNum() {
-        return num;
-    }
+  public void setNum(int num) {
+    this.num = num;
+  }
 
-    public void setNum(int num) {
-        this.num = num;
-    }
+  protected void onCreate(final Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.matchstickmen_layout);
 
-    protected void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.matchstickmen_layout);
-
-        username = (String) getIntent().getSerializableExtra("username");
-        settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
-        leaderboardManager =
-                (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
+    username = (String) getIntent().getSerializableExtra("username");
+    settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
+    leaderboardManager =
+        (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
 
     customization(
         settingsManager.getSetting("difficulty"),
@@ -80,55 +78,46 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity implements
     matchstickMenView.setMatchstickMenCustomization(matchstickMenCustomization);
     matchstickMenView.setDifficulty();
 
+    setButtons();
+    setOnclickListeners();
 
+    pgBar.setProgress(0);
 
-        setButtons();
-        setOnclickListeners();
+    // Count down and display the time left in the textbar on the upper right corner
+    //    final int totalTime = getTotalTime();
 
+    timer = setTimers(pgBar, timeleft);
+    timer.start();
 
-        pgBar.setProgress(0);
+    setCount();
 
-        // Count down and display the time left in the textbar on the upper right corner
-//    final int totalTime = getTotalTime();
+    restart.setOnClickListener(
+        new View.OnClickListener() {
 
-        timer = setTimers(pgBar, timeleft);
-        timer.start();
+          @Override
+          public void onClick(View view) {
+            finish();
+            startActivity(getIntent());
+          }
+        });
+  }
 
-        setCount();
-
-        restart.setOnClickListener(
-                new View.OnClickListener(){
-
-                    @Override
-                    public void onClick(View view) {
-                        finish();
-                        startActivity(getIntent());
-                    }
-                }
-        );
-
-
+  @Override
+  protected void saveData() {
+    if (!saved) {
+      String[] stats = {"Count", "Score", "Time"};
+      String[] values = {
+        String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCount()),
+        String.valueOf((gameView.gameBackend).getCurrentScore()),
+        String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed())
+      };
     }
+  }
 
-
-
-
-    @Override
-    protected void saveData() {
-        if (!saved) {
-            String[] stats = {"Count", "Score", "Time"};
-            String[] values = {String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCount()),
-                    String.valueOf((gameView.gameBackend).getCurrentScore()),
-                    String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed())
-            };
-        }
-
-    }
-
-    @Override
-    protected GameView setView() {
-        return new MatchstickMenView(this);
-    }
+  @Override
+  protected GameView setView() {
+    return new MatchstickMenView(this);
+  }
 
   public int getTotalTime() {
     int totalTime;
@@ -164,103 +153,98 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity implements
     this.matchstickMenCustomization.setTheme(theme);
   }
 
-    @Override
-    void setButtons() {
+  @Override
+  void setButtons() {
 
-        pgBar = findViewById(R.id.progressBar);
-        nextLevel = findViewById(R.id.nextLevel);
-        restart = findViewById(R.id.restart);
-        timeleft = findViewById(R.id.textTimeleft);
-        btnAdd = findViewById(R.id.btnAdd);
-        btnMinus = findViewById(R.id.btnMinus);
-        btnDone = findViewById(R.id.btnDone);
-        count = findViewById(R.id.textCount);
+    pgBar = findViewById(R.id.progressBar);
+    nextLevel = findViewById(R.id.nextLevel);
+    restart = findViewById(R.id.restart);
+    timeleft = findViewById(R.id.textTimeleft);
+    btnAdd = findViewById(R.id.btnAdd);
+    btnMinus = findViewById(R.id.btnMinus);
+    btnDone = findViewById(R.id.btnDone);
+    count = findViewById(R.id.textCount);
+  }
 
-    }
+  @Override
+  void setOnclickListeners() {
 
-    @Override
-    void setOnclickListeners() {
+    btnAdd.setOnClickListener(
+        new View.OnClickListener() {
+          int i = getNum();
 
-        btnAdd.setOnClickListener(
-                new View.OnClickListener() {
-                    int i = getNum();
+          @Override
+          public void onClick(View view) {
+            if (!gameView.gameBackend.isGameOver()) {
+              setNum(getNum() + 1);
+              count.setText(Integer.toString(getNum()));
+              ((MatchstickMenBackend) gameView.gameBackend).addCount();
+            }
+          }
+        });
 
-                    @Override
-                    public void onClick(View view) {
-                        if (!gameView.gameBackend.isGameOver()) {
-                            setNum(getNum() + 1);
-                            count.setText(Integer.toString(getNum()));
-                            ((MatchstickMenBackend) gameView.gameBackend).addCount();
-                        }
-                    }
-                });
+    btnMinus.setOnClickListener(
+        new View.OnClickListener() {
 
-        btnMinus.setOnClickListener(
-                new View.OnClickListener() {
+          int i = getNum();
 
-                    int i = getNum();
+          @Override
+          public void onClick(View view) {
+            if (!(gameView.gameBackend).isGameOver()) {
+              setNum(getNum() - 1);
 
-                    @Override
-                    public void onClick(View view) {
-                        if (!(gameView.gameBackend).isGameOver()) {
-                            setNum(getNum() - 1);
+              count.setText(Integer.toString(getNum()));
+              ((MatchstickMenBackend) gameView.gameBackend).minusCount();
+            }
+          }
+        });
 
-                            count.setText(Integer.toString(getNum()));
-                            ((MatchstickMenBackend) gameView.gameBackend).minusCount();
-                        }
-                    }
-                });
+    btnDone.setOnClickListener(
+        new View.OnClickListener() {
 
-        btnDone.setOnClickListener(
-                new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            if (!gameView.gameBackend.isGameOver()) {
+              String result = count.getText().toString();
+              if (((MatchstickMenBackend) gameView.gameBackend).compare(result)) {
+                ((MatchstickMenBackend) gameView.gameBackend).score += 1;
+                count.setTextSize(30);
+                count.setText("Correct!!! :)");
+                timer.cancel();
+                ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
 
-                    @Override
-                    public void onClick(View view) {
-                        if (!gameView.gameBackend.isGameOver()) {
-                            String result = count.getText().toString();
-                            if (((MatchstickMenBackend) gameView.gameBackend).compare(result)) {
-                                ((MatchstickMenBackend) gameView.gameBackend).score += 1;
-                                count.setTextSize(30);
-                                count.setText("Correct!!! :)");
-                                timer.cancel();
-                                ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
+              } else {
+                count.setTextSize(30);
+                count.setText("Wrong -_-");
+              }
+              String text = timeleft.getText().toString();
+              String time_remaining = text.substring(0, text.indexOf('.'));
+              ((MatchstickMenBackend) gameView.gameBackend).setTimeUsed(time_remaining);
+            }
+          }
+        });
 
-                            } else {
-                                count.setTextSize(30);
-                                count.setText("Wrong -_-");
-                            }
-                            String text = timeleft.getText().toString();
-                            String time_remaining = text.substring(0, text.indexOf('.'));
-                            ((MatchstickMenBackend) gameView.gameBackend).setTimeUsed(time_remaining);
-                        }
-                    }
-                });
+    ((MatchstickMenBackend) gameView.gameBackend).setLevelNum(1);
 
-        ((MatchstickMenBackend) gameView.gameBackend).setLevelNum(1);
+    nextLevel.setOnClickListener(
+        new View.OnClickListener() {
+          public void onClick(View view) {
+            Intent mainIntent =
+                new Intent(MatchstickMenActivity.this, MatchstickMenActivityDoublePlayer.class);
+            sendToIntent(mainIntent);
+            MatchstickMenActivity.this.startActivity(mainIntent);
+          }
+        });
+  }
 
-        nextLevel.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View view) {
-                        Intent mainIntent = new Intent(MatchstickMenActivity.this, MatchstickMenActivityDoublePlayer.class);
-                        sendToIntent(mainIntent);
-                        MatchstickMenActivity.this.startActivity(mainIntent);
-                    }
-                });
+  @Override
+  void setCount() {
+    count.setText(Integer.toString(0));
+  }
 
-
-    }
-
-
-    @Override
-    void setCount() {
-        count.setText(Integer.toString(0));
-    }
-
-    private void sendToIntent(Intent intent) {
-        intent.putExtra("username", username);
-        intent.putExtra("leaderboardManager", leaderboardManager);
-        intent.putExtra("settingsManager", settingsManager);
-    }
-
-
+  private void sendToIntent(Intent intent) {
+    intent.putExtra("username", username);
+    intent.putExtra("leaderboardManager", leaderboardManager);
+    intent.putExtra("settingsManager", settingsManager);
+  }
 }
