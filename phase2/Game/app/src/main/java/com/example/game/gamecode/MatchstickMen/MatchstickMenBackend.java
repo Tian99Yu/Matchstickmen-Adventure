@@ -169,7 +169,9 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
    * @return the boolean result of the comparison
    */
   public boolean compare(String r) {
+      System.out.println(getAnswer());
     return r.equals(Integer.toString(getAnswer()));
+
   }
 
   public String compare(String r1, String r2) {
@@ -236,6 +238,7 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
       int increment = random.nextInt(range - 1) + 1;
       i += increment;
     }
+      setAnswer();
   }
 
   public void setLevelNum(int levelNum) {
