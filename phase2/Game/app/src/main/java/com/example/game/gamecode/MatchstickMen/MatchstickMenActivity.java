@@ -22,31 +22,11 @@ import com.example.game.settingscode.SettingsManager;
 public class MatchstickMenActivity extends SuperMatchstickMenActivity
     implements CustomizableGame, Saver {
   /** A flag recording whether the data of this game is saved. */
-  private boolean saved = false;
 
-  private int level = 0;
-  private int color = Color.WHITE;
-  private String character = "circle";
-
-  /** The customizations of this matchstick men game */
-  MatchstickMenCustomization matchstickMenCustomization = new MatchstickMenCustomization();
-
-  /**
-   * Make the customizations.
-   *
-   * @param level the level of this game
-   * @param theme the theme of this game
-   * @param character the character that will be shown on the screen
-   */
-  public void customization(String level, String theme, String character) {
-    setDifficulty(level);
-    setTheme(theme);
-    setCharacter(character);
-  }
 
   private Button btnAdd, btnMinus, btnDone, nextLevel;
   private TextView count;
-  private CountDownTimer timer;
+//  private CountDownTimer timer;
   private int num = 0;
 
   public int getNum() {
@@ -81,13 +61,9 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity
     setButtons();
     setOnclickListeners();
 
-    pgBar.setProgress(0);
+    setUpTimer();
 
-    // Count down and display the time left in the textbar on the upper right corner
-    //    final int totalTime = getTotalTime();
 
-    timer = setTimers(pgBar, timeleft);
-    timer.start();
 
     setCount();
 
@@ -102,61 +78,15 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity
         });
   }
 
-  @Override
-  protected void saveData() {
-    if (!saved) {
-      String[] stats = {"Count", "Score", "Time"};
-      String[] values = {
-        String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCount()),
-        String.valueOf((gameView.gameBackend).getCurrentScore()),
-        String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed())
-      };
-    }
-  }
 
-  @Override
-  protected GameView setView() {
-    return new MatchstickMenView(this);
-  }
 
-  public int getTotalTime() {
-    int totalTime;
-    switch (matchstickMenCustomization.getDifficulty()) {
-      case 0:
-        totalTime = 10;
-        break;
-      case 1:
-        totalTime = 7;
-        break;
-      case 2:
-        totalTime = 5;
-        break;
-      default:
-        totalTime = 10;
-    }
-    ;
-    return totalTime;
-  }
 
-  @Override
-  public void setDifficulty(String difficulty) {
-    this.matchstickMenCustomization.setDifficulty(difficulty);
-  }
 
-  @Override
-  public void setCharacter(String character) {
-    this.matchstickMenCustomization.setCharacter(character);
-  }
-
-  @Override
-  public void setTheme(String theme) {
-    this.matchstickMenCustomization.setTheme(theme);
-  }
 
   @Override
   void setButtons() {
 
-    pgBar = findViewById(R.id.progressBar);
+    super.pgBar = findViewById(R.id.progressBar);
     nextLevel = findViewById(R.id.nextLevel);
     restart = findViewById(R.id.restart);
     timeleft = findViewById(R.id.textTimeleft);
@@ -242,9 +172,5 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity
     count.setText(Integer.toString(0));
   }
 
-  private void sendToIntent(Intent intent) {
-    intent.putExtra("username", username);
-    intent.putExtra("leaderboardManager", leaderboardManager);
-    intent.putExtra("settingsManager", settingsManager);
-  }
+
 }
