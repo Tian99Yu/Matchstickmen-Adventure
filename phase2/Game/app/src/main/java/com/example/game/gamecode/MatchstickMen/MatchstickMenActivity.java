@@ -128,8 +128,9 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity implements
 
 
 
+
     @Override
-    public void saveScore() {
+    protected void saveData() {
         if (!saved) {
             String[] stats = {"Count", "Score", "Time"};
             String[] values = {String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCount()),
@@ -137,6 +138,7 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity implements
                     String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getTimeUsed())
             };
         }
+
     }
 
     @Override

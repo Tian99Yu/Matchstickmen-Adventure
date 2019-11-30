@@ -138,7 +138,7 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
 
 
     @Override
-    public void saveScore() {
+    protected void saveData() {
         if (!saved) {
             String[] stats = {"Count", "Score", "Time"};
             String[] values = {String.valueOf(((MatchstickMenBackend) gameView.gameBackend).getCount()),
