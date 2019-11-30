@@ -3,7 +3,11 @@ package com.example.game.gamecode.Asteroids;
 import java.util.ArrayList;
 import java.util.List;
 
-class AutoCannon extends WeaponSystem {
+class AutoCannon extends WeaponSystem<Projectile> {
+  /** Range of projectiles fired. */
+  private int range;
+  /** Damage each projectile fired by this weapon inflicts. */
+  private int damage;
 
   AutoCannon(
       double muzzleVelocity,
@@ -12,7 +16,9 @@ class AutoCannon extends WeaponSystem {
       double projectileSize,
       int range,
       int damage) {
-    super(muzzleVelocity, spread, cooldown, projectileSize, range, damage);
+    super(muzzleVelocity, spread, cooldown, projectileSize);
+    this.range = range;
+    this.damage = damage;
   }
 
   @Override
@@ -29,7 +35,7 @@ class AutoCannon extends WeaponSystem {
               (muzzleVelocity + weaponVelocity) * Math.cos(angle),
               (muzzleVelocity + weaponVelocity) * Math.sin(angle),
               angle,
-              projectileSize,
+                  ammoSize,
               range,
               damage));
       cooldownState = cooldown;

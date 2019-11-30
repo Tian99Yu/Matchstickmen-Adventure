@@ -63,7 +63,7 @@ class Asteroid extends AsteroidGameObject {
    *
    * @return the value of this asteroid.
    */
-  public int getValue() {
+  int getValue() {
     return (level + 1) * ((int) (Math.random() * 90) + 10);
   }
 

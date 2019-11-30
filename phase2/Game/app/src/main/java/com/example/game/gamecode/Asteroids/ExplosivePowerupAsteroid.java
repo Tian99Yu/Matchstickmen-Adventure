@@ -7,7 +7,7 @@ class ExplosivePowerupAsteroid extends PowerupAsteroid {
   /** The number of projectiles this explodes into. */
   private int shrapnelCount = 1;
 
-  private WeaponSystem shrapnelGenerator = WeaponFactory.getWeapon(WeaponType.SHRAPNEL_GENERATOR);
+  private WeaponSystem<Projectile> shrapnelGenerator = ProjectileLauncherFactory.getProjectileLauncher(ProjectileLauncherType.SHRAPNEL_GENERATOR);
 
   ExplosivePowerupAsteroid(
       double x,

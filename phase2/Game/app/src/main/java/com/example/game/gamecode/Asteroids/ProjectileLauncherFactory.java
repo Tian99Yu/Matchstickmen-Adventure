@@ -1,10 +1,10 @@
 package com.example.game.gamecode.Asteroids;
 
-class WeaponFactory {
-  private WeaponFactory() {}
+class ProjectileLauncherFactory {
+  private ProjectileLauncherFactory() {}
 
-  static WeaponSystem getWeapon(WeaponType weaponType) {
-    switch (weaponType) {
+  static WeaponSystem<Projectile> getProjectileLauncher(ProjectileLauncherType projectileLauncherType) {
+    switch (projectileLauncherType) {
       case STANDARD_CANNON:
         return new AutoCannon(900, 0.1, 5, 20, 90, 1);
       case STANDARD_SHOTGUN:

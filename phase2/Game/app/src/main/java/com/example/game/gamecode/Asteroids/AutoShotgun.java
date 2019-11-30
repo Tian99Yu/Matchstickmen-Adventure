@@ -3,10 +3,15 @@ package com.example.game.gamecode.Asteroids;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutoShotgun extends WeaponSystem {
-  int numProjectiles;
+class AutoShotgun extends WeaponSystem<Projectile> {
+  /** Number of projectiles fired. */
+  private int numProjectiles;
+  /** Range of projectiles fired. */
+  private int range;
+  /** Damage each projectile fired by this weapon inflicts. */
+  private int damage;
 
-  public AutoShotgun(
+  AutoShotgun(
       double muzzleVelocity,
       double spread,
       int cooldown,
@@ -14,8 +19,10 @@ public class AutoShotgun extends WeaponSystem {
       int range,
       int damage,
       int numProjectiles) {
-    super(muzzleVelocity, spread, cooldown, projectileSize, range, damage);
+    super(muzzleVelocity, spread, cooldown, projectileSize);
     this.numProjectiles = Math.max(2, numProjectiles);
+    this.range = range;
+    this.damage = damage;
   }
 
   @Override
@@ -38,7 +45,7 @@ public class AutoShotgun extends WeaponSystem {
                 (muzzleVelocity + weaponVelocity) * Math.cos(angle),
                 (muzzleVelocity + weaponVelocity) * Math.sin(angle),
                 angle,
-                projectileSize,
+                    ammoSize,
                 range,
                 damage));
       }

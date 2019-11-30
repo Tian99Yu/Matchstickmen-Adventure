@@ -14,9 +14,9 @@ class Ship extends AsteroidGameObject {
   /** Whether or not the main weapon is firing. */
   private boolean weaponActive = false;
   /** The weapon this ship is using. */
-  private WeaponSystem mainArmament;
+  private WeaponSystem<Projectile> mainArmament;
   /** The weapon this ship uses when it collects a weapon powerup. */
-  private WeaponSystem secondaryArmament;
+  private WeaponSystem<Projectile> secondaryArmament;
   /** Angle player wants ship to face. */
   private double targetAngle;
   /** Starting position and angle of ship. */
@@ -40,8 +40,8 @@ class Ship extends AsteroidGameObject {
       double thrust,
       double turnRate,
       double maxVelocity,
-      WeaponSystem mainArmament,
-      WeaponSystem secondaryArmament) {
+      WeaponSystem<Projectile> mainArmament,
+      WeaponSystem<Projectile> secondaryArmament) {
     super(x, y, vX, vY, angle, collisionRadius);
     this.thrust = thrust;
     this.turnRate = turnRate;

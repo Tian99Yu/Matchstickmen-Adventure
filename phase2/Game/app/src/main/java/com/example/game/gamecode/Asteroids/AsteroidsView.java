@@ -57,6 +57,9 @@ class AsteroidsView extends GameView<AsteroidGameObject>
     ColoredSprite<Bitmap> weaponPowerupAsteroidSprite =
         new ColoredSprite<>(
             BitmapFactory.decodeResource(getResources(), R.drawable.asteroid), Color.MAGENTA);
+    ColoredSprite<Bitmap> asteroidSpawnerSprite =
+        new ColoredSprite<>(
+            BitmapFactory.decodeResource(getResources(), R.drawable.ship), Color.rgb(255, 180, 0));
     // add colored sprites to hashmap
     classToColoredSprite.put(Asteroid.class, asteroidColoredSprite);
     classToColoredSprite.put(Projectile.class, laserColoredSprite);
@@ -65,6 +68,7 @@ class AsteroidsView extends GameView<AsteroidGameObject>
     classToColoredSprite.put(
         AdditionalLifePowerupAsteroid.class, additionalLifePowerupAsteroidSprite);
     classToColoredSprite.put(WeaponPowerupAsteroid.class, weaponPowerupAsteroidSprite);
+    classToColoredSprite.put(AsteroidSpawner.class, asteroidSpawnerSprite);
     return classToColoredSprite;
   }
 

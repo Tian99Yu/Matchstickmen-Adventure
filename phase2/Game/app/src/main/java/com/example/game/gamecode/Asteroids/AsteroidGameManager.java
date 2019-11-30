@@ -28,6 +28,12 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
   public AsteroidGameManager(int playAreaWidth, int playAreaHeight) {
     this.playAreaWidth = playAreaWidth;
     this.playAreaHeight = playAreaHeight;
+    spawnPlayer();
+    spawnAsteroids();
+  }
+
+  /** Spawns the player. */
+  private void spawnPlayer() {
     player =
         new Ship(
             playAreaWidth / 2,
@@ -39,15 +45,18 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
             300,
             8,
             800,
-            WeaponFactory.getWeapon(
+            ProjectileLauncherFactory.getProjectileLauncher(
                 AsteroidCustomizations.weaponOption == 0
-                    ? WeaponType.STANDARD_CANNON
-                    : WeaponType.STANDARD_SHOTGUN),
-            WeaponFactory.getWeapon(WeaponType.POWERUP_CANNON));
+                    ? ProjectileLauncherType.STANDARD_CANNON
+                    : ProjectileLauncherType.STANDARD_SHOTGUN),
+            ProjectileLauncherFactory.getProjectileLauncher(ProjectileLauncherType.POWERUP_CANNON));
     gameObjects.add(player);
+  }
+
+  /** Spawns asteroids. */
+  private void spawnAsteroids() {
     int asteroidStartCount = (int) (Math.random() * 3) + 6;
     for (int i = 0; i < asteroidStartCount; i++) {
-      Asteroid newAsteroid;
       double newX, newY;
       do {
         newX = Math.random() * playAreaWidth;
@@ -55,7 +64,7 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
       } while ((newX - playAreaWidth / 2) * (newX - playAreaWidth / 2)
               + (newY - playAreaHeight / 2) * (newY - playAreaHeight / 2)
           <= 300 * 300); // while spawning coordinates are too close to ship
-      newAsteroid =
+      gameObjects.add(
           new Asteroid(
               newX,
               newY,
@@ -64,8 +73,32 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
               Math.random() * 2 * Math.PI,
               Math.random() * 100 + 50,
               1,
-              2);
-      gameObjects.add(newAsteroid);
+              2));
+    }
+    int asteroidSpawnerCount = (int) (Math.random() * 2) + 1;
+    for (int i = 0; i < asteroidSpawnerCount; i++) {
+      double newX, newY;
+      do {
+        newX = Math.random() * playAreaWidth;
+        newY = Math.random() * playAreaHeight;
+      } while ((newX - playAreaWidth / 2) * (newX - playAreaWidth / 2)
+              + (newY - playAreaHeight / 2) * (newY - playAreaHeight / 2)
+          <= 300 * 300);
+      gameObjects.add(
+          new AsteroidSpawner(
+              newX,
+              newY,
+              0,
+              0,
+              Math.random() * 2 * Math.PI,
+              30,
+              150,
+              4,
+              200,
+              3,
+              0,
+              AsteroidLauncherFactory.getAsteroidLauncher(
+                  AsteroidLauncherType.STANDARD_ASTEROID_LAUNCHER)));
     }
   }
 
@@ -78,12 +111,14 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
     attemptFire();
   }
 
+  /** Updates the positions of asteroid game objects. */
   private void moveAsteroidGameObjects() {
     for (AsteroidGameObject asteroidGameObject : gameObjects) {
       (asteroidGameObject).move();
     }
   }
 
+  /** Handles when objects move outside the play area. */
   private void handleObjectsOutOfScreen() {
     for (AsteroidGameObject asteroidGameObject : gameObjects) {
       if ((asteroidGameObject).x < -outOfScreenOffset) {
@@ -99,6 +134,7 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
     }
   }
 
+  /** Detects and resolves colisions between objects. */
   private void handleCollisions() {
     // collision handling
     for (int i = 0; i < gameObjects.size(); i++) {
@@ -113,6 +149,7 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
     }
   }
 
+  /** Deals with when asteroid game objects are destroyed. */
   private void handleDestruction() {
     List<AsteroidGameObject> newObjects = new ArrayList<>();
     // destruction handling
@@ -137,10 +174,18 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
     gameObjects.addAll(newObjects);
   }
 
+  /** Adds the recently fired objects into the game. */
   private void attemptFire() {
     List<Projectile> projectiles = player.attemptFireMainArmament();
     projectilesFired += projectiles.size();
     gameObjects.addAll(projectiles);
+    List<Asteroid> newAsteroids = new ArrayList<>();
+    for (AsteroidGameObject asteroidGameObject : gameObjects) {
+      if (asteroidGameObject instanceof AsteroidSpawner) {
+        newAsteroids.addAll(((AsteroidSpawner) asteroidGameObject).attemptSpawnAsteroid());
+      }
+    }
+    gameObjects.addAll(newAsteroids);
   }
 
   /** Sets the target direction based on user input. */
