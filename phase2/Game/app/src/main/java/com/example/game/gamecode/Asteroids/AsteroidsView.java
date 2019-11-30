@@ -18,7 +18,8 @@ import com.example.game.leaderboardcode.Saver;
 
 import java.util.HashMap;
 
-class AsteroidsView extends GameView<AsteroidGameObject> implements AsteroidsDrawer<Canvas, Bitmap> {
+class AsteroidsView extends GameView<AsteroidGameObject>
+    implements AsteroidsDrawer<Canvas, Bitmap> {
   private float density;
 
   public AsteroidsView(Context context, int playAreaWidth, int playAreaHeight) {
@@ -47,10 +48,23 @@ class AsteroidsView extends GameView<AsteroidGameObject> implements AsteroidsDra
         new ColoredSprite<>(
             BitmapFactory.decodeResource(getResources(), R.drawable.ship),
             AsteroidCustomizations.shipColor[AsteroidCustomizations.themeIndex]);
+    ColoredSprite<Bitmap> explosivePowerupAsteroidSprite =
+        new ColoredSprite<>(
+            BitmapFactory.decodeResource(getResources(), R.drawable.asteroid), Color.RED);
+    ColoredSprite<Bitmap> additionalLifePowerupAsteroidSprite =
+        new ColoredSprite<>(
+            BitmapFactory.decodeResource(getResources(), R.drawable.asteroid), Color.GREEN);
+    ColoredSprite<Bitmap> weaponPowerupAsteroidSprite =
+        new ColoredSprite<>(
+            BitmapFactory.decodeResource(getResources(), R.drawable.asteroid), Color.MAGENTA);
     // add colored sprites to hashmap
     classToColoredSprite.put(Asteroid.class, asteroidColoredSprite);
     classToColoredSprite.put(Projectile.class, laserColoredSprite);
     classToColoredSprite.put(Ship.class, shipColoredSprite);
+    classToColoredSprite.put(ExplosivePowerupAsteroid.class, explosivePowerupAsteroidSprite);
+    classToColoredSprite.put(
+        AdditionalLifePowerupAsteroid.class, additionalLifePowerupAsteroidSprite);
+    classToColoredSprite.put(WeaponPowerupAsteroid.class, weaponPowerupAsteroidSprite);
     return classToColoredSprite;
   }
 

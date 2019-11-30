@@ -1,9 +1,5 @@
 package com.example.game.gamecode.Asteroids;
 
-import android.graphics.Bitmap;
-
-import android.graphics.Canvas;
-
 import java.util.List;
 
 class Ship extends AsteroidGameObject {
@@ -16,9 +12,11 @@ class Ship extends AsteroidGameObject {
   /** Whether or not the thruster is on. */
   private boolean thrusterActive = false;
   /** Whether or not the main weapon is firing. */
-  private boolean mainArmamentActive = false;
+  private boolean weaponActive = false;
   /** The weapon this ship is using. */
   private WeaponSystem mainArmament;
+  /** The weapon this ship uses when it collects a weapon powerup. */
+  private WeaponSystem secondaryArmament;
   /** Angle player wants ship to face. */
   private double targetAngle;
   /** Starting position and angle of ship. */
@@ -29,9 +27,8 @@ class Ship extends AsteroidGameObject {
   private static final int spawnProtectionTime = 150;
   /** Spawn protection left. */
   private int spawnProtectionLeft = spawnProtectionTime;
-
-  /** appearance */
-  static Bitmap appearance;
+  /** Powerup time left. */
+  private int powerupTime = 0;
 
   Ship(
       double x,
@@ -43,12 +40,14 @@ class Ship extends AsteroidGameObject {
       double thrust,
       double turnRate,
       double maxVelocity,
-      WeaponSystem mainArmament) {
+      WeaponSystem mainArmament,
+      WeaponSystem secondaryArmament) {
     super(x, y, vX, vY, angle, collisionRadius);
     this.thrust = thrust;
     this.turnRate = turnRate;
     this.maxVelocity = maxVelocity;
     this.mainArmament = mainArmament;
+    this.secondaryArmament = secondaryArmament;
     startX = x;
     startY = y;
     startAngle = angle;
@@ -81,6 +80,9 @@ class Ship extends AsteroidGameObject {
     if (spawnProtectionLeft > 0) {
       spawnProtectionLeft--;
     }
+    if (powerupTime > 0) {
+      powerupTime--;
+    }
     super.move();
   }
 
@@ -90,20 +92,24 @@ class Ship extends AsteroidGameObject {
   }
 
   /**
-   * Tries to fire the main weapon system. It will fire iff mainArmamentActive.
+   * Tries to fire the main weapon system. It will fire iff weaponActive.
    *
    * @return the projectiles that just got fired.
    */
   List<Projectile> attemptFireMainArmament() {
-    return mainArmament.attemptFire(x, y, vX, vY, getAngle(), mainArmamentActive);
+    if (powerupTime <= 0) {
+      return mainArmament.attemptFire(x, y, vX, vY, getAngle(), weaponActive);
+    } else {
+      return secondaryArmament.attemptFire(x, y, vX, vY, getAngle(), weaponActive);
+    }
   }
 
   void setThrusterActive(boolean thrusterActive) {
     this.thrusterActive = thrusterActive;
   }
 
-  void setMainArmamentActive(boolean mainArmamentActive) {
-    this.mainArmamentActive = mainArmamentActive;
+  void setWeaponActive(boolean weaponActive) {
+    this.weaponActive = weaponActive;
   }
 
   void setTargetAngle(double targetAngle) {
@@ -132,4 +138,9 @@ class Ship extends AsteroidGameObject {
       destroyed = true;
     }
   }
+
+  public void setPowerupTime(int powerupTime) {
+    this.powerupTime = powerupTime;
+  }
+
 }
