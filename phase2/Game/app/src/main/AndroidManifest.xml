@@ -59,6 +59,12 @@
             android:label="SettingsActivity"
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".logincode.LoginActivity"
+            android:label="LoginActivity"
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>
