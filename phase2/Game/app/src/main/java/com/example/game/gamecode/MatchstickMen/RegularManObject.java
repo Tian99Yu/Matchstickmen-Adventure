@@ -1,13 +1,13 @@
 package com.example.game.gamecode.MatchstickMen;
 
-public class RegularManObject extends MatchstickMenObject {
+class RegularManObject extends MatchstickMenObject {
     /**
      * Constructs a new MatchstickMen object.
      *
      * @param x          the initial x coordinate of this MatchstickMen object
      * @param y          the initial y coordinate of this MatchstickMen object
-     * @param gridWidth
-     * @param gridHeight
+     * @param gridWidth the width of the displaying area
+     * @param gridHeight the height of the displaying area
      */
     RegularManObject(int x, int y, int gridWidth, int gridHeight, MatchstickMenType manType, int sourceId) {
         super(x, y, gridWidth, gridHeight, manType, sourceId);

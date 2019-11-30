@@ -147,7 +147,9 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
     this.timeUsed = totalTime - Integer.parseInt(timeUsed);
   }
 
-  /** Constructor for MatchStickMenBackend. */
+    /**
+     * Constructor for MatchStickMenBackend.
+   * */
   MatchstickMenBackend() {
     this.answer = 0;
     this.over = false;
@@ -212,8 +214,8 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   /** Update and refresh the game status. */
   @Override
   public void update() {
-//      for
-//      move();
+      //      for
+      //      move();
       for (MatchstickMenObject matchstickMenObject : gameObjects) {
           if (matchstickMenObject != null) {
               matchstickMenObject.move();

@@ -2,7 +2,7 @@ package com.example.game.gamecode.MatchstickMen;
 
 import java.util.Random;
 
-public class ExtraordinaryManObject extends MatchstickMenObject {
+class ExtraordinaryManObject extends MatchstickMenObject {
     /**
      * Indicates whether this MatchstickMenObject is moving up.
      */
@@ -24,7 +24,7 @@ public class ExtraordinaryManObject extends MatchstickMenObject {
     /**
      * Turns this ExtraordinaryManObject around, causing it to reverse direction.
      */
-    protected void turnUpDown() {
+    private void turnUpDown() {
         goingUp = !goingUp;
     }
 
