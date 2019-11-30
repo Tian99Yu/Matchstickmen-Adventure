@@ -1,6 +1,7 @@
 package com.example.game.logincode;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements Customizable, Lo
 
     presenter = new LoginPresenter(this, loginManager);
 
+    setTheme(settingsManager.getSetting("theme"));
     setFields();
     addButtonListener();
   }
@@ -62,7 +64,26 @@ public class LoginActivity extends AppCompatActivity implements Customizable, Lo
 
   @Override
   public void setTheme(String theme) {
+    int textColor;
+    int backgroundColor;
 
+    if (theme.equals("dark")) {
+      backgroundColor = Color.parseColor("#001C27");
+      textColor = Color.WHITE;
+    } else {
+      backgroundColor = Color.parseColor("#FF006F9C");
+      textColor = Color.BLACK;
+    }
+    findViewById(R.id.loginLayout).setBackgroundColor(backgroundColor);
+    ((TextView) findViewById(R.id.loginInstructions)).setTextColor(textColor);
+    ((TextView) findViewById(R.id.usernameField)).setTextColor(textColor);
+    ((TextView) findViewById(R.id.usernameField)).setHintTextColor(textColor);
+    ((TextView) findViewById(R.id.usernameField)).setHighlightColor(textColor);
+    ((TextView) findViewById(R.id.passwordField)).setTextColor(textColor);
+    ((TextView) findViewById(R.id.passwordField)).setHintTextColor(textColor);
+    ((TextView) findViewById(R.id.passwordField)).setHighlightColor(textColor);
+    ((TextView) findViewById(R.id.errorLog)).setTextColor(textColor);
+    ((Button) findViewById(R.id.loginButton)).setTextColor(textColor);
   }
 
   @Override
@@ -88,10 +109,10 @@ public class LoginActivity extends AppCompatActivity implements Customizable, Lo
   @Override
   public void returnToMenu() {
     Intent intent = new Intent(this, MainMenuScreen.class);
+    findViewById(R.id.loginButton).setOnClickListener(null);
     intent.putExtra("leaderboardManager", leaderboardManager);
     intent.putExtra("settingsManager", settingsManager);
     intent.putExtra("loginManager", loginManager);
-    presenter.onDestroy();
     startActivity(intent);
   }
 }

@@ -44,4 +44,5 @@
     <string name="correct">Correct!!:)</string>
     <string name="wrong">Wrong -_-</string>
     <string name="timeUp">Time is Up</string>
+    <string name="login_button_text">Login or Create Account</string>
 </resources>

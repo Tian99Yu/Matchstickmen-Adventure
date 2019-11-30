@@ -103,6 +103,7 @@ public class LoginManager implements Serializable {
     } else { // New user
       isLoggedIn = true;
       this.username = username;
+      data.addProperty(username, password);
       addLastUser(data, username);
 
       listener.onAccountCreated();
