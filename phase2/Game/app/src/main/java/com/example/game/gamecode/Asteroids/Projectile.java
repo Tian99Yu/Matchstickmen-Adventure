@@ -8,8 +8,6 @@ class Projectile extends AsteroidGameObject {
   private int range;
   /** Damage that can be inflicted by this projectile. */
   private int damage;
-  /** appearance */
-  static Bitmap appearance;
 
   Projectile(
       double x,

@@ -28,4 +28,10 @@
     <string name="hard_difficulty">Hard</string>
     <string name="left">LEFT</string>
     <string name="right">RIGHT</string>
+    <string name="snakeman">snakeman</string>
+    <string name="minus">Minus</string>
+    <string name="restart">Restart</string>
+    <string name="done">Done</string>
+    <string name="double_player">Double Player</string>
+    <string name="single_player">Single Player</string>
 </resources>

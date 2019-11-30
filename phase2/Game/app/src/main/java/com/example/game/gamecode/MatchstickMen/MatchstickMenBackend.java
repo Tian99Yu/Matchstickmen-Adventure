@@ -42,11 +42,15 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   /** A flag showing if the gameBackend is over. */
   private boolean over;
 
-  /** The width of matchstick men. */
-  private int gridWidth;
+    /**
+     * The width of the displaying area.
+     */
+    private int gridWidth;
 
-  /** The height of matchstick men. */
-  private int gridHeight;
+    /**
+     * The height of displaying area.
+     */
+    private int gridHeight;
 
   public int getCountP2() {
     return countP2;
@@ -143,7 +147,9 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
     this.timeUsed = totalTime - Integer.parseInt(timeUsed);
   }
 
-  /** Constructor for MatchStickMenBackend. */
+    /**
+     * Constructor for MatchStickMenBackend.
+   * */
   MatchstickMenBackend() {
     this.answer = 0;
     this.over = false;
@@ -195,43 +201,63 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   public String compare(String r1, String r2) {
     String strAnswer = Integer.toString(getAnswer());
     if (r1.equals(strAnswer) && r2.equals(strAnswer)) {
-      return "you both win";
+      return "You both win";
     } else if (r1.equals(strAnswer) && !(r2.equals(strAnswer))) {
-      return "player1 wins";
+      return "Player1 wins";
     } else if (!r1.equals(strAnswer) && r2.equals(strAnswer)) {
-      return "player2 wins";
+      return "Player2 wins";
     } else {
-      return "you both lose";
+      return "You both lose";
     }
   }
 
   /** Update and refresh the game status. */
   @Override
-  public void update() {}
+  public void update() {
+      //      for
+      //      move();
+      for (MatchstickMenObject matchstickMenObject : gameObjects) {
+          if (matchstickMenObject != null) {
+              matchstickMenObject.move();
+          }
+      }
+  }
 
   /** Initialize and create all the objects when stating the game */
   void createObjects() {
     Random random = new Random();
     int range = random.nextInt((int) gridHeight * gridWidth);
 
-    int i = 0;
-    int sum = 0;
-    while (i < range) {
-      int happyX = random.nextInt(gridWidth - 200);
-      int happyY = random.nextInt(gridHeight - 200);
-      MatchstickMenObject happyMan =
-          new MatchstickMenObject(happyX, happyY, MatchstickMenType.HAPPY_MAN);
-      happyMan.setSourceId(R.drawable.happyman);
-      // should i set mantype here also or set in the initializer??????????
-      addMatchstickMenObj(happyMan);
-      // TODO: add excited man, make customizations
+      int i = 0;
+      int sum = 0;
+      while (i < range) {
+          int regularX = random.nextInt(gridWidth - 200);
+          int regularY = random.nextInt(gridHeight - 200);
+          MatchstickMenObject regularMan = null;
+//          if (character == MatchstickMenType.HAPPY_MAN) {
+//              regularMan =
+//                      new RegularManObject(
+//                              regularX, regularY, gridWidth, gridHeight, MatchstickMenType.HAPPY_MAN, R.drawable.happyman);
+//          } else if (this.character == MatchstickMenType.EXCITED_MAN) {
+//              regularMan = new RegularManObject(
+//                      regularX, regularY, gridWidth, gridHeight, MatchstickMenType.EXCITED_MAN, R.drawable.excitedman);
+//          }
 
-      int baldX = random.nextInt(gridWidth - 200);
-      int baldY = random.nextInt(gridHeight - 200);
-      MatchstickMenObject baldMan =
-          new MatchstickMenObject(baldX, baldY, MatchstickMenType.BALD_MAN);
-      baldMan.setSourceId(R.drawable.baldman);
-      addMatchstickMenObj(baldMan);
+          //          happyMan.setManType(MatchstickMenType.HAPPY_MAN);
+          //          regularMan.setSourceId();
+          // should i set mantype here also or set in the initializer??????????
+
+//          if (regularMan != null) {
+//              addMatchstickMenObj(regularMan);
+//          }
+          // TODO: add excited man, make customizations
+
+          int baldX = random.nextInt(gridWidth - 200);
+          int baldY = random.nextInt(gridHeight - 200);
+          MatchstickMenObject baldMan = new ExtraordinaryManObject(baldX, baldY, gridWidth, gridHeight, MatchstickMenType.BALD_MAN, R.drawable.baldman);
+//          baldMan.setManType(MatchstickMenType.BALD_MAN);
+//          baldMan.setSourceId(R.drawable.baldman);
+          addMatchstickMenObj(baldMan);
 
       int increment = random.nextInt(range - 1) + 1;
       i += increment;

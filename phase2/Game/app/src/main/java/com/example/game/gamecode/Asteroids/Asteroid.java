@@ -7,11 +7,9 @@ import java.util.List;
 
 class Asteroid extends AsteroidGameObject {
   /** Number of hitpoints this asteroid has remaining. */
-  private int hitPoints;
+  protected int hitPoints;
   /** The level of the asteroid, higher means larger. Asteroids of level 0 will not divide. */
   private int level;
-  /** appearance */
-  static Bitmap appearance;
 
   Asteroid(
       double x,
@@ -28,20 +26,33 @@ class Asteroid extends AsteroidGameObject {
   }
 
   /** Returns smaller asteroids upon destruction. */
-  List<Asteroid> split(int newHp) {
-    List<Asteroid> smallerAsteroids = new ArrayList<>();
+  List<AsteroidGameObject> split(
+      int newHp, LivesManager livesManager, WeaponPowerupUnlocker weaponPowerupUnlocker) {
+    List<AsteroidGameObject> smallerAsteroids = new ArrayList<>();
     if (isDestroyed() && level > 0) {
       for (int i = 0; i < AsteroidCustomizations.splittingRatio; i++) {
-        smallerAsteroids.add(
-            new Asteroid(
-                x + (int) ((int) (Math.random() * collisionRadius) - collisionRadius / 2),
-                y + (int) ((int) (Math.random() * collisionRadius) - collisionRadius / 2),
-                1.1 * vX + 200 * Math.random() - 100,
-                1.1 * vY + 200 * Math.random() - 100,
-                Math.random() * 2 * Math.PI,
-                collisionRadius * 0.6,
-                newHp,
-                level - 1));
+        double newX = x + (int) ((int) (Math.random() * collisionRadius) - collisionRadius / 2);
+        double newY = y + (int) ((int) (Math.random() * collisionRadius) - collisionRadius / 2);
+        double newVX = 1.1 * vX + 200 * Math.random() - 100;
+        double newVY = 1.1 * vY + 200 * Math.random() - 100;
+        double newAngle = Math.random() * 2 * Math.PI;
+        double newCollisionRadius = collisionRadius * 0.6;
+        if (Math.random() < 0.02) {
+          smallerAsteroids.add(
+              PowerupFactory.getRandomPowerup(
+                  newX,
+                  newY,
+                  newVX,
+                  newVY,
+                  newAngle,
+                  newCollisionRadius,
+                  livesManager,
+                  weaponPowerupUnlocker));
+        } else {
+          smallerAsteroids.add(
+              new Asteroid(
+                  newX, newY, newVX, newVY, newAngle, newCollisionRadius, newHp, level - 1));
+        }
       }
     }
     return smallerAsteroids;

@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class AsteroidGameManager extends GameBackend<AsteroidGameObject> {
+public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
+    implements LivesManager, WeaponPowerupUnlocker {
   /** Screen width. */
   private int playAreaWidth;
   /** Screen height. */
@@ -41,9 +42,10 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject> {
             WeaponFactory.getWeapon(
                 AsteroidCustomizations.weaponOption == 0
                     ? WeaponType.STANDARD_CANNON
-                    : WeaponType.STANDARD_SHOTGUN));
+                    : WeaponType.STANDARD_SHOTGUN),
+            WeaponFactory.getWeapon(WeaponType.POWERUP_CANNON));
     gameObjects.add(player);
-    int asteroidStartCount = (int) (Math.random() * 3) + 5;
+    int asteroidStartCount = (int) (Math.random() * 3) + 6;
     for (int i = 0; i < asteroidStartCount; i++) {
       Asteroid newAsteroid;
       double newX, newY;
@@ -120,13 +122,13 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject> {
       if (asteroidGameObject.isDestroyed()) {
         if (asteroidGameObject instanceof Ship) {
           // player died
-          lives--;
+          decrementLives();
           ((Ship) asteroidGameObject).reset();
         } else if (asteroidGameObject instanceof Projectile) {
           iter.remove();
         } else if (asteroidGameObject instanceof Asteroid) {
           currentScore += ((Asteroid) asteroidGameObject).getValue();
-          newObjects.addAll(((Asteroid) asteroidGameObject).split(1));
+          newObjects.addAll(((Asteroid) asteroidGameObject).split(1, this, this));
           asteroidsDestroyed++;
           iter.remove();
         }
@@ -153,7 +155,7 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject> {
 
   /** Sets the firing state based on user input. */
   public void setFireActive(boolean active) {
-    player.setMainArmamentActive(active);
+    player.setWeaponActive(active);
   }
 
   @Override
@@ -182,5 +184,20 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject> {
 
   public int getLives() {
     return lives;
+  }
+
+  @Override
+  public void incrementLives() {
+    lives++;
+  }
+
+  @Override
+  public void decrementLives() {
+    lives--;
+  }
+
+  @Override
+  public void unlockPlayerWeaponPowerup() {
+    player.setPowerupTime(200);
   }
 }

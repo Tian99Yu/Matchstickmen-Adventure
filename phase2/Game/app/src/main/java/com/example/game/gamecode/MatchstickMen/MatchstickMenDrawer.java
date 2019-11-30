@@ -1,7 +1,5 @@
 package com.example.game.gamecode.MatchstickMen;
 
-import android.graphics.Canvas;
-
 /**
  * A drawer that draws the game images onto the display
  *
