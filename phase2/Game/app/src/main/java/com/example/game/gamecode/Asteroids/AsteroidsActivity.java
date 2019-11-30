@@ -26,7 +26,7 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
     super.onCreate(savedInstanceState);
     super.setContentView(R.layout.asteroids_layout);
 
-    username = (String) getIntent().getSerializableExtra("username");
+    loginManager = (LoginManager) getIntent().getSerializableExtra("loginManager");
     settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
     leaderboardManager =
         (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
@@ -113,7 +113,7 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
       String.valueOf(((AsteroidGameManager) gameView.gameBackend).getAsteroidsDestroyed()),
       String.valueOf(((AsteroidGameManager) gameView.gameBackend).getPowerupsCollected())
     };
-    leaderboardManager.saveData(Games.ASTEROIDS, username, score, value);
+    leaderboardManager.saveData(Games.ASTEROIDS, loginManager.getUsername(), score, value);
   }
 
   @Override

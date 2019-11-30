@@ -3,8 +3,8 @@ package com.example.game.leaderboardcode;
 import com.example.game.Games;
 
 class LeaderboardPresenter {
-    private LeaderboardView leaderboardView;
-    private LeaderboardManager leaderboardManager;
+    private final LeaderboardView leaderboardView;
+    private final LeaderboardManager leaderboardManager;
 
     LeaderboardPresenter(LeaderboardView leaderboardView, LeaderboardManager leaderboardManager) {
         this.leaderboardView = leaderboardView;
@@ -13,7 +13,7 @@ class LeaderboardPresenter {
     }
 
     void showScores() {
-        leaderboardView.showScores(leaderboardView.getCurrentGame().toString());
+        leaderboardView.showScores();
     }
 
     String[][] getScoreData(Games game) {

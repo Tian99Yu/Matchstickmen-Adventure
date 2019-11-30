@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -17,16 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.game.MainMenuScreen;
 import com.example.game.R;
-import com.example.game.leaderboardcode.LeaderboardManager;
-
-import org.w3c.dom.Text;
 
 import java.io.Serializable;
 
 public class SettingsActivity extends AppCompatActivity implements Serializable, Customizable {
-    private LeaderboardManager leaderboardManager;
     private SettingsManager settingsManager;
-    private String username;
 
     private RadioGroup colorGroup;
     private RadioGroup characterGroup;
@@ -35,24 +29,21 @@ public class SettingsActivity extends AppCompatActivity implements Serializable,
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        username = (String) getIntent().getSerializableExtra("username");
         settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
-        leaderboardManager = (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
         setContentView(R.layout.settings_layout);
 
         final RadioButton radioButtonDark = findViewById(R.id.darkTheme);
-        RadioButton radioButtonLight = findViewById(R.id.lightTheme);
         radioButtonDark.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     setTheme("dark");
-                    setColorText((LinearLayout) findViewById(R.id.colorSetting), Color.WHITE);
+                    setColorText(findViewById(R.id.colorSetting), Color.WHITE);
                     TextView title = findViewById(R.id.textView2);
                     title.setTextColor(Color.WHITE);
                 } else {
                     setTheme("light");
-                    setColorText((LinearLayout) findViewById(R.id.colorSetting), Color.BLACK);
+                    setColorText(findViewById(R.id.colorSetting), Color.BLACK);
                     TextView title = findViewById(R.id.textView2);
                     title.setTextColor(Color.BLACK);
                 }
@@ -132,7 +123,7 @@ public class SettingsActivity extends AppCompatActivity implements Serializable,
         settingsContainer.setBackgroundColor(color);
     }
 
-    public void setColorText(Object layout, int color) {
+    private void setColorText(Object layout, int color) {
         if (layout instanceof RadioButton) {
             ((RadioButton) layout).setTextColor(color);
         } else if (layout instanceof TextView) {

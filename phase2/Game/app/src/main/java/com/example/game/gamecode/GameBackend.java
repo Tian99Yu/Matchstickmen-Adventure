@@ -1,7 +1,5 @@
 package com.example.game.gamecode;
 
-import android.graphics.Canvas;
-
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;

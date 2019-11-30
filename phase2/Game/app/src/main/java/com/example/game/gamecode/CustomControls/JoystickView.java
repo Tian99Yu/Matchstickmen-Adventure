@@ -16,8 +16,8 @@ public class JoystickView extends View {
     private float handleWidth;
     private float viewCenterX, viewCenterY;
     private float handleCenterX, handleCenterY;
-    private Paint backgroundPaint = new Paint();
-    private Paint controlPaint = new Paint();
+    private final Paint backgroundPaint = new Paint();
+    private final Paint controlPaint = new Paint();
 
     public JoystickView(Context context) {
         super(context);
@@ -75,7 +75,6 @@ public class JoystickView extends View {
         if (handleCenterX == 0 && handleCenterY == 0) {
             handleCenterX = viewCenterX;
             handleCenterY = viewCenterY;
-
         }
 
         canvas.drawCircle(viewCenterX, viewCenterY, viewWidth / 2, backgroundPaint);

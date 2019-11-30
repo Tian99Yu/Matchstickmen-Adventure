@@ -1,19 +1,10 @@
 package com.example.game.gamecode;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.ImageButton;
-
-import java.util.HashMap;
 
 public abstract class GameView<K> extends SurfaceView implements SurfaceHolder.Callback {
   protected GameThread thread;
@@ -75,14 +66,14 @@ public abstract class GameView<K> extends SurfaceView implements SurfaceHolder.C
     thread.setPaused(!thread.isPaused());
   }
 
-  public void pause() {
+  private void pause() {
     if (pauseButton != null) {
       pauseButton.setBackgroundResource(android.R.drawable.ic_media_play);
     }
     thread.setPaused(true);
   }
 
-  public void unpause() {
+  private void unpause() {
     if (pauseButton != null) {
       pauseButton.setBackgroundResource(android.R.drawable.ic_media_pause);
     }

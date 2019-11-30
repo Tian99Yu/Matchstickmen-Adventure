@@ -11,6 +11,7 @@ import com.example.game.R;
 import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
+import com.example.game.logincode.LoginManager;
 import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
@@ -34,7 +35,7 @@ public class SnakeActivity extends GameActivity implements CustomizableGame {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    username = (String) getIntent().getSerializableExtra("username");
+    loginManager = (LoginManager) getIntent().getSerializableExtra("loginManager");
     settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
     leaderboardManager =
         (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
@@ -91,7 +92,11 @@ public class SnakeActivity extends GameActivity implements CustomizableGame {
 
   protected void saveData() {
     String[][] statistic = ((SnakeView) gameView).getStatistics();
-    this.leaderboardManager.saveData(Games.SNAKE, this.username, statistic[0], statistic[1]);
+    this.leaderboardManager.saveData(
+            Games.SNAKE,
+            loginManager.getUsername(),
+            statistic[0],
+            statistic[1]);
   }
 
   /**

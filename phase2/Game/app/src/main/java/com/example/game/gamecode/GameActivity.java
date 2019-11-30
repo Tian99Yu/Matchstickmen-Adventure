@@ -15,13 +15,14 @@ import com.example.game.MainMenuScreen;
 import com.example.game.R;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.leaderboardcode.Saver;
+import com.example.game.logincode.LoginManager;
 import com.example.game.settingscode.SettingsManager;
 
 public abstract class GameActivity extends AppCompatActivity implements Saver {
   protected GameView gameView;
+  protected LoginManager loginManager;
   protected LeaderboardManager leaderboardManager;
   protected SettingsManager settingsManager;
-  protected String username;
 
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -80,20 +81,19 @@ public abstract class GameActivity extends AppCompatActivity implements Saver {
         retryButton.setLayoutParams(buttonParams);
         mainMenuButton.setLayoutParams(buttonParams);
 
-        saveToggle.setText("Save On");
+        saveToggle.setText(getString(R.string.save_enabled));
         saveToggle.setTextOn("Save On");
         saveToggle.setTextOff("Save Off");
 
-        retryButton.setText("Retry");
-        mainMenuButton.setText("Main Menu");
+        retryButton.setText(getString(R.string.replay));
+        mainMenuButton.setText(getString(R.string.main_menu));
 
         retryButton.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
             Intent intent = new Intent(currentGame, currentGame.getClass());
-            intent.putExtra("username", username);
-            intent.putExtra("leaderboardManager", leaderboardManager);
-            intent.putExtra("settingsManager", settingsManager);
+            sendToIntent(intent);
+
             if (saveToggle.isChecked()) {
               saveData();
             }
@@ -105,9 +105,8 @@ public abstract class GameActivity extends AppCompatActivity implements Saver {
           @Override
           public void onClick(View view) {
             Intent intent = new Intent(currentGame, MainMenuScreen.class);
-            intent.putExtra("username", username);
-            intent.putExtra("leaderboardManager", leaderboardManager);
-            intent.putExtra("settingsManager", settingsManager);
+            sendToIntent(intent);
+
             if (saveToggle.isChecked()) {
               saveData();
             }
@@ -126,6 +125,12 @@ public abstract class GameActivity extends AppCompatActivity implements Saver {
         dialog.show();
       }
     });
+  }
+
+  private void sendToIntent(Intent intent) {
+    intent.putExtra("leaderboardManager", leaderboardManager);
+    intent.putExtra("settingsManager", settingsManager);
+    intent.putExtra("loginManager", loginManager);
   }
 
   protected abstract void saveData();

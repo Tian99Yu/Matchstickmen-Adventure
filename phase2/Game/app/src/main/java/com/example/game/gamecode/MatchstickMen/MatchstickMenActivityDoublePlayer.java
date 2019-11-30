@@ -16,6 +16,7 @@ import com.example.game.gamecode.GameActivity;
 import com.example.game.gamecode.GameView;
 import com.example.game.leaderboardcode.LeaderboardManager;
 import com.example.game.leaderboardcode.Saver;
+import com.example.game.logincode.LoginManager;
 import com.example.game.settingscode.CustomizableGame;
 import com.example.game.settingscode.SettingsManager;
 
@@ -26,35 +27,116 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
     /**
      * A flag recording whether the data of this game is saved.
      */
+    private boolean saved = false;
 
 
-    //    private ProgressBar pgBar;
-    private TextView count1, count2;
-    private Button addP1, addP2, minusP1, minusP2, restart, singlePlayer, btnDone;
+    /**
+     * Make the customizations.
+     *
+     * @param level     the level of this game
+     * @param theme     the theme of this game
+     * @param character the character that will be shown on the screen
+     */
+    public void customization(String level, String theme, String character) {
+
+        setDifficulty(level);
+        setTheme(theme);
+        setCharacter(character);
+    }
+
+
+    /**
+     * shows player one how many matchStickMen he has counted
+     */
+    private TextView count1;
+    /**
+     * shows player two how many matchstickMen he has counted
+     */
+    private TextView count2;
+    /**
+     * the add button for player one to add one more matchstickMen
+     */
+    private Button addP1;
+    /**
+     * the add button for player two to add one more matchstickmen
+     */
+    private Button addP2;
+    /**
+     * the minus button for player one to substract one from the number of matchstickmen he has counted
+     */
+    private Button minusP1;
+    /**
+     * the minus button for player two to substract one from the number of matchstickmen he has counted
+     */
+    private Button minusP2;
+    /**
+     * the restart Button for the game
+     */
+    private Button restart;
+    /**
+     * the single player button, press to go to the single player mode
+     */
+    private Button singlePlayer;
+    /**
+     * the done buttone, press to check your answer before time is up
+     */
+    private Button btnDone;
+    /**
+     * the number of matchstickmen player one has counted
+     */
     private int num1 = 0;
+    /**
+     * the number of matchstickmen player two has counted
+     */
     private int num2 = 0;
 
+    /**
+     * getter for variabel num2
+     *
+     * @return the number of matchstickmen player2 has counted
+     */
     public int getNum2() {
         return num2;
     }
 
+    /**
+     * setter for variable num2
+     *
+     * @param num2 the number of matchstickmen player2 has counted
+     */
     public void setNum2(int num2) {
         this.num2 = num2;
     }
 
+    /**
+     * getter for variable num1
+     *
+     * @return the number of matchstickmen player 1 has counted
+     */
     public int getNum1() {
         return num1;
     }
 
+    /**
+     * setter for variable num1
+     *
+     * @param num the number of matchstickmen player 1 has counted
+     */
     public void setNum1(int num) {
         this.num1 = num;
     }
+
+    /**
+     * create the view, (the entire game actually)
+     *
+     * @param savedInstanceState
+     */
 
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.matchstickmen_double_layout);
 
-        username = (String) getIntent().getSerializableExtra("username");
+        loginManager = (LoginManager) getIntent().getSerializableExtra("loginManager");
         settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
         leaderboardManager =
                 (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
@@ -74,27 +156,20 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
         setButtons();
         setOnclickListeners();
 
-        setUpTimer();
+        pgBar.setProgress(0);
+
+        // Count down and display the time left in the textbar on the upper right corner
+        timer = setTimers(pgBar, timeleft);
+        timer.start();
         setCount();
 
-        restart.setOnClickListener(
-                new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View view) {
-                        finish();
-                        startActivity(getIntent());
-                    }
-                });
     }
 
 
-    @Override
-    protected GameView setView() {
-        return new MatchstickMenView(this);
-    }
-
-
+    /**
+     * link all view widgets with its corresponding id in the xml
+     */
     @Override
     void setButtons() {
 
@@ -113,6 +188,9 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
         count2 = findViewById(R.id.countP2);
     }
 
+    /**
+     * set onClickListeners for all the buttons
+     */
     @Override
     void setOnclickListeners() {
 
@@ -124,7 +202,8 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
                     public void onClick(View view) {
                         if (!gameView.gameBackend.isGameOver()) {
                             setNum1(getNum1() + 1);
-                            count1.setText(Integer.toString(getNum1()));
+                            String strCount1 = Integer.toString(getNum1());
+                            count1.setText(strCount1);
                             ((MatchstickMenBackend) gameView.gameBackend).addCount();
                         }
                     }
@@ -138,7 +217,8 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
                     public void onClick(View view) {
                         if (!gameView.gameBackend.isGameOver()) {
                             setNum2(getNum2() + 1);
-                            count2.setText(Integer.toString(getNum2()));
+                            String strCount2 = Integer.toString(getNum2());
+                            count2.setText(strCount2);
                             ((MatchstickMenBackend) gameView.gameBackend).addCount2();
                         }
                     }
@@ -153,8 +233,8 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
                     public void onClick(View view) {
                         if (!(gameView.gameBackend).isGameOver()) {
                             setNum1(getNum1() - 1);
-
-                            count1.setText(Integer.toString(getNum1()));
+                            String strCount1 = Integer.toString(getNum1());
+                            count1.setText(strCount1);
                             ((MatchstickMenBackend) gameView.gameBackend).minusCount();
                         }
                     }
@@ -169,8 +249,8 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
                     public void onClick(View view) {
                         if (!(gameView.gameBackend).isGameOver()) {
                             setNum2(getNum2() - 1);
-
-                            count1.setText(Integer.toString(getNum2()));
+                            String strCount1 = Integer.toString(getNum2());
+                            count2.setText(strCount1);
                             ((MatchstickMenBackend) gameView.gameBackend).minusCount2();
                         }
                     }
@@ -216,12 +296,27 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
                         MatchstickMenActivityDoublePlayer.this.startActivity(mainIntent);
                     }
                 });
+
+        restart.setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        finish();
+                        startActivity(getIntent());
+                    }
+                });
     }
 
+
+    /**
+     * set the initial value for the count view in the screen
+     */
     @Override
     void setCount() {
-        count1.setText(Integer.toString(0));
-        count2.setText(Integer.toString(0));
+        String zero = Integer.toString(0);
+        count1.setText(zero);
+        count2.setText(zero);
     }
 
 
