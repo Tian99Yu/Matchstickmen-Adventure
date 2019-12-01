@@ -67,6 +67,13 @@ public class LoginActivity extends AppCompatActivity implements Customizable, Lo
     int textColor;
     int backgroundColor;
 
+    View loginLayout = findViewById(R.id.loginLayout);
+    TextView loginInstructions = findViewById(R.id.loginInstructions);
+    TextView usernameField = findViewById(R.id.usernameField);
+    TextView passwordField = findViewById(R.id.passwordField);
+    TextView errorLog = findViewById(R.id.errorLog);
+    TextView loginButton = findViewById(R.id.loginButton);
+
     if (theme.equals("dark")) {
       backgroundColor = Color.parseColor("#001C27");
       textColor = Color.WHITE;
@@ -74,16 +81,17 @@ public class LoginActivity extends AppCompatActivity implements Customizable, Lo
       backgroundColor = Color.parseColor("#FF006F9C");
       textColor = Color.BLACK;
     }
-    findViewById(R.id.loginLayout).setBackgroundColor(backgroundColor);
-    ((TextView) findViewById(R.id.loginInstructions)).setTextColor(textColor);
-    ((TextView) findViewById(R.id.usernameField)).setTextColor(textColor);
-    ((TextView) findViewById(R.id.usernameField)).setHintTextColor(textColor);
-    ((TextView) findViewById(R.id.usernameField)).setHighlightColor(textColor);
-    ((TextView) findViewById(R.id.passwordField)).setTextColor(textColor);
-    ((TextView) findViewById(R.id.passwordField)).setHintTextColor(textColor);
-    ((TextView) findViewById(R.id.passwordField)).setHighlightColor(textColor);
-    ((TextView) findViewById(R.id.errorLog)).setTextColor(textColor);
-    ((Button) findViewById(R.id.loginButton)).setTextColor(textColor);
+
+    loginLayout.setBackgroundColor(backgroundColor);
+    loginInstructions.setTextColor(textColor);
+    usernameField.setTextColor(textColor);
+    usernameField.setHintTextColor(textColor);
+    usernameField.setHighlightColor(textColor);
+    passwordField.setTextColor(textColor);
+    passwordField.setHintTextColor(textColor);
+    passwordField.setHighlightColor(textColor);
+    errorLog.setTextColor(textColor);
+    loginButton.setTextColor(textColor);
   }
 
   @Override

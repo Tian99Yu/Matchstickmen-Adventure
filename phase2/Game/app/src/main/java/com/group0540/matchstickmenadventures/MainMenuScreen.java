@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -130,13 +131,19 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
 
   @Override
   public void setTheme(String theme) {
+    int backgroundColor;
+    int textColor;
+
     View mainMenuContainer = findViewById(R.id.mainMenuContainer);
-    int color;
+    TextView loginInstructions = findViewById(R.id.loginPrompt);
     if (theme.equals("dark")) {
-      color = Color.parseColor("#001C27");
+      backgroundColor = Color.parseColor("#001C27");
+      textColor = Color.WHITE;
     } else {
-      color = Color.parseColor("#FF006F9C");
+      backgroundColor = Color.parseColor("#FF006F9C");
+      textColor = Color.BLACK;
     }
-    mainMenuContainer.setBackgroundColor(color);
+    mainMenuContainer.setBackgroundColor(backgroundColor);
+    loginInstructions.setTextColor(textColor);
   }
 }

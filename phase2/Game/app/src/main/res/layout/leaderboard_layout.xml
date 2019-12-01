@@ -51,11 +51,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3">
 
+        <TextView
+            android:id="@+id/noGameHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/start_playing_hint"
+            android:textAlignment="center"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/gameList"
+            app:layout_constraintTop_toTopOf="@+id/gameList" />
+
         <Spinner
             android:id="@+id/gameList"
             android:layout_width="0dp"
             android:layout_height="32dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/statisticSortInstruction" />
+
+        <TextView
+            android:id="@+id/statisticSortInstruction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#90FFFFFF"
+            android:text="@string/sort_statistic_instruction"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,8 +86,8 @@
             android:id="@+id/scoreTable"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
             android:paddingHorizontal="16dp"
+            android:weightSum="30"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

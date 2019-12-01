@@ -2,8 +2,8 @@ package com.group0540.matchstickmenadventures.leaderboardcode;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -104,6 +104,90 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
         }
     }
 
+    public void showScores(String statistic) {
+        scoreTable.removeAllViews();
+        List<JsonObject> scoreData =
+                leaderboardManager.getGameStatistics(getCurrentGame(), statistic);
+        buildTable(scoreData);
+    }
+
+    private void buildTable(List<JsonObject> scoreData) {
+        int stat_count = scoreData.get(0).size() - 1;
+
+        // Row parameters for distribution of TextViews across rows
+        TableLayout.LayoutParams rowParams = new TableLayout.LayoutParams(
+                TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT,
+                1f
+        );
+
+        // Text parameters for distribution of statistics across rows
+        TableRow.LayoutParams textParams = new TableRow.LayoutParams(
+                0,
+                TableRow.LayoutParams.WRAP_CONTENT,
+                (float) 0.7 / stat_count
+        );
+
+        // Text parameters for spacing of username across TextViews
+        TableRow.LayoutParams nameParams = new TableRow.LayoutParams(
+                0,
+                TableRow.LayoutParams.WRAP_CONTENT,
+                0.3f
+        );
+
+        Set<String> stats = null;
+        if (scoreData.size() != 0) {
+            stats = scoreData.get(0).deepCopy().keySet();
+            stats.remove("username");
+        }
+        TableRow row = new TableRow(this);
+        row.setLayoutParams(rowParams);
+
+        TextView name = new TextView(this);
+        name.setLayoutParams(nameParams);
+        name.setText(getString(R.string.username_stat));
+        name.setTypeface(null, Typeface.BOLD);
+        row.addView(name);
+
+        for (final String stat : stats) {
+            TextView val = new TextView(this);
+
+            val.setText(stat);
+            val.setTypeface(null, Typeface.BOLD);
+            val.setLayoutParams(textParams);
+            val.setClickable(true);
+
+            val.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showScores(stat);
+                }
+            });
+            row.addView(val);
+        }
+        scoreTable.addView(row);
+
+        for (JsonObject data : scoreData) {
+            row = new TableRow(this);
+            row.setLayoutParams(rowParams);
+
+            name = new TextView(this);
+            name.setText(data.get("username").getAsString());
+            name.setLayoutParams(nameParams);
+            row.addView(name);
+
+            for (String stat : stats) {
+                TextView val = new TextView(this);
+
+                val.setText(data.get(stat).getAsString());
+                val.setLayoutParams(textParams);
+
+                row.addView(val);
+            }
+            scoreTable.addView(row);
+        }
+    }
+
     public Games getCurrentGame() {
         return Games.valueOf(gameSpinner.getSelectedItem().toString());
     }
@@ -112,19 +196,23 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
     public void setTheme(String theme) {
         View leaderboardContainer = findViewById(R.id.leaderboardLayout);
         TextView leaderboardTitle = findViewById(R.id.leaderboardTitle);
+        TextView statisticSortHint = findViewById(R.id.statisticSortInstruction);
+        TextView noGameHint = findViewById(R.id.noGameHint);
 
         int backgroundColor;
         int textColor;
         if (theme.equals("dark")) {
             backgroundColor = Color.parseColor("#001C27");
-            textColor = Color.parseColor("#FFFFFF");
+            textColor = Color.WHITE;
         } else {
-            backgroundColor = Color.parseColor("#FFFFFF");
-            textColor = Color.parseColor("#001C27");
+            backgroundColor = Color.parseColor("#FF006F9C");
+            textColor = Color.BLACK;
         }
 
         leaderboardContainer.setBackgroundColor(backgroundColor);
         leaderboardTitle.setTextColor(textColor);
-
+        statisticSortHint.setBackgroundColor(backgroundColor);
+        statisticSortHint.setTextColor(textColor);
+        noGameHint.setTextColor(textColor);
     }
 }

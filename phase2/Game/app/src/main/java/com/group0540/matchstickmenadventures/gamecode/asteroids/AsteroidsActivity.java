@@ -101,7 +101,7 @@ public class AsteroidsActivity extends GameActivity implements Saver, Customizab
   }
 
   protected void saveData() {
-    String[] score = {"Score"};
+    String[] score = {"Score", "Asteroids Destroyed", "Powerups Collected"};
     String[] value = {
       String.valueOf(gameView.gameBackend.getCurrentScore()),
       String.valueOf(((AsteroidGameManager) gameView.gameBackend).getAsteroidsDestroyed()),
