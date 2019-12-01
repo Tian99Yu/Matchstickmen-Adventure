@@ -30,6 +30,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
     private TableLayout scoreTable;
     private LeaderboardPresenter leaderboardPresenter;
     private LeaderboardManager leaderboardManager;
+    private int entryColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +139,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
         TextView name = new TextView(this);
         name.setLayoutParams(nameParams);
         name.setText(getString(R.string.username_stat));
+        name.setTextColor(entryColor);
         name.setTypeface(null, Typeface.BOLD);
         row.addView(name);
 
@@ -146,6 +148,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
 
             val.setText(stat);
             val.setTypeface(null, Typeface.BOLD);
+            val.setTextColor(entryColor);
             val.setLayoutParams(textParams);
             val.setClickable(true);
 
@@ -165,6 +168,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
 
             name = new TextView(this);
             name.setText(data.get("username").getAsString());
+            name.setTextColor(entryColor);
             name.setLayoutParams(nameParams);
             row.addView(name);
 
@@ -173,6 +177,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
 
                 val.setText(data.get(stat).getAsString());
                 val.setLayoutParams(textParams);
+                val.setTextColor(entryColor);
 
                 row.addView(val);
             }
@@ -196,9 +201,11 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
         if (theme.equals("dark")) {
             backgroundColor = Color.parseColor("#001C27");
             textColor = Color.WHITE;
+            entryColor = Color.parseColor("#c8c8c8");
         } else {
             backgroundColor = Color.parseColor("#FF006F9C");
             textColor = Color.BLACK;
+            entryColor = Color.BLACK;
         }
 
         leaderboardContainer.setBackgroundColor(backgroundColor);
