@@ -231,9 +231,9 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
               count2.setText(compareOutput);
 
               ArrayList<String> listOutput = new ArrayList<>();
-              listOutput.add("you both win");
-              listOutput.add("player1 wins");
-              listOutput.add("player2 wins");
+                listOutput.add("You both win");
+                listOutput.add("Player1 wins");
+                listOutput.add("Player2 wins");
 
               if (listOutput.contains(compareOutput)) {
                 timer.cancel();
