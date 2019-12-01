@@ -40,7 +40,8 @@
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.group0540.matchstickmenadventures.gamecode.matchstickmen.MatchstickMenActivity"
+        <activity
+            android:name="com.group0540.matchstickmenadventures.gamecode.matchstickmen.MatchstickMenActivitySinglePlayer"
             android:label="MatchstickMen"
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait" />

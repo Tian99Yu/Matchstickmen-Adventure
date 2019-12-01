@@ -13,10 +13,13 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
   /** The time of this game. */
   private int totalTime;
 
-  /** Count from user. (1st statistic) */
+    /**
+     * Count from player 1. (1st statistic)
+     */
   private int count;
 
-  private int countP2;
+    /** Count from player 2. */
+    private int countP2;
 
   /** the level of the current game */
   private int levelNum;
@@ -35,14 +38,6 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
 
   /** The height of displaying area. */
   private int gridHeight;
-
-  public int getCountP2() {
-    return countP2;
-  }
-
-  public void setCountP2(int countP2) {
-    this.countP2 = countP2;
-  }
 
   /**
    * Gets the count of this game.
@@ -92,9 +87,16 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
    * @param over a flag indicating whether this game is over
    */
   void setOver(boolean over) {
-    this.over = over;
+      this.over = over;
   }
 
+    public int getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(int totalTime) {
+        this.totalTime = totalTime;
+    }
   /**
    * Gets the game objects.
    *

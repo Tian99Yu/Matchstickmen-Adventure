@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.matchstickmenadventures.R;
 import com.group0540.matchstickmenadventures.gamecode.asteroids.AsteroidsActivity;
 import com.group0540.matchstickmenadventures.gamecode.GameView;
-import com.group0540.matchstickmenadventures.gamecode.matchstickmen.MatchstickMenActivity;
+import com.group0540.matchstickmenadventures.gamecode.matchstickmen.MatchstickMenActivitySinglePlayer;
 import com.group0540.matchstickmenadventures.gamecode.snake.SnakeActivity;
 import com.group0540.matchstickmenadventures.leaderboardcode.LeaderboardActivity;
 import com.group0540.matchstickmenadventures.leaderboardcode.LeaderboardManager;
@@ -85,7 +85,7 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
     launchGame3.setOnClickListener(
         new GameView.OnClickListener() {
           public void onClick(View view) {
-            Intent mainIntent = new Intent(MainMenuScreen.this, MatchstickMenActivity.class);
+            Intent mainIntent = new Intent(MainMenuScreen.this, MatchstickMenActivitySinglePlayer.class);
             sendToIntent(mainIntent);
             MainMenuScreen.this.startActivity(mainIntent);
           }

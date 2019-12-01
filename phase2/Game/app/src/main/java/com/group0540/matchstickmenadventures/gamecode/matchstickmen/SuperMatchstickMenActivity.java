@@ -113,20 +113,29 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
      */
     public int getUpdateInterval() {
         int updateInterval;
-        switch (matchstickMenCustomization.getDifficulty()) {
+//        switch (matchstickMenCustomization.getDifficulty()) {
 //            case 0:
 //                updateInterval = 10;
 //                break;
-            case 1:
-                updateInterval = 7;
-                break;
-            case 2:
-                updateInterval = 5;
-                break;
-            default:
-                updateInterval = 10;
+//            case 1:
+//                updateInterval = 7;
+//                ((MatchstickMenBackend) gameView.gameBackend).setTotalTime(7);
+//                break;
+//            case 2:
+//                updateInterval = 5;
+//                break;
+//            default:
+//                updateInterval = 10;
+//        }
+        int difficulty = matchstickMenCustomization.getDifficulty();
+        if (difficulty == 1) {
+            updateInterval = 7;
+        } else if (difficulty == 2) {
+            updateInterval = 5;
+        } else {
+            updateInterval = 10;
         }
-        ;
+        ((MatchstickMenBackend) gameView.gameBackend).setTotalTime(updateInterval);
         return updateInterval;
     }
 

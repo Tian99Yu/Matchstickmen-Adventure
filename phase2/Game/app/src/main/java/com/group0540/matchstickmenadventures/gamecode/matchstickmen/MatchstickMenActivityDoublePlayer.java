@@ -248,7 +248,7 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
         new GameView.OnClickListener() {
           public void onClick(View view) {
             Intent mainIntent =
-                new Intent(MatchstickMenActivityDoublePlayer.this, MatchstickMenActivity.class);
+                    new Intent(MatchstickMenActivityDoublePlayer.this, MatchstickMenActivitySinglePlayer.class);
             sendToIntent(mainIntent);
             MatchstickMenActivityDoublePlayer.this.startActivity(mainIntent);
           }

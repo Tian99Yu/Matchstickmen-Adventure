@@ -14,7 +14,7 @@ import com.group0540.matchstickmenadventures.logincode.LoginManager;
 import com.group0540.matchstickmenadventures.settingscode.CustomizableGame;
 import com.group0540.matchstickmenadventures.settingscode.SettingsManager;
 
-public class MatchstickMenActivity extends SuperMatchstickMenActivity
+public class MatchstickMenActivitySinglePlayer extends SuperMatchstickMenActivity
     implements CustomizableGame, Saver {
   /** the add button */
   private Button btnAdd;
@@ -155,9 +155,9 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity
         new View.OnClickListener() {
           public void onClick(View view) {
             Intent mainIntent =
-                new Intent(MatchstickMenActivity.this, MatchstickMenActivityDoublePlayer.class);
+                    new Intent(MatchstickMenActivitySinglePlayer.this, MatchstickMenActivityDoublePlayer.class);
             sendToIntent(mainIntent);
-            MatchstickMenActivity.this.startActivity(mainIntent);
+            MatchstickMenActivitySinglePlayer.this.startActivity(mainIntent);
           }
         });
 
