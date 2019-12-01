@@ -14,7 +14,7 @@ import android.graphics.Paint;
 
 public class MatchstickMenView extends GameView<MatchstickMenObject>
     implements MatchstickMenDrawer<Canvas, Bitmap> {
-  private int setUpInterval;
+
   /** The customizations of this matchstick men game */
   MatchstickMenCustomization matchstickMenCustomization;
 

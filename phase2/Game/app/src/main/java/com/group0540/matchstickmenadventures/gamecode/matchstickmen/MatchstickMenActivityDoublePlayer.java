@@ -19,11 +19,13 @@ import java.util.ArrayList;
 
 public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivity
     implements CustomizableGame, Saver {
-  /** shows player one how many matchStickMen he has counted */
+    /**
+     * shows player one how many matchstick men he has counted
+     */
   private TextView count1;
-  /** shows player two how many matchstickMen he has counted */
+    /** shows player two how many matchstick men he has counted */
   private TextView count2;
-  /** the add button for player one to add one more matchstickMen */
+    /** the add button for player one to add one more matchstick men */
   private Button addP1;
   /** the add button for player two to add one more matchstick men */
   private Button addP2;
@@ -248,7 +250,9 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
         new GameView.OnClickListener() {
           public void onClick(View view) {
             Intent mainIntent =
-                    new Intent(MatchstickMenActivityDoublePlayer.this, MatchstickMenActivitySinglePlayer.class);
+                    new Intent(
+                            MatchstickMenActivityDoublePlayer.this,
+                            MatchstickMenActivitySinglePlayer.class);
             sendToIntent(mainIntent);
             MatchstickMenActivityDoublePlayer.this.startActivity(mainIntent);
           }

@@ -11,20 +11,13 @@ class RegularManObject extends MatchstickMenObject {
      */
     RegularManObject(int x, int y, int gridWidth, int gridHeight) {
         super(x, y, gridWidth, gridHeight);
-
     }
 
     /**
-     * Move this MatchstickMenObject.
+     * Move this RegularMenObject. The RegularManObject only moves horizontally.
      */
     @Override
     void move() {
-//        if (this.x < super.getGridWidth()){
-//            x += 1;
-//        }else{
-//            x = 0;
-//        }
-
         if (this.isGoingRight()) {
             if (x >= super.getGridWidth()) {
                 turnAround();

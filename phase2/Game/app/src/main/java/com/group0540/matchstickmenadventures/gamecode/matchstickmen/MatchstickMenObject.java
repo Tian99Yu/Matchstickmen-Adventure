@@ -5,8 +5,6 @@ public abstract class MatchstickMenObject {
   public int x;
   /** The y-coordinate of this matchstick men object */
   public int y;
-  /** The character that will appear on the screen. */
-  private MatchstickMenType manType;
   /** Indicates whether this MatchstickMenObject is moving right. */
   private boolean goingRight;
 
@@ -27,7 +25,6 @@ public abstract class MatchstickMenObject {
         this.y = y;
         this.gridWidth = gridWidth;
         this.gridHeight = gridHeight;
-        this.manType = MatchstickMenType.EXCITED_MAN;
         this.goingRight = true;
     }
 
@@ -47,15 +44,6 @@ public abstract class MatchstickMenObject {
    */
   int getGridHeight() {
     return gridHeight;
-  }
-
-  /**
-   * Gets the type of this MatchstickMenObject.
-   *
-   * @return the type of this MatchstickMenObject
-   */
-  MatchstickMenType getManType() {
-    return manType;
   }
 
   /** Turns this MatchstickMenObject around, causing it to reverse direction. */

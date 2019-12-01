@@ -84,9 +84,9 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
     }
 
     /**
-     * the onCreate method to creat the view, presenter and backend
+     * the onCreate method to create the view, presenter and backend
      *
-     * @param savedInstanceState
+     * @param savedInstanceState the activity's previously saved state
      */
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,20 +113,6 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
      */
     public int getUpdateInterval() {
         int updateInterval;
-//        switch (matchstickMenCustomization.getDifficulty()) {
-//            case 0:
-//                updateInterval = 10;
-//                break;
-//            case 1:
-//                updateInterval = 7;
-//                ((MatchstickMenBackend) gameView.gameBackend).setTotalTime(7);
-//                break;
-//            case 2:
-//                updateInterval = 5;
-//                break;
-//            default:
-//                updateInterval = 10;
-//        }
         int difficulty = matchstickMenCustomization.getDifficulty();
         if (difficulty == 1) {
             updateInterval = 7;
@@ -257,7 +243,7 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
      * send the game info to the next intent, in this case, is to send info between single and
      * double player mode
      *
-     * @param intent
+     * @param intent the message object that is used to communicate between activities
      */
     protected void sendToIntent(Intent intent) {
         intent.putExtra("loginManager", loginManager);
