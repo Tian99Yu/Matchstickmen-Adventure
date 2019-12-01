@@ -237,7 +237,8 @@ public class MatchstickMenActivityDoublePlayer extends SuperMatchstickMenActivit
 
               if (listOutput.contains(compareOutput)) {
                 timer.cancel();
-                ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
+                  ((MatchstickMenBackend) gameView.gameBackend).score += ((MatchstickMenBackend) gameView.gameBackend).getAnswer();
+                  ((MatchstickMenBackend) gameView.gameBackend).setOver(true);
               }
               String text = MatchstickMenActivityDoublePlayer.super.timeleft.getText().toString();
               String timeRemaining = text.substring(0, text.indexOf('.'));
