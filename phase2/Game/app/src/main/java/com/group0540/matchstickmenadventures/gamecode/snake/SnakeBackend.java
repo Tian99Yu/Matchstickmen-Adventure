@@ -101,8 +101,8 @@ public class SnakeBackend extends GameBackend<SnakeObject> {
         length--;
       }
 
-      if (gameObjects.get(i).x <= 0 || gameObjects.get(i).x >= gridWidth ||
-              gameObjects.get(i).y <= 0 || gameObjects.get(i).y >= gridHeight) {
+      if (gameObjects.get(i).x < 0 || gameObjects.get(i).x >= gridWidth ||
+              gameObjects.get(i).y < 0 || gameObjects.get(i).y >= gridHeight) {
         deleteItem(gameObjects.get(i));
         i--;
         length--;

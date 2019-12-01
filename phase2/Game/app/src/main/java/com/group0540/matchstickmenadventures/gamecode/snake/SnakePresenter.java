@@ -105,7 +105,8 @@ public class SnakePresenter<T> extends GamePresenter<T, SnakeObject> {
         break;
       case SQUARE:
         snakeDrawer.drawRect(
-            drawingSurface, x * size, y * size, (x + 1) * size, (y + 1) * size, color);
+            drawingSurface, x * size + widthAdjust, y * size + heightAdjust,
+                (x + 1) * size + widthAdjust, (y + 1) * size + heightAdjust, color);
         break;
     }
   }
