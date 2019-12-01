@@ -134,7 +134,7 @@ public class MatchstickMenActivity extends SuperMatchstickMenActivity
             if (!gameView.gameBackend.isGameOver()) {
               String result = count.getText().toString();
               if (((MatchstickMenBackend) gameView.gameBackend).compare(result)) {
-                ((MatchstickMenBackend) gameView.gameBackend).score += 1;
+                  ((MatchstickMenBackend) gameView.gameBackend).score += ((MatchstickMenBackend) gameView.gameBackend).getAnswer();
                 count.setTextSize(30);
                 count.setText(R.string.correct);
                 timer.cancel();

@@ -128,7 +128,7 @@ public class MatchstickMenBackend extends GameBackend<MatchstickMenObject> {
    * @param timeUsed the time used by the user
    */
   public void setTimeUsed(String timeUsed) {
-    this.timeUsed = totalTime - Integer.parseInt(timeUsed);
+    this.timeUsed = this.totalTime - Integer.parseInt(timeUsed);
   }
 
   /** Constructor for MatchStickMenBackend. */

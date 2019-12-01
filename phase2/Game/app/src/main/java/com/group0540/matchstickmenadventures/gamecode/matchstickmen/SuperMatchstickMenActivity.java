@@ -61,14 +61,14 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
      */
     protected Button restart;
     /**
-     * the number recording how many matchstickmen the user has counted
+     * the number recording how many matchstick men the user has counted
      */
     private int num = 0;
 
     /**
      * the getter for the num variable mentioned above
      *
-     * @return return the number of matchstickmen the user has counted
+     * @return return the number of matchstick men the user has counted
      */
     public int getNum() {
         return num;
@@ -77,7 +77,7 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
     /**
      * the setter for variable num
      *
-     * @param num the number of matchstickmen the user has counted
+     * @param num the number of matchstick men the user has counted
      */
     public void setNum(int num) {
         this.num = num;
@@ -93,7 +93,7 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
     }
 
     /**
-     * the setView method to creat a new MatchstickMenView
+     * the setView method to create a new MatchstickMenView
      *
      * @return A MatchstickMenView, which is the Canvas, or the black part containing the
      * animation shown on the screen
@@ -106,17 +106,17 @@ public abstract class SuperMatchstickMenActivity extends GameActivity
     /**
      * get the update interval of the game
      * this is how fast the animation is and also sets up for the total
-     * time available for the user to count the number of matchstickmen
-     *
+     * time available for the user to count the number of matchstick men
+     *e
      * @return the updateInterval, which is the break between each update in thread, and the
      * total time for the entire game
      */
     public int getUpdateInterval() {
         int updateInterval;
         switch (matchstickMenCustomization.getDifficulty()) {
-            case 0:
-                updateInterval = 10;
-                break;
+//            case 0:
+//                updateInterval = 10;
+//                break;
             case 1:
                 updateInterval = 7;
                 break;
