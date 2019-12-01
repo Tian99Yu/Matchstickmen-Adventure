@@ -1,6 +1,7 @@
 package com.group0540.matchstickmenadventures;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -133,9 +134,15 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
   public void setTheme(String theme) {
     int backgroundColor;
     int textColor;
+    int buttonTint = Color.parseColor("#FF218F");
 
     View mainMenuContainer = findViewById(R.id.mainMenuContainer);
     TextView loginInstructions = findViewById(R.id.loginPrompt);
+    Button game1 = findViewById(R.id.game1);
+    Button game2 = findViewById(R.id.game2);
+    Button game3 = findViewById(R.id.game3);
+    game3.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+
     if (theme.equals("dark")) {
       backgroundColor = Color.parseColor("#001C27");
       textColor = Color.WHITE;
@@ -145,5 +152,8 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
     }
     mainMenuContainer.setBackgroundColor(backgroundColor);
     loginInstructions.setTextColor(textColor);
+    game1.setBackgroundTintList(ColorStateList.valueOf(buttonTint));
+    game2.setBackgroundTintList(ColorStateList.valueOf(buttonTint));
+    game3.setBackgroundTintList(ColorStateList.valueOf(buttonTint));
   }
 }
