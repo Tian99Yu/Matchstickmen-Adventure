@@ -58,8 +58,7 @@ public class JoystickView extends View {
     private void createJoystick() {
         setFocusable(true);
 
-        backgroundPaint.setAlpha(10);
-        backgroundPaint.setColor(Color.GRAY);
+        backgroundPaint.setColor(Color.argb(64, 200, 200, 200));
         backgroundPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         backgroundPaint.setStrokeWidth(1);
 
