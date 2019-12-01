@@ -110,41 +110,28 @@ public class LeaderboardManager implements Serializable {
     return data.keySet().toArray(new String[0]);
   }
 
-  String[][] getGameStatistics(final Games game) {
+  List<JsonObject> getGameStatistics(final Games game) {
     JsonObject data = convertStringToJsonObject(leaderboardString);
     JsonArray jsonArray = (JsonArray) data.get(game.toString());
     List<JsonObject> gameData = new ArrayList<>();
     for (int i = 0; i < jsonArray.size(); i++ ) {
       gameData.add((JsonObject) jsonArray.get(i));
     }
-    String[][] ret = new String[Math.min(10, jsonArray.size())][];
-    Collections.sort(gameData, new Comparator<JsonObject>() {
+    return gameData;
+  }
+
+  List<JsonObject> getGameStatistics(final Games game, String statistic) {
+    List<JsonObject> gameData = getGameStatistics(game);
+    sortGameStatistics(gameData, statistic);
+    return gameData;
+  }
+
+  private void sortGameStatistics(List<JsonObject> data, final String statistic) {
+    Collections.sort(data, new Comparator<JsonObject> () {
       @Override
       public int compare(JsonObject first, JsonObject second) {
-        if (game == Games.ASTEROIDS) {
-          return -first.get("Score").getAsInt() + second.get("Score").getAsInt();
-        } else if (game == Games.MATCHSTICKMEN) {
-          return -first.get("Count").getAsInt() + second.get("Count").getAsInt();
-        } else {
-          return -first.get("Length").getAsInt() + second.get("Length").getAsInt();
-        }
+        return second.get(statistic).getAsInt() - first.get(statistic).getAsInt();
       }
     });
-    for (int i = 0; i < Math.min(gameData.size(), 10); i++) {
-      String[] stat = new String[2];
-      stat[0] = gameData.get(i).get("username").toString().replaceAll("\"", "");
-      String value;
-      if (game == Games.ASTEROIDS) {
-        value = "Score";
-      } else if (game == Games.MATCHSTICKMEN) {
-        value = "Count";
-      } else {
-        value = "Length";
-      }
-      stat[1] = gameData.get(i).get(value).toString().replaceAll("\"", "");
-      ret[i] = stat;
-    }
-
-    return ret;
   }
 }

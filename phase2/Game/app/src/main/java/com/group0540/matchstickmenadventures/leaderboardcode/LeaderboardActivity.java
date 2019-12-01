@@ -15,16 +15,21 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.matchstickmenadventures.R;
+import com.google.gson.JsonObject;
 import com.group0540.matchstickmenadventures.Games;
 import com.group0540.matchstickmenadventures.MainMenuScreen;
-import com.example.matchstickmenadventures.R;
 import com.group0540.matchstickmenadventures.settingscode.Customizable;
 import com.group0540.matchstickmenadventures.settingscode.SettingsManager;
+
+import java.util.List;
+import java.util.Set;
 
 public class LeaderboardActivity extends AppCompatActivity implements LeaderboardView, Customizable {
     private Spinner gameSpinner;
     private TableLayout scoreTable;
     private LeaderboardPresenter leaderboardPresenter;
+    private LeaderboardManager leaderboardManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +40,8 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
         scoreTable = findViewById(R.id.scoreTable);
 
         SettingsManager settingsManager = (SettingsManager) getIntent().getSerializableExtra("settingsManager");
-        LeaderboardManager leaderboardManager = (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
-        leaderboardPresenter = new LeaderboardPresenter(this, leaderboardManager);
+        leaderboardManager = (LeaderboardManager) getIntent().getSerializableExtra("leaderboardManager");
+        leaderboardPresenter = new LeaderboardPresenter(this);
 
         setTheme(settingsManager.getSetting("theme"));
 
@@ -68,40 +73,27 @@ public class LeaderboardActivity extends AppCompatActivity implements Leaderboar
         });
     }
 
-    public void setGames(String[] games) {
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, games);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        gameSpinner.setAdapter(spinnerArrayAdapter);
+    public void setGames() {
+        String[] games = leaderboardManager.getGames();
+        if (games.length == 0) {
+            gameSpinner.setVisibility(View.INVISIBLE);
+            findViewById(R.id.statisticSortInstruction).setVisibility(View.INVISIBLE);
+            findViewById(R.id.noGameHint).setVisibility(View.VISIBLE);
+
+        } else {
+            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
+                    this,
+                    android.R.layout.simple_spinner_item,
+                    leaderboardManager.getGames());
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            gameSpinner.setAdapter(spinnerArrayAdapter);
+        }
     }
 
     public void showScores() {
-        TableRow.LayoutParams textParams = new TableRow.LayoutParams(
-                0,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                0.5f);
-        TableLayout.LayoutParams rowParams = new TableLayout.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                1f);
-
-        String[][] scoreData = leaderboardPresenter.getScoreData(getCurrentGame());
         scoreTable.removeAllViews();
-        for (String[] data : scoreData) {
-          TableRow row = new TableRow(this);
-          row.setLayoutParams(rowParams);
-          TextView nameView = new TextView(this);
-          TextView scoreView = new TextView(this);
-          nameView.setText(data[0]);
-          nameView.setTextSize(24f);
-          nameView.setLayoutParams(textParams);
-          scoreView.setText(data[1]);
-          scoreView.setTextSize(24f);
-          scoreView.setLayoutParams(textParams);
-          scoreView.setGravity(Gravity.END);
-          row.addView(nameView);
-          row.addView(scoreView);
-          scoreTable.addView(row);
-        }
+        List<JsonObject> scoreData = leaderboardManager.getGameStatistics(getCurrentGame());
+        buildTable(scoreData);
     }
 
     public void showScores(String statistic) {
