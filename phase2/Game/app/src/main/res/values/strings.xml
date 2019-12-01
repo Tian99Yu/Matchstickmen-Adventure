@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Game</string>
+    <string name="app_name">Matchstickmen Adventures</string>
 
-    <string name="title_activity_main_menu_screen">MainMenuScreen</string>
+    <string name="title_activity_main_menu_screen">Matchstickmen Adventures</string>
     <string name="story_mode_button">Story Mode</string>
     <string name="game_1_button">Snake</string>
     <string name="game_2_button">Asteroids</string>
