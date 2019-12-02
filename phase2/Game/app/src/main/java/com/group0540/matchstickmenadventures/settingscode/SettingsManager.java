@@ -15,16 +15,50 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * A SettingsManager, which handles the saving and applying of settings of Customizable and
+ * CustomizableGame objects.
+ */
 public class SettingsManager implements Serializable {
   private final File settingsFile;
   private String settingsString;
 
+  /**
+   * Creates a SettingsManager with corresponding location on disk.
+   * @param saveDirectory directory to save files in
+   * @param defaultSettings a default settings file
+   */
   public SettingsManager(File saveDirectory, InputStream defaultSettings) {
     settingsFile = new File(saveDirectory, "settings.json");
 
     loadSettings(defaultSettings);
   }
 
+  /**
+   * Records an option for some setting.
+   * @param setting the setting to change
+   * @param option the new value
+   */
+  void changeSetting(String setting, String option) {
+    JsonObject settings = convertStringToJsonObject(settingsString);
+    settings.add(setting, new JsonPrimitive(option));
+    settingsString = settings.toString();
+  }
+
+  /**
+   * Gets the recorded value for some setting.
+   * @param setting the setting of interest
+   * @return a String representing the value
+   */
+  public String getSetting(String setting) {
+    JsonObject settings = convertStringToJsonObject(settingsString);
+    return settings.get(setting).toString().replaceAll("\"", "");
+  }
+
+  /**
+   * Loads in saved settings if the file exists; otherwise, creates a new file with default settings
+   * @param defaultSettings InputStream containing default settings
+   */
   private void loadSettings(InputStream defaultSettings) {
     JsonObject settings = new JsonObject();
     if (settingsFile.exists()) {
@@ -40,7 +74,10 @@ public class SettingsManager implements Serializable {
     writeSettingsToFile();
   }
 
-  public void writeSettingsToFile() {
+  /**
+   * Saves the String representation of the JsonObject containing all settings to disk.
+   */
+  void writeSettingsToFile() {
     JsonObject settings = convertStringToJsonObject(settingsString);
     try {
       BufferedWriter bw = new BufferedWriter(new FileWriter(settingsFile));
@@ -51,6 +88,10 @@ public class SettingsManager implements Serializable {
     }
   }
 
+  /**
+   * @param is the InputStream to be converted.
+   * @return a string representation of the InputStream
+   */
   private String convertStreamtoString(InputStream is) {
     BufferedReader streamReader = new BufferedReader(
             new InputStreamReader(is, StandardCharsets.UTF_8)
@@ -68,18 +109,13 @@ public class SettingsManager implements Serializable {
     return stringBuilder.toString();
   }
 
+  /**
+   * Converts the string representation of settings to a JsonObject. Used to make SettingsManager
+   * serializable.
+   * @param jsonString the string representation of settings
+   * @return the corresponding JsonObject
+   */
   private JsonObject convertStringToJsonObject(String jsonString) {
     return JsonParser.parseString(jsonString).getAsJsonObject();
-  }
-
-  public void changeSetting(String setting, String option) {
-    JsonObject settings = convertStringToJsonObject(settingsString);
-    settings.add(setting, new JsonPrimitive(option));
-    settingsString = settings.toString();
-  }
-
-  public String getSetting(String setting) {
-    JsonObject settings = convertStringToJsonObject(settingsString);
-    return settings.get(setting).toString().replaceAll("\"", "");
   }
 }

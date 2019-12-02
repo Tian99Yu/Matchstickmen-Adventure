@@ -110,6 +110,11 @@ public class LeaderboardManager implements Serializable {
     return data.keySet().toArray(new String[0]);
   }
 
+  /**
+   * Returns an unsorted list of JsonObjects, each representing a save for a game.
+   * @param game the game to obtain stats for
+   * @return save data
+   */
   List<JsonObject> getGameStatistics(final Games game) {
     JsonObject data = convertStringToJsonObject(leaderboardString);
     JsonArray jsonArray = (JsonArray) data.get(game.toString());
@@ -120,12 +125,24 @@ public class LeaderboardManager implements Serializable {
     return gameData;
   }
 
+  /**
+   * Returns a list of JsonObjects, each representing a save for a game, sorted in non-increasing
+   * order by statistic.
+   * @param game the game to obtain stats for
+   * @param statistic the statistic to sort by
+   * @return save data
+   */
   List<JsonObject> getGameStatistics(final Games game, String statistic) {
     List<JsonObject> gameData = getGameStatistics(game);
     sortGameStatistics(gameData, statistic);
     return gameData;
   }
 
+  /**
+   * Sorts data in-place in non-increasing order by statistic
+   * @param data list of game save data
+   * @param statistic the statistic to sort by
+   */
   private void sortGameStatistics(List<JsonObject> data, final String statistic) {
     Collections.sort(data, new Comparator<JsonObject> () {
       @Override

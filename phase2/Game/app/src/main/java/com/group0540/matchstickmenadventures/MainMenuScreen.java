@@ -44,6 +44,7 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
 
     InputStream defaultSettingsStream = getResources().openRawResource(R.raw.defaultsettings);
 
+    // Instantiate new Managers if Intent is empty, otherwise grab them from the intent.
     Intent intent = getIntent();
     if (intent.getExtras() == null) {
       leaderboardManager = new LeaderboardManager(getDataDir());
@@ -55,6 +56,7 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
       loginManager = (LoginManager) intent.getSerializableExtra("loginManager");
     }
 
+    // Sets a visible prompt asking user to log in before they can play.
     if (!loginManager.isLoggedIn()) {
       launchGame1.setVisibility(View.INVISIBLE);
       launchGame2.setVisibility(View.INVISIBLE);
@@ -124,6 +126,10 @@ public class MainMenuScreen extends AppCompatActivity implements Customizable {
     super.onPostCreate(savedInstanceState);
   }
 
+  /**
+   * Used to pass various Managers across intents.
+   * @param intent the intent to populate
+   */
   private void sendToIntent(Intent intent) {
     intent.putExtra("leaderboardManager", leaderboardManager);
     intent.putExtra("settingsManager", settingsManager);

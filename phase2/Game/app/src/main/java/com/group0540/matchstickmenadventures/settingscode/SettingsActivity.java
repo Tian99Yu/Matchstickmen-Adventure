@@ -52,7 +52,6 @@ public class SettingsActivity extends AppCompatActivity implements Serializable,
 
         addCloseButton();
         markSettings();
-
     }
 
     private void addCloseButton() {
@@ -133,18 +132,12 @@ public class SettingsActivity extends AppCompatActivity implements Serializable,
                 for (int i = 0; i < ((LinearLayout) layout).getChildCount(); i++) {
                     setColorText(((LinearLayout) layout).getChildAt(i), color);
                 }
-
             } else {
                 for (int i = 0; i < ((RadioGroup) layout).getChildCount(); i++) {
                     setColorText(((RadioGroup) layout).getChildAt(i), color);
-
                 }
-
-
             }
         }
-
-
     }
 
     @Override
