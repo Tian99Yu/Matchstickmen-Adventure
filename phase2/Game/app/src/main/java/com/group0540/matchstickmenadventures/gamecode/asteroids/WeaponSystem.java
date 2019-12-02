@@ -18,6 +18,7 @@ abstract class WeaponSystem<T extends AsteroidGameObject> {
     this.muzzleVelocity = muzzleVelocity;
     this.spread = spread;
     this.cooldown = cooldown;
+    this.cooldownState = cooldown;
     this.ammoSize = ammoSize;
   }
 

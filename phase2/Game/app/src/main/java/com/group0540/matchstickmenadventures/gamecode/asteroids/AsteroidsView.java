@@ -31,6 +31,11 @@ class AsteroidsView extends GameView<AsteroidGameObject>
     density = context.getResources().getDisplayMetrics().density;
   }
 
+  /**
+   * Gets a hash map that maps class types to colored sprites that the presenter is to draw.
+   *
+   * @return a hash map of colored sprites
+   */
   public HashMap<Class<? extends AsteroidGameObject>, ColoredSprite<Bitmap>>
       getClassToColoredSprite() {
     HashMap<Class<? extends AsteroidGameObject>, ColoredSprite<Bitmap>> classToColoredSprite =
@@ -70,7 +75,8 @@ class AsteroidsView extends GameView<AsteroidGameObject>
             BitmapFactory.decodeResource(getResources(), R.drawable.asteroid), Color.MAGENTA);
     ColoredSprite<Bitmap> asteroidSpawnerSprite =
         new ColoredSprite<>(
-            BitmapFactory.decodeResource(getResources(), R.drawable.ship), Color.rgb(255, 180, 0));
+            BitmapFactory.decodeResource(getResources(), R.drawable.angryasteroid),
+            Color.TRANSPARENT);
     // add colored sprites to hashmap
     classToColoredSprite.put(Asteroid.class, asteroidColoredSprite);
     classToColoredSprite.put(Projectile.class, laserColoredSprite);
