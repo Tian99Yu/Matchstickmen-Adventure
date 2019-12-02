@@ -122,7 +122,7 @@ class Ship extends AsteroidGameObject {
     }
   }
 
-  public void setPowerupTime(int powerupTime) {
+  void setPowerupTime(int powerupTime) {
     this.powerupTime = powerupTime;
   }
 }

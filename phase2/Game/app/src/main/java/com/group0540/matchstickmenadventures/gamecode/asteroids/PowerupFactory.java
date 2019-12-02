@@ -20,16 +20,14 @@ class PowerupFactory {
       double vX,
       double vY,
       double angle,
-      double collisionRadius,
-      LivesManager livesManager,
-      WeaponPowerupUnlocker weaponPowerupUnlocker) {
+      double collisionRadius) {
     int powerupType = (int) (Math.random() * 3);
     if (powerupType == 0) {
       return new ExplosivePowerupAsteroid(x, y, vX, vY, angle, collisionRadius, 36);
     } else if (powerupType == 1) {
-      return new AdditionalLifePowerupAsteroid(x, y, vX, vY, angle, collisionRadius, livesManager);
+      return new AdditionalLifePowerupAsteroid(x, y, vX, vY, angle, collisionRadius);
     } else {
-      return new WeaponPowerupAsteroid(x, y, vX, vY, angle, collisionRadius, weaponPowerupUnlocker);
+      return new WeaponPowerupAsteroid(x, y, vX, vY, angle, collisionRadius);
     }
   }
 }

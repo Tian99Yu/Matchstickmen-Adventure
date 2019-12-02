@@ -61,7 +61,6 @@ class AsteroidSpawner extends Asteroid {
       targetAngle = Math.random() * 2 * Math.PI;
     }
     turn(targetAngle, turnRate);
-    double angle = getAngle();
     if (Math.random() < 0.4) {
       accelerate(thrust, maxVelocity);
     }

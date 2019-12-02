@@ -38,14 +38,7 @@ class Asteroid extends AsteroidGameObject {
         if (Math.random() < 0.05) {
           smallerAsteroids.add(
               PowerupFactory.getRandomPowerup(
-                  newX,
-                  newY,
-                  newVX,
-                  newVY,
-                  newAngle,
-                  newCollisionRadius,
-                  livesManager,
-                  weaponPowerupUnlocker));
+                  newX, newY, newVX, newVY, newAngle, newCollisionRadius));
         } else {
           smallerAsteroids.add(
               new Asteroid(

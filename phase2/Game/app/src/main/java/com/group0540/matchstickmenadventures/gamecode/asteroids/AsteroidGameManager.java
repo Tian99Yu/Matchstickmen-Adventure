@@ -25,7 +25,7 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
   /** Number of powerups collected by player. */
   private int powerupsCollected;
 
-  public AsteroidGameManager(int playAreaWidth, int playAreaHeight) {
+  AsteroidGameManager(int playAreaWidth, int playAreaHeight) {
     this.playAreaWidth = playAreaWidth;
     this.playAreaHeight = playAreaHeight;
     spawnPlayer();
@@ -191,17 +191,17 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
   }
 
   /** Sets the target direction based on user input. */
-  public void setTargetDirection(double targetDirection) {
+  void setTargetDirection(double targetDirection) {
     player.setTargetAngle(targetDirection);
   }
 
   /** Sets the thruster state based on user input. */
-  public void setThrusterActive(boolean thrusterActive) {
+  void setThrusterActive(boolean thrusterActive) {
     player.setThrusterActive(thrusterActive);
   }
 
   /** Sets the firing state based on user input. */
-  public void setFireActive(boolean active) {
+  void setFireActive(boolean active) {
     player.setWeaponActive(active);
   }
 
@@ -221,15 +221,15 @@ public class AsteroidGameManager extends GameBackend<AsteroidGameObject>
     return currentScore;
   }
 
-  public int getAsteroidsDestroyed() {
+  int getAsteroidsDestroyed() {
     return asteroidsDestroyed;
   }
 
-  public int getPowerupsCollected() {
+  int getPowerupsCollected() {
     return powerupsCollected;
   }
 
-  public int getLives() {
+  int getLives() {
     return lives;
   }
 

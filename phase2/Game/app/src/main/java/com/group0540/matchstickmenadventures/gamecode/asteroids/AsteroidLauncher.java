@@ -3,9 +3,9 @@ package com.group0540.matchstickmenadventures.gamecode.asteroids;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AsteroidLauncher extends WeaponSystem<Asteroid> {
+class AsteroidLauncher extends WeaponSystem<Asteroid> {
   /** Number of hitpoints asteroids fired by this launcher has. */
-  protected int asteroidHitPoints;
+  private int asteroidHitPoints;
   /** The level of the asteroids fired by this launcher. */
   private int asteroidLevel;
 

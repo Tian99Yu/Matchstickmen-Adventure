@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 class WeaponPowerupAsteroid extends PowerupAsteroid {
-  private WeaponPowerupUnlocker weaponPowerupUnlocker;
 
   WeaponPowerupAsteroid(
       double x,
@@ -12,10 +11,8 @@ class WeaponPowerupAsteroid extends PowerupAsteroid {
       double vX,
       double vY,
       double angle,
-      double collisionRadius,
-      WeaponPowerupUnlocker weaponPowerupUnlocker) {
+      double collisionRadius) {
     super(x, y, vX, vY, angle, collisionRadius);
-    this.weaponPowerupUnlocker = weaponPowerupUnlocker;
   }
 
   @Override

@@ -2,7 +2,7 @@ package com.group0540.matchstickmenadventures.gamecode.asteroids;
 
 abstract class AsteroidGameObject {
   /** time interval to approximate movement */
-  static final double dt = 1.0 / 60.0;
+  private final double dt = 1.0 / 60.0;
   /** position of AsteroidGameObject */
   double x, y;
   /** velocity in the x and y direction of the AsteroidGameObject */

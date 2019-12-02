@@ -4,15 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 class AdditionalLifePowerupAsteroid extends PowerupAsteroid {
-  /**
-   * The manager of the number of player lives in the game.
-   */
-  private LivesManager livesManager;
 
   AdditionalLifePowerupAsteroid(
-      double x, double y, double vX, double vY, double angle, double collisionRadius, LivesManager livesManager) {
+      double x, double y, double vX, double vY, double angle, double collisionRadius) {
     super(x, y, vX, vY, angle, collisionRadius);
-    this.livesManager = livesManager;
   }
 
   @Override

@@ -8,10 +8,6 @@ class TargetingComputer {
     this.weaponSystem = weaponSystem;
   }
 
-  void setWeaponSystem(WeaponSystem weaponSystem) {
-    this.weaponSystem = weaponSystem;
-  }
-
   /**
    * Returns the angle to fire at to hit the target. Does not take into account the velocity of firing
    * platform.
